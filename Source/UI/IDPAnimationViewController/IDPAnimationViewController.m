@@ -1,0 +1,41 @@
+//
+//  IDPAnimationViewController.m
+//  SuperUI
+//
+//  Created by Ievgen on 8/5/16.
+//  Copyright © 2016 1mlndollarsasset. All rights reserved.
+//
+
+#import "IDPAnimationViewController.h"
+
+#import "IDPAnimationView.h"
+#import "IDPMacro.h"
+
+IDPViewControllerBaseViewProperty(IDPAnimationViewController, animationView, IDPAnimationView);
+
+@interface IDPAnimationViewController ()
+
+@end
+
+@implementation IDPAnimationViewController
+
+#pragma mark -
+#pragma mark View Lifecycle
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+}
+
+
+#pragma mark -
+#pragma mark Interface Handling
+
+- (IBAction)onPlayButton:(id)sender {
+    [self.animationView play];
+}
+
+- (IBAction)onStopButton:(id)sender {
+    [self.animationView stop];
+}
+
+@end
