@@ -21,16 +21,16 @@
                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kNy-DK-cmp">
-                    <rect key="frame" x="191" y="285" width="32" height="30"/>
-                    <autoresizingMask key="autoresizingMask"/>
+                    <rect key="frame" x="183" y="269" width="32" height="30"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <state key="normal" title="Stop"/>
                     <connections>
                         <action selector="onStopButton:" destination="-1" eventType="touchUpInside" id="QSh-uL-3h7"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eQE-Ka-L6b">
-                    <rect key="frame" x="119" y="285" width="30" height="30"/>
-                    <autoresizingMask key="autoresizingMask"/>
+                    <rect key="frame" x="106" y="269" width="30" height="30"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <state key="normal" title="Play"/>
                     <connections>
                         <action selector="onPlayButton:" destination="-1" eventType="touchUpInside" id="iaG-UW-gDo"/>

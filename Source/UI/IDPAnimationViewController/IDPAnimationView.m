@@ -9,11 +9,12 @@
 #import "IDPAnimationView.h"
 
 static NSTimeInterval IDPDuration   = 1.5;
-static NSTimeInterval IDPDealay     = 0.3;
+static NSTimeInterval IDPDelay      = 0.0;
 
 @interface IDPAnimationView ()
 @property (nonatomic, assign)                   CGPoint *positions;
 @property (nonatomic, assign, getter=isRunning) BOOL    running;
+@property (nonatomic, readonly)                 IDPSquarePosition nextPosition;
 
 - (void)setUpSquarePositions;
 
@@ -29,6 +30,8 @@ static NSTimeInterval IDPDealay     = 0.3;
 @end
 
 @implementation IDPAnimationView
+
+@dynamic nextPosition;
 
 #pragma mark -
 #pragma mart Initializations and Deallocations
@@ -47,6 +50,10 @@ static NSTimeInterval IDPDealay     = 0.3;
 
 #pragma mark -
 #pragma mark Accessors
+
+- (IDPSquarePosition)nextPosition {
+    return (self.squarePosition + 1) % IDPSquarePositionsCount;
+}
 
 - (void)setPositions:(CGPoint *)positions {
     if (_positions != positions) {
@@ -94,8 +101,8 @@ static NSTimeInterval IDPDealay     = 0.3;
     
     if (animated) {
         [UIView animateWithDuration:IDPDuration
-                              delay:IDPDealay
-                            options:UIViewAnimationOptionBeginFromCurrentState
+                              delay:IDPDelay
+                            options:UIViewAnimationOptionCurveLinear
                          animations:transformation
                          completion:completionHandler];
     } else {
@@ -132,21 +139,23 @@ static NSTimeInterval IDPDealay     = 0.3;
 
 - (void)animate {
     if (self.isRunning) {
-        IDPSquarePosition position = (self.squarePosition + 1) % IDPSquarePositionsCount;
+        //__block IDPSquarePosition position = (self.squarePosition + 1) % IDPSquarePositionsCount;
         
+        __weak IDPAnimationView *view = self;
         void (^completionHandler)(BOOL finished) = ^void(BOOL finished) {
             if (!finished) {
                 return;
             }
             
-            _squarePosition = position;
+            _squarePosition = view.nextPosition;
             
             [self animate];
         };
         
-        [self setSquarePosition:position
+        [self setSquarePosition:self.nextPosition
                        animated:YES
-              completionHandler:completionHandler];
+              completionHandler:completionHandler
+         ];
     }
 }
 

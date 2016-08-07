@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 typedef enum {
-    IDPSquarePositionTopLeft,
+    IDPSquarePositionTopLeft = 0,
     IDPSquarePositionTopRight,
     IDPSquarePositionBottomRight,
     IDPSquarePositionBottomLeft
@@ -17,7 +17,7 @@ typedef enum {
 
 static const NSUInteger IDPSquarePositionsCount = 4;
 
-static const NSUInteger IDPSquarePositionDefault = IDPSquarePositionTopRight;
+static const NSUInteger IDPSquarePositionDefault = IDPSquarePositionTopLeft;
 
 @interface IDPAnimationView : UIView
 @property (nonatomic, assign)   IDPSquarePosition   squarePosition;
