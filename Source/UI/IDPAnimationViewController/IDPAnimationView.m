@@ -9,7 +9,7 @@
 #import "IDPAnimationView.h"
 
 static NSTimeInterval IDPDuration   = 1.5;
-static NSTimeInterval IDPDelay      = 0.0;
+static NSTimeInterval IDPDelay      = 0.3;
 
 @interface IDPAnimationView ()
 @property (nonatomic, assign)                   CGPoint *positions;
@@ -122,6 +122,9 @@ static NSTimeInterval IDPDelay      = 0.0;
 - (void)viewDidLoad {
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+}
+
 #pragma mark -
 #pragma mark Public Methods
 
@@ -170,9 +173,9 @@ static NSTimeInterval IDPDelay      = 0.0;
     int squareHeight = squareBounds.size.height;
 
     CGPoint *positions = malloc(sizeof(self.positions) * IDPSquarePositionsCount);
-    positions[IDPSquarePositionTopLeft] = CGPointMake(0, 0);
-    positions[IDPSquarePositionTopRight] = CGPointMake(viewWidth - squareWidth, 0);
-    positions[IDPSquarePositionBottomLeft] = CGPointMake(0, viewHeight - squareHeight);
+    positions[IDPSquarePositionTopLeft]     = CGPointMake(0, 0);
+    positions[IDPSquarePositionTopRight]    = CGPointMake(viewWidth - squareWidth, 0);
+    positions[IDPSquarePositionBottomLeft]  = CGPointMake(0, viewHeight - squareHeight);
     positions[IDPSquarePositionBottomRight] = CGPointMake(viewWidth - squareWidth,
                                                           viewHeight - squareHeight);
     self.positions = positions;
