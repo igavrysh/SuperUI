@@ -14,7 +14,7 @@ static NSTimeInterval IDPDelay      = 0.0;
 @interface IDPAnimationView ()
 @property (nonatomic, assign)                   CGPoint *positions;
 @property (nonatomic, assign, getter=isRunning) BOOL    running;
-@property (nonatomic, readonly)                 IDPSquarePosition nextPosition;
+@property (nonatomic, assign)                   IDPSquarePosition leadingPosition;
 
 - (void)setUpSquarePositions;
 
@@ -25,13 +25,13 @@ static NSTimeInterval IDPDelay      = 0.0;
                  animated:(BOOL)animated
         completionHandler:(void(^)(BOOL finished))completionHandler;
 
+- (IDPSquarePosition)nextPosition;
+
 - (void)animate;
 
 @end
 
 @implementation IDPAnimationView
-
-@dynamic nextPosition;
 
 #pragma mark -
 #pragma mart Initializations and Deallocations
@@ -68,11 +68,7 @@ static NSTimeInterval IDPDelay      = 0.0;
 - (void)setSquarePosition:(IDPSquarePosition)position {
     [self setSquarePosition:position
                    animated:NO
-          completionHandler:^(BOOL finished) {
-              if (finished) {
-                  _squarePosition = position;
-              }
-          }];
+          completionHandler:nil];
 }
 
 - (void)setSquarePosition:(IDPSquarePosition)position
@@ -80,36 +76,43 @@ static NSTimeInterval IDPDelay      = 0.0;
 {
     [self setSquarePosition:IDPSquarePositionDefault
                    animated:animated
-          completionHandler:^(BOOL finished) {
-              if (finished) {
-                  _squarePosition = position;
-              }
-          }];
+          completionHandler:nil];
 }
 
 - (void)setSquarePosition:(IDPSquarePosition)position
                  animated:(BOOL)animated
         completionHandler:(void(^)(BOOL finished))completionHandler
 {
+    self.leadingPosition = position;
+    
+    __weak IDPAnimationView *weakSelf = self;
     void (^transformation)() = ^{
-        CGRect frame = self.square.frame;
+        CGRect frame = weakSelf.square.frame;
         
-        frame.origin = self.positions[position];
+        frame.origin = weakSelf.positions[position];
         
-        self.square.frame = frame;
+        weakSelf.square.frame = frame;
+    };
+    
+    void (^completion)(BOOL finished) = ^(BOOL finished) {
+        if (finished) {
+            _squarePosition = weakSelf.leadingPosition;
+            
+            if (completionHandler) {
+               completionHandler(YES);
+            }
+        }
     };
     
     if (animated) {
         [UIView animateWithDuration:IDPDuration
                               delay:IDPDelay
-                            options:UIViewAnimationOptionCurveLinear
+                            options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionBeginFromCurrentState
                          animations:transformation
-                         completion:completionHandler];
+                         completion:completion];
     } else {
         transformation();
-        if (completionHandler) {
-            completionHandler(YES);
-        }
+        completion(YES);
     }
 }
 
@@ -139,20 +142,18 @@ static NSTimeInterval IDPDelay      = 0.0;
 
 - (void)animate {
     if (self.isRunning) {
-        //__block IDPSquarePosition position = (self.squarePosition + 1) % IDPSquarePositionsCount;
-        
-        __weak IDPAnimationView *view = self;
+        __weak IDPAnimationView *weakSelf = self;
         void (^completionHandler)(BOOL finished) = ^void(BOOL finished) {
             if (!finished) {
                 return;
             }
             
-            _squarePosition = view.nextPosition;
+            _squarePosition = weakSelf.leadingPosition;
             
-            [self animate];
+            [weakSelf animate];
         };
         
-        [self setSquarePosition:self.nextPosition
+        [self setSquarePosition:[self nextPosition]
                        animated:YES
               completionHandler:completionHandler
          ];
