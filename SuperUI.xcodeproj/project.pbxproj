@@ -7,13 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		850400971D53F3A7008ED1F3 /* IDPAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850400951D53F3A7008ED1F3 /* IDPAnimationViewController.m */; };
+		850400981D53F3A7008ED1F3 /* IDPAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850400951D53F3A7008ED1F3 /* IDPAnimationViewController.m */; };
+		850400991D53F3A7008ED1F3 /* IDPAnimationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850400961D53F3A7008ED1F3 /* IDPAnimationViewController.xib */; };
+		8504009A1D53F3A7008ED1F3 /* IDPAnimationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850400961D53F3A7008ED1F3 /* IDPAnimationViewController.xib */; };
 		85193DF21D53B8120085BCC2 /* SuperUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 85193DF11D53B8120085BCC2 /* SuperUITests.m */; };
+		853C62AB1D562E49004D5B74 /* UINib+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 853C62AA1D562E49004D5B74 /* UINib+IDPExtensions.m */; };
+		853C62AC1D562E49004D5B74 /* UINib+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 853C62AA1D562E49004D5B74 /* UINib+IDPExtensions.m */; };
+		853C62AF1D562F19004D5B74 /* IDPMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 853C62AE1D562F19004D5B74 /* IDPMacro.m */; };
+		853C62B01D562F19004D5B74 /* IDPMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 853C62AE1D562F19004D5B74 /* IDPMacro.m */; };
+		853C62B31D563C52004D5B74 /* IDPAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 853C62B21D563C52004D5B74 /* IDPAnimationView.m */; };
+		853C62B41D563C52004D5B74 /* IDPAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 853C62B21D563C52004D5B74 /* IDPAnimationView.m */; };
 		85C8DD921D530D6E009E227C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C8DD911D530D6E009E227C /* main.m */; };
 		85C8DD951D530D6E009E227C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C8DD941D530D6E009E227C /* AppDelegate.m */; };
-		85C8DD981D530D6E009E227C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C8DD971D530D6E009E227C /* ViewController.m */; };
 		85C8DDB31D530FD3009E227C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C8DDA81D530FD3009E227C /* Assets.xcassets */; };
 		85C8DDB41D530FD3009E227C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85C8DDA91D530FD3009E227C /* LaunchScreen.storyboard */; };
-		85C8DDB51D530FD3009E227C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85C8DDAB1D530FD3009E227C /* Main.storyboard */; };
 		E37943280EEC33F123909449 /* libPods-SuperUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D723FE3E275ACEB2310F874A /* libPods-SuperUITests.a */; };
 /* End PBXBuildFile section */
 
@@ -30,19 +38,25 @@
 /* Begin PBXFileReference section */
 		4E9FAB0A6B61892A11EBA490 /* Pods-SuperUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuperUITests/Pods-SuperUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6287A7FFF36F756361DD6F72 /* Pods-SuperUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuperUITests/Pods-SuperUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		850400941D53F3A7008ED1F3 /* IDPAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPAnimationViewController.h; sourceTree = "<group>"; };
+		850400951D53F3A7008ED1F3 /* IDPAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPAnimationViewController.m; sourceTree = "<group>"; };
+		850400961D53F3A7008ED1F3 /* IDPAnimationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPAnimationViewController.xib; sourceTree = "<group>"; };
 		85193DEF1D53B8120085BCC2 /* SuperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		85193DF11D53B8120085BCC2 /* SuperUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperUITests.m; sourceTree = "<group>"; };
 		85193DF31D53B8120085BCC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		853C62A91D562E49004D5B74 /* UINib+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINib+IDPExtensions.h"; sourceTree = "<group>"; };
+		853C62AA1D562E49004D5B74 /* UINib+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINib+IDPExtensions.m"; sourceTree = "<group>"; };
+		853C62AD1D562F19004D5B74 /* IDPMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPMacro.h; sourceTree = "<group>"; };
+		853C62AE1D562F19004D5B74 /* IDPMacro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPMacro.m; sourceTree = "<group>"; };
+		853C62B11D563C52004D5B74 /* IDPAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPAnimationView.h; sourceTree = "<group>"; };
+		853C62B21D563C52004D5B74 /* IDPAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPAnimationView.m; sourceTree = "<group>"; };
 		85C8DD8D1D530D6E009E227C /* SuperUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85C8DD911D530D6E009E227C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		85C8DD931D530D6E009E227C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		85C8DD941D530D6E009E227C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		85C8DD961D530D6E009E227C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		85C8DD971D530D6E009E227C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		85C8DDA11D530D6E009E227C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85C8DDA81D530FD3009E227C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85C8DDAA1D530FD3009E227C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		85C8DDAC1D530FD3009E227C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D723FE3E275ACEB2310F874A /* libPods-SuperUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -74,6 +88,18 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8504008C1D53F0B2008ED1F3 /* IDPAnimationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				850400941D53F3A7008ED1F3 /* IDPAnimationViewController.h */,
+				850400951D53F3A7008ED1F3 /* IDPAnimationViewController.m */,
+				850400961D53F3A7008ED1F3 /* IDPAnimationViewController.xib */,
+				853C62B11D563C52004D5B74 /* IDPAnimationView.h */,
+				853C62B21D563C52004D5B74 /* IDPAnimationView.m */,
+			);
+			path = IDPAnimationViewController;
+			sourceTree = "<group>";
+		};
 		85193DF01D53B8120085BCC2 /* SuperUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +107,15 @@
 				85193DF31D53B8120085BCC2 /* Info.plist */,
 			);
 			path = SuperUITests;
+			sourceTree = "<group>";
+		};
+		853C62A81D562E49004D5B74 /* UINib+IDPExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				853C62A91D562E49004D5B74 /* UINib+IDPExtensions.h */,
+				853C62AA1D562E49004D5B74 /* UINib+IDPExtensions.m */,
+			);
+			path = "UINib+IDPExtensions";
 			sourceTree = "<group>";
 		};
 		85C8DD841D530D6E009E227C = {
@@ -110,8 +145,6 @@
 			children = (
 				85C8DD931D530D6E009E227C /* AppDelegate.h */,
 				85C8DD941D530D6E009E227C /* AppDelegate.m */,
-				85C8DD961D530D6E009E227C /* ViewController.h */,
-				85C8DD971D530D6E009E227C /* ViewController.m */,
 				85C8DDA11D530D6E009E227C /* Info.plist */,
 				85C8DD911D530D6E009E227C /* main.m */,
 			);
@@ -123,7 +156,6 @@
 			children = (
 				85C8DDA81D530FD3009E227C /* Assets.xcassets */,
 				85C8DDA91D530FD3009E227C /* LaunchScreen.storyboard */,
-				85C8DDAB1D530FD3009E227C /* Main.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -143,6 +175,8 @@
 			children = (
 				85C8DDAF1D530FD3009E227C /* Categories */,
 				85C8DDB01D530FD3009E227C /* Classes */,
+				853C62AD1D562F19004D5B74 /* IDPMacro.h */,
+				853C62AE1D562F19004D5B74 /* IDPMacro.m */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -150,6 +184,7 @@
 		85C8DDAF1D530FD3009E227C /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				853C62A81D562E49004D5B74 /* UINib+IDPExtensions */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -171,6 +206,7 @@
 		85C8DDB21D530FD3009E227C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				8504008C1D53F0B2008ED1F3 /* IDPAnimationViewController */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -268,6 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8504009A1D53F3A7008ED1F3 /* IDPAnimationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,9 +312,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85C8DDB51D530FD3009E227C /* Main.storyboard in Resources */,
 				85C8DDB31D530FD3009E227C /* Assets.xcassets in Resources */,
 				85C8DDB41D530FD3009E227C /* LaunchScreen.storyboard in Resources */,
+				850400991D53F3A7008ED1F3 /* IDPAnimationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +374,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				85193DF21D53B8120085BCC2 /* SuperUITests.m in Sources */,
+				850400981D53F3A7008ED1F3 /* IDPAnimationViewController.m in Sources */,
+				853C62B01D562F19004D5B74 /* IDPMacro.m in Sources */,
+				853C62AC1D562E49004D5B74 /* UINib+IDPExtensions.m in Sources */,
+				853C62B41D563C52004D5B74 /* IDPAnimationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,9 +385,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85C8DD981D530D6E009E227C /* ViewController.m in Sources */,
+				853C62AF1D562F19004D5B74 /* IDPMacro.m in Sources */,
+				853C62B31D563C52004D5B74 /* IDPAnimationView.m in Sources */,
 				85C8DD951D530D6E009E227C /* AppDelegate.m in Sources */,
 				85C8DD921D530D6E009E227C /* main.m in Sources */,
+				850400971D53F3A7008ED1F3 /* IDPAnimationViewController.m in Sources */,
+				853C62AB1D562E49004D5B74 /* UINib+IDPExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,14 +411,6 @@
 				85C8DDAA1D530FD3009E227C /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		85C8DDAB1D530FD3009E227C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				85C8DDAC1D530FD3009E227C /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
