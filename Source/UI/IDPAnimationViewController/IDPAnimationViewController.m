@@ -26,7 +26,6 @@ IDPViewControllerBaseViewProperty(IDPAnimationViewController, animationView, IDP
     [super viewDidLoad];
 }
 
-
 #pragma mark -
 #pragma mark Interface Handling
 

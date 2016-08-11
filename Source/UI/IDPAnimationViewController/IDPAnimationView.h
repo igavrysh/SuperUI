@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum {
-    IDPSquarePositionTopLeft = 0,
+typedef NS_ENUM(NSUInteger, IDPSquarePosition) {
+    IDPSquarePositionTopLeft,
     IDPSquarePositionTopRight,
     IDPSquarePositionBottomRight,
     IDPSquarePositionBottomLeft
-} IDPSquarePosition;
+};
 
 static const NSUInteger IDPSquarePositionsCount = 4;
 
