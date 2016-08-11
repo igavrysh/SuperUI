@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 
 #import "IDPAnimationViewController.h"
+#import "IDPArrayViewController.h"
 
 @interface AppDelegate ()
 

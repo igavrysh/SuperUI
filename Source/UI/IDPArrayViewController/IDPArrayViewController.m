@@ -8,6 +8,11 @@
 
 #import "IDPArrayViewController.h"
 
+#import "IDPMacro.h"
+#import "IDPArrayView.h"
+
+IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayView)
+
 @interface IDPArrayViewController ()
 
 @end
