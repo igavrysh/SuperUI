@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, IDPSquarePosition) {
 
 static const NSUInteger IDPSquarePositionsCount = 4;
 
-static const NSUInteger IDPSquarePositionDefault = IDPSquarePositionTopLeft;
+static const NSUInteger IDPSquarePositionDefault = IDPSquarePositionTopRight;
 
 @interface IDPAnimationView : UIView
 @property (nonatomic, assign)   IDPSquarePosition   squarePosition;
