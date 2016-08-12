@@ -9,7 +9,7 @@
 #import "IDPArrayModel.h"
 
 #import "NSArray+IDPArrayEnumerator.h"
-#import "NSObject+IDPObject.h"
+#import "IDPArrayObject.h"
 
 @interface IDPArrayModel ()
 @property (nonatomic, strong)   NSMutableArray  *data;
@@ -30,26 +30,26 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (id)objectAtIndexedSubscript:(NSUInteger)index {
+- (IDPArrayObject *)objectAtIndexedSubscript:(NSUInteger)index {
     return [self objectAtIndex:index];
 }
 
-- (id)objectAtIndex:(NSUInteger)index {
-    return index < self.count ? [self.data[index] nilUnwrappedObject] : nil;
+- (IDPArrayObject *)objectAtIndex:(NSUInteger)index {
+    return index < self.count ? self.data[index] : nil;
 }
 
-- (NSUInteger)indexOfObject:(id)object {
-    return [self.data indexOfObject:[object nilUnwrappedObject]];
+- (NSUInteger)indexOfObject:(IDPArrayObject *)object {
+    return [self.data indexOfObject:object];
 }
 
-- (void)addObject:(id)object {
-    [self.data addObject:[object nilUnwrappedObject]];
+- (void)addObject:(IDPArrayObject *)object {
+    [self.data addObject:object];
     
     [self notifyOfStateChange:IDPArrayModelObjectAdded];
 }
 
-- (void)removeObject:(id)object {
-    [self removeObjectAtIndex:[self indexOfObject:[object nilWrappedObject]]];
+- (void)removeObject:(IDPArrayObject *)object {
+    [self removeObjectAtIndex:[self indexOfObject:object]];
 }
 
 - (void)removeObjectAtIndex:(NSUInteger)index {
@@ -58,13 +58,13 @@
     [self notifyOfStateChange:IDPArrayModelObjectRemoved];
 }
 
-- (void)pasteObject:(id)object atIndex:(NSUInteger)index {
-    [self.data insertObject:[object nilWrappedObject] atIndex:index];
+- (void)pasteObject:(IDPArrayObject *)object atIndex:(NSUInteger)index {
+    [self.data insertObject:object atIndex:index];
     
     [self notifyOfStateChange:IDPArrayModelObjectPasted];
 }
 
-- (void)moveObject:(id)object toIndex:(NSUInteger)index {
+- (void)moveObject:(IDPArrayObject *)object toIndex:(NSUInteger)index {
     [self moveObjectFromIndex:[self indexOfObject:object] toIndex:index];
 }
 
@@ -73,7 +73,7 @@
         return;
     }
     
-    id object = self[source];
+    IDPArrayObject *object = self[source];
     [self removeObjectAtIndex:source];
     [self pasteObject:object atIndex:destination];
     

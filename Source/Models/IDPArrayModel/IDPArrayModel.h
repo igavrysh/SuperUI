@@ -8,6 +8,8 @@
 
 #import "IDPObservableObject.h"
 
+@class IDPArrayObject;
+
 typedef NS_ENUM(NSUInteger, IDPArrayModelState) {
     IDPArrayModelObjectAdded,
     IDPArrayModelObjectRemoved,
@@ -19,18 +21,18 @@ typedef NS_ENUM(NSUInteger, IDPArrayModelState) {
 @property (nonatomic, readonly)     NSMutableArray  *data;
 @property (nonatomic, readonly)     NSUInteger      count;
 
-- (id)objectAtIndexedSubscript:(NSUInteger)index;
-- (id)objectAtIndex:(NSUInteger)index;
+- (IDPArrayObject *)objectAtIndexedSubscript:(NSUInteger)index;
+- (IDPArrayObject *)objectAtIndex:(NSUInteger)index;
 - (NSUInteger)indexOfObject:(id)object;
 
-- (void)addObject:(id)object;
+- (void)addObject:(IDPArrayObject *)object;
 
-- (void)removeObject:(id)object;
+- (void)removeObject:(IDPArrayObject *)object;
 - (void)removeObjectAtIndex:(NSUInteger)index;
 
-- (void)pasteObject:(id)object atIndex:(NSUInteger)index;
+- (void)pasteObject:(IDPArrayObject *)object atIndex:(NSUInteger)index;
 
-- (void)moveObject:(id)object toIndex:(NSUInteger)index;
+- (void)moveObject:(IDPArrayObject *)object toIndex:(NSUInteger)index;
 - (void)moveObjectFromIndex:(NSUInteger)source toIndex:(NSUInteger)destination;
 
 @end

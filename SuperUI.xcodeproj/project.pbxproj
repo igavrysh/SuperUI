@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		85193DF21D53B8120085BCC2 /* SuperUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 85193DF11D53B8120085BCC2 /* SuperUITests.m */; };
+		8532F69B1D5D9A7E00DDAFDF /* UIWindow+IDPFullScreenWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8532F69A1D5D9A7E00DDAFDF /* UIWindow+IDPFullScreenWindow.m */; };
+		8532F69C1D5D9A7E00DDAFDF /* UIWindow+IDPFullScreenWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8532F69A1D5D9A7E00DDAFDF /* UIWindow+IDPFullScreenWindow.m */; };
+		8532F69F1D5D9CE300DDAFDF /* IDPArrayObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8532F69E1D5D9CE300DDAFDF /* IDPArrayObject.m */; };
+		8532F6A01D5D9CE300DDAFDF /* IDPArrayObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8532F69E1D5D9CE300DDAFDF /* IDPArrayObject.m */; };
 		856987EF1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 856987EE1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.m */; };
 		856987F01D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 856987EE1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.m */; };
 		856987F41D5BBD0400DBB5CE /* IDPRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 856987F31D5BBD0400DBB5CE /* IDPRandom.m */; };
@@ -95,6 +99,10 @@
 		85193DEF1D53B8120085BCC2 /* SuperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		85193DF11D53B8120085BCC2 /* SuperUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperUITests.m; sourceTree = "<group>"; };
 		85193DF31D53B8120085BCC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8532F6991D5D9A7E00DDAFDF /* UIWindow+IDPFullScreenWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+IDPFullScreenWindow.h"; sourceTree = "<group>"; };
+		8532F69A1D5D9A7E00DDAFDF /* UIWindow+IDPFullScreenWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+IDPFullScreenWindow.m"; sourceTree = "<group>"; };
+		8532F69D1D5D9CE300DDAFDF /* IDPArrayObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPArrayObject.h; sourceTree = "<group>"; };
+		8532F69E1D5D9CE300DDAFDF /* IDPArrayObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPArrayObject.m; sourceTree = "<group>"; };
 		856987ED1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+IDPArrayEnumerator.h"; sourceTree = "<group>"; };
 		856987EE1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+IDPArrayEnumerator.m"; sourceTree = "<group>"; };
 		856987F21D5BBD0400DBB5CE /* IDPRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPRandom.h; sourceTree = "<group>"; };
@@ -203,6 +211,15 @@
 			path = SuperUITests;
 			sourceTree = "<group>";
 		};
+		8532F6981D5D9A4700DDAFDF /* UIWindow+IDPFullScreenWindow */ = {
+			isa = PBXGroup;
+			children = (
+				8532F6991D5D9A7E00DDAFDF /* UIWindow+IDPFullScreenWindow.h */,
+				8532F69A1D5D9A7E00DDAFDF /* UIWindow+IDPFullScreenWindow.m */,
+			);
+			path = "UIWindow+IDPFullScreenWindow";
+			sourceTree = "<group>";
+		};
 		856987EC1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +293,7 @@
 		858238BF1D5B5DEB00623348 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				8532F6981D5D9A4700DDAFDF /* UIWindow+IDPFullScreenWindow */,
 				856987F61D5BC53C00DBB5CE /* NSObject+IDPObject */,
 				856987EC1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator */,
 				858238C01D5B5DEB00623348 /* NSString+IDPExtensions */,
@@ -475,6 +493,8 @@
 			children = (
 				858239361D5B7C9A00623348 /* IDPArrayModel.h */,
 				858239371D5B7C9A00623348 /* IDPArrayModel.m */,
+				8532F69D1D5D9CE300DDAFDF /* IDPArrayObject.h */,
+				8532F69E1D5D9CE300DDAFDF /* IDPArrayObject.m */,
 			);
 			path = IDPArrayModel;
 			sourceTree = "<group>";
@@ -693,6 +713,7 @@
 			files = (
 				858239041D5B5DEB00623348 /* IDPBlockObservationController.m in Sources */,
 				858239321D5B5E9D00623348 /* IDPImageModel.m in Sources */,
+				8532F6A01D5D9CE300DDAFDF /* IDPArrayObject.m in Sources */,
 				858239391D5B7C9A00623348 /* IDPArrayModel.m in Sources */,
 				858239061D5B5DEB00623348 /* IDPObservableObject.m in Sources */,
 				858239081D5B5DEB00623348 /* IDPObservationController.m in Sources */,
@@ -702,6 +723,7 @@
 				856987F01D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.m in Sources */,
 				8582390A1D5B5DEB00623348 /* IDPTableViewCell.m in Sources */,
 				856987FA1D5BC55D00DBB5CE /* NSObject+IDPObject.m in Sources */,
+				8532F69C1D5D9A7E00DDAFDF /* UIWindow+IDPFullScreenWindow.m in Sources */,
 				858239101D5B5DEB00623348 /* IDPAnimationView.m in Sources */,
 				85193DF21D53B8120085BCC2 /* SuperUITests.m in Sources */,
 				856987F51D5BBD0400DBB5CE /* IDPRandom.m in Sources */,
@@ -735,6 +757,7 @@
 				858239091D5B5DEB00623348 /* IDPTableViewCell.m in Sources */,
 				858239051D5B5DEB00623348 /* IDPObservableObject.m in Sources */,
 				8582391B1D5B5DEB00623348 /* IDPUserCell.m in Sources */,
+				8532F69F1D5D9CE300DDAFDF /* IDPArrayObject.m in Sources */,
 				858239381D5B7C9A00623348 /* IDPArrayModel.m in Sources */,
 				8582392A1D5B5E6D00623348 /* IDPUser.m in Sources */,
 				858238FB1D5B5DEB00623348 /* NSString+IDPExtensions.m in Sources */,
@@ -742,6 +765,7 @@
 				858239151D5B5DEB00623348 /* IDPUsersView.m in Sources */,
 				856987FF1D5BE0DA00DBB5CE /* IDPArrayViewController.m in Sources */,
 				858239331D5B5E9D00623348 /* IDPImageModelDispatcher.m in Sources */,
+				8532F69B1D5D9A7E00DDAFDF /* UIWindow+IDPFullScreenWindow.m in Sources */,
 				85C8DD951D530D6E009E227C /* AppDelegate.m in Sources */,
 				858239071D5B5DEB00623348 /* IDPObservationController.m in Sources */,
 				858239251D5B5DEB00623348 /* IDPImageView.m in Sources */,

@@ -11,15 +11,16 @@
 #import "IDPAnimationViewController.h"
 #import "IDPArrayViewController.h"
 
+#import "UIWindow+IDPFullScreenWindow.h"
+
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    UIWindow *window = [UIWindow fullScreenWindow];
     self.window = window;
     
     IDPAnimationViewController *controller = [IDPAnimationViewController new];
