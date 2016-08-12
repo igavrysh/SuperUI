@@ -10,12 +10,10 @@
 
 #import "IDPMacro.h"
 
-static NSTimeInterval IDPDuration   = 1.5;
+static NSTimeInterval IDPDuration   = 3.0;
 static NSTimeInterval IDPDelay      = 0.0;
 
 @interface IDPAnimationView ()
-@property (nonatomic, assign, getter=isRunning) BOOL    running;
-
 - (CGPoint)squarePositionForPosition:(IDPSquarePosition)position;
 
 - (void)setSquarePosition:(IDPSquarePosition)position
@@ -63,23 +61,17 @@ static NSTimeInterval IDPDelay      = 0.0;
                  animated:(BOOL)animated
         completionHandler:(void(^)(BOOL finished))completionHandler
 {
-    IDPWeakify(self);
-    
     void (^transformation)() = ^{
-        IDPStrongify(self);
-        
         CGRect frame = self.square.frame;
         
-        frame.origin = [self nextSquarePosition];
+        frame.origin = [self squarePositionForPosition:position];
         
         self.square.frame = frame;
     };
     
     void (^completion)(BOOL finished) = ^(BOOL finished) {
-        IDPStrongify(self);
-        
         if (finished) {
-            _squarePosition = [self nextPosition];
+            _squarePosition = position;
         }
         
         if (completionHandler) {
@@ -93,15 +85,6 @@ static NSTimeInterval IDPDelay      = 0.0;
                         options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionBeginFromCurrentState
                      animations:transformation
                      completion:completion];
-}
-
-#pragma mark -
-#pragma mark View Lifecycle
-
-- (void)viewDidLoad {
-}
-
-- (void)viewWillAppear:(BOOL)animated {
 }
 
 #pragma mark -
@@ -154,8 +137,8 @@ static NSTimeInterval IDPDelay      = 0.0;
     CGRect viewBounds = [self bounds];
     CGRect squareBounds = [self.square bounds];
     
-    int deltaWidth = viewBounds.size.width - squareBounds.size.width;
-    int deltaHeight = viewBounds.size.height - squareBounds.size.height;
+    int deltaWidth = CGRectGetWidth(viewBounds) - CGRectGetWidth(squareBounds);
+    int deltaHeight = CGRectGetHeight(viewBounds) - CGRectGetHeight(squareBounds);
     
     CGPoint squarePosition = CGPointMake(0, 0);
     
@@ -165,12 +148,12 @@ static NSTimeInterval IDPDelay      = 0.0;
             break;
             
         case IDPSquarePositionBottomRight:
-            squarePosition.x = deltaWidth;
-            squarePosition.y = deltaHeight;
+            squarePosition = CGPointMake(deltaWidth, deltaHeight);
             break;
             
         case IDPSquarePositionBottomLeft:
             squarePosition.y = deltaHeight;
+            break;
             
         default:
             break;
