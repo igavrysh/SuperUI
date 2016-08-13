@@ -38,7 +38,7 @@ static NSTimeInterval IDPDelay      = 0.0;
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.squarePosition = IDPSquarePositionTopLeft;
+    self.squarePosition = IDPSquarePositionTopRight;
 }
 
 #pragma mark -
@@ -87,15 +87,19 @@ static NSTimeInterval IDPDelay      = 0.0;
                      completion:completion];
 }
 
+- (void)setRunning:(BOOL)running {
+    if (_running != running) {
+        _running = running;
+        
+        [self animate];
+    }
+}
+
 #pragma mark -
 #pragma mark Public Methods
 
 - (void)play {
-    if (!self.running) {
-        self.running = YES;
-        
-        [self animate];
-    }
+    self.running = YES;
 }
 
 - (void)stop {
@@ -106,7 +110,7 @@ static NSTimeInterval IDPDelay      = 0.0;
 #pragma mark Private Methods
 
 - (void)animate {
-    if (!self.isRunning) {
+    if (![self isRunning]) {
         return;
     }
     
