@@ -9,9 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class IDPImageModel;
+
 @interface IDPArrayObject : NSObject
-@property (nonatomic, readonly) NSString    *string;
-@property (nonatomic, readonly) UIImage     *image;
+@property (nonatomic, readonly) NSString        *name;
+@property (nonatomic, readonly) IDPImageModel   *imageModel;
+
++ (instancetype)objectWithName:(NSString *)name image:(IDPImageModel *)imageModel;
+
+- (instancetype)initWithName:(NSString *)name image:(IDPImageModel *)imageModel;
 
 - (void)save;
 - (void)load;

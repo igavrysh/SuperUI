@@ -8,12 +8,14 @@
 
 #import "IDPUser.h"
 
+#import "IDPImageModel.h"
+
 #import "NSString+IDPRandomName.h"
 
 @implementation IDPUser
 
 @dynamic fullName;
-@dynamic image;
+@dynamic imageModel;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -35,10 +37,10 @@
     return [NSString stringWithFormat:@"%@ %@", self.name, self.surname];
 }
 
-- (UIImage *)image {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"image" ofType:@"jpg"];
+- (IDPImageModel *)imageModel {
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"image" withExtension:@"jpg"];
     
-    return [UIImage imageWithContentsOfFile:path];
+    return [IDPImageModel imageWithURL:url];
 }
 
 

@@ -8,10 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		85193DF21D53B8120085BCC2 /* SuperUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 85193DF11D53B8120085BCC2 /* SuperUITests.m */; };
-		8532F69B1D5D9A7E00DDAFDF /* UIWindow+IDPFullScreenWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8532F69A1D5D9A7E00DDAFDF /* UIWindow+IDPFullScreenWindow.m */; };
-		8532F69C1D5D9A7E00DDAFDF /* UIWindow+IDPFullScreenWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8532F69A1D5D9A7E00DDAFDF /* UIWindow+IDPFullScreenWindow.m */; };
+		851EE1471D6191250029B447 /* IDPArrayObjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 851EE1461D6191250029B447 /* IDPArrayObjectCell.m */; };
+		851EE1481D6191250029B447 /* IDPArrayObjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 851EE1461D6191250029B447 /* IDPArrayObjectCell.m */; };
+		851EE14A1D61913D0029B447 /* IDPArrayObjectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851EE1491D61913D0029B447 /* IDPArrayObjectCell.xib */; };
+		851EE14B1D61913D0029B447 /* IDPArrayObjectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851EE1491D61913D0029B447 /* IDPArrayObjectCell.xib */; };
+		851EE14F1D6193AD0029B447 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851EE14D1D6193AD0029B447 /* image.jpg */; };
+		851EE1501D6193AD0029B447 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851EE14D1D6193AD0029B447 /* image.jpg */; };
+		851EE1511D6193AD0029B447 /* image_big.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851EE14E1D6193AD0029B447 /* image_big.jpg */; };
+		851EE1521D6193AD0029B447 /* image_big.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851EE14E1D6193AD0029B447 /* image_big.jpg */; };
 		8532F69F1D5D9CE300DDAFDF /* IDPArrayObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8532F69E1D5D9CE300DDAFDF /* IDPArrayObject.m */; };
 		8532F6A01D5D9CE300DDAFDF /* IDPArrayObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8532F69E1D5D9CE300DDAFDF /* IDPArrayObject.m */; };
+		855611311D61FF89002DAE67 /* UIWindow+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 855611301D61FF89002DAE67 /* UIWindow+IDPExtensions.m */; };
+		855611321D61FF89002DAE67 /* UIWindow+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 855611301D61FF89002DAE67 /* UIWindow+IDPExtensions.m */; };
 		856987EF1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 856987EE1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.m */; };
 		856987F01D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 856987EE1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.m */; };
 		856987F41D5BBD0400DBB5CE /* IDPRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 856987F31D5BBD0400DBB5CE /* IDPRandom.m */; };
@@ -74,6 +82,10 @@
 		858239341D5B5E9D00623348 /* IDPImageModelDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 858239301D5B5E9D00623348 /* IDPImageModelDispatcher.m */; };
 		858239381D5B7C9A00623348 /* IDPArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 858239371D5B7C9A00623348 /* IDPArrayModel.m */; };
 		858239391D5B7C9A00623348 /* IDPArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 858239371D5B7C9A00623348 /* IDPArrayModel.m */; };
+		8599E0D21D613AE5008A2388 /* IDPArrayOneIndexChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8599E0D11D613AE5008A2388 /* IDPArrayOneIndexChangeModel.m */; };
+		8599E0D31D613AE5008A2388 /* IDPArrayOneIndexChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8599E0D11D613AE5008A2388 /* IDPArrayOneIndexChangeModel.m */; };
+		8599E0D61D613AF5008A2388 /* IDPArrayTwoIndexChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8599E0D51D613AF5008A2388 /* IDPArrayTwoIndexChangeModel.m */; };
+		8599E0D71D613AF5008A2388 /* IDPArrayTwoIndexChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8599E0D51D613AF5008A2388 /* IDPArrayTwoIndexChangeModel.m */; };
 		85C8DD921D530D6E009E227C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C8DD911D530D6E009E227C /* main.m */; };
 		85C8DD951D530D6E009E227C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C8DD941D530D6E009E227C /* AppDelegate.m */; };
 		85C8DDB31D530FD3009E227C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C8DDA81D530FD3009E227C /* Assets.xcassets */; };
@@ -99,10 +111,15 @@
 		85193DEF1D53B8120085BCC2 /* SuperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		85193DF11D53B8120085BCC2 /* SuperUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperUITests.m; sourceTree = "<group>"; };
 		85193DF31D53B8120085BCC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8532F6991D5D9A7E00DDAFDF /* UIWindow+IDPFullScreenWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+IDPFullScreenWindow.h"; sourceTree = "<group>"; };
-		8532F69A1D5D9A7E00DDAFDF /* UIWindow+IDPFullScreenWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+IDPFullScreenWindow.m"; sourceTree = "<group>"; };
+		851EE1451D6191250029B447 /* IDPArrayObjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPArrayObjectCell.h; sourceTree = "<group>"; };
+		851EE1461D6191250029B447 /* IDPArrayObjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPArrayObjectCell.m; sourceTree = "<group>"; };
+		851EE1491D61913D0029B447 /* IDPArrayObjectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPArrayObjectCell.xib; sourceTree = "<group>"; };
+		851EE14D1D6193AD0029B447 /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
+		851EE14E1D6193AD0029B447 /* image_big.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_big.jpg; sourceTree = "<group>"; };
 		8532F69D1D5D9CE300DDAFDF /* IDPArrayObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPArrayObject.h; sourceTree = "<group>"; };
 		8532F69E1D5D9CE300DDAFDF /* IDPArrayObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPArrayObject.m; sourceTree = "<group>"; };
+		8556112F1D61FF89002DAE67 /* UIWindow+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+IDPExtensions.h"; sourceTree = "<group>"; };
+		855611301D61FF89002DAE67 /* UIWindow+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+IDPExtensions.m"; sourceTree = "<group>"; };
 		856987ED1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+IDPArrayEnumerator.h"; sourceTree = "<group>"; };
 		856987EE1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+IDPArrayEnumerator.m"; sourceTree = "<group>"; };
 		856987F21D5BBD0400DBB5CE /* IDPRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPRandom.h; sourceTree = "<group>"; };
@@ -162,6 +179,10 @@
 		858239301D5B5E9D00623348 /* IDPImageModelDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPImageModelDispatcher.m; sourceTree = "<group>"; };
 		858239361D5B7C9A00623348 /* IDPArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPArrayModel.h; sourceTree = "<group>"; };
 		858239371D5B7C9A00623348 /* IDPArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPArrayModel.m; sourceTree = "<group>"; };
+		8599E0D01D613AE5008A2388 /* IDPArrayOneIndexChangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPArrayOneIndexChangeModel.h; sourceTree = "<group>"; };
+		8599E0D11D613AE5008A2388 /* IDPArrayOneIndexChangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPArrayOneIndexChangeModel.m; sourceTree = "<group>"; };
+		8599E0D41D613AF5008A2388 /* IDPArrayTwoIndexChangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPArrayTwoIndexChangeModel.h; sourceTree = "<group>"; };
+		8599E0D51D613AF5008A2388 /* IDPArrayTwoIndexChangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPArrayTwoIndexChangeModel.m; sourceTree = "<group>"; };
 		85C8DD8D1D530D6E009E227C /* SuperUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85C8DD911D530D6E009E227C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		85C8DD931D530D6E009E227C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -211,13 +232,22 @@
 			path = SuperUITests;
 			sourceTree = "<group>";
 		};
-		8532F6981D5D9A4700DDAFDF /* UIWindow+IDPFullScreenWindow */ = {
+		851EE14C1D6193AD0029B447 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				8532F6991D5D9A7E00DDAFDF /* UIWindow+IDPFullScreenWindow.h */,
-				8532F69A1D5D9A7E00DDAFDF /* UIWindow+IDPFullScreenWindow.m */,
+				851EE14D1D6193AD0029B447 /* image.jpg */,
+				851EE14E1D6193AD0029B447 /* image_big.jpg */,
 			);
-			path = "UIWindow+IDPFullScreenWindow";
+			path = Images;
+			sourceTree = "<group>";
+		};
+		8556112E1D61FF70002DAE67 /* UIWindow+IDPExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				8556112F1D61FF89002DAE67 /* UIWindow+IDPExtensions.h */,
+				855611301D61FF89002DAE67 /* UIWindow+IDPExtensions.m */,
+			);
+			path = "UIWindow+IDPExtensions";
 			sourceTree = "<group>";
 		};
 		856987EC1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator */ = {
@@ -263,6 +293,9 @@
 		856988031D5BE23000DBB5CE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				851EE1451D6191250029B447 /* IDPArrayObjectCell.h */,
+				851EE1461D6191250029B447 /* IDPArrayObjectCell.m */,
+				851EE1491D61913D0029B447 /* IDPArrayObjectCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -293,7 +326,7 @@
 		858238BF1D5B5DEB00623348 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				8532F6981D5D9A4700DDAFDF /* UIWindow+IDPFullScreenWindow */,
+				8556112E1D61FF70002DAE67 /* UIWindow+IDPExtensions */,
 				856987F61D5BC53C00DBB5CE /* NSObject+IDPObject */,
 				856987EC1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator */,
 				858238C01D5B5DEB00623348 /* NSString+IDPExtensions */,
@@ -491,12 +524,32 @@
 		858239351D5B7BBA00623348 /* IDPArrayModel */ = {
 			isa = PBXGroup;
 			children = (
+				8599E0CF1D613AA7008A2388 /* Changes */,
+				8599E0CE1D613A4D008A2388 /* Abstract */,
 				858239361D5B7C9A00623348 /* IDPArrayModel.h */,
 				858239371D5B7C9A00623348 /* IDPArrayModel.m */,
 				8532F69D1D5D9CE300DDAFDF /* IDPArrayObject.h */,
 				8532F69E1D5D9CE300DDAFDF /* IDPArrayObject.m */,
 			);
 			path = IDPArrayModel;
+			sourceTree = "<group>";
+		};
+		8599E0CE1D613A4D008A2388 /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				8599E0D01D613AE5008A2388 /* IDPArrayOneIndexChangeModel.h */,
+				8599E0D11D613AE5008A2388 /* IDPArrayOneIndexChangeModel.m */,
+				8599E0D41D613AF5008A2388 /* IDPArrayTwoIndexChangeModel.h */,
+				8599E0D51D613AF5008A2388 /* IDPArrayTwoIndexChangeModel.m */,
+			);
+			path = Abstract;
+			sourceTree = "<group>";
+		};
+		8599E0CF1D613AA7008A2388 /* Changes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Changes;
 			sourceTree = "<group>";
 		};
 		85C8DD841D530D6E009E227C = {
@@ -535,6 +588,7 @@
 		85C8DDA71D530FD3009E227C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				851EE14C1D6193AD0029B447 /* Images */,
 				85C8DDA81D530FD3009E227C /* Assets.xcassets */,
 				85C8DDA91D530FD3009E227C /* LaunchScreen.storyboard */,
 			);
@@ -634,9 +688,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				851EE1521D6193AD0029B447 /* image_big.jpg in Resources */,
+				851EE14B1D61913D0029B447 /* IDPArrayObjectCell.xib in Resources */,
 				858239141D5B5DEB00623348 /* IDPAnimationViewController.xib in Resources */,
 				856988021D5BE0DA00DBB5CE /* IDPArrayViewController.xib in Resources */,
 				858239241D5B5DEB00623348 /* IDPUserViewController.xib in Resources */,
+				851EE1501D6193AD0029B447 /* image.jpg in Resources */,
 				8582391A1D5B5DEB00623348 /* IDPUsersViewController.xib in Resources */,
 				8582391E1D5B5DEB00623348 /* IDPUserCell.xib in Resources */,
 			);
@@ -648,11 +705,14 @@
 			files = (
 				85C8DDB31D530FD3009E227C /* Assets.xcassets in Resources */,
 				856988011D5BE0DA00DBB5CE /* IDPArrayViewController.xib in Resources */,
+				851EE14A1D61913D0029B447 /* IDPArrayObjectCell.xib in Resources */,
 				858239191D5B5DEB00623348 /* IDPUsersViewController.xib in Resources */,
+				851EE1511D6193AD0029B447 /* image_big.jpg in Resources */,
 				858239131D5B5DEB00623348 /* IDPAnimationViewController.xib in Resources */,
 				858239231D5B5DEB00623348 /* IDPUserViewController.xib in Resources */,
 				8582391D1D5B5DEB00623348 /* IDPUserCell.xib in Resources */,
 				85C8DDB41D530FD3009E227C /* LaunchScreen.storyboard in Resources */,
+				851EE14F1D6193AD0029B447 /* image.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -714,6 +774,7 @@
 				858239041D5B5DEB00623348 /* IDPBlockObservationController.m in Sources */,
 				858239321D5B5E9D00623348 /* IDPImageModel.m in Sources */,
 				8532F6A01D5D9CE300DDAFDF /* IDPArrayObject.m in Sources */,
+				8599E0D31D613AE5008A2388 /* IDPArrayOneIndexChangeModel.m in Sources */,
 				858239391D5B7C9A00623348 /* IDPArrayModel.m in Sources */,
 				858239061D5B5DEB00623348 /* IDPObservableObject.m in Sources */,
 				858239081D5B5DEB00623348 /* IDPObservationController.m in Sources */,
@@ -723,7 +784,7 @@
 				856987F01D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.m in Sources */,
 				8582390A1D5B5DEB00623348 /* IDPTableViewCell.m in Sources */,
 				856987FA1D5BC55D00DBB5CE /* NSObject+IDPObject.m in Sources */,
-				8532F69C1D5D9A7E00DDAFDF /* UIWindow+IDPFullScreenWindow.m in Sources */,
+				855611321D61FF89002DAE67 /* UIWindow+IDPExtensions.m in Sources */,
 				858239101D5B5DEB00623348 /* IDPAnimationView.m in Sources */,
 				85193DF21D53B8120085BCC2 /* SuperUITests.m in Sources */,
 				856987F51D5BBD0400DBB5CE /* IDPRandom.m in Sources */,
@@ -739,6 +800,8 @@
 				858239021D5B5DEB00623348 /* UITableView+IDPExtensions.m in Sources */,
 				856988001D5BE0DA00DBB5CE /* IDPArrayViewController.m in Sources */,
 				858239001D5B5DEB00623348 /* UINib+IDPExtensions.m in Sources */,
+				851EE1481D6191250029B447 /* IDPArrayObjectCell.m in Sources */,
+				8599E0D71D613AF5008A2388 /* IDPArrayTwoIndexChangeModel.m in Sources */,
 				858239181D5B5DEB00623348 /* IDPUsersViewController.m in Sources */,
 				858239121D5B5DEB00623348 /* IDPAnimationViewController.m in Sources */,
 			);
@@ -750,9 +813,11 @@
 			files = (
 				8582390D1D5B5DEB00623348 /* IDPMacro.m in Sources */,
 				8582391F1D5B5DEB00623348 /* IDPUserView.m in Sources */,
+				851EE1471D6191250029B447 /* IDPArrayObjectCell.m in Sources */,
 				856987F91D5BC55D00DBB5CE /* NSObject+IDPObject.m in Sources */,
 				856987F41D5BBD0400DBB5CE /* IDPRandom.m in Sources */,
 				858239171D5B5DEB00623348 /* IDPUsersViewController.m in Sources */,
+				8599E0D21D613AE5008A2388 /* IDPArrayOneIndexChangeModel.m in Sources */,
 				858239031D5B5DEB00623348 /* IDPBlockObservationController.m in Sources */,
 				858239091D5B5DEB00623348 /* IDPTableViewCell.m in Sources */,
 				858239051D5B5DEB00623348 /* IDPObservableObject.m in Sources */,
@@ -765,16 +830,17 @@
 				858239151D5B5DEB00623348 /* IDPUsersView.m in Sources */,
 				856987FF1D5BE0DA00DBB5CE /* IDPArrayViewController.m in Sources */,
 				858239331D5B5E9D00623348 /* IDPImageModelDispatcher.m in Sources */,
-				8532F69B1D5D9A7E00DDAFDF /* UIWindow+IDPFullScreenWindow.m in Sources */,
 				85C8DD951D530D6E009E227C /* AppDelegate.m in Sources */,
 				858239071D5B5DEB00623348 /* IDPObservationController.m in Sources */,
 				858239251D5B5DEB00623348 /* IDPImageView.m in Sources */,
+				855611311D61FF89002DAE67 /* UIWindow+IDPExtensions.m in Sources */,
 				8582390B1D5B5DEB00623348 /* IDPCompilerMacro.m in Sources */,
 				858239211D5B5DEB00623348 /* IDPUserViewController.m in Sources */,
 				858239111D5B5DEB00623348 /* IDPAnimationViewController.m in Sources */,
 				85F749781D5CE3320088A09F /* IDPArrayView.m in Sources */,
 				858239311D5B5E9D00623348 /* IDPImageModel.m in Sources */,
 				85C8DD921D530D6E009E227C /* main.m in Sources */,
+				8599E0D61D613AF5008A2388 /* IDPArrayTwoIndexChangeModel.m in Sources */,
 				858238FF1D5B5DEB00623348 /* UINib+IDPExtensions.m in Sources */,
 				858239011D5B5DEB00623348 /* UITableView+IDPExtensions.m in Sources */,
 				856987EF1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.m in Sources */,

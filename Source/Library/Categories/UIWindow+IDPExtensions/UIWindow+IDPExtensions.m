@@ -1,14 +1,14 @@
 //
-//  UIWindow+IDPFullScreenWindow.m
+//  UIWindow+IDPExtensions.m
 //  SuperUI
 //
-//  Created by Ievgen on 8/12/16.
+//  Created by Ievgen on 8/15/16.
 //  Copyright © 2016 1mlndollarsasset. All rights reserved.
 //
 
-#import "UIWindow+IDPFullScreenWindow.h"
+#import "UIWindow+IDPExtensions.h"
 
-@implementation UIWindow (IDPFullScreenWindow)
+@implementation UIWindow (IDPExtensions)
 
 #pragma mark -
 #pragma mark Class Methods

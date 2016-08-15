@@ -21,8 +21,10 @@ typedef NS_ENUM(NSUInteger, IDPArrayModelState) {
 @property (nonatomic, readonly)     NSMutableArray  *data;
 @property (nonatomic, readonly)     NSUInteger      count;
 
-- (IDPArrayObject *)objectAtIndexedSubscript:(NSUInteger)index;
-- (IDPArrayObject *)objectAtIndex:(NSUInteger)index;
+- (instancetype)initWithArray:(NSArray *)array;
+
+- (id)objectAtIndexedSubscript:(NSUInteger)index;
+- (id)objectAtIndex:(NSUInteger)index;
 - (NSUInteger)indexOfObject:(id)object;
 
 - (void)addObject:(IDPArrayObject *)object;

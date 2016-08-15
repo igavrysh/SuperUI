@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IDPArrayViewController : UIViewController
+@class IDPArrayModel;
+
+@interface IDPArrayViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@property (nonatomic, strong) IDPArrayModel *array;
 
 @end

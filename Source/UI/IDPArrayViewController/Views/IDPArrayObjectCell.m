@@ -1,16 +1,17 @@
 //
-//  IDPUserCell.m
-//  iOSProject
+//  IDPArrayObjectCell.m
+//  SuperUI
 //
-//  Created by Ievgen on 8/2/16.
+//  Created by Ievgen on 8/15/16.
 //  Copyright © 2016 1mlndollarsasset. All rights reserved.
 //
 
-#import "IDPUserCell.h"
+#import "IDPArrayObjectCell.h"
 
-#import "IDPUser.h"
+#import "IDPImageView.h"
+#import "IDPArrayObject.h"
 
-@implementation IDPUserCell
+@implementation IDPArrayObjectCell
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -30,21 +31,21 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setUser:(IDPUser *)user {
-    if (_user != user) {
-        _user = user;
+- (void)setObject:(IDPArrayObject *)object {
+    if (_object != object) {
+        _object = object;
         
-        [self fillWithModel:user];
+        [self fillWithObject:object];
     }
 }
 
 #pragma mark -
 #pragma mark Public
 
-- (void)fillWithModel:(IDPUser *)user {
-    self.fullNameLabel.text = self.user.fullName;
+- (void)fillWithObject:(IDPArrayObject *)object {
+    self.nameLabel.text = self.object.name;
     
-   // self.userImageView. = user.imageModel;
+    self.imageView.imageModel = object.imageModel;
 }
 
 @end

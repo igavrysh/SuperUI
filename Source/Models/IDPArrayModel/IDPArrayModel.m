@@ -21,6 +21,29 @@
 @dynamic count;
 
 #pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (void)dealloc {
+    self.data = nil;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.data = [NSMutableArray new];
+    }
+    return self;
+}
+
+- (instancetype)initWithArray:(NSArray *)array {
+    [array performBlockWithEachObject:^(id object) {
+        [self addObject:object];
+    }];
+    
+    return self;
+}
+
+#pragma mark -
 #pragma mark Accessors
 
 - (NSUInteger)count {

@@ -19,11 +19,15 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="fnY-w6-45Z"/>
+                        <outlet property="delegate" destination="-1" id="HCY-yE-Ero"/>
+                    </connections>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="tableView" destination="wmD-sS-c8N" id="ZSC-4U-4BP"/>
+                <outlet property="tableView" destination="wmD-sS-c8N" id="26b-Yv-g9h"/>
             </connections>
             <point key="canvasLocation" x="407" y="437"/>
         </view>
