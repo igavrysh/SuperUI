@@ -45,7 +45,7 @@
 - (void)fillWithObject:(IDPArrayObject *)object {
     self.nameLabel.text = self.object.name;
     
-    self.imageView.imageModel = object.imageModel;
+    self.userImageView.imageModel = object.imageModel;
 }
 
 @end

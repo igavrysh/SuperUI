@@ -13,7 +13,7 @@
 
 @interface IDPArrayObjectCell : UITableViewCell
 @property (nonatomic, strong)   IBOutlet UILabel        *nameLabel;
-@property (nonatomic, strong)   IBOutlet IDPImageView   *imageView;
+@property (nonatomic, strong)   IBOutlet IDPImageView   *userImageView;
 
 @property (nonatomic, strong)   IDPArrayObject          *object;
 
