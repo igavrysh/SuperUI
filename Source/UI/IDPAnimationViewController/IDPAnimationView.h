@@ -14,15 +14,12 @@ typedef NS_ENUM(NSUInteger, IDPSquarePosition) {
     IDPSquarePositionBottomRight,
     IDPSquarePositionBottomLeft,
     IDPSquarePositionsCount,
-    IDPSquarePositionDefault = 0
+    IDPSquarePositionDefault = IDPSquarePositionTopLeft
 };
 
 @interface IDPAnimationView : UIView
 @property (nonatomic, assign)                   IDPSquarePosition   squarePosition;
 @property (nonatomic, strong)                   IBOutlet UIView     *square;
 @property (nonatomic, assign, getter=isRunning) BOOL                running;
-
-- (void)play;
-- (void)stop;
 
 @end

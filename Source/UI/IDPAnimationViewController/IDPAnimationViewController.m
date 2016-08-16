@@ -30,11 +30,11 @@ IDPViewControllerBaseViewProperty(IDPAnimationViewController, animationView, IDP
 #pragma mark Interface Handling
 
 - (IBAction)onPlayButton:(id)sender {
-    [self.animationView play];
+    self.animationView.running = YES;
 }
 
 - (IBAction)onStopButton:(id)sender {
-    [self.animationView stop];
+    self.animationView.running = NO;
 }
 
 @end

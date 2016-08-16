@@ -14,6 +14,8 @@ static NSTimeInterval IDPDuration   = 3.0;
 static NSTimeInterval IDPDelay      = 0.0;
 
 @interface IDPAnimationView ()
+@property (nonatomic, assign) BOOL shouldStop;
+
 - (CGPoint)squarePositionForPosition:(IDPSquarePosition)position;
 
 - (void)setSquarePosition:(IDPSquarePosition)position
@@ -89,28 +91,21 @@ static NSTimeInterval IDPDelay      = 0.0;
 
 - (void)setRunning:(BOOL)running {
     if (_running != running) {
-        _running = running;
+        if (!running) {
+            self.shouldStop = YES;
+        } else {
+            _running = running;
+        }
         
         [self animate];
     }
 }
 
 #pragma mark -
-#pragma mark Public Methods
-
-- (void)play {
-    self.running = YES;
-}
-
-- (void)stop {
-    self.running = NO;
-}
-
-#pragma mark -
 #pragma mark Private Methods
 
 - (void)animate {
-    if (![self isRunning]) {
+    if (self.shouldStop) {
         return;
     }
     
@@ -119,13 +114,20 @@ static NSTimeInterval IDPDelay      = 0.0;
     [self setSquarePosition:[self nextPosition]
                    animated:YES
           completionHandler:^void(BOOL finished) {
+              IDPStrongify(self);
+              
+              if (self.shouldStop) {
+                  self.shouldStop = NO;
+                  _running = NO;
+              }
+              
               if (!finished) {
                   return;
               }
               
-              IDPStrongify(self);
-              
-              [self animate];
+              if (self.running) {
+                  [self animate];
+              }
           }];
 }
 
