@@ -44,8 +44,9 @@
 
 - (void)fillWithObject:(IDPArrayObject *)object {
     self.nameLabel.text = self.object.name;
-    
     self.userImageView.imageModel = object.imageModel;
+    
+    NSLog(@"");
 }
 
 @end

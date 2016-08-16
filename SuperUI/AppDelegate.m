@@ -43,7 +43,7 @@ const NSUInteger kIDPArrayModelSampleSize = 100;
 }
 
 - (IDPArrayModel *)randomArrayModel {
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"image_big" withExtension:@"jpg"];
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"image" withExtension:@"jpg"];
     IDPImageModel *imageModel = [IDPImageModel imageWithURL:url];
     
     IDPArrayModel *array = [[IDPArrayModel alloc] init];

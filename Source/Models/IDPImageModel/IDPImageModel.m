@@ -94,7 +94,7 @@
     
     NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
         IDPStrongifyAndReturnIfNil(self);
-        self.image = [UIImage imageWithContentsOfFile:[self.url absoluteString]];
+        self.image = [UIImage imageWithContentsOfFile:[self.url path]];
     }];
     
     operation.completionBlock = ^{
