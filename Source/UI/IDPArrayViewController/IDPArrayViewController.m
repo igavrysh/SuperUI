@@ -10,7 +10,7 @@
 
 #import "IDPMacro.h"
 #import "IDPArrayView.h"
-#import "IDPArrayObjectCell.h"
+#import "IDPUserCell.h"
 #import "IDPArrayModel.h"
 
 #import "UITableView+IDPExtensions.h"
@@ -48,14 +48,18 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 #pragma mark -
 #pragma mark UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)   tableView:(UITableView *)tableView
+    numberOfRowsInSection:(NSInteger)section
+{
     return self.array.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    IDPArrayObjectCell *cell = [tableView cellWithClass:[IDPArrayObjectCell class]];
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    IDPUserCell *cell = [tableView cellWithClass:[IDPUserCell class]];
     
-    cell.object = self.array[indexPath.row];
+    cell.user = self.array[indexPath.row];
     
     return cell;
 }
@@ -64,7 +68,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 #pragma mark UITableViewDelegate
 
 - (void)    tableView:(UITableView *)tableView
- didEndDisplayingCell:(IDPArrayObjectCell *)cell
+ didEndDisplayingCell:(IDPUserCell *)cell
     forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     

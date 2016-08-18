@@ -27,14 +27,14 @@ typedef NS_ENUM(NSUInteger, IDPArrayModelState) {
 - (id)objectAtIndex:(NSUInteger)index;
 - (NSUInteger)indexOfObject:(id)object;
 
-- (void)addObject:(IDPArrayObject *)object;
+- (void)addObject:(id)object;
 
-- (void)removeObject:(IDPArrayObject *)object;
+- (void)removeObject:(id)object;
 - (void)removeObjectAtIndex:(NSUInteger)index;
 
-- (void)pasteObject:(IDPArrayObject *)object atIndex:(NSUInteger)index;
+- (void)pasteObject:(id)object atIndex:(NSUInteger)index;
 
-- (void)moveObject:(IDPArrayObject *)object toIndex:(NSUInteger)index;
+- (void)moveObject:(id)object toIndex:(NSUInteger)index;
 - (void)moveObjectFromIndex:(NSUInteger)source toIndex:(NSUInteger)destination;
 
 @end

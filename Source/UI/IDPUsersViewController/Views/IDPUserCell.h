@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @class IDPUser;
-@class IDPImageModel;
+@class IDPImageView;
 
 @interface IDPUserCell : UITableViewCell
-@property (nonatomic, strong)   IBOutlet UILabel        *fullNameLabel;
-@property (nonatomic, strong)   IBOutlet IDPImageModel  *userImageModel;
+@property (nonatomic, strong)   IBOutlet UILabel            *fullNameLabel;
+@property (nonatomic, strong)   IBOutlet IDPImageView   *userImageView;
 
 @property (nonatomic, strong)   IDPUser     *user;
 

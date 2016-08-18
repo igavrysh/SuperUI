@@ -14,6 +14,7 @@
 #import "IDPArrayModel.h"
 #import "IDPArrayObject.h"
 #import "IDPImageModel.h"
+#import "IDPUser.h"
 
 #import "UIWindow+IDPExtensions.h"
 #import "NSString+IDPRandomName.h"
@@ -43,12 +44,9 @@ const NSUInteger kIDPArrayModelSampleSize = 100;
 }
 
 - (IDPArrayModel *)randomArrayModel {
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"image_big" withExtension:@"jpg"];
-    IDPImageModel *imageModel = [IDPImageModel imageWithURL:url];
-    
     IDPArrayModel *array = [[IDPArrayModel alloc] init];
     for (NSUInteger i = 0; i < kIDPArrayModelSampleSize; i++) {
-        [array addObject:[IDPArrayObject objectWithName:[NSString randomName] url:url]];
+        [array addObject:[IDPUser user]];
     }
 
     return array;

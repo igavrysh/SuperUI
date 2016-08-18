@@ -62,17 +62,17 @@
     return index < self.count ? self.data[index] : nil;
 }
 
-- (NSUInteger)indexOfObject:(IDPArrayObject *)object {
+- (NSUInteger)indexOfObject:(id)object {
     return [self.data indexOfObject:object];
 }
 
-- (void)addObject:(IDPArrayObject *)object {
+- (void)addObject:(id)object {
     [self.data addObject:object];
     
     [self notifyOfStateChange:IDPArrayModelObjectAdded];
 }
 
-- (void)removeObject:(IDPArrayObject *)object {
+- (void)removeObject:(id)object {
     [self removeObjectAtIndex:[self indexOfObject:object]];
 }
 
@@ -82,13 +82,13 @@
     [self notifyOfStateChange:IDPArrayModelObjectRemoved];
 }
 
-- (void)pasteObject:(IDPArrayObject *)object atIndex:(NSUInteger)index {
+- (void)pasteObject:(id)object atIndex:(NSUInteger)index {
     [self.data insertObject:object atIndex:index];
     
     [self notifyOfStateChange:IDPArrayModelObjectPasted];
 }
 
-- (void)moveObject:(IDPArrayObject *)object toIndex:(NSUInteger)index {
+- (void)moveObject:(id)object toIndex:(NSUInteger)index {
     [self moveObjectFromIndex:[self indexOfObject:object] toIndex:index];
 }
 
@@ -97,7 +97,7 @@
         return;
     }
     
-    IDPArrayObject *object = self[source];
+    id object = self[source];
     [self removeObjectAtIndex:source];
     [self pasteObject:object atIndex:destination];
     
