@@ -11,9 +11,9 @@
 #import "IDPObservableObject.h"
 
 @interface IDPObservationController : NSObject
-@property (nonatomic, readonly) id                  observer;
-@property (nonatomic, readonly) IDPObservableObject *observableObject;
-@property (nonatomic, readonly, getter=isValid) BOOL valid;
+@property (nonatomic, readonly) id                      observer;
+@property (nonatomic, readonly) id                      observableObject;
+@property (nonatomic, readonly, getter=isValid) BOOL    valid;
 
 + (instancetype)observationControllerWithObserver:(id)observer
                                  observableObject:(IDPObservableObject *)observableObject;
@@ -21,7 +21,7 @@
 - (instancetype)initWithObserver:(id)observer
                 observableObject:(IDPObservableObject *)observableObject; // NS_DESIGNATED_INITIALIZER;
 
-// Invalidates the object.Notifications won'y be passed through it and it will
+// Invalidates the object.Notifications won't be passed through it and it will
 // be removed form observableObject at some point.
 - (void)invalidate;
 

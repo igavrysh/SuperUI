@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface IDPArrayOneIndexChangeModel : NSObject
+@property (nonatomic, readonly) NSUInteger index;
 
 @end

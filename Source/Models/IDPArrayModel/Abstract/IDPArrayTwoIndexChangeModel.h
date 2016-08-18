@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface IDPArrayTwoIndexChangeModel : NSObject
+#import "IDPArrayOneIndexChangeModel.h"
+
+@interface IDPArrayTwoIndexChangeModel : IDPArrayOneIndexChangeModel
+@property (nonatomic, assign)   NSUInteger  toIndex;
 
 @end

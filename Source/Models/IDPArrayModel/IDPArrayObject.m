@@ -21,16 +21,16 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (instancetype)objectWithName:(NSString *)name image:(IDPImageModel *)imageModel {
-    return [[self alloc] initWithName:name image:imageModel];
++ (instancetype)objectWithName:(NSString *)name url:(NSURL *)url {
+    return [[self alloc] initWithName:name url:url];
 }
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (instancetype)initWithName:(NSString *)name image:(IDPImageModel *)imageModel  {
+- (instancetype)initWithName:(NSString *)name url:(NSURL *)url  {
     self.name = name;
-    self.imageModel = imageModel;
+    self.imageModel = [[IDPImageModel alloc] initWithURL:url];
     
     return self;
 }

@@ -11,6 +11,7 @@
 @class IDPImageModel;
 
 @interface IDPImageView : UIView
-@property (nonatomic, strong)   IDPImageModel   *imageModel;
+@property (nonatomic, strong)   IBOutlet UIImageView    *contentImageView;
+@property (nonatomic, strong)   IDPImageModel           *imageModel;
 
 @end

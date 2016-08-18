@@ -36,6 +36,7 @@
 }
 
 - (instancetype)initWithArray:(NSArray *)array {
+    
     [array performBlockWithEachObject:^(id object) {
         [self addObject:object];
     }];

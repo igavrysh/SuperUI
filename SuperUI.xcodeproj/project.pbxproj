@@ -8,6 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		85193DF21D53B8120085BCC2 /* SuperUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 85193DF11D53B8120085BCC2 /* SuperUITests.m */; };
+		851EB46C1D6527E90016B674 /* IDPSearchableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 851EB46A1D6527E90016B674 /* IDPSearchableViewController.m */; };
+		851EB46D1D6527E90016B674 /* IDPSearchableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 851EB46A1D6527E90016B674 /* IDPSearchableViewController.m */; };
+		851EB46E1D6527E90016B674 /* IDPSearchableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851EB46B1D6527E90016B674 /* IDPSearchableViewController.xib */; };
+		851EB46F1D6527E90016B674 /* IDPSearchableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851EB46B1D6527E90016B674 /* IDPSearchableViewController.xib */; };
+		851EB4721D6528F40016B674 /* IDPSearchableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 851EB4711D6528F40016B674 /* IDPSearchableView.m */; };
+		851EB4731D6528F40016B674 /* IDPSearchableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 851EB4711D6528F40016B674 /* IDPSearchableView.m */; };
+		851EB4881D652BCA0016B674 /* IDPNewEditNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 851EB4861D652BCA0016B674 /* IDPNewEditNavigationController.m */; };
+		851EB4891D652BCA0016B674 /* IDPNewEditNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 851EB4861D652BCA0016B674 /* IDPNewEditNavigationController.m */; };
+		851EB48A1D652BCA0016B674 /* IDPNewEditNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851EB4871D652BCA0016B674 /* IDPNewEditNavigationController.xib */; };
+		851EB48B1D652BCA0016B674 /* IDPNewEditNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851EB4871D652BCA0016B674 /* IDPNewEditNavigationController.xib */; };
+		851EB48F1D6530280016B674 /* IDPNewEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 851EB48E1D6530280016B674 /* IDPNewEditView.m */; };
+		851EB4901D6530280016B674 /* IDPNewEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 851EB48E1D6530280016B674 /* IDPNewEditView.m */; };
 		851EE1471D6191250029B447 /* IDPArrayObjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 851EE1461D6191250029B447 /* IDPArrayObjectCell.m */; };
 		851EE1481D6191250029B447 /* IDPArrayObjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 851EE1461D6191250029B447 /* IDPArrayObjectCell.m */; };
 		851EE14A1D61913D0029B447 /* IDPArrayObjectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851EE1491D61913D0029B447 /* IDPArrayObjectCell.xib */; };
@@ -111,6 +123,16 @@
 		85193DEF1D53B8120085BCC2 /* SuperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		85193DF11D53B8120085BCC2 /* SuperUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperUITests.m; sourceTree = "<group>"; };
 		85193DF31D53B8120085BCC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		851EB4691D6527E90016B674 /* IDPSearchableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPSearchableViewController.h; sourceTree = "<group>"; };
+		851EB46A1D6527E90016B674 /* IDPSearchableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPSearchableViewController.m; sourceTree = "<group>"; };
+		851EB46B1D6527E90016B674 /* IDPSearchableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPSearchableViewController.xib; sourceTree = "<group>"; };
+		851EB4701D6528F40016B674 /* IDPSearchableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPSearchableView.h; sourceTree = "<group>"; };
+		851EB4711D6528F40016B674 /* IDPSearchableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPSearchableView.m; sourceTree = "<group>"; };
+		851EB4851D652BCA0016B674 /* IDPNewEditNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPNewEditNavigationController.h; sourceTree = "<group>"; };
+		851EB4861D652BCA0016B674 /* IDPNewEditNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPNewEditNavigationController.m; sourceTree = "<group>"; };
+		851EB4871D652BCA0016B674 /* IDPNewEditNavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPNewEditNavigationController.xib; sourceTree = "<group>"; };
+		851EB48D1D6530280016B674 /* IDPNewEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPNewEditView.h; sourceTree = "<group>"; };
+		851EB48E1D6530280016B674 /* IDPNewEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPNewEditView.m; sourceTree = "<group>"; };
 		851EE1451D6191250029B447 /* IDPArrayObjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPArrayObjectCell.h; sourceTree = "<group>"; };
 		851EE1461D6191250029B447 /* IDPArrayObjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPArrayObjectCell.m; sourceTree = "<group>"; };
 		851EE1491D61913D0029B447 /* IDPArrayObjectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPArrayObjectCell.xib; sourceTree = "<group>"; };
@@ -230,6 +252,30 @@
 				85193DF31D53B8120085BCC2 /* Info.plist */,
 			);
 			path = SuperUITests;
+			sourceTree = "<group>";
+		};
+		851EB4641D6527790016B674 /* IDPSearchableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				851EB4691D6527E90016B674 /* IDPSearchableViewController.h */,
+				851EB46A1D6527E90016B674 /* IDPSearchableViewController.m */,
+				851EB46B1D6527E90016B674 /* IDPSearchableViewController.xib */,
+				851EB4701D6528F40016B674 /* IDPSearchableView.h */,
+				851EB4711D6528F40016B674 /* IDPSearchableView.m */,
+			);
+			path = IDPSearchableViewController;
+			sourceTree = "<group>";
+		};
+		851EB4801D652B680016B674 /* IDPNewEditNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				851EB4851D652BCA0016B674 /* IDPNewEditNavigationController.h */,
+				851EB4861D652BCA0016B674 /* IDPNewEditNavigationController.m */,
+				851EB4871D652BCA0016B674 /* IDPNewEditNavigationController.xib */,
+				851EB48D1D6530280016B674 /* IDPNewEditView.h */,
+				851EB48E1D6530280016B674 /* IDPNewEditView.m */,
+			);
+			path = IDPNewEditNavigationController;
 			sourceTree = "<group>";
 		};
 		851EE14C1D6193AD0029B447 /* Images */ = {
@@ -430,6 +476,8 @@
 		858238E01D5B5DEB00623348 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				851EB4801D652B680016B674 /* IDPNewEditNavigationController */,
+				851EB4641D6527790016B674 /* IDPSearchableViewController */,
 				856987FB1D5BE0B500DBB5CE /* IDPArrayViewController */,
 				858238E11D5B5DEB00623348 /* IDPAnimationViewController */,
 				858238E71D5B5DEB00623348 /* IDPUsersViewController */,
@@ -692,9 +740,11 @@
 				851EE14B1D61913D0029B447 /* IDPArrayObjectCell.xib in Resources */,
 				858239141D5B5DEB00623348 /* IDPAnimationViewController.xib in Resources */,
 				856988021D5BE0DA00DBB5CE /* IDPArrayViewController.xib in Resources */,
+				851EB48B1D652BCA0016B674 /* IDPNewEditNavigationController.xib in Resources */,
 				858239241D5B5DEB00623348 /* IDPUserViewController.xib in Resources */,
 				851EE1501D6193AD0029B447 /* image.jpg in Resources */,
 				8582391A1D5B5DEB00623348 /* IDPUsersViewController.xib in Resources */,
+				851EB46F1D6527E90016B674 /* IDPSearchableViewController.xib in Resources */,
 				8582391E1D5B5DEB00623348 /* IDPUserCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -707,9 +757,11 @@
 				856988011D5BE0DA00DBB5CE /* IDPArrayViewController.xib in Resources */,
 				851EE14A1D61913D0029B447 /* IDPArrayObjectCell.xib in Resources */,
 				858239191D5B5DEB00623348 /* IDPUsersViewController.xib in Resources */,
+				851EB46E1D6527E90016B674 /* IDPSearchableViewController.xib in Resources */,
 				851EE1511D6193AD0029B447 /* image_big.jpg in Resources */,
 				858239131D5B5DEB00623348 /* IDPAnimationViewController.xib in Resources */,
 				858239231D5B5DEB00623348 /* IDPUserViewController.xib in Resources */,
+				851EB48A1D652BCA0016B674 /* IDPNewEditNavigationController.xib in Resources */,
 				8582391D1D5B5DEB00623348 /* IDPUserCell.xib in Resources */,
 				85C8DDB41D530FD3009E227C /* LaunchScreen.storyboard in Resources */,
 				851EE14F1D6193AD0029B447 /* image.jpg in Resources */,
@@ -775,6 +827,8 @@
 				858239321D5B5E9D00623348 /* IDPImageModel.m in Sources */,
 				8532F6A01D5D9CE300DDAFDF /* IDPArrayObject.m in Sources */,
 				8599E0D31D613AE5008A2388 /* IDPArrayOneIndexChangeModel.m in Sources */,
+				851EB4891D652BCA0016B674 /* IDPNewEditNavigationController.m in Sources */,
+				851EB46D1D6527E90016B674 /* IDPSearchableViewController.m in Sources */,
 				858239391D5B7C9A00623348 /* IDPArrayModel.m in Sources */,
 				858239061D5B5DEB00623348 /* IDPObservableObject.m in Sources */,
 				858239081D5B5DEB00623348 /* IDPObservationController.m in Sources */,
@@ -787,8 +841,10 @@
 				855611321D61FF89002DAE67 /* UIWindow+IDPExtensions.m in Sources */,
 				858239101D5B5DEB00623348 /* IDPAnimationView.m in Sources */,
 				85193DF21D53B8120085BCC2 /* SuperUITests.m in Sources */,
+				851EB4731D6528F40016B674 /* IDPSearchableView.m in Sources */,
 				856987F51D5BBD0400DBB5CE /* IDPRandom.m in Sources */,
 				858238FE1D5B5DEB00623348 /* NSString+IDPRandomName.m in Sources */,
+				851EB4901D6530280016B674 /* IDPNewEditView.m in Sources */,
 				858239221D5B5DEB00623348 /* IDPUserViewController.m in Sources */,
 				858238FC1D5B5DEB00623348 /* NSString+IDPExtensions.m in Sources */,
 				858239161D5B5DEB00623348 /* IDPUsersView.m in Sources */,
@@ -816,11 +872,13 @@
 				851EE1471D6191250029B447 /* IDPArrayObjectCell.m in Sources */,
 				856987F91D5BC55D00DBB5CE /* NSObject+IDPObject.m in Sources */,
 				856987F41D5BBD0400DBB5CE /* IDPRandom.m in Sources */,
+				851EB4881D652BCA0016B674 /* IDPNewEditNavigationController.m in Sources */,
 				858239171D5B5DEB00623348 /* IDPUsersViewController.m in Sources */,
 				8599E0D21D613AE5008A2388 /* IDPArrayOneIndexChangeModel.m in Sources */,
 				858239031D5B5DEB00623348 /* IDPBlockObservationController.m in Sources */,
 				858239091D5B5DEB00623348 /* IDPTableViewCell.m in Sources */,
 				858239051D5B5DEB00623348 /* IDPObservableObject.m in Sources */,
+				851EB48F1D6530280016B674 /* IDPNewEditView.m in Sources */,
 				8582391B1D5B5DEB00623348 /* IDPUserCell.m in Sources */,
 				8532F69F1D5D9CE300DDAFDF /* IDPArrayObject.m in Sources */,
 				858239381D5B7C9A00623348 /* IDPArrayModel.m in Sources */,
@@ -831,6 +889,7 @@
 				856987FF1D5BE0DA00DBB5CE /* IDPArrayViewController.m in Sources */,
 				858239331D5B5E9D00623348 /* IDPImageModelDispatcher.m in Sources */,
 				85C8DD951D530D6E009E227C /* AppDelegate.m in Sources */,
+				851EB46C1D6527E90016B674 /* IDPSearchableViewController.m in Sources */,
 				858239071D5B5DEB00623348 /* IDPObservationController.m in Sources */,
 				858239251D5B5DEB00623348 /* IDPImageView.m in Sources */,
 				855611311D61FF89002DAE67 /* UIWindow+IDPExtensions.m in Sources */,
@@ -842,6 +901,7 @@
 				85C8DD921D530D6E009E227C /* main.m in Sources */,
 				8599E0D61D613AF5008A2388 /* IDPArrayTwoIndexChangeModel.m in Sources */,
 				858238FF1D5B5DEB00623348 /* UINib+IDPExtensions.m in Sources */,
+				851EB4721D6528F40016B674 /* IDPSearchableView.m in Sources */,
 				858239011D5B5DEB00623348 /* UITableView+IDPExtensions.m in Sources */,
 				856987EF1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.m in Sources */,
 				8582390F1D5B5DEB00623348 /* IDPAnimationView.m in Sources */,

@@ -55,7 +55,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     IDPArrayObjectCell *cell = [tableView cellWithClass:[IDPArrayObjectCell class]];
     
-    cell.object = self.array[indexPath.row - 1];
+    cell.object = self.array[indexPath.row];
     
     return cell;
 }

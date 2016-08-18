@@ -15,9 +15,9 @@
 @property (nonatomic, readonly) NSString        *name;
 @property (nonatomic, readonly) IDPImageModel   *imageModel;
 
-+ (instancetype)objectWithName:(NSString *)name image:(IDPImageModel *)imageModel;
++ (instancetype)objectWithName:(NSString *)name url:(NSURL *)url;
 
-- (instancetype)initWithName:(NSString *)name image:(IDPImageModel *)imageModel;
+- (instancetype)initWithName:(NSString *)name url:(NSURL *)url;
 
 - (void)save;
 - (void)load;
