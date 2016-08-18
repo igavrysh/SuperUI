@@ -12,6 +12,9 @@
 
 #import "NSString+IDPRandomName.h"
 
+NSString * const kIDPImageName = @"image_big";
+NSString * const kIDPImageExtension = @"jpg";
+
 @implementation IDPUser
 
 @dynamic fullName;
@@ -21,7 +24,8 @@
 #pragma mark Class Methods
 
 + (instancetype)user {
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"image_big" withExtension:@"jpg"];
+    NSURL *url = [[NSBundle mainBundle] URLForResource:kIDPImageName
+                                         withExtension:kIDPImageExtension];
     
     return [self userWithName:[NSString randomName]
                       surname:[NSString randomName]
@@ -67,10 +71,7 @@
 }
 
 - (IDPImageModel *)imageModel {
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"image"
-                                         withExtension:@"jpg"];
-    
-    return [IDPImageModel imageWithURL:url];
+    return [IDPImageModel imageWithURL:self.imageURL];
 }
 
 

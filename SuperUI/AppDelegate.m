@@ -11,15 +11,10 @@
 #import "IDPAnimationViewController.h"
 #import "IDPArrayViewController.h"
 
-#import "IDPArrayModel.h"
-#import "IDPArrayObject.h"
-#import "IDPImageModel.h"
-#import "IDPUser.h"
+#import "IDPArrayRandomModel.h"
 
 #import "UIWindow+IDPExtensions.h"
 #import "NSString+IDPRandomName.h"
-
-const NSUInteger kIDPArrayModelSampleSize = 100;
 
 @interface AppDelegate ()
 
@@ -32,8 +27,7 @@ const NSUInteger kIDPArrayModelSampleSize = 100;
     self.window = window;
     
     IDPArrayViewController *controller = [IDPArrayViewController new];
-    IDPArrayModel *array = [self randomArrayModel];
-    controller.array = array;
+    controller.array = [IDPArrayRandomModel randomModel];
     
     window.rootViewController = controller;
     window.backgroundColor = [UIColor redColor];
@@ -41,15 +35,6 @@ const NSUInteger kIDPArrayModelSampleSize = 100;
     [window makeKeyAndVisible];
     
     return YES;
-}
-
-- (IDPArrayModel *)randomArrayModel {
-    IDPArrayModel *array = [[IDPArrayModel alloc] init];
-    for (NSUInteger i = 0; i < kIDPArrayModelSampleSize; i++) {
-        [array addObject:[IDPUser user]];
-    }
-
-    return array;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

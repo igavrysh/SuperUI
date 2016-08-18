@@ -28,19 +28,18 @@
 }
 
 - (instancetype)init {
-    self = [super init];
-    if (self) {
-        self.data = [NSMutableArray new];
-    }
-    return self;
+    return [self initWithArray:nil];
 }
 
 - (instancetype)initWithArray:(NSArray *)array {
+    self = [super init];
     
+    self.data = [NSMutableArray new];
+   
     [array performBlockWithEachObject:^(id object) {
         [self addObject:object];
     }];
-    
+
     return self;
 }
 
