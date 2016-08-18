@@ -8,22 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum {
-    IDPSquarePositionTopLeft = 0,
+typedef NS_ENUM(NSUInteger, IDPSquarePosition) {
+    IDPSquarePositionTopLeft,
     IDPSquarePositionTopRight,
     IDPSquarePositionBottomRight,
-    IDPSquarePositionBottomLeft
-} IDPSquarePosition;
-
-static const NSUInteger IDPSquarePositionsCount = 4;
-
-static const NSUInteger IDPSquarePositionDefault = IDPSquarePositionTopLeft;
+    IDPSquarePositionBottomLeft,
+    IDPSquarePositionsCount,
+    IDPSquarePositionDefault = IDPSquarePositionTopLeft
+};
 
 @interface IDPAnimationView : UIView
-@property (nonatomic, assign)   IDPSquarePosition   squarePosition;
-@property (nonatomic, strong)   IBOutlet UIView     *square;
-
-- (void)play;
-- (void)stop;
+@property (nonatomic, assign)                   IDPSquarePosition   squarePosition;
+@property (nonatomic, strong)                   IBOutlet UIView     *square;
+@property (nonatomic, assign, getter=isRunning) BOOL                running;
 
 @end
