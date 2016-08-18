@@ -90,45 +90,37 @@ static NSTimeInterval IDPDelay      = 0.0;
 }
 
 - (void)setRunning:(BOOL)running {
-    if (_running != running) {
-        if (!running) {
-            self.shouldStop = YES;
-        } else {
-            _running = running;
-        }
-        
-        [self animate];
-    }
+    self.shouldStop = !running;
+
+    [self animate];
 }
 
 #pragma mark -
 #pragma mark Private Methods
 
 - (void)animate {
-    if (self.shouldStop) {
-        return;
-    }
-    
     IDPWeakify(self);
     
-    [self setSquarePosition:[self nextPosition]
-                   animated:YES
-          completionHandler:^void(BOOL finished) {
-              IDPStrongify(self);
-              
-              if (self.shouldStop) {
-                  self.shouldStop = NO;
+    if (!_running && !_shouldStop) {
+        _running = YES;
+        
+        [self setSquarePosition:[self nextPosition]
+                       animated:YES
+              completionHandler:^void(BOOL finished) {
+                  IDPStrongify(self);
+                  
                   _running = NO;
-              }
-              
-              if (!finished) {
-                  return;
-              }
-              
-              if (self.running) {
-                  [self animate];
-              }
-          }];
+                  
+                  if (!finished) {
+                      return;
+                  }
+                  
+                  if (!self.shouldStop) {
+                      [self animate];
+                  }
+              }];
+    }
+    
 }
 
 - (IDPSquarePosition)nextPosition {
