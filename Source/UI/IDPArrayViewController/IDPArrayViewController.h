@@ -13,4 +13,8 @@
 @interface IDPArrayViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) IDPArrayModel *array;
 
+
+- (IBAction)onAddButton:(id)sender;
+- (IBAction)onEditButton:(id)sender;
+
 @end

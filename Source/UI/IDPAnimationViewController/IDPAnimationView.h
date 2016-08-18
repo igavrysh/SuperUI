@@ -23,6 +23,7 @@ static const NSUInteger IDPSquarePositionDefault = IDPSquarePositionTopLeft;
 @property (nonatomic, assign)   IDPSquarePosition   squarePosition;
 @property (nonatomic, strong)   IBOutlet UIView     *square;
 
+
 - (void)play;
 - (void)stop;
 

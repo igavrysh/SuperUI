@@ -24,8 +24,16 @@
                     </textAttributes>
                     <items>
                         <navigationItem title="♕" id="L3w-NR-UCS">
-                            <barButtonItem key="leftBarButtonItem" systemItem="add" id="2Kb-Wa-Tjo"/>
-                            <barButtonItem key="rightBarButtonItem" systemItem="edit" id="MOq-AE-Htb"/>
+                            <barButtonItem key="leftBarButtonItem" systemItem="add" id="2Kb-Wa-Tjo">
+                                <connections>
+                                    <action selector="onAddButton:" destination="-1" id="5Vf-eD-krD"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem key="rightBarButtonItem" systemItem="edit" id="MOq-AE-Htb">
+                                <connections>
+                                    <action selector="onEditButton:" destination="-1" id="sa9-jL-c2X"/>
+                                </connections>
+                            </barButtonItem>
                         </navigationItem>
                     </items>
                 </navigationBar>

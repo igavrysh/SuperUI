@@ -48,22 +48,28 @@ typedef void(^IDPControllerNotificationBlock)(id object);
 #pragma mark Accessors
 
 - (NSSet *)observerSet {
-    return [self.observationControllerHashTable setRepresentation];
+    @synchronized(self) {
+        return [self.observationControllerHashTable setRepresentation];
+    }
 }
 
 - (void)setState:(NSUInteger)state {
     if (state != _state) {
-        _state = state;
-        
-        [self notifyOfStateChange:state];
+        @synchronized(self) {
+            _state = state;
+            
+            [self notifyOfStateChange:state];
+        }
     }
 }
 
 - (void)setState:(NSUInteger)state withObject:(id)object {
     if (state != _state) {
-        _state = state;
-        
-        [self notifyOfStateChange:state withObject:object];
+        @synchronized(self) {
+            _state = state;
+            
+            [self notifyOfStateChange:state withObject:object];
+        }
     }
 }
 
@@ -82,13 +88,17 @@ typedef void(^IDPControllerNotificationBlock)(id object);
     IDPObservationController *result = [class observationControllerWithObserver:observer
                                                                observableObject:self];
     
-    [self.observationControllerHashTable addObject:result];
+    @synchronized(self) {
+        [self.observationControllerHashTable addObject:result];
+    }
     
     return result;
 }
 
 - (void)invalidateController:(IDPObservationController *)controller {
-    [self.observationControllerHashTable removeObject:controller];
+    @synchronized(self) {
+        [self.observationControllerHashTable removeObject:controller];
+    }
 }
 
 #pragma clang diagnostic push
@@ -117,9 +127,11 @@ typedef void(^IDPControllerNotificationBlock)(id object);
         return;
     }
     
-    NSHashTable *controllers = self.observationControllerHashTable;
-    for (IDPObservationController *controller in controllers) {
-        handler(controller);
+    @synchronized(self) {
+        NSHashTable *controllers = self.observationControllerHashTable;
+        for (IDPObservationController *controller in controllers) {
+            handler(controller);
+        }
     }
 }
 

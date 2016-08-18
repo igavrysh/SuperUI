@@ -70,4 +70,9 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
     
 }
 
+- (IBAction)onEditButton:(id)sender {
+}
+
+- (IBAction)onAddButton:(id)sender {
+}
 @end
