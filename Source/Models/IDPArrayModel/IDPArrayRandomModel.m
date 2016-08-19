@@ -38,7 +38,7 @@ const NSUInteger kIDPArrayModelSampleSize = 100;
 
 - (void)fillModel {
     for (NSUInteger i = 0; i < kIDPArrayModelSampleSize; i++) {
-        [self addObject:[IDPUser user]];
+        [self insertObject:[IDPUser user] atIndex:0];
     }
 }
 

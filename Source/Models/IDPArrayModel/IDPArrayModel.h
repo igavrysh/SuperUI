@@ -11,14 +11,11 @@
 @class IDPArrayObject;
 
 typedef NS_ENUM(NSUInteger, IDPArrayModelState) {
-    IDPArrayModelObjectAdded,
-    IDPArrayModelObjectRemoved,
-    IDPArrayModelObjectMoved,
-    IDPArrayModelObjectPasted
+    IDPArrayModelUpdated
 };
 
 @interface IDPArrayModel : IDPObservableObject
-@property (nonatomic, readonly)     NSMutableArray  *data;
+@property (nonatomic, readonly)     NSMutableArray  *array;
 @property (nonatomic, readonly)     NSUInteger      count;
 
 - (instancetype)initWithArray:(NSArray *)array;
@@ -27,14 +24,12 @@ typedef NS_ENUM(NSUInteger, IDPArrayModelState) {
 - (id)objectAtIndex:(NSUInteger)index;
 - (NSUInteger)indexOfObject:(id)object;
 
-- (void)addObject:(id)object;
+- (void)insertObject:(id)object atIndex:(NSUInteger)index;
 
 - (void)removeObject:(id)object;
 - (void)removeObjectAtIndex:(NSUInteger)index;
 
-- (void)pasteObject:(id)object atIndex:(NSUInteger)index;
-
 - (void)moveObject:(id)object toIndex:(NSUInteger)index;
-- (void)moveObjectFromIndex:(NSUInteger)source toIndex:(NSUInteger)destination;
+- (void)moveObjectToIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex;
 
 @end

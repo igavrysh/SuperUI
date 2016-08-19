@@ -8,10 +8,12 @@
 
 #import "IDPArrayModel.h"
 
+#import "IDPArrayChangeModel.h"
+
 #import "NSArray+IDPArrayEnumerator.h"
 
 @interface IDPArrayModel ()
-@property (nonatomic, strong)   NSMutableArray  *data;
+@property (nonatomic, strong)   NSMutableArray  *array;
 
 @end
 
@@ -23,7 +25,7 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.data = nil;
+    self.array = nil;
 }
 
 - (instancetype)init {
@@ -33,10 +35,10 @@
 - (instancetype)initWithArray:(NSArray *)array {
     self = [super init];
     
-    self.data = [NSMutableArray new];
+    self.array = [NSMutableArray new];
    
     [array performBlockWithEachObject:^(id object) {
-        [self addObject:object];
+        [self insertObject:object atIndex:0];
     }];
 
     return self;
@@ -46,7 +48,7 @@
 #pragma mark Accessors
 
 - (NSUInteger)count {
-    return self.data.count;
+    return self.array.count;
 }
 
 #pragma mark -
@@ -57,17 +59,17 @@
 }
 
 - (IDPArrayObject *)objectAtIndex:(NSUInteger)index {
-    return index < self.count ? self.data[index] : nil;
+    return index < self.count ? self.array[index] : nil;
 }
 
 - (NSUInteger)indexOfObject:(id)object {
-    return [self.data indexOfObject:object];
+    return [self.array indexOfObject:object];
 }
 
-- (void)addObject:(id)object {
-    [self.data addObject:object];
+- (void)insertObject:(id)object atIndex:(NSUInteger)index {
+    [self.array addObject:object];
     
-    [self notifyOfStateChange:IDPArrayModelObjectAdded];
+    [self notifyOfModelUpdateWithChange:[IDPArrayChangeModel insertModelWithIndex:index]];
 }
 
 - (void)removeObject:(id)object {
@@ -75,31 +77,33 @@
 }
 
 - (void)removeObjectAtIndex:(NSUInteger)index {
-    [self.data removeObjectAtIndex:index];
+    [self.array removeObjectAtIndex:index];
     
-    [self notifyOfStateChange:IDPArrayModelObjectRemoved];
-}
-
-- (void)pasteObject:(id)object atIndex:(NSUInteger)index {
-    [self.data insertObject:object atIndex:index];
-    
-    [self notifyOfStateChange:IDPArrayModelObjectPasted];
+    [self notifyOfModelUpdateWithChange:[IDPArrayChangeModel removeModelWithIndex:index]];
 }
 
 - (void)moveObject:(id)object toIndex:(NSUInteger)index {
-    [self moveObjectFromIndex:[self indexOfObject:object] toIndex:index];
+    [self moveObjectToIndex:index fromIndex:[self indexOfObject:object]];
 }
 
-- (void)moveObjectFromIndex:(NSUInteger)source toIndex:(NSUInteger)destination {
-    if (source >= self.count || destination >= self.count) {
+- (void)moveObjectToIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex {
+    if (fromIndex >= self.count || index >= self.count) {
         return;
     }
     
-    id object = self[source];
-    [self removeObjectAtIndex:source];
-    [self pasteObject:object atIndex:destination];
+    id object = self[fromIndex];
+    [self removeObjectAtIndex:fromIndex];
+    [self insertObject:object atIndex:index];
     
-    [self notifyOfStateChange:IDPArrayModelObjectMoved];
+    [self notifyOfModelUpdateWithChange:[IDPArrayChangeModel moveModelToIndex:index
+                                                                    fromIndex:fromIndex]];
+}
+
+#pragma mark - 
+#pragma mark Private Methods
+
+- (void)notifyOfModelUpdateWithChange:(IDPArrayChangeModel *)changeModel {
+    [self notifyOfStateChange:IDPArrayModelUpdated withObject:changeModel];
 }
 
 @end
