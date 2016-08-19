@@ -14,6 +14,8 @@
 		851EE1521D6193AD0029B447 /* image_big.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851EE14E1D6193AD0029B447 /* image_big.jpg */; };
 		855611311D61FF89002DAE67 /* UIWindow+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 855611301D61FF89002DAE67 /* UIWindow+IDPExtensions.m */; };
 		855611321D61FF89002DAE67 /* UIWindow+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 855611301D61FF89002DAE67 /* UIWindow+IDPExtensions.m */; };
+		856198741D66E2EF0051367A /* IDPArrayChangeModel+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 856198731D66E2EF0051367A /* IDPArrayChangeModel+IDPExtensions.m */; };
+		856198751D66E2EF0051367A /* IDPArrayChangeModel+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 856198731D66E2EF0051367A /* IDPArrayChangeModel+IDPExtensions.m */; };
 		856987EF1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 856987EE1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.m */; };
 		856987F01D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 856987EE1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.m */; };
 		856987F41D5BBD0400DBB5CE /* IDPRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 856987F31D5BBD0400DBB5CE /* IDPRandom.m */; };
@@ -121,6 +123,8 @@
 		851EE14E1D6193AD0029B447 /* image_big.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_big.jpg; sourceTree = "<group>"; };
 		8556112F1D61FF89002DAE67 /* UIWindow+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+IDPExtensions.h"; sourceTree = "<group>"; };
 		855611301D61FF89002DAE67 /* UIWindow+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+IDPExtensions.m"; sourceTree = "<group>"; };
+		856198721D66E2EF0051367A /* IDPArrayChangeModel+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IDPArrayChangeModel+IDPExtensions.h"; sourceTree = "<group>"; };
+		856198731D66E2EF0051367A /* IDPArrayChangeModel+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IDPArrayChangeModel+IDPExtensions.m"; sourceTree = "<group>"; };
 		856987ED1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+IDPArrayEnumerator.h"; sourceTree = "<group>"; };
 		856987EE1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+IDPArrayEnumerator.m"; sourceTree = "<group>"; };
 		856987F21D5BBD0400DBB5CE /* IDPRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPRandom.h; sourceTree = "<group>"; };
@@ -585,6 +589,8 @@
 				85D414FB1D662E8F007BDE85 /* Changes */,
 				85D415101D662EB5007BDE85 /* IDPArrayChangeModel.h */,
 				85D415111D662EB5007BDE85 /* IDPArrayChangeModel.m */,
+				856198721D66E2EF0051367A /* IDPArrayChangeModel+IDPExtensions.h */,
+				856198731D66E2EF0051367A /* IDPArrayChangeModel+IDPExtensions.m */,
 			);
 			path = IDPArrayChangeModel;
 			sourceTree = "<group>";
@@ -810,6 +816,7 @@
 				856987F51D5BBD0400DBB5CE /* IDPRandom.m in Sources */,
 				859DE0051D667ECE0024EC8E /* IDPArrayRandomModel.m in Sources */,
 				858238FE1D5B5DEB00623348 /* NSString+IDPRandomName.m in Sources */,
+				856198751D66E2EF0051367A /* IDPArrayChangeModel+IDPExtensions.m in Sources */,
 				858239221D5B5DEB00623348 /* IDPUserViewController.m in Sources */,
 				858238FC1D5B5DEB00623348 /* NSString+IDPExtensions.m in Sources */,
 				858239161D5B5DEB00623348 /* IDPUsersView.m in Sources */,
@@ -845,6 +852,7 @@
 				858239051D5B5DEB00623348 /* IDPObservableObject.m in Sources */,
 				85D415081D662E8F007BDE85 /* IDPArrayInsertChangeModel.m in Sources */,
 				8582391B1D5B5DEB00623348 /* IDPUserCell.m in Sources */,
+				856198741D66E2EF0051367A /* IDPArrayChangeModel+IDPExtensions.m in Sources */,
 				858239381D5B7C9A00623348 /* IDPArrayModel.m in Sources */,
 				8582392A1D5B5E6D00623348 /* IDPUser.m in Sources */,
 				858238FB1D5B5DEB00623348 /* NSString+IDPExtensions.m in Sources */,

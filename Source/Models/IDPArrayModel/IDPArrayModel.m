@@ -78,7 +78,7 @@
 
 - (void)removeObjectAtIndex:(NSUInteger)index {
     [self.array removeObjectAtIndex:index];
-    
+
     [self notifyOfModelUpdateWithChange:[IDPArrayChangeModel removeModelWithIndex:index]];
 }
 
@@ -92,8 +92,10 @@
     }
     
     id object = self[fromIndex];
-    [self removeObjectAtIndex:fromIndex];
-    [self insertObject:object atIndex:index];
+    [self performBlockWithoutNotification:^{
+        [self removeObjectAtIndex:fromIndex];
+        [self insertObject:object atIndex:index];
+    }];
     
     [self notifyOfModelUpdateWithChange:[IDPArrayChangeModel moveModelToIndex:index
                                                                     fromIndex:fromIndex]];

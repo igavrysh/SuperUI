@@ -8,6 +8,8 @@
 
 #import "UITableView+IDPExtensions.h"
 
+#import "IDPArrayChangeModel.h"
+
 #import "UINib+IDPExtensions.h"
 
 @implementation UITableView (IDPExtensions)
@@ -30,6 +32,10 @@
     }
     
     return cell;
+}
+
+- (void)applyChangeModel:(IDPArrayChangeModel *)model {
+    
 }
 
 @end

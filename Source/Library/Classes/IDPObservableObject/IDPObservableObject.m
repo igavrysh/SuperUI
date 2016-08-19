@@ -9,6 +9,7 @@
 #import "IDPObservableObject.h"
 
 #import "IDPBlockObservationController.h"
+#import "IDPMacro.h"
 
 #import "IDPObservableObject+IDPPrivate.h"
 #import "IDPObservationController+IDPPrivate.h"
@@ -16,10 +17,12 @@
 typedef void(^IDPControllerNotificationBlock)(id object);
 
 @interface IDPObservableObject ()
-@property (nonatomic, retain) NSHashTable   *observationControllerHashTable;
+@property (nonatomic, retain)   NSHashTable     *observationControllerHashTable;
 
 - (void)notifyOfStateChange:(NSUInteger)state
                 withHandler:(IDPControllerNotificationBlock)handler;
+
+- (void)performBlock:(void (^)(void))block shouldNotify:(BOOL)shouldNotify;
 
 - (id)observationControllerWithClass:(Class)class observer:(id)observer;
 
@@ -39,6 +42,7 @@ typedef void(^IDPControllerNotificationBlock)(id object);
     self = [super init];
     if (self) {
         self.observationControllerHashTable = [NSHashTable weakObjectsHashTable];
+        self.notifyObservers = YES;
     }
     
     return self;
@@ -81,6 +85,14 @@ typedef void(^IDPControllerNotificationBlock)(id object);
                                        observer:observer];
 }
 
+- (void)performBlockWithNotification:(void (^)(void))block {
+    [self performBlock:block shouldNotify:YES];
+}
+
+- (void)performBlockWithoutNotification:(void (^)(void))block {
+    [self performBlock:block shouldNotify:NO];
+}
+
 #pragma mark -
 #pragma mark Private
 
@@ -100,6 +112,17 @@ typedef void(^IDPControllerNotificationBlock)(id object);
         [self.observationControllerHashTable removeObject:controller];
     }
 }
+
+- (void)performBlock:(void (^)(void))block shouldNotify:(BOOL)shouldNotify {
+    BOOL state = self.shouldNotifyObservers;
+    
+    self.notifyObservers = shouldNotify;
+    
+    IDPPerformBlock(block);
+    
+    self.notifyObservers = state;
+}
+
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
@@ -123,7 +146,7 @@ typedef void(^IDPControllerNotificationBlock)(id object);
 - (void)notifyOfStateChange:(NSUInteger)state
                 withHandler:(IDPControllerNotificationBlock)handler
 {
-    if (!handler) {
+    if (!handler || !self.shouldNotifyObservers) {
         return;
     }
     

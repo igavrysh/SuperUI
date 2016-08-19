@@ -37,6 +37,10 @@
 #define IDPWeakify(variable) \
     __weak __typeof(variable) __IDPWeakified_##variable = variable;
 
+#define IDPPerformBlock(block, ...) \
+    if (block) { \
+        block(__VA_ARGS__); \
+    } \
 
 // you should only call this method after you called weakify for the same variable
 #define IDPStrongify(variable) \
