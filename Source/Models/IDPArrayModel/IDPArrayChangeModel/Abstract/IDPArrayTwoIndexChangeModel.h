@@ -11,6 +11,12 @@
 #import "IDPArrayOneIndexChangeModel.h"
 
 @interface IDPArrayTwoIndexChangeModel : IDPArrayOneIndexChangeModel
-@property (nonatomic, assign)   NSUInteger  toIndex;
+@property (nonatomic, readonly)   NSUInteger  fromIndex;
+
++ (instancetype)modelWithToIndex:(NSUInteger)index
+                       fromIndex:(NSUInteger)fromIndex;
+
+- (instancetype)initWithToIndex:(NSUInteger)index
+                      fromIndex:(NSUInteger)fromIndex;
 
 @end

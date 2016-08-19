@@ -8,25 +8,33 @@
 
 #import "IDPArrayChangeModel.h"
 
+#import "IDPArrayInsertChangeModel.h"
+#import "IDPArrayMoveChangeModel.h"
+#import "IDPArrayRemoveChangeModel.h"
+#import "IDPArrayReplaceChangeModel.h"
+
 @implementation IDPArrayChangeModel
 
 #pragma mark -
 #pragma mark Public Methods
 
 + (id)insertModelWithIndex:(NSUInteger)index {
-    return nil;
+    return [IDPArrayInsertChangeModel modelWithIndex:index];
 }
 
 + (id)removeModelWithIndex:(NSUInteger)index {
-    return nil;
+    return [IDPArrayRemoveChangeModel modelWithIndex:index];
 }
 
 + (id)replaceModelWithIndex:(NSUInteger)index {
-    return nil;
+    return [IDPArrayReplaceChangeModel modelWithIndex:index];
 }
 
-+ (id)moveModelToIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex {
-    return nil;
++ (id)moveModelToIndex:(NSUInteger)index
+             fromIndex:(NSUInteger)fromIndex
+{
+    return [IDPArrayMoveChangeModel modelWithToIndex:index
+                                           fromIndex:fromIndex];
 }
 
 

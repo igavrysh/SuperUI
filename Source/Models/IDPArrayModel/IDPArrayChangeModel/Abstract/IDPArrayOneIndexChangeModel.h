@@ -11,4 +11,8 @@
 @interface IDPArrayOneIndexChangeModel : NSObject
 @property (nonatomic, readonly) NSUInteger index;
 
++ (instancetype)modelWithIndex:(NSUInteger)index;
+
+- (instancetype)initWithIndex:(NSUInteger)index;
+
 @end

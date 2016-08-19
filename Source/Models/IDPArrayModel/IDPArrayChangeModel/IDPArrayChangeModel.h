@@ -16,7 +16,7 @@
 
 + (id)replaceModelWithIndex:(NSUInteger)index;
 
-+ (id)moveModelToIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex;
-
++ (id)moveModelToIndex:(NSUInteger)index
+             fromIndex:(NSUInteger)fromIndex;
 
 @end
