@@ -9,7 +9,6 @@
 #import "IDPArrayModel.h"
 
 #import "NSArray+IDPArrayEnumerator.h"
-#import "IDPArrayObject.h"
 
 @interface IDPArrayModel ()
 @property (nonatomic, strong)   NSMutableArray  *data;

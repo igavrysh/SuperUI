@@ -12,8 +12,6 @@
 		851EE1501D6193AD0029B447 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851EE14D1D6193AD0029B447 /* image.jpg */; };
 		851EE1511D6193AD0029B447 /* image_big.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851EE14E1D6193AD0029B447 /* image_big.jpg */; };
 		851EE1521D6193AD0029B447 /* image_big.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851EE14E1D6193AD0029B447 /* image_big.jpg */; };
-		8532F69F1D5D9CE300DDAFDF /* IDPArrayObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8532F69E1D5D9CE300DDAFDF /* IDPArrayObject.m */; };
-		8532F6A01D5D9CE300DDAFDF /* IDPArrayObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8532F69E1D5D9CE300DDAFDF /* IDPArrayObject.m */; };
 		855611311D61FF89002DAE67 /* UIWindow+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 855611301D61FF89002DAE67 /* UIWindow+IDPExtensions.m */; };
 		855611321D61FF89002DAE67 /* UIWindow+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 855611301D61FF89002DAE67 /* UIWindow+IDPExtensions.m */; };
 		856987EF1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 856987EE1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.m */; };
@@ -121,8 +119,6 @@
 		85193DF31D53B8120085BCC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		851EE14D1D6193AD0029B447 /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
 		851EE14E1D6193AD0029B447 /* image_big.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_big.jpg; sourceTree = "<group>"; };
-		8532F69D1D5D9CE300DDAFDF /* IDPArrayObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPArrayObject.h; sourceTree = "<group>"; };
-		8532F69E1D5D9CE300DDAFDF /* IDPArrayObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPArrayObject.m; sourceTree = "<group>"; };
 		8556112F1D61FF89002DAE67 /* UIWindow+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+IDPExtensions.h"; sourceTree = "<group>"; };
 		855611301D61FF89002DAE67 /* UIWindow+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+IDPExtensions.m"; sourceTree = "<group>"; };
 		856987ED1D5BBC9A00DBB5CE /* NSArray+IDPArrayEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+IDPArrayEnumerator.h"; sourceTree = "<group>"; };
@@ -533,8 +529,6 @@
 				85D414F51D662E8F007BDE85 /* IDPArrayChangeModel */,
 				858239361D5B7C9A00623348 /* IDPArrayModel.h */,
 				858239371D5B7C9A00623348 /* IDPArrayModel.m */,
-				8532F69D1D5D9CE300DDAFDF /* IDPArrayObject.h */,
-				8532F69E1D5D9CE300DDAFDF /* IDPArrayObject.m */,
 				859DE0021D667ECE0024EC8E /* IDPArrayRandomModel.h */,
 				859DE0031D667ECE0024EC8E /* IDPArrayRandomModel.m */,
 			);
@@ -798,7 +792,6 @@
 				858239041D5B5DEB00623348 /* IDPBlockObservationController.m in Sources */,
 				85D415131D662EB5007BDE85 /* IDPArrayChangeModel.m in Sources */,
 				858239321D5B5E9D00623348 /* IDPImageModel.m in Sources */,
-				8532F6A01D5D9CE300DDAFDF /* IDPArrayObject.m in Sources */,
 				858239391D5B7C9A00623348 /* IDPArrayModel.m in Sources */,
 				858239061D5B5DEB00623348 /* IDPObservableObject.m in Sources */,
 				858239081D5B5DEB00623348 /* IDPObservationController.m in Sources */,
@@ -852,7 +845,6 @@
 				858239051D5B5DEB00623348 /* IDPObservableObject.m in Sources */,
 				85D415081D662E8F007BDE85 /* IDPArrayInsertChangeModel.m in Sources */,
 				8582391B1D5B5DEB00623348 /* IDPUserCell.m in Sources */,
-				8532F69F1D5D9CE300DDAFDF /* IDPArrayObject.m in Sources */,
 				858239381D5B7C9A00623348 /* IDPArrayModel.m in Sources */,
 				8582392A1D5B5E6D00623348 /* IDPUser.m in Sources */,
 				858238FB1D5B5DEB00623348 /* NSString+IDPExtensions.m in Sources */,
