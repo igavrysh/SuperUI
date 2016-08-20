@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface IDPArrayView : UIView
-
 @property (nonatomic, strong) IBOutlet UITableView  *tableView;
 
 @end

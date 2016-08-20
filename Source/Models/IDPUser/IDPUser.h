@@ -21,12 +21,4 @@
 
 + (instancetype)user;
 
-+ (instancetype)userWithName:(NSString *)name
-                     surname:(NSString *)surname
-                         url:(NSURL *)imageURL;
-
-- (instancetype)initWithName:(NSString *)name
-                     surname:(NSString *)surname
-                         url:(NSURL *)imageUrl;
-
 @end

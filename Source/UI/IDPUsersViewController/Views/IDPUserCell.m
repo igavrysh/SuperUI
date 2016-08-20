@@ -14,21 +14,6 @@
 @implementation IDPUserCell
 
 #pragma mark -
-#pragma mark Initializations and Deallocations
-
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    return [super initWithCoder:aDecoder];
-}
-
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    [super encodeWithCoder:aCoder];
-}
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-}
-
-#pragma mark -
 #pragma mark Accessors
 
 - (void)setUser:(IDPUser *)user {
@@ -43,7 +28,7 @@
 #pragma mark Public
 
 - (void)fillWithModel:(IDPUser *)user {
-    self.fullNameLabel.text = self.user.fullName;
+    self.fullNameLabel.text = user.fullName;
     self.userImageView.imageModel = user.imageModel;
 }
 

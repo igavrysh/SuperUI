@@ -15,7 +15,6 @@ typedef NS_ENUM(NSUInteger, IDPArrayModelState) {
 };
 
 @interface IDPArrayModel : IDPObservableObject
-@property (nonatomic, readonly)     NSMutableArray  *array;
 @property (nonatomic, readonly)     NSUInteger      count;
 
 - (instancetype)initWithArray:(NSArray *)array;

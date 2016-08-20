@@ -10,6 +10,7 @@
 
 #import "IDPMacro.h"
 #import "IDPBlockObservationController.h"
+
 #import "IDPImageModel.h"
 
 @interface IDPImageView ()

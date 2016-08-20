@@ -24,43 +24,14 @@ NSString * const kIDPImageExtension = @"jpg";
 #pragma mark Class Methods
 
 + (instancetype)user {
-    NSURL *url = [[NSBundle mainBundle] URLForResource:kIDPImageName
-                                         withExtension:kIDPImageExtension];
+    IDPUser *user = [IDPUser new];
     
-    return [self userWithName:[NSString randomName]
-                      surname:[NSString randomName]
-                          url:url];
-}
-
-+ (instancetype)userWithName:(NSString *)name
-                     surname:(NSString *)surname
-                         url:(NSURL *)imageURL
-{
-    return [[self alloc] initWithName:name
-                              surname:surname
-                                  url:imageURL];
-}
-
-#pragma mark -
-#pragma mark Initializations and Deallocations
-
-- (instancetype)init {
-    return [self initWithName:[NSString randomName]
-                      surname:[NSString randomName]
-                          url:nil];
-}
-
-- (instancetype)initWithName:(NSString *)name
-                     surname:(NSString *)surname
-                         url:(NSURL *)imageUrl
-{
-    self = [super init];
+    user.name = [NSString randomName];
+    user.surname = [NSString randomName];
+    user.imageURL = [[NSBundle mainBundle] URLForResource:kIDPImageName
+                                            withExtension:kIDPImageExtension];
     
-    self.name = name;
-    self.surname = surname;
-    self.imageURL = imageUrl;
-    
-    return self;
+    return user;
 }
 
 #pragma mark - 

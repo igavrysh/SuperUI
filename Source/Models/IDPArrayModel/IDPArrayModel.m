@@ -11,6 +11,7 @@
 #import "IDPArrayChangeModel.h"
 
 #import "NSArray+IDPArrayEnumerator.h"
+#import "NSMutableArray+IDPExtensions.h"
 
 @interface IDPArrayModel ()
 @property (nonatomic, strong)   NSMutableArray  *array;
@@ -91,11 +92,7 @@
         return;
     }
     
-    id object = self[fromIndex];
-    [self performBlockWithoutNotification:^{
-        [self removeObjectAtIndex:fromIndex];
-        [self insertObject:object atIndex:index];
-    }];
+    [self.array moveObjectToIndex:index fromIndex:fromIndex];
     
     [self notifyOfModelUpdateWithChange:[IDPArrayChangeModel moveModelToIndex:index
                                                                     fromIndex:fromIndex]];
