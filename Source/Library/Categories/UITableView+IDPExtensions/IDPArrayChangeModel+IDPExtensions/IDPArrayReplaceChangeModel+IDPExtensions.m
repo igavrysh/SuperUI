@@ -8,6 +8,8 @@
 
 #import "IDPArrayReplaceChangeModel+IDPExtensions.h"
 
+#import "NSIndexPath+IDPExtensions.h"
+
 @implementation IDPArrayReplaceChangeModel (IDPExtensions)
 
 #pragma mark -
@@ -16,8 +18,9 @@
 - (void)applyToTableView:(UITableView *)tableView
            withAnimation:(UITableViewRowAnimation) animation
 {
+    NSIndexPath *path = [NSIndexPath indexPathForIndex:self.index];
     
+    [tableView reloadRowsAtIndexPaths:@[path] withRowAnimation:animation];
 }
-
 
 @end

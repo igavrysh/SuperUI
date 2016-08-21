@@ -18,8 +18,8 @@
 - (void)applyToTableView:(UITableView *)tableView
            withAnimation:(UITableViewRowAnimation) animation
 {
-    //[tableView deleteRowsAtIndexPaths:@[NSIndexPath indexPathWithIndex:self.index]
-    //                 withRowAnimation:animation];
+    [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathWithIndex:self.index]]
+                     withRowAnimation:animation];
 }
 
 

@@ -8,6 +8,7 @@
 
 #import "IDPArrayViewController.h"
 
+#import "IDPGCDQueue.h"
 #import "IDPMacro.h"
 #import "IDPArrayView.h"
 #import "IDPUserCell.h"
@@ -78,27 +79,13 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
     IDPWeakify(self);
     
     id handler = ^(IDPBlockObservationController *controller, IDPArrayChangeModel *changeModel) {
-        
         IDPStrongifyAndReturnIfNil(self);
         
         NSLog(@"Model Updated");
         
-        [self.arrayView applyChangeModel:changeModel];
-        //[self.arrayView applyChangeModel:changeModel];
-        /*
-         void(^block)(void) = ^ {
-         IDPStrongifyAndReturnIfNil(self);
-         
-         IDPArrayModel *model = controller.observableObject;
-         self.contentImageView.image = model.image;
-         };
-         
-         if ([NSThread isMainThread]) {
-         block();
-         } else {
-         dispatch_sync(dispatch_get_main_queue(), block);
-         }
-         */
+        IDPSyncPerformInMainQueue(^{
+            [self.arrayView applyChangeModel:changeModel];
+        });
     };
     
     [observer setHandler:handler forState:IDPArrayModelUpdated];
@@ -108,7 +95,9 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
         
         NSLog(@"Model Loaded");
         
-        //[self.arrayView reload];
+        IDPSyncPerformInMainQueue(^{
+            [self.arrayView reload];
+        });
     };
     
     [observer setHandler:handler forState:IDPArrayModelLoaded];

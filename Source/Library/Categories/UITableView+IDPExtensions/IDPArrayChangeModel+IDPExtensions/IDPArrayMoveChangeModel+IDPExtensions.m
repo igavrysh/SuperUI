@@ -15,10 +15,13 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)applyToTableView:(UITableView *)table
+- (void)applyToTableView:(UITableView *)tableView
            withAnimation:(UITableViewRowAnimation) animation
 {
+    NSIndexPath *toPath = [NSIndexPath indexPathForIndex:self.index];
+    NSIndexPath *fromPath = [NSIndexPath indexPathForIndex:self.fromIndex];
     
+    [tableView moveRowAtIndexPath:fromPath toIndexPath:toPath];
 }
 
 @end

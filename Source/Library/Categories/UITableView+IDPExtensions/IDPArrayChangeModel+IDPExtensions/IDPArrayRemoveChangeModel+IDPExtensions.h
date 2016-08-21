@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 #import "IDPArrayRemoveChangeModel.h"
-
 #import "IDPArrayChangeModel+IDPExtensions.h"
 
 @interface IDPArrayRemoveChangeModel (IDPExtensions)
