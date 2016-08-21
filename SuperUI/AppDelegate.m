@@ -11,7 +11,7 @@
 #import "IDPAnimationViewController.h"
 #import "IDPArrayViewController.h"
 
-#import "IDPArrayRandomModel.h"
+#import "IDPUserArrayModel.h"
 
 #import "UIWindow+IDPExtensions.h"
 #import "NSString+IDPRandomName.h"
@@ -27,7 +27,7 @@
     self.window = window;
     
     IDPArrayViewController *controller = [IDPArrayViewController new];
-    controller.array = [IDPArrayRandomModel randomModel];
+    controller.arrayModel = [IDPUserArrayModel new];
     
     window.rootViewController = controller;
     window.backgroundColor = [UIColor redColor];

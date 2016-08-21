@@ -11,7 +11,10 @@
 @class IDPArrayObject;
 
 typedef NS_ENUM(NSUInteger, IDPArrayModelState) {
-    IDPArrayModelUpdated
+    IDPArrayModelUpdated,
+    IDPArrayModelLoaded,
+    IDPArrayModelLoading,
+    IDPImageModelFailedLoading
 };
 
 @interface IDPArrayModel : IDPObservableObject
@@ -30,5 +33,8 @@ typedef NS_ENUM(NSUInteger, IDPArrayModelState) {
 
 - (void)moveObject:(id)object toIndex:(NSUInteger)index;
 - (void)moveObjectToIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex;
+
+- (void)load;
+
 
 @end

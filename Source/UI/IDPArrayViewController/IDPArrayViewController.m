@@ -11,13 +11,20 @@
 #import "IDPMacro.h"
 #import "IDPArrayView.h"
 #import "IDPUserCell.h"
+#import "IDPUser.h"
 #import "IDPArrayModel.h"
+#import "IDPBlockObservationController.h"
+#import "IDPArrayChangeModel.h"
 
 #import "UITableView+IDPExtensions.h"
 
 IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayView)
 
 @interface IDPArrayViewController ()
+@property (nonatomic, strong)                               IDPBlockObservationController   *observer;
+@property (nonatomic, assign, getter=shouldUpdateModel)     BOOL                            updateModel;
+
+- (void)prepareObserver:(IDPBlockObservationController *)observer;
 
 @end
 
@@ -26,9 +33,25 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setArray:(IDPArrayModel *)array {
-    if (_array != array) {
-        _array = array;
+- (void)setArrayModel:(IDPArrayModel *)arrayModel {
+    if (_arrayModel != arrayModel) {
+        _arrayModel = arrayModel;
+        
+        self.observer = [_arrayModel blockObservationControllerWithObserver:self];
+        
+        if (self.isViewLoaded) {
+            [self.arrayModel load];
+        } else {
+            self.updateModel = YES;
+        }
+    }
+}
+
+- (void)setObserver:(IDPBlockObservationController *)observer {
+    if (observer != _observer) {
+        _observer = observer;
+        
+        [self prepareObserver:observer];
     }
 }
 
@@ -38,11 +61,57 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.arrayView.tableView reloadData];
+    if ([self shouldUpdateModel]) {
+        [self.arrayModel load];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+
+#pragma mark -
+#pragma mark Private Methods
+
+- (void)prepareObserver:(IDPBlockObservationController *)observer {
+    IDPWeakify(self);
+    
+    id handler = ^(IDPBlockObservationController *controller, IDPArrayChangeModel *changeModel) {
+        
+        IDPStrongifyAndReturnIfNil(self);
+        
+        NSLog(@"Model Updated");
+        
+        [self.arrayView reload];
+        //[self.arrayView applyChangeModel:changeModel];
+        /*
+         void(^block)(void) = ^ {
+         IDPStrongifyAndReturnIfNil(self);
+         
+         IDPArrayModel *model = controller.observableObject;
+         self.contentImageView.image = model.image;
+         };
+         
+         if ([NSThread isMainThread]) {
+         block();
+         } else {
+         dispatch_sync(dispatch_get_main_queue(), block);
+         }
+         */
+    };
+    
+    [observer setHandler:handler forState:IDPArrayModelUpdated];
+    
+    handler = ^(IDPBlockObservationController *controller, id userInfo) {
+        IDPStrongifyAndReturnIfNil(self);
+        
+        NSLog(@"Model Loaded");
+        
+        [self.arrayView reload];
+    };
+    
+    [observer setHandler:handler forState:IDPArrayModelLoaded];
 }
 
 #pragma mark -
@@ -51,7 +120,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 - (NSInteger)   tableView:(UITableView *)tableView
     numberOfRowsInSection:(NSInteger)section
 {
-    return self.array.count;
+    return self.arrayModel.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -59,7 +128,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 {
     IDPUserCell *cell = [tableView cellWithClass:[IDPUserCell class]];
     
-    cell.user = self.array[indexPath.row];
+    cell.user = self.arrayModel[indexPath.row];
     
     return cell;
 }
@@ -78,5 +147,6 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 }
 
 - (IBAction)onAddButton:(id)sender {
+    [self.arrayModel insertObject:[IDPUser user] atIndex:0];
 }
 @end

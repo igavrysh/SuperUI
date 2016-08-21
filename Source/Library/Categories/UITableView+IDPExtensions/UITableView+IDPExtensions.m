@@ -9,8 +9,10 @@
 #import "UITableView+IDPExtensions.h"
 
 #import "IDPArrayChangeModel.h"
+#import "IDPArrayInsertChangeModel.h"
 
 #import "UINib+IDPExtensions.h"
+
 
 @implementation UITableView (IDPExtensions)
 
@@ -35,7 +37,22 @@
 }
 
 - (void)applyChangeModel:(IDPArrayChangeModel *)model {
+    [self applyChangeModel:model withAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (void)applyChangeModel:(IDPArrayChangeModel *)model
+           withAnimation:(UITableViewRowAnimation) animation
+{
+    [self beginUpdates];
     
+    if ([model isKindOfClass:[IDPArrayInsertChangeModel class]]) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:((IDPArrayInsertChangeModel *)model).index
+                                                    inSection:0];
+        [self insertRowsAtIndexPaths:@[indexPath]
+                    withRowAnimation:animation];
+    }
+    
+    [self endUpdates];
 }
 
 @end

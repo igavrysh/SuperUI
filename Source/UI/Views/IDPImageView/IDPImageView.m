@@ -9,9 +9,8 @@
 #import "IDPImageView.h"
 
 #import "IDPMacro.h"
-#import "IDPBlockObservationController.h"
-
 #import "IDPImageModel.h"
+#import "IDPBlockObservationController.h"
 
 @interface IDPImageView ()
 @property (nonatomic, strong)   IDPBlockObservationController   *observer;

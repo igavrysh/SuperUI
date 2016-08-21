@@ -8,8 +8,8 @@
 
 #import "IDPArrayModel.h"
 
-@interface IDPArrayRandomModel : IDPArrayModel
+@interface IDPUserArrayModel : IDPArrayModel
 
-+ (instancetype)randomModel;
++ (instancetype)userArrayModel;
 
 @end

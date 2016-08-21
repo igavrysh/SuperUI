@@ -12,56 +12,22 @@
 #import "IDPArrayModel.h"
 #import "IDPBlockObservationController.h"
 
-@interface IDPArrayView ()
-@property (nonatomic, strong)   IDPArrayModel   *data;
-@property (nonatomic, strong)   IDPBlockObservationController   *observer;
+#import "UITableView+IDPExtensions.h"
 
-- (void)prepareObserver:(IDPBlockObservationController *)observer;
+@interface IDPArrayView ()
+
 
 @end
 
 
 @implementation IDPArrayView
 
-#pragma mark -
-#pragma mark Accessors
-
-- (void)setObserver:(IDPBlockObservationController *)observer {
-    if (observer != _observer) {
-        _observer = observer;
-        
-        [self prepareObserver:observer];
-    }
+- (void)applyChangeModel:(IDPArrayChangeModel *)changeModel {
+    [self.tableView applyChangeModel:changeModel];
 }
 
-#pragma mark - 
-#pragma mark Private Methods
-
-- (void)prepareObserver:(IDPBlockObservationController *)observer {
-    IDPWeakify(self);
-    
-    id handler = ^(IDPBlockObservationController *controller, id userInfo) {
-        
-        IDPStrongifyAndReturnIfNil(self);
-        
-        NSLog(@"ddd");
-        /*
-        void(^block)(void) = ^ {
-            IDPStrongifyAndReturnIfNil(self);
-            
-            IDPArrayModel *model = controller.observableObject;
-            self.contentImageView.image = model.image;
-        };
-        
-        if ([NSThread isMainThread]) {
-            block();
-        } else {
-            dispatch_sync(dispatch_get_main_queue(), block);
-        }
-         */
-    };
-    
-    [observer setHandler:handler forState:IDPArrayModelUpdated];
+- (void)reload {
+    [self.tableView reloadData];
 }
 
 @end

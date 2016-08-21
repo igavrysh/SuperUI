@@ -11,7 +11,7 @@
 @class IDPArrayModel;
 
 @interface IDPArrayViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
-@property (nonatomic, strong) IDPArrayModel *array;
+@property (nonatomic, strong) IDPArrayModel *arrayModel;
 
 - (IBAction)onAddButton:(id)sender;
 - (IBAction)onEditButton:(id)sender;

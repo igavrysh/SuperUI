@@ -13,9 +13,10 @@
 @interface UITableView (IDPExtensions)
 
 - (id)cellWithClass:(Class)class;
-
 - (id)cellWithClass:(Class)class bundle:(NSBundle *)bundle;
 
 - (void)applyChangeModel:(IDPArrayChangeModel *)model;
+- (void)applyChangeModel:(IDPArrayChangeModel *)model
+           withAnimation:(UITableViewRowAnimation) animation;
 
 @end

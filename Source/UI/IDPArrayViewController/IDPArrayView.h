@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class IDPArrayChangeModel;
+
 @interface IDPArrayView : UIView
 @property (nonatomic, strong) IBOutlet UITableView  *tableView;
+
+- (void)applyChangeModel:(IDPArrayChangeModel *)changeModel;
+
+- (void)reload;
 
 @end

@@ -10,6 +10,7 @@
 
 #import "IDPArrayChangeModel.h"
 
+#import "IDPGCDQueue.h"
 #import "NSArray+IDPArrayEnumerator.h"
 #import "NSMutableArray+IDPExtensions.h"
 
@@ -103,6 +104,9 @@
 
 - (void)notifyOfModelUpdateWithChange:(IDPArrayChangeModel *)changeModel {
     [self notifyOfStateChange:IDPArrayModelUpdated withObject:changeModel];
+}
+
+- (void)load {
 }
 
 @end
