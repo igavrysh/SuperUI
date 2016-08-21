@@ -83,7 +83,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
         
         NSLog(@"Model Updated");
         
-        [self.arrayView reload];
+        [self.arrayView applyChangeModel:changeModel];
         //[self.arrayView applyChangeModel:changeModel];
         /*
          void(^block)(void) = ^ {
@@ -108,7 +108,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
         
         NSLog(@"Model Loaded");
         
-        [self.arrayView reload];
+        //[self.arrayView reload];
     };
     
     [observer setHandler:handler forState:IDPArrayModelLoaded];

@@ -69,7 +69,7 @@
 }
 
 - (void)insertObject:(id)object atIndex:(NSUInteger)index {
-    [self.array addObject:object];
+    [self.array insertObject:object atIndex:index];
     
     [self notifyOfModelUpdateWithChange:[IDPArrayChangeModel insertModelWithIndex:index]];
 }

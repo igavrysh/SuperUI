@@ -2,7 +2,7 @@
 //  IDPArrayChangeModel+IDPExtensions.m
 //  SuperUI
 //
-//  Created by Ievgen on 8/19/16.
+//  Created by Ievgen on 8/21/16.
 //  Copyright © 2016 1mlndollarsasset. All rights reserved.
 //
 
@@ -10,10 +10,9 @@
 
 @implementation IDPArrayChangeModel (IDPExtensions)
 
-#pragma mark - 
-#pragma mark Public Methods
-
-- (void)applyToTableView:(UITableView *)tableView {
+- (void)applyToTableView:(UITableView *)tableView
+           withAnimation:(UITableViewRowAnimation) animation
+{
     [self doesNotRecognizeSelector:_cmd];
 }
 
