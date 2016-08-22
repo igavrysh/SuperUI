@@ -8,7 +8,7 @@
 
 #import "IDPImageModel.h"
 #import "IDPImageModelDispatcher.h"
-#import "IDPMacro.h"
+#import "IDPMacros.h"
 
 @interface IDPImageModel ()
 @property (nonatomic, strong)   UIImage     *image;

@@ -10,7 +10,7 @@
 
 #import "IDPUserView.h"
 
-#import "IDPMacro.h"
+#import "IDPMacros.h"
 
 IDPViewControllerBaseViewProperty(IDPUserViewController, userView, IDPUserView)
 

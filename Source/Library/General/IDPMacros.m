@@ -6,4 +6,4 @@
 //  Copyright © 2016 1mlndollarsasset. All rights reserved.
 //
 
-#import "IDPMacro.h"
+#import "IDPMacros.h"

@@ -9,7 +9,7 @@
 #import "IDPArrayViewController.h"
 
 #import "IDPGCDQueue.h"
-#import "IDPMacro.h"
+#import "IDPMacros.h"
 #import "IDPArrayView.h"
 #import "IDPUserCell.h"
 #import "IDPUser.h"

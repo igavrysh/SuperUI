@@ -6,7 +6,9 @@
 //  Copyright © 2016 1mlndollarsasset. All rights reserved.
 //
 
-#import "IDPCompilerMacro.h"
+#import "IDPCompilerMacros.h"
+
+#define IDPEmpty
 
 #define IDPDefineBaseViewProperty(propertyName, viewClass) \
     @property (nonatomic, readonly) viewClass     *propertyName;
@@ -48,10 +50,8 @@
     __strong __typeof(variable) variable = __IDPWeakified_##variable; \
     IDPClangDiagnosticPopExpression;
 
-#define IDPEmptyResult
-
 #define IDPStrongifyAndReturnIfNil(variable) \
-    IDPStrongifyAndReturnResultIfNil(variable, IDPEmptyResult) \
+    IDPStrongifyAndReturnResultIfNil(variable, IDPEmpty) \
 
 #define IDPStrongifyAndReturnNilIfNil(variable) \
     IDPStrongifyAndReturnResultIfNil(variable, nil)

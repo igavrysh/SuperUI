@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^IDPApplyChangeBlock)(void);
+
 @class IDPArrayChangeModel;
 
 @interface UITableView (IDPExtensions)
@@ -18,5 +20,7 @@
 - (void)applyChangeModel:(IDPArrayChangeModel *)model;
 - (void)applyChangeModel:(IDPArrayChangeModel *)model
            withAnimation:(UITableViewRowAnimation) animation;
+
+- (void)applyChangeBlock:(IDPApplyChangeBlock)block;
 
 @end

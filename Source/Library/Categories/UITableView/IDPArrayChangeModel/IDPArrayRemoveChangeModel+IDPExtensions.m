@@ -9,6 +9,7 @@
 #import "IDPArrayRemoveChangeModel+IDPExtensions.h"
 
 #import "NSIndexPath+IDPExtensions.h"
+#import "UITableView+IDPExtensions.h"
 
 @implementation IDPArrayRemoveChangeModel (IDPExtensions)
 
@@ -18,8 +19,10 @@
 - (void)applyToTableView:(UITableView *)tableView
            withAnimation:(UITableViewRowAnimation) animation
 {
-    [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathWithIndex:self.index]]
-                     withRowAnimation:animation];
+    [tableView applyChangeBlock:^{
+        [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathWithIndex:self.index]]
+                         withRowAnimation:animation];
+    }];
 }
 
 

@@ -9,7 +9,7 @@
 #import "IDPObservableObject.h"
 
 #import "IDPBlockObservationController.h"
-#import "IDPMacro.h"
+#import "IDPMacros.h"
 
 #import "IDPObservableObject+IDPPrivate.h"
 #import "IDPObservationController+IDPPrivate.h"

@@ -12,7 +12,7 @@
 #import "IDPUsersView.h"
 #import "IDPUserCell.h"
 
-#import "IDPMacro.h"
+#import "IDPMacros.h"
 #import "UITableView+IDPExtensions.h"
 
 IDPViewControllerBaseViewProperty(IDPUsersViewController, usersView, IDPUsersView)

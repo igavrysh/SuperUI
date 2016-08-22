@@ -9,6 +9,7 @@
 #import "IDPArrayInsertChangeModel+IDPExtensions.h"
 
 #import "NSIndexPath+IDPExtensions.h"
+#import "UITableView+IDPExtensions.h"
 
 @implementation IDPArrayInsertChangeModel (IDPExtensions)
 
@@ -18,8 +19,10 @@
 - (void)applyToTableView:(UITableView *)tableView
            withAnimation:(UITableViewRowAnimation) animation
 {
-    [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForIndex:self.index]]
-                     withRowAnimation:animation];
+    [tableView applyChangeBlock:^{
+        [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForIndex:self.index]]
+                         withRowAnimation:animation];
+    }];
 }
 
 @end

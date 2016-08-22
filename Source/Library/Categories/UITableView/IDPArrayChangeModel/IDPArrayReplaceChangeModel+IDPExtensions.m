@@ -9,6 +9,7 @@
 #import "IDPArrayReplaceChangeModel+IDPExtensions.h"
 
 #import "NSIndexPath+IDPExtensions.h"
+#import "UITableView+IDPExtensions.h"
 
 @implementation IDPArrayReplaceChangeModel (IDPExtensions)
 
@@ -20,7 +21,9 @@
 {
     NSIndexPath *path = [NSIndexPath indexPathForIndex:self.index];
     
-    [tableView reloadRowsAtIndexPaths:@[path] withRowAnimation:animation];
+    [tableView applyChangeBlock:^{
+        [tableView reloadRowsAtIndexPaths:@[path] withRowAnimation:animation];
+    }];
 }
 
 @end

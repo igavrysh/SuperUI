@@ -8,7 +8,7 @@
 
 #import "IDPImageView.h"
 
-#import "IDPMacro.h"
+#import "IDPMacros.h"
 #import "IDPImageModel.h"
 #import "IDPBlockObservationController.h"
 

@@ -8,7 +8,7 @@
 
 #import "IDPArrayView.h"
 
-#import "IDPMacro.h"
+#import "IDPMacros.h"
 #import "IDPArrayModel.h"
 #import "IDPBlockObservationController.h"
 

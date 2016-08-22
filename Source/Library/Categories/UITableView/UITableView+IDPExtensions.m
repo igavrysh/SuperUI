@@ -10,6 +10,8 @@
 
 #import "IDPArrayChangeModel.h"
 #import "IDPArrayInsertChangeModel.h"
+#import "IDPBlockMacros.h"
+#import "IDPReturnMacros.h"
 
 #import "UINib+IDPExtensions.h"
 #import "IDPArrayChangeModel+IDPExtensions.h"
@@ -47,9 +49,20 @@
 - (void)applyChangeModel:(IDPArrayChangeModel *)model
            withAnimation:(UITableViewRowAnimation) animation
 {
+    [self applyChangeBlock:^{
+        [model applyToTableView:self withAnimation:animation];
+    }];
+}
+
+#pragma mark -
+#pragma mark Private Methods
+
+- (void)applyChangeBlock:(IDPApplyChangeBlock)block {
+    IDPReturnIfNil(block);
+    
     [self beginUpdates];
     
-    [model applyToTableView:self withAnimation:animation];
+    IDPPerformBlock(block);
     
     [self endUpdates];
 }

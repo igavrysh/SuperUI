@@ -9,6 +9,7 @@
 #import "IDPArrayMoveChangeModel+IDPExtensions.h"
 
 #import "NSIndexPath+IDPExtensions.h"
+#import "UITableView+IDPExtensions.h"
 
 @implementation IDPArrayMoveChangeModel (IDPExtensions)
 
