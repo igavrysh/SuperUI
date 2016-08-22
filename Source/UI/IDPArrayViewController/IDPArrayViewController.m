@@ -133,9 +133,66 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 }
 
 - (IBAction)onEditButton:(id)sender {
+    self.arrayView.editing = !self.arrayView.editing;
 }
 
 - (IBAction)onAddButton:(id)sender {
     [self.arrayModel insertObject:[IDPUser user] atIndex:0];
 }
+
+
+- (BOOL)        tableView:(UITableView *)tableView
+    canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+#pragma mark - 
+#pragma mar UITableViewDelegate
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
+           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleDelete;
+}
+
+- (BOOL)                        tableView:(UITableView *)tableview
+   shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+#pragma mark -
+#pragma mark UITableViewDataSource
+
+- (BOOL)        tableView:(UITableView *)tableView
+    canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)    tableView:(UITableView *)tableView
+   moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
+          toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    NSLog(@"from row: %d to row: %d", sourceIndexPath.row, destinationIndexPath.row);
+    
+    [self.arrayModel moveObjectToIndex:destinationIndexPath.row
+                             fromIndex:sourceIndexPath.row];
+}
+
+- (void)    tableView:(UITableView *)tableView
+   commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+    forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        /* [self.arrayModel performBlockWithNotification:^{
+         [self.collection removeObjectAtIndex:indexPath.row];
+         }];*/
+    }
+}
+
+
 @end

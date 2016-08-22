@@ -11,7 +11,8 @@
 @class IDPArrayChangeModel;
 
 @interface IDPArrayView : UIView
-@property (nonatomic, strong) IBOutlet UITableView  *tableView;
+@property (nonatomic, strong)                   IBOutlet UITableView  *tableView;
+@property (nonatomic, assign, getter=isEditing) BOOL                  editing;
 
 - (void)applyChangeModel:(IDPArrayChangeModel *)changeModel;
 

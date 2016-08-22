@@ -13,7 +13,7 @@
 
 #import "IDPObservableObject.h"
 
-const NSUInteger kIDPArrayModelSampleSize = 6;
+const NSUInteger kIDPArrayModelSampleSize = 30;
 
 @interface IDPUserArrayModel ()
 

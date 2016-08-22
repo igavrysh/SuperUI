@@ -17,9 +17,14 @@
 - (void)moveObjectToIndex:(NSUInteger)index
                 fromIndex:(NSUInteger)fromIndex
 {
-    id object = self[index];
-    self[index] = self[fromIndex];
-    self[fromIndex] = object;
+    NSInteger delta = index - fromIndex;
+    NSInteger deltaI = delta > 0 ? 1 : -1;
+    
+    for (NSInteger i = fromIndex; i != index; i += deltaI) {
+        id object = self[i];
+        self[i] = self[i + deltaI];
+        self[i + deltaI] = object;
+    }
 }
 
 @end

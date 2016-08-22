@@ -18,10 +18,18 @@
 - (void)applyToTableView:(UITableView *)tableView
            withAnimation:(UITableViewRowAnimation) animation
 {
-    NSIndexPath *toPath = [NSIndexPath indexPathForIndex:self.index];
-    NSIndexPath *fromPath = [NSIndexPath indexPathForIndex:self.fromIndex];
+    NSUInteger toIndex = self.index;
+    NSUInteger fromIndex = self.fromIndex;
+    NSInteger deltaIndex = toIndex - fromIndex > 0 ? 1 : -1;
     
-    [tableView moveRowAtIndexPath:fromPath toIndexPath:toPath];
+    NSIndexPath *toPath = [NSIndexPath indexPathForIndex:toIndex];
+    NSIndexPath *fromPath = [NSIndexPath indexPathForIndex:fromIndex];
+    NSIndexPath *previousToPath = [NSIndexPath indexPathForIndex:toIndex + deltaIndex];
+    
+    [tableView reloadRowsAtIndexPaths:@[toPath, previousToPath, fromPath] withRowAnimation:animation];
+    
+    //[tableView reloadData];
+    //[tableView moveRowAtIndexPath:fromPath toIndexPath:toPath];
 }
 
 @end
