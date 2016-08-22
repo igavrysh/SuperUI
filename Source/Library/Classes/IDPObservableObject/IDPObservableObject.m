@@ -10,6 +10,7 @@
 
 #import "IDPBlockObservationController.h"
 #import "IDPMacros.h"
+#import "IDPCompilerMacros.h"
 
 #import "IDPObservableObject+IDPPrivate.h"
 #import "IDPObservationController+IDPPrivate.h"
@@ -124,8 +125,7 @@ typedef void(^IDPControllerNotificationBlock)(id object);
 }
 
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+IDPClangIgnoreLeaksPush
 
 - (void)notifyOfStateChange:(NSUInteger)state {
     [self notifyOfStateChange:state
@@ -141,7 +141,7 @@ typedef void(^IDPControllerNotificationBlock)(id object);
                   }];
 }
 
-#pragma clang diagnostic pop
+IDPClangDiagnosticPopExpression
 
 - (void)notifyOfStateChange:(NSUInteger)state
                 withHandler:(IDPControllerNotificationBlock)handler

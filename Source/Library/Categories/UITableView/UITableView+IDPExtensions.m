@@ -50,7 +50,7 @@
            withAnimation:(UITableViewRowAnimation) animation
 {
     [self applyChangeBlock:^{
-        [model applyToTableView:self withAnimation:animation];
+        [model applyToTableView:self withRowAnimation:animation];
     }];
 }
 

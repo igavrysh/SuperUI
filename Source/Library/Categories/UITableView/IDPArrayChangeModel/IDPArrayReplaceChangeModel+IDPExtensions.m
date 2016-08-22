@@ -17,7 +17,7 @@
 #pragma mark Public Methods
 
 - (void)applyToTableView:(UITableView *)tableView
-           withAnimation:(UITableViewRowAnimation) animation
+        withRowAnimation:(UITableViewRowAnimation) animation
 {
     NSIndexPath *path = [NSIndexPath indexPathForIndex:self.index];
     

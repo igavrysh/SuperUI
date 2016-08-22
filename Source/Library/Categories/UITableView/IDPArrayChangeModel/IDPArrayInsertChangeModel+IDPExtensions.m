@@ -17,7 +17,7 @@
 #pragma mark Public Methods
 
 - (void)applyToTableView:(UITableView *)tableView
-           withAnimation:(UITableViewRowAnimation) animation
+        withRowAnimation:(UITableViewRowAnimation) animation
 {
     [tableView applyChangeBlock:^{
         [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForIndex:self.index]]

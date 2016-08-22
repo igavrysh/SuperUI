@@ -13,6 +13,6 @@
 @interface IDPArrayChangeModel (IDPExtensions)
 
 - (void)applyToTableView:(UITableView *)tableView
-           withAnimation:(UITableViewRowAnimation) animation;
+           withRowAnimation:(UITableViewRowAnimation) animation;
 
 @end

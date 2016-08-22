@@ -17,7 +17,7 @@
 #pragma mark Public Methods
 
 - (void)applyToTableView:(UITableView *)tableView
-           withAnimation:(UITableViewRowAnimation) animation
+        withRowAnimation:(UITableViewRowAnimation) animation
 {
     [tableView applyChangeBlock:^{
         [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathWithIndex:self.index]]

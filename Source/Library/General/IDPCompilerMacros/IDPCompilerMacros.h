@@ -6,13 +6,27 @@
 //  Copyright © 2016 1mlndollarsasset. All rights reserved.
 //
 
+#import "IDPMacros.h"
+
 #define IDPClnagDiagnosticPush _Pragma("clang diagnostic push")
 #define IDPClangDiagnosticPop _Pragma("clang diagnostic pop")
 
+#define IDPClangIgnoreLeaksPush \
+    IDPClnagDiagnosticPush \
+    _Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"")
+
 #define IDPClangDiagnosticPushExpression(key) \
-    IDPClnagDiagnosticPush; \
+    IDPClnagDiagnosticPush \
     _Pragma(key)
 
 #define IDPClangDiagnosticPopExpression IDPClangDiagnosticPop
+
+
+#define IDPClangIgnorePerformSelectorWarning(code) \
+    do { \
+        IDPClangDiagnosticPushExpression("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
+        code \
+        IDPClangDiagnosticPopExpression \
+    } while(0)
 
 
