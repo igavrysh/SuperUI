@@ -13,7 +13,6 @@
 - (void)applyToTableView:(UITableView *)tableView
            withAnimation:(UITableViewRowAnimation) animation
 {
-    [self doesNotRecognizeSelector:_cmd];
 }
 
 @end

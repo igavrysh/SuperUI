@@ -153,7 +153,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
            editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleDelete;
+    return UITableViewCellEditingStyleDelete;
 }
 
 - (BOOL)                        tableView:(UITableView *)tableview
@@ -175,18 +175,18 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
    moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
           toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-    NSLog(@"from row: %d to row: %d", sourceIndexPath.row, destinationIndexPath.row);
+    NSLog(@"from row: %ld to row: %ld", sourceIndexPath.row, (long)destinationIndexPath.row);
     
-    [self.arrayModel moveObjectToIndex:destinationIndexPath.row
-                             fromIndex:sourceIndexPath.row];
+    IDPAsyncPerformInBackgroundQueue(^{
+        [self.arrayModel moveObjectToIndex:destinationIndexPath.row
+                                 fromIndex:sourceIndexPath.row];
+    });
 }
 
 - (void)    tableView:(UITableView *)tableView
    commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
     forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         /* [self.arrayModel performBlockWithNotification:^{
          [self.collection removeObjectAtIndex:indexPath.row];
