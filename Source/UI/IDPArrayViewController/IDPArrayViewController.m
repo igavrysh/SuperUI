@@ -24,7 +24,6 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 
 @interface IDPArrayViewController ()
 @property (nonatomic, strong)                               IDPBlockObservationController   *observer;
-@property (nonatomic, assign, getter=shouldUpdateModel)     BOOL                            updateModel;
 
 - (void)prepareObserver:(IDPBlockObservationController *)observer;
 
@@ -43,8 +42,6 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
         
         if (self.isViewLoaded) {
             [self.arrayModel load];
-        } else {
-            self.updateModel = YES;
         }
     }
 }
@@ -63,15 +60,21 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if ([self shouldUpdateModel]) {
-        [self.arrayModel load];
-    }
+    [self.arrayModel load];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark -
+#pragma mark Public Methods
+
+- (id<IDPModelCell>)cellForTable:(UITableView *)tableView
+                   withIndexPath:(NSIndexPath *)indexPath
+{
+    return [tableView cellWithClass:[IDPUserCell class]];
+}
 
 #pragma mark -
 #pragma mark Private Methods
@@ -116,11 +119,11 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    IDPUserCell *cell = [tableView cellWithClass:[IDPUserCell class]];
+    id<IDPModelCell> cell = [self cellForTable:tableView withIndexPath:indexPath];
     
-    cell.user = self.arrayModel[indexPath.row];
+    cell.model = self.arrayModel[indexPath.row];
     
-    return cell;
+    return (UITableViewCell *)cell;
 }
 
 #pragma mark -
@@ -178,10 +181,10 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 {
     NSLog(@"from row: %ld to row: %ld", sourceIndexPath.row, (long)destinationIndexPath.row);
     
-    IDPAsyncPerformInBackgroundQueue(^{
+    [self.arrayModel performBlockWithoutNotification:^{
         [self.arrayModel moveObjectToIndex:destinationIndexPath.row
                                  fromIndex:sourceIndexPath.row];
-    });
+    }];
 }
 
 - (void)    tableView:(UITableView *)tableView

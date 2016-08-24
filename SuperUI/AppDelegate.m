@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 
 #import "IDPAnimationViewController.h"
-#import "IDPArrayViewController.h"
+#import "IDPUsersViewController.h"
 
 #import "IDPUserArrayModel.h"
 
@@ -30,7 +30,6 @@
     controller.arrayModel = [IDPUserArrayModel new];
     
     window.rootViewController = controller;
-    window.backgroundColor = [UIColor redColor];
     
     [window makeKeyAndVisible];
     

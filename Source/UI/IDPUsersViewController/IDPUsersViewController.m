@@ -11,43 +11,21 @@
 #import "IDPUser.h"
 #import "IDPUsersView.h"
 #import "IDPUserCell.h"
+#import "IDPArrayModel.h"
 
 #import "IDPMacros.h"
 #import "UITableView+IDPExtensions.h"
 
-IDPViewControllerBaseViewProperty(IDPUsersViewController, usersView, IDPUsersView)
-
 @implementation IDPUsersViewController
 
 #pragma mark -
-#pragma mark Accessors
+#pragma mark IDPArrayController overloaded methods
 
-#pragma mark -
-#pragma mark View Lifecycle
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    [self.usersView.tableView reloadData];
+- (id<IDPModelCell>)cellForTable:(UITableView *)tableView
+                   withIndexPath:(NSIndexPath *)indexPath
+{
+    return [tableView cellWithClass:[IDPUserCell class]];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-#pragma mark -
-#pragma mark UITableViewDataSource
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 300;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    IDPUserCell *cell = [tableView cellWithClass:[IDPUserCell class]];
-    
-    cell.user = [IDPUser new];
-    
-    return cell;
-}
 
 @end

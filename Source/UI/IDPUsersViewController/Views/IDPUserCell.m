@@ -16,18 +16,18 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setUser:(IDPUser *)user {
-    if (_user != user) {
-        _user = user;
+- (void)setModel:(IDPUser *)user {
+    if (_model != user) {
+        _model = user;
         
-        [self fillWithModel:user];
+        [self fillWithUser:user];
     }
 }
 
 #pragma mark -
 #pragma mark Public
 
-- (void)fillWithModel:(IDPUser *)user {
+- (void)fillWithUser:(IDPUser *)user {
     self.fullNameLabel.text = user.fullName;
     self.userImageView.imageModel = user.imageModel;
 }

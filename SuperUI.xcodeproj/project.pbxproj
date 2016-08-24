@@ -74,8 +74,6 @@
 		858239161D5B5DEB00623348 /* IDPUsersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 858238E91D5B5DEB00623348 /* IDPUsersView.m */; };
 		858239171D5B5DEB00623348 /* IDPUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 858238EB1D5B5DEB00623348 /* IDPUsersViewController.m */; };
 		858239181D5B5DEB00623348 /* IDPUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 858238EB1D5B5DEB00623348 /* IDPUsersViewController.m */; };
-		858239191D5B5DEB00623348 /* IDPUsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 858238EC1D5B5DEB00623348 /* IDPUsersViewController.xib */; };
-		8582391A1D5B5DEB00623348 /* IDPUsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 858238EC1D5B5DEB00623348 /* IDPUsersViewController.xib */; };
 		8582391B1D5B5DEB00623348 /* IDPUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 858238EF1D5B5DEB00623348 /* IDPUserCell.m */; };
 		8582391C1D5B5DEB00623348 /* IDPUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 858238EF1D5B5DEB00623348 /* IDPUserCell.m */; };
 		8582391D1D5B5DEB00623348 /* IDPUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 858238F01D5B5DEB00623348 /* IDPUserCell.xib */; };
@@ -203,7 +201,6 @@
 		858238E91D5B5DEB00623348 /* IDPUsersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPUsersView.m; sourceTree = "<group>"; };
 		858238EA1D5B5DEB00623348 /* IDPUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPUsersViewController.h; sourceTree = "<group>"; };
 		858238EB1D5B5DEB00623348 /* IDPUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPUsersViewController.m; sourceTree = "<group>"; };
-		858238EC1D5B5DEB00623348 /* IDPUsersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPUsersViewController.xib; sourceTree = "<group>"; };
 		858238EE1D5B5DEB00623348 /* IDPUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPUserCell.h; sourceTree = "<group>"; };
 		858238EF1D5B5DEB00623348 /* IDPUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPUserCell.m; sourceTree = "<group>"; };
 		858238F01D5B5DEB00623348 /* IDPUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPUserCell.xib; sourceTree = "<group>"; };
@@ -587,7 +584,6 @@
 				858238E91D5B5DEB00623348 /* IDPUsersView.m */,
 				858238EA1D5B5DEB00623348 /* IDPUsersViewController.h */,
 				858238EB1D5B5DEB00623348 /* IDPUsersViewController.m */,
-				858238EC1D5B5DEB00623348 /* IDPUsersViewController.xib */,
 				858238ED1D5B5DEB00623348 /* Views */,
 			);
 			path = IDPUsersViewController;
@@ -851,7 +847,6 @@
 				856988021D5BE0DA00DBB5CE /* IDPArrayViewController.xib in Resources */,
 				858239241D5B5DEB00623348 /* IDPUserViewController.xib in Resources */,
 				851EE1501D6193AD0029B447 /* image.jpg in Resources */,
-				8582391A1D5B5DEB00623348 /* IDPUsersViewController.xib in Resources */,
 				8582391E1D5B5DEB00623348 /* IDPUserCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -862,7 +857,6 @@
 			files = (
 				85C8DDB31D530FD3009E227C /* Assets.xcassets in Resources */,
 				856988011D5BE0DA00DBB5CE /* IDPArrayViewController.xib in Resources */,
-				858239191D5B5DEB00623348 /* IDPUsersViewController.xib in Resources */,
 				851EE1511D6193AD0029B447 /* image_big.jpg in Resources */,
 				858239131D5B5DEB00623348 /* IDPAnimationViewController.xib in Resources */,
 				858239231D5B5DEB00623348 /* IDPUserViewController.xib in Resources */,

@@ -41,7 +41,7 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)setHandler:(id)handler
+- (void)setHandler:(IDPStateChangeHandler)handler
           forState:(NSUInteger)state
 {
     [self.stateDictionary setObject:[handler copy]
@@ -52,7 +52,7 @@
     [self.stateDictionary removeObjectForKey:@(state)];
 }
 
-- (id)handlerForState:(NSUInteger)state {
+- (IDPStateChangeHandler)handlerForState:(NSUInteger)state {
     return [self.stateDictionary objectForKey:@(state)];
 }
 
