@@ -10,6 +10,7 @@
 
 #import "IDPGCDQueue.h"
 #import "IDPMacros.h"
+#import "IDPCompilerMacros.h"
 #import "IDPArrayView.h"
 #import "IDPUserCell.h"
 #import "IDPUser.h"

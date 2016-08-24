@@ -11,16 +11,16 @@
 #define IDPClnagDiagnosticPush _Pragma("clang diagnostic push")
 #define IDPClangDiagnosticPop _Pragma("clang diagnostic pop")
 
-#define IDPClangIgnoreLeaksPush \
-    IDPClnagDiagnosticPush \
-    _Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"")
-
 #define IDPClangDiagnosticPushExpression(key) \
     IDPClnagDiagnosticPush \
     _Pragma(key)
 
 #define IDPClangDiagnosticPopExpression IDPClangDiagnosticPop
 
+#define IDPClangIgnoredPerformSelectorLeaksPush  \
+    IDPClangDiagnosticPushExpression("clang diagnostic ignored \"-Warc-performSelector-leaks\"")
+
+#define IDPClangIgnoredPerformSelectorLeaksPop IDPClangDiagnosticPop
 
 #define IDPClangIgnorePerformSelectorWarning(code) \
     do { \

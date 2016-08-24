@@ -125,7 +125,7 @@ typedef void(^IDPControllerNotificationBlock)(id object);
 }
 
 
-IDPClangIgnoreLeaksPush
+IDPClangIgnoredPerformSelectorLeaksPush
 
 - (void)notifyOfStateChange:(NSUInteger)state {
     [self notifyOfStateChange:state
@@ -141,7 +141,7 @@ IDPClangIgnoreLeaksPush
                   }];
 }
 
-IDPClangDiagnosticPopExpression
+IDPClangIgnoredPerformSelectorLeaksPop
 
 - (void)notifyOfStateChange:(NSUInteger)state
                 withHandler:(IDPControllerNotificationBlock)handler

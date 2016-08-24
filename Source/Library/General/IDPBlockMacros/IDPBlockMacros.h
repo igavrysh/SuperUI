@@ -11,17 +11,17 @@
 #define __IDPBlockPerform(operand, operation, block, ...) \
     do { \
         typeof(block) blockToFire = block; \
-        if (toFire) { \
+        if (blockToFire) { \
             operand operation blockToFire(__VA_ARGS__); \
         } \
     } while(0) \
 
-#define IDPBlockPerform(block) \
+#define IDPBlockPerform(block, ...) \
     __IDPPerformBlock(IDPEmpty, IDPEmpty, block, __VA_ARGS__)
 
-#define IDPReturnBlockPerform(block) \
+#define IDPReturnBlockPerform(block, ...) \
     __IDPPerformBlock(IDPEmpty, return, block, __VA_ARGS__)
 
-#define IDPAssignBlockPerform(block, variable) \
+#define IDPAssignBlockPerform(block, variable, ...) \
     __IDPPerformBlock(variable, =, block, __VA_ARGS__)
 
