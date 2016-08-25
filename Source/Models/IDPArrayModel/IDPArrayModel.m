@@ -109,4 +109,26 @@
 - (void)load {
 }
 
+#pragma mark -
+#pragma mark IDPObservableObject
+
+- (SEL)selectorForState:(NSUInteger)state {
+    switch (state) {
+        case IDPArrayModelUpdated:
+            return @selector(arrayModelDidUpdate: withChangeModel:);
+            
+        case IDPArrayModelLoaded:
+            return @selector(arrayModelDidLoad: withChangeModel:);
+            
+        case IDPArrayModelLoading:
+            return @selector(arrayModelDidStartLoading: withChangeModel:);
+            
+        case IDPArrayModelFailedLoading:
+            return @selector(arrayModelDidFailLoading: withChangeModel:);
+            
+        default:
+            return [super selectorForState:state];
+    }
+}
+
 @end

@@ -15,7 +15,6 @@
 #import "IDPUserCell.h"
 #import "IDPUser.h"
 #import "IDPArrayModel.h"
-#import "IDPBlockObservationController.h"
 #import "IDPArrayChangeModel.h"
 
 #import "UITableView+IDPExtensions.h"
@@ -23,9 +22,6 @@
 IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayView)
 
 @interface IDPArrayViewController ()
-@property (nonatomic, strong)                               IDPBlockObservationController   *observer;
-
-- (void)prepareObserver:(IDPBlockObservationController *)observer;
 
 @end
 
@@ -36,21 +32,15 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 
 - (void)setArrayModel:(IDPArrayModel *)arrayModel {
     if (_arrayModel != arrayModel) {
+        [_arrayModel removeObserver:self];
+        
         _arrayModel = arrayModel;
         
-        self.observer = [_arrayModel blockObservationControllerWithObserver:self];
+        [arrayModel addObserver:self];
         
         if (self.isViewLoaded) {
             [self.arrayModel load];
         }
-    }
-}
-
-- (void)setObserver:(IDPBlockObservationController *)observer {
-    if (observer != _observer) {
-        _observer = observer;
-        
-        [self prepareObserver:observer];
     }
 }
 
@@ -79,32 +69,44 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 #pragma mark -
 #pragma mark Private Methods
 
-- (void)prepareObserver:(IDPBlockObservationController *)observer {
+#pragma mark -
+#pragma mark IDPArrayModelObserver
+
+- (void)arrayModelDidUpdate:(IDPArrayModel *)array
+            withChangeModel:(IDPArrayChangeModel *)changeModel
+{
+    NSLog(@"Model Updated");
+    
     IDPWeakify(self);
-    
-    id handler = ^(IDPBlockObservationController *controller, IDPArrayChangeModel *changeModel) {
+    IDPAsyncPerformInMainQueue(^{
         IDPStrongifyAndReturnIfNil(self);
-        
-        NSLog(@"Model Updated");
-        
-        IDPSyncPerformInMainQueue(^{
-            [self.arrayView applyChangeModel:changeModel];
-        });
-    };
+        [self.arrayView applyChangeModel:changeModel];
+    });
+}
+
+- (void)arrayModelDidLoad:(IDPArrayModel *)array
+          withChangeModel:(IDPArrayChangeModel *)changeModel
+{
+    NSLog(@"Model Loaded");
     
-    [observer setHandler:handler forState:IDPArrayModelUpdated];
-    
-    handler = ^(IDPBlockObservationController *controller, id userInfo) {
+    IDPWeakify(self);
+    IDPAsyncPerformInMainQueue(^{
         IDPStrongifyAndReturnIfNil(self);
-        
-        NSLog(@"Model Loaded");
-        
-        IDPSyncPerformInMainQueue(^{
-            [self.arrayView reload];
-        });
-    };
+        [self.arrayView reload];
+    });
     
-    [observer setHandler:handler forState:IDPArrayModelLoaded];
+}
+
+- (void)arrayModelDidStartLoading:(IDPArrayModel *)array
+                  withChangeModel:(IDPArrayChangeModel *)changeModel
+{
+    
+}
+
+- (void)arrayModelDidFailLoading:(IDPArrayModel *)array
+                 withChangeModel:(IDPArrayChangeModel *)changeModel
+{
+    
 }
 
 #pragma mark -

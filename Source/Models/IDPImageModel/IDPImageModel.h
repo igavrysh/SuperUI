@@ -10,12 +10,23 @@
 
 #import "IDPObservableObject.h"
 
+@class IDPImageModel;
+
 typedef NS_ENUM(NSUInteger, IDPImageModelState) {
     IDPImageModelUnloaded,
     IDPImageModelLoading,
     IDPImageModelLoaded,
     IDPImageModelFailedLoading
 };
+
+@protocol IDPImageModelObserver <NSObject>
+@optional
+- (void)imageModelDidUnload:(IDPImageModel *)imageModel;
+- (void)imageModelDidStartLoading:(IDPImageModel *)imageModel;
+- (void)imageModelDidLoad:(IDPImageModel *)imageModel;
+- (void)imageModelDidFailLoading:(IDPImageModel *)imageModel;
+
+@end
 
 @interface IDPImageModel : IDPObservableObject
 @property (nonatomic, readonly)     UIImage     *image;

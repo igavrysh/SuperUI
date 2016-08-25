@@ -9,13 +9,10 @@
 #import "IDPImageView.h"
 
 #import "IDPMacros.h"
+#import "IDPGCDQueue.h"
 #import "IDPImageModel.h"
-#import "IDPBlockObservationController.h"
 
 @interface IDPImageView ()
-@property (nonatomic, strong)   IDPBlockObservationController   *observer;
-
-- (void)prepareObserver:(IDPBlockObservationController *)observer;
 
 @end
 
@@ -82,55 +79,45 @@
 
 - (void)setImageModel:(IDPImageModel *)imageModel {
     if (_imageModel != imageModel) {
+        [_imageModel removeObserver:self];
+        
         [imageModel dump];
         _imageModel = imageModel;
         
-        self.observer = [_imageModel blockObservationControllerWithObserver:self];
+        [imageModel addObserver:self];
         
         [imageModel load];
     }
 }
 
-- (void)setObserver:(IDPBlockObservationController *)observer {
-    if (observer != _observer) {
-        _observer = observer;
-        
-        [self prepareObserver:observer];
-    }
+#pragma mark -
+#pragma mark IDPImageModelObserver
+
+- (void)imageModelDidUnload:(IDPImageModel *)imageModel {
+    IDPWeakify(self);
+    IDPAsyncPerformInMainQueue(^{
+        IDPStrongifyAndReturnIfNil(self);
+        self.contentImageView.image = imageModel.image;
+    });
 }
 
-#pragma mark -
-#pragma mark Private
+- (void)imageModelDidStartLoading:(IDPImageModel *)imageModel {
+}
 
-- (void)prepareObserver:(IDPBlockObservationController *)observer {
+- (void)imageModelDidLoad:(IDPImageModel *)imageModel {
     IDPWeakify(self);
-    
-    id handler = ^(IDPBlockObservationController *controller, id userInfo) {
-
-            void(^block)(void) = ^ {
-                IDPStrongifyAndReturnIfNil(self);
-
-                IDPImageModel *model = controller.observableObject;
-                self.contentImageView.image = model.image;
-            };
-            
-            if ([NSThread isMainThread]) {
-                block();
-            } else {
-                dispatch_sync(dispatch_get_main_queue(), block);
-            }
-    };
-    
-    [observer setHandler:handler forState:IDPImageModelLoaded];
-    [observer setHandler:handler forState:IDPImageModelUnloaded];
-    
-    handler = ^(IDPBlockObservationController *controller, id userInfo) {
+    IDPAsyncPerformInMainQueue(^{
         IDPStrongifyAndReturnIfNil(self);
-        
+        self.contentImageView.image = imageModel.image;
+    });
+}
+
+- (void)imageModelDidFailLoading:(IDPImageModel *)imageModel {
+    IDPWeakify(self);
+    IDPAsyncPerformInMainQueue(^{
+        IDPStrongifyAndReturnIfNil(self);
         [self.imageModel load];
-    };
-    
-    [observer setHandler:handler forState:IDPImageModelFailedLoading];
+    });
 }
 
 @end

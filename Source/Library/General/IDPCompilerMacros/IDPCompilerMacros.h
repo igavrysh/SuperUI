@@ -6,8 +6,6 @@
 //  Copyright © 2016 1mlndollarsasset. All rights reserved.
 //
 
-#import "IDPMacros.h"
-
 #define IDPClnagDiagnosticPush _Pragma("clang diagnostic push")
 #define IDPClangDiagnosticPop _Pragma("clang diagnostic pop")
 

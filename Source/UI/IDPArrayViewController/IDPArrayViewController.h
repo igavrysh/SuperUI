@@ -10,15 +10,17 @@
 
 #import "IDPMacros.h"
 #import "IDPArrayView.h"
+#import "IDPArrayModel.h"
 
 @protocol IDPModelCell
 @property (nonatomic, strong) id    model;
 
 @end
 
-@class IDPArrayModel;
-
-@interface IDPArrayViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface IDPArrayViewController : UIViewController <
+    UITableViewDelegate,
+    UITableViewDataSource,
+    IDPArrayModelObserver>
 @property (nonatomic, strong) IDPArrayModel *arrayModel;
 
 - (IBAction)onAddButton:(id)sender;

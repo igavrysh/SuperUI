@@ -10,7 +10,6 @@
 
 #import "IDPMacros.h"
 #import "IDPArrayModel.h"
-#import "IDPBlockObservationController.h"
 
 #import "UITableView+IDPExtensions.h"
 

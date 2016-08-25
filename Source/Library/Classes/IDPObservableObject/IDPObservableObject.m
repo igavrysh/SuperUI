@@ -8,42 +8,38 @@
 
 #import "IDPObservableObject.h"
 
-#import "IDPBlockObservationController.h"
 #import "IDPMacros.h"
 #import "IDPCompilerMacros.h"
 
-#import "IDPObservableObject+IDPPrivate.h"
-#import "IDPObservationController+IDPPrivate.h"
-
-typedef void(^IDPControllerNotificationBlock)(id object);
+#import "NSArray+IDPArrayEnumerator.h"
 
 @interface IDPObservableObject ()
-@property (nonatomic, retain)   NSHashTable     *observationControllerHashTable;
+@property (nonatomic, retain) NSHashTable   *observers;
+@property (nonatomic, assign) BOOL          notifyObservers;
 
-- (void)notifyOfStateChange:(NSUInteger)state
-                withHandler:(IDPControllerNotificationBlock)handler;
+- (void)notifyOfStateChangeWithSelector:(SEL)selector;
+- (void)notifyOfStateChangeWithSelector:(SEL)selector object:(id)object;
 
-- (void)performBlock:(void (^)(void))block shouldNotify:(BOOL)shouldNotify;
-
-- (id)observationControllerWithClass:(Class)class observer:(id)observer;
+- (void)performBlock:(void (^)(void))block
+        shouldNotify:(BOOL)shouldNotify;
 
 @end
 
 @implementation IDPObservableObject
 
+@dynamic observerSet;
 
 #pragma mark - 
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.observationControllerHashTable = nil;
+    self.observers = nil;
 }
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.observationControllerHashTable = [NSHashTable weakObjectsHashTable];
-        self.notifyObservers = YES;
+        self.observers = [NSHashTable weakObjectsHashTable];
     }
     
     return self;
@@ -53,27 +49,21 @@ typedef void(^IDPControllerNotificationBlock)(id object);
 #pragma mark Accessors
 
 - (NSSet *)observerSet {
-    @synchronized(self) {
-        return [self.observationControllerHashTable setRepresentation];
+    @synchronized(self.observers) {
+        return [self.observers setRepresentation];
     }
 }
 
 - (void)setState:(NSUInteger)state {
-    if (state != _state) {
-        @synchronized(self) {
-            _state = state;
-            
-            [self notifyOfStateChange:state];
-        }
-    }
+    [self setState:state object:nil];
 }
 
-- (void)setState:(NSUInteger)state withObject:(id)object {
-    if (state != _state) {
-        @synchronized(self) {
+- (void)setState:(NSUInteger)state object:(id)object {
+    @synchronized(self) {
+        if (state != _state) {
             _state = state;
             
-            [self notifyOfStateChange:state withObject:object];
+            [self notifyOfStateChange:_state withObject:object];
         }
     }
 }
@@ -81,81 +71,98 @@ typedef void(^IDPControllerNotificationBlock)(id object);
 #pragma mark - 
 #pragma mark Public
 
-- (IDPBlockObservationController *)blockObservationControllerWithObserver:(id)observer {
-    return [self observationControllerWithClass:[IDPBlockObservationController class]
-                                       observer:observer];
+- (void)addObservers:(NSArray *)observers {
+    @synchronized(self.observers) {
+        [observers performBlockWithEachObject:^(id object) {
+            [self addObserver:object];
+        }];
+    }
 }
 
-- (void)performBlockWithNotification:(void (^)(void))block {
-    [self performBlock:block shouldNotify:YES];
+- (void)addObserver:(id)observer {
+    @synchronized(self.observers) {
+        if (![self.observers containsObject:observer]) {
+            [self.observers addObject:observer];
+        }
+    }
+}
+
+- (void)removeObservers:(NSArray *)observers {
+    @synchronized(self.observers) {
+        [observers performBlockWithEachObject:^(id object) {
+            [self removeObserver:object];
+        }];
+    }
+}
+
+- (void)removeObserver:(id)observer {
+    @synchronized(self.observers) {
+        [self.observers removeObject:observer];
+    }
+}
+
+- (BOOL)isObservedByObject:(id)observer {
+    @synchronized(self.observers) {
+        return [self.observers containsObject:observer];
+    }
 }
 
 - (void)performBlockWithoutNotification:(void (^)(void))block {
     [self performBlock:block shouldNotify:NO];
 }
 
+- (void)performBlockWithNotification:(void (^)(void))block {
+    [self performBlock:block shouldNotify:YES];
+}
+
 #pragma mark -
 #pragma mark Private
 
-- (id)observationControllerWithClass:(Class)class observer:(id)observer {
-    IDPObservationController *result = [class observationControllerWithObserver:observer
-                                                               observableObject:self];
-    
-    @synchronized(self) {
-        [self.observationControllerHashTable addObject:result];
-    }
-    
-    return result;
+- (SEL)selectorForState:(NSUInteger)state {
+    return nil;
 }
 
-- (void)invalidateController:(IDPObservationController *)controller {
-    @synchronized(self) {
-        [self.observationControllerHashTable removeObject:controller];
+- (void)notifyOfStateChangeWithSelector:(SEL)selector {
+    [self notifyOfStateChangeWithSelector:selector object:nil];
+}
+
+- (void)notifyOfStateChange:(NSUInteger)state {
+    [self notifyOfStateChange:state withObject:nil];
+}
+
+- (void)notifyOfStateChange:(NSUInteger)state withObject:(id)object {
+    [self notifyOfStateChangeWithSelector:[self selectorForState:state] object:object];
+}
+
+IDPClangIgnoredPerformSelectorLeaksPush
+
+- (void)notifyOfStateChangeWithSelector:(SEL)selector object:(id)object {
+    //if (!self.notifyObservers) {
+    //    return;
+    //}
+    
+    @synchronized(self.observers) {
+        NSHashTable *observers = self.observers;
+        for (id object in observers) {
+            if ([object respondsToSelector:selector]) {
+                [object performSelector:selector withObject:self withObject:object];
+            }
+        }
     }
 }
 
-- (void)performBlock:(void (^)(void))block shouldNotify:(BOOL)shouldNotify {
-    BOOL state = self.shouldNotifyObservers;
+IDPClangIgnoredPerformSelectorLeaksPop
+
+- (void)performBlock:(void (^)(void))block
+        shouldNotify:(BOOL)shouldNotify
+{
+    BOOL state = self.notifyObservers;
     
     self.notifyObservers = shouldNotify;
     
     IDPPerformBlock(block);
     
     self.notifyObservers = state;
-}
-
-
-IDPClangIgnoredPerformSelectorLeaksPush
-
-- (void)notifyOfStateChange:(NSUInteger)state {
-    [self notifyOfStateChange:state
-                  withHandler:^(IDPObservationController *controller) {
-                      [controller notifyWithState:state];
-                  }];
-}
-
-- (void)notifyOfStateChange:(NSUInteger)state withObject:(id)object {
-    [self notifyOfStateChange:state
-                  withHandler:^(IDPObservationController *controller) {
-                      [controller notifyWithState:state object:object];
-                  }];
-}
-
-IDPClangIgnoredPerformSelectorLeaksPop
-
-- (void)notifyOfStateChange:(NSUInteger)state
-                withHandler:(IDPControllerNotificationBlock)handler
-{
-    if (!handler || !self.shouldNotifyObservers) {
-        return;
-    }
-    
-    @synchronized(self) {
-        NSHashTable *controllers = self.observationControllerHashTable;
-        for (IDPObservationController *controller in controllers) {
-            handler(controller);
-        }
-    }
 }
 
 @end

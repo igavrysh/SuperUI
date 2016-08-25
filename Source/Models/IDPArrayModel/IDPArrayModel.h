@@ -9,13 +9,31 @@
 #import "IDPObservableObject.h"
 
 @class IDPArrayObject;
+@class IDPArrayModel;
+@class IDPArrayChangeModel;
 
 typedef NS_ENUM(NSUInteger, IDPArrayModelState) {
     IDPArrayModelUpdated,
     IDPArrayModelLoaded,
     IDPArrayModelLoading,
-    IDPImageModelFailedLoading
+    IDPArrayModelFailedLoading
 };
+
+@protocol IDPArrayModelObserver <NSObject>
+@optional
+- (void)arrayModelDidUpdate:(IDPArrayModel *)array
+            withChangeModel:(IDPArrayChangeModel *)changeModel;
+
+- (void)arrayModelDidLoad:(IDPArrayModel *)array
+          withChangeModel:(IDPArrayChangeModel *)changeModel;
+
+- (void)arrayModelDidStartLoading:(IDPArrayModel *)array
+                  withChangeModel:(IDPArrayChangeModel *)changeModel;
+
+- (void)arrayModelDidFailLoading:(IDPArrayModel *)array
+                 withChangeModel:(IDPArrayChangeModel *)changeModel;
+
+@end
 
 @interface IDPArrayModel : IDPObservableObject
 @property (nonatomic, readonly)     NSUInteger      count;
