@@ -24,14 +24,11 @@ typedef NS_ENUM(NSUInteger, IDPArrayModelState) {
 - (void)arrayModelDidUpdate:(IDPArrayModel *)array
             withChangeModel:(IDPArrayChangeModel *)changeModel;
 
-- (void)arrayModelDidLoad:(IDPArrayModel *)array
-          withChangeModel:(IDPArrayChangeModel *)changeModel;
+- (void)arrayModelDidLoad:(IDPArrayModel *)array;
 
-- (void)arrayModelDidStartLoading:(IDPArrayModel *)array
-                  withChangeModel:(IDPArrayChangeModel *)changeModel;
+- (void)arrayModelDidStartLoading:(IDPArrayModel *)array;
 
-- (void)arrayModelDidFailLoading:(IDPArrayModel *)array
-                 withChangeModel:(IDPArrayChangeModel *)changeModel;
+- (void)arrayModelDidFailLoading:(IDPArrayModel *)array;
 
 @end
 

@@ -30,7 +30,7 @@
                                     <action selector="onAddButton:" destination="-1" id="5Vf-eD-krD"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" systemItem="edit" id="MOq-AE-Htb">
+                            <barButtonItem key="rightBarButtonItem" title="Edit" id="MOq-AE-Htb">
                                 <connections>
                                     <action selector="onEditButton:" destination="-1" id="sa9-jL-c2X"/>
                                 </connections>
@@ -55,6 +55,8 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="editButtonItem" destination="MOq-AE-Htb" id="uG6-vz-v0b"/>
+                <outlet property="navigationBar" destination="vBu-L7-us0" id="ff0-1Y-3a6"/>
                 <outlet property="tableView" destination="wmD-sS-c8N" id="26b-Yv-g9h"/>
             </connections>
             <point key="canvasLocation" x="602" y="451"/>

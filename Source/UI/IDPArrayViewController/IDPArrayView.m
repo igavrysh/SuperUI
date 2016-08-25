@@ -13,10 +13,12 @@
 
 #import "UITableView+IDPExtensions.h"
 
+NSString * const kIDPEditButtonItemEdit = @"Edit";
+NSString * const kIDPEditButtonItemDone = @"Done";
+
 @interface IDPArrayView ()
 
 @end
-
 
 @implementation IDPArrayView
 
@@ -31,6 +33,8 @@
 
 - (void)setEditing:(BOOL)editing {
     self.tableView.editing = editing;
+    
+    self.editButtonItem.title = [self editBarButtonTitle];
 }
 
 #pragma mark -
@@ -42,6 +46,13 @@
 
 - (void)reload {
     [self.tableView reloadData];
+}
+
+#pragma mark -
+#pragma mark Private Methods
+
+- (NSString *)editBarButtonTitle {
+    return self.editing ? kIDPEditButtonItemDone : kIDPEditButtonItemEdit;
 }
 
 @end

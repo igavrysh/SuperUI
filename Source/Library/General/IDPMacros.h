@@ -44,7 +44,7 @@
         block(__VA_ARGS__); \
     } \
 
-#define IDPPrintMethod NSLog(@"%", NSStringFromSelector(_cmd))
+#define IDPPrintMethod NSLog(@"%@", NSStringFromSelector(_cmd))
 
 // you should only call this method after you called weakify for the same variable
 #define IDPStrongify(variable) \

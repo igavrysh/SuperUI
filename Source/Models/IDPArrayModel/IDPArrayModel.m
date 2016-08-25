@@ -118,13 +118,13 @@
             return @selector(arrayModelDidUpdate: withChangeModel:);
             
         case IDPArrayModelLoaded:
-            return @selector(arrayModelDidLoad: withChangeModel:);
+            return @selector(arrayModelDidLoad:);
             
         case IDPArrayModelLoading:
-            return @selector(arrayModelDidStartLoading: withChangeModel:);
+            return @selector(arrayModelDidStartLoading:);
             
         case IDPArrayModelFailedLoading:
-            return @selector(arrayModelDidFailLoading: withChangeModel:);
+            return @selector(arrayModelDidFailLoading:);
             
         default:
             return [super selectorForState:state];

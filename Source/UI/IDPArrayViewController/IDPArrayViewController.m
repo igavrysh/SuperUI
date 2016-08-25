@@ -75,7 +75,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 - (void)arrayModelDidUpdate:(IDPArrayModel *)array
             withChangeModel:(IDPArrayChangeModel *)changeModel
 {
-    NSLog(@"Model Updated");
+    IDPPrintMethod;
     
     IDPWeakify(self);
     IDPAsyncPerformInMainQueue(^{
@@ -85,27 +85,25 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 }
 
 - (void)arrayModelDidLoad:(IDPArrayModel *)array
-          withChangeModel:(IDPArrayChangeModel *)changeModel
 {
-    NSLog(@"Model Loaded");
+    IDPPrintMethod;
     
     IDPWeakify(self);
     IDPAsyncPerformInMainQueue(^{
         IDPStrongifyAndReturnIfNil(self);
         [self.arrayView reload];
     });
-    
 }
 
 - (void)arrayModelDidStartLoading:(IDPArrayModel *)array
-                  withChangeModel:(IDPArrayChangeModel *)changeModel
 {
+    IDPPrintMethod;
     
 }
 
 - (void)arrayModelDidFailLoading:(IDPArrayModel *)array
-                 withChangeModel:(IDPArrayChangeModel *)changeModel
 {
+    IDPPrintMethod;
     
 }
 
