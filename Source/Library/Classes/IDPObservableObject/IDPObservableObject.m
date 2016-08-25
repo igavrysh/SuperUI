@@ -40,6 +40,7 @@
     self = [super init];
     if (self) {
         self.observers = [NSHashTable weakObjectsHashTable];
+        self.notifyObservers = YES;
     }
     
     return self;
@@ -137,9 +138,9 @@
 IDPClangIgnoredPerformSelectorLeaksPush
 
 - (void)notifyOfStateChangeWithSelector:(SEL)selector object:(id)object {
-    //if (!self.notifyObservers) {
-    //    return;
-    //}
+    if (!self.notifyObservers) {
+        return;
+    }
     
     @synchronized(self.observers) {
         NSHashTable *observers = self.observers;
