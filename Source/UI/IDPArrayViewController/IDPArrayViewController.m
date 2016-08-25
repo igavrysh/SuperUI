@@ -72,8 +72,8 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 #pragma mark -
 #pragma mark IDPArrayModelObserver
 
-- (void)arrayModelDidUpdate:(IDPArrayModel *)array
-            withChangeModel:(IDPArrayChangeModel *)changeModel
+- (void)        arrayModel:(IDPArrayModel *)array
+  didUpdateWithChangeModel:(IDPArrayChangeModel *)changeModel;
 {
     IDPPrintMethod;
     

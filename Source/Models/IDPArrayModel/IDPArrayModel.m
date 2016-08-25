@@ -115,7 +115,7 @@
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
         case IDPArrayModelUpdated:
-            return @selector(arrayModelDidUpdate: withChangeModel:);
+            return @selector(arrayModel: didUpdateWithChangeModel:);
             
         case IDPArrayModelLoaded:
             return @selector(arrayModelDidLoad:);

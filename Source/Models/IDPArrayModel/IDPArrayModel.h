@@ -21,8 +21,8 @@ typedef NS_ENUM(NSUInteger, IDPArrayModelState) {
 
 @protocol IDPArrayModelObserver <NSObject>
 @optional
-- (void)arrayModelDidUpdate:(IDPArrayModel *)array
-            withChangeModel:(IDPArrayChangeModel *)changeModel;
+- (void)        arrayModel:(IDPArrayModel *)array
+  didUpdateWithChangeModel:(IDPArrayChangeModel *)changeModel;
 
 - (void)arrayModelDidLoad:(IDPArrayModel *)array;
 
