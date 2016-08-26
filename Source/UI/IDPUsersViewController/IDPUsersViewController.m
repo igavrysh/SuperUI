@@ -19,6 +19,13 @@
 @implementation IDPUsersViewController
 
 #pragma mark -
+#pragma mark Class Methods
+
++ (NSString *)nibName {
+    return @"IDPArrayViewController";
+}
+
+#pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (instancetype)init {

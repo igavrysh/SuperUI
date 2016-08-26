@@ -12,6 +12,8 @@
 #import "IDPArrayView.h"
 #import "IDPArrayModel.h"
 
+#import "UIViewController+IDPExtensions.h"
+
 @protocol IDPModelCell
 @property (nonatomic, strong) id    model;
 

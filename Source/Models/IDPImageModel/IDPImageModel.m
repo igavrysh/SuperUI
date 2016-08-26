@@ -43,12 +43,10 @@
 
 - (void)load {
     @synchronized(self) {
-        if (IDPImageModelLoading == self.state) {
-            return;
-        }
+        NSUInteger state = self.state;
         
-        if (IDPImageModelLoaded == self.state) {
-            [self notifyOfStateChange:IDPImageModelLoaded];
+        if (IDPImageModelLoading == state || IDPImageModelLoaded == state) {
+            [self notifyOfStateChange:state];
             return;
         }
         
