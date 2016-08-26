@@ -37,16 +37,6 @@ NSString * const kIDPEditButtonItemDone = @"Done";
     self.editButtonItem.title = [self editBarButtonTitle];
 }
 
-#pragma mark -
-#pragma mark Public Methods
-
-- (void)applyChangeModel:(IDPArrayChangeModel *)changeModel {
-    [self.tableView applyChangeModel:changeModel];
-}
-
-- (void)reload {
-    [self.tableView reloadData];
-}
 
 #pragma mark -
 #pragma mark Private Methods

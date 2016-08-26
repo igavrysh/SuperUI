@@ -15,10 +15,7 @@
 @property (nonatomic, strong)   IBOutlet UINavigationBar    *navigationBar;
 @property (nonatomic, strong)   IBOutlet UIBarButtonItem    *editButtonItem;
 
-@property (nonatomic, assign, getter=isEditing) BOOL                  editing;
-
-- (void)applyChangeModel:(IDPArrayChangeModel *)changeModel;
-
-- (void)reload;
+@property (nonatomic, assign, getter=isEditing)     BOOL    editing;
+@property (nonatomic, assign, getter=isFiltered)    BOOL    filtered;
 
 @end

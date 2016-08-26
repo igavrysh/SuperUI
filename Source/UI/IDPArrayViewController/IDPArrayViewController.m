@@ -80,7 +80,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
     IDPWeakify(self);
     IDPAsyncPerformInMainQueue(^{
         IDPStrongifyAndReturnIfNil(self);
-        [self.arrayView applyChangeModel:changeModel];
+        [self.arrayView.tableView applyChangeModel:changeModel];
     });
 }
 
@@ -91,7 +91,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
     IDPWeakify(self);
     IDPAsyncPerformInMainQueue(^{
         IDPStrongifyAndReturnIfNil(self);
-        [self.arrayView reload];
+        [self.arrayView.tableView reloadData];
     });
 }
 
