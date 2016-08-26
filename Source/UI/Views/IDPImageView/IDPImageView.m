@@ -101,7 +101,7 @@
     });
 }
 
-- (void)imageModelDidStartLoading:(IDPImageModel *)imageModel {
+- (void)imageModelWillLoad:(IDPImageModel *)imageModel {
 }
 
 - (void)imageModelDidLoad:(IDPImageModel *)imageModel {

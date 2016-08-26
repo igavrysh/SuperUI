@@ -20,7 +20,8 @@
 @interface IDPArrayViewController : UIViewController <
     UITableViewDelegate,
     UITableViewDataSource,
-    IDPArrayModelObserver>
+    IDPArrayModelObserver
+>
 @property (nonatomic, strong) IDPArrayModel *arrayModel;
 
 - (IBAction)onAddButton:(id)sender;
@@ -28,7 +29,7 @@
 
 // methods for override
 
-- (id<IDPModelCell>)cellForTable:(UITableView *)tableView
-                   withIndexPath:(NSIndexPath *)indexPath;
+- (UITableViewCell<IDPModelCell> *)cellForTable:(UITableView *)tableView
+                                  withIndexPath:(NSIndexPath *)indexPath;
 
 @end

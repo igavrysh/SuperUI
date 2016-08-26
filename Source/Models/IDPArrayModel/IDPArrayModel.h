@@ -26,7 +26,7 @@ typedef NS_ENUM(NSUInteger, IDPArrayModelState) {
 
 - (void)arrayModelDidLoad:(IDPArrayModel *)array;
 
-- (void)arrayModelDidStartLoading:(IDPArrayModel *)array;
+- (void)arrayModelWillLoad:(IDPArrayModel *)array;
 
 - (void)arrayModelDidFailLoading:(IDPArrayModel *)array;
 

@@ -26,7 +26,7 @@
     UIWindow *window = [UIWindow fullScreenWindow];
     self.window = window;
     
-    IDPArrayViewController *controller = [IDPArrayViewController new];
+    IDPArrayViewController *controller = [IDPUsersViewController new];
     controller.arrayModel = [IDPUserArrayModel new];
     
     window.rootViewController = controller;

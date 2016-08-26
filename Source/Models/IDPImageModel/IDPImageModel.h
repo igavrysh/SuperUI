@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, IDPImageModelState) {
 @protocol IDPImageModelObserver <NSObject>
 @optional
 - (void)imageModelDidUnload:(IDPImageModel *)imageModel;
-- (void)imageModelDidStartLoading:(IDPImageModel *)imageModel;
+- (void)imageModelWillLoad:(IDPImageModel *)imageModel;
 - (void)imageModelDidLoad:(IDPImageModel *)imageModel;
 - (void)imageModelDidFailLoading:(IDPImageModel *)imageModel;
 

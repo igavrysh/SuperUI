@@ -81,7 +81,7 @@
             return @selector(imageModelDidUnload:);
             
         case IDPImageModelLoading:
-            return @selector(imageModelDidStartLoading:);
+            return @selector(imageModelWillLoad:);
             
         case IDPImageModelLoaded:
             return @selector(imageModelDidLoad:);

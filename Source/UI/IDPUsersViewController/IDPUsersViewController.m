@@ -19,10 +19,19 @@
 @implementation IDPUsersViewController
 
 #pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (instancetype)init {
+    self = [super initWithNibName:@"IDPArrayViewController" bundle:nil];
+
+    return self;
+}
+
+#pragma mark -
 #pragma mark IDPArrayController overloaded methods
 
-- (id<IDPModelCell>)cellForTable:(UITableView *)tableView
-                   withIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell<IDPModelCell> *)cellForTable:(UITableView *)tableView
+                                  withIndexPath:(NSIndexPath *)indexPath;
 {
     return [tableView cellWithClass:[IDPUserCell class]];
 }

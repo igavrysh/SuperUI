@@ -120,7 +120,7 @@
 #pragma mark Private
 
 - (SEL)selectorForState:(NSUInteger)state {
-    return nil;
+    return NULL;
 }
 
 - (void)notifyOfStateChangeWithSelector:(SEL)selector {
@@ -144,9 +144,9 @@ IDPClangIgnoredPerformSelectorLeaksPush
     
     @synchronized(self.observers) {
         NSHashTable *observers = self.observers;
-        for (id object in observers) {
-            if ([object respondsToSelector:selector]) {
-                [object performSelector:selector withObject:self withObject:object];
+        for (id observer in observers) {
+            if ([observer respondsToSelector:selector]) {
+                [observer performSelector:selector withObject:self withObject:object];
             }
         }
     }

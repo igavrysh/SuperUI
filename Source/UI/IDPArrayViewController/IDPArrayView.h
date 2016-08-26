@@ -13,8 +13,7 @@
 @interface IDPArrayView : UIView
 @property (nonatomic, strong)   IBOutlet UITableView        *tableView;
 @property (nonatomic, strong)   IBOutlet UINavigationBar    *navigationBar;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButtonItem;
-
+@property (nonatomic, strong)   IBOutlet UIBarButtonItem    *editButtonItem;
 
 @property (nonatomic, assign, getter=isEditing) BOOL                  editing;
 

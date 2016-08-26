@@ -60,10 +60,10 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 #pragma mark -
 #pragma mark Public Methods
 
-- (id<IDPModelCell>)cellForTable:(UITableView *)tableView
-                   withIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell<IDPModelCell> *)cellForTable:(UITableView *)tableView
+                                  withIndexPath:(NSIndexPath *)indexPath
 {
-    return [tableView cellWithClass:[IDPUserCell class]];
+    return nil;
 }
 
 #pragma mark -
@@ -95,7 +95,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
     });
 }
 
-- (void)arrayModelDidStartLoading:(IDPArrayModel *)array
+- (void)arrayModelWillLoad:(IDPArrayModel *)array
 {
     IDPPrintMethod;
     
@@ -119,11 +119,11 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    id<IDPModelCell> cell = [self cellForTable:tableView withIndexPath:indexPath];
+    UITableViewCell<IDPModelCell> *cell = [self cellForTable:tableView withIndexPath:indexPath];
     
     cell.model = self.arrayModel[indexPath.row];
     
-    return (UITableViewCell *)cell;
+    return cell;
 }
 
 #pragma mark -

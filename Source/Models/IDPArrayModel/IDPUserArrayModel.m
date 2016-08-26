@@ -44,12 +44,12 @@ const NSUInteger kIDPArrayModelSampleSize = 30;
 
 - (void)load {
     @synchronized(self) {
-        if (IDPArrayModelLoading == self.state) {
+        if (IDPArrayModelLoaded == self.state) {
+            [self notifyOfStateChange:IDPArrayModelLoaded];
             return;
         }
         
-        if (IDPArrayModelLoaded == self.state) {
-            [self notifyOfStateChange:IDPArrayModelLoaded];
+        if (IDPArrayModelLoading == self.state) {
             return;
         }
         

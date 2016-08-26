@@ -121,7 +121,7 @@
             return @selector(arrayModelDidLoad:);
             
         case IDPArrayModelLoading:
-            return @selector(arrayModelDidStartLoading:);
+            return @selector(arrayModelWillLoad:);
             
         case IDPArrayModelFailedLoading:
             return @selector(arrayModelDidFailLoading:);
