@@ -10,8 +10,11 @@
 
 @implementation UIViewController (IDPExtensions)
 
-+ (UIViewController *)viewController {
-    return [[UIViewController alloc] initWithNibName:[self nibName] bundle:nil];
+#pragma mark -
+#pragma mark Class methods
+
++ (id)viewController {
+    return [[self alloc] initWithNibName:[self nibName] bundle:nil];
 }
 
 + (NSString *)nibName {

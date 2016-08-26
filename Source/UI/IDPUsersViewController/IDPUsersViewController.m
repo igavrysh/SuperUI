@@ -26,15 +26,6 @@
 }
 
 #pragma mark -
-#pragma mark Initializations and Deallocations
-
-- (instancetype)init {
-    self = [super initWithNibName:@"IDPArrayViewController" bundle:nil];
-
-    return self;
-}
-
-#pragma mark -
 #pragma mark IDPArrayController overloaded methods
 
 - (UITableViewCell<IDPModelCell> *)cellForTable:(UITableView *)tableView
@@ -42,6 +33,5 @@
 {
     return [tableView cellWithClass:[IDPUserCell class]];
 }
-
 
 @end

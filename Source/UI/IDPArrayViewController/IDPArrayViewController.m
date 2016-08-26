@@ -18,7 +18,6 @@
 #import "IDPArrayChangeModel.h"
 
 #import "UITableView+IDPExtensions.h"
-#import "UIViewController+IDPExtensions.h"
 
 IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayView)
 

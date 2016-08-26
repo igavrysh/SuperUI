@@ -10,7 +10,7 @@
 
 @interface UIViewController (IDPExtensions)
 
-+ (UIViewController *)viewController;
++ (id)viewController;
 
 + (NSString *)nibName;
 
