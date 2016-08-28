@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface IDPUsersView : UIView
-@property (nonatomic, strong) IBOutlet UITableView  *tableView;
 
 @end

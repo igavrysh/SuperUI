@@ -20,10 +20,9 @@
         withRowAnimation:(UITableViewRowAnimation) animation
 {
     [tableView applyChangeBlock:^{
-        [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathWithIndex:self.index]]
+        [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForIndex:self.index]]
                          withRowAnimation:animation];
     }];
 }
-
 
 @end

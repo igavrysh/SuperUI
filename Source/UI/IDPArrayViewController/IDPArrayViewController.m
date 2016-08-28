@@ -9,15 +9,17 @@
 #import "IDPArrayViewController.h"
 
 #import "IDPGCDQueue.h"
-#import "IDPMacros.h"
 #import "IDPCompilerMacros.h"
 #import "IDPArrayView.h"
 #import "IDPUserCell.h"
 #import "IDPUser.h"
 #import "IDPArrayModel.h"
 #import "IDPArrayChangeModel.h"
+#import "IDPMacros.h"
 
 #import "UITableView+IDPExtensions.h"
+
+NSString * const kIDPRemoveButtonText = @"Remove";
 
 IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayView)
 
@@ -160,6 +162,12 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
     return UITableViewCellEditingStyleDelete;
 }
 
+- (NSString *)                              tableView:(UITableView *)tableView
+    titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return kIDPRemoveButtonText;
+}
+
 - (BOOL)                        tableView:(UITableView *)tableview
    shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -192,9 +200,9 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
     forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        /* [self.arrayModel performBlockWithNotification:^{
-         [self.collection removeObjectAtIndex:indexPath.row];
-         }];*/
+        [self.arrayModel performBlockWithNotification:^{
+            [self.arrayModel removeObjectAtIndex:indexPath.row];
+         }];
     }
 }
 
