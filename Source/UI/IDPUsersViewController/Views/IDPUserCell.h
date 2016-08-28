@@ -8,14 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+#import "IDPArrayViewController.h"
+
 @class IDPUser;
+@class IDPImageView;
 
-@interface IDPUserCell : UITableViewCell
+@interface IDPUserCell : UITableViewCell<IDPModelCell>
 @property (nonatomic, strong)   IBOutlet UILabel        *fullNameLabel;
-@property (nonatomic, strong)   IBOutlet UIImageView    *userImageView;
+@property (nonatomic, strong)   IBOutlet IDPImageView   *userImageView;
 
-@property (nonatomic, strong)   IDPUser     *user;
+@property (nonatomic, strong)   IDPUser     *model;
 
-- (void)fillWithModel:(IDPUser *)user;
+- (void)fillWithUser:(IDPUser *)user;
 
 @end

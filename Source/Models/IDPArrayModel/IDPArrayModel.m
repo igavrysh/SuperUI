@@ -8,11 +8,14 @@
 
 #import "IDPArrayModel.h"
 
+#import "IDPArrayChangeModel.h"
+
+#import "IDPGCDQueue.h"
 #import "NSArray+IDPArrayEnumerator.h"
-#import "NSObject+IDPObject.h"
+#import "NSMutableArray+IDPExtensions.h"
 
 @interface IDPArrayModel ()
-@property (nonatomic, strong)   NSMutableArray  *data;
+@property (nonatomic, strong)   NSMutableArray  *array;
 
 @end
 
@@ -21,63 +24,140 @@
 @dynamic count;
 
 #pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (void)dealloc {
+    self.array = nil;
+}
+
+- (instancetype)init {
+    return [self initWithArray:nil];
+}
+
+- (instancetype)initWithArray:(NSArray *)array {
+    self = [super init];
+    
+    self.array = [NSMutableArray new];
+   
+    [array performBlockWithEachObject:^(id object) {
+        [self insertObject:object atIndex:0];
+    }];
+
+    return self;
+}
+
+#pragma mark -
 #pragma mark Accessors
 
 - (NSUInteger)count {
-    return self.data.count;
+    return self.array.count;
+}
+
+- (NSArray *)objects {
+    return [self.array copy];
 }
 
 #pragma mark -
 #pragma mark Public Methods
 
-- (id)objectAtIndexedSubscript:(NSUInteger)index {
+- (IDPArrayObject *)objectAtIndexedSubscript:(NSUInteger)index {
     return [self objectAtIndex:index];
 }
 
-- (id)objectAtIndex:(NSUInteger)index {
-    return index < self.count ? [self.data[index] nilUnwrappedObject] : nil;
+- (IDPArrayObject *)objectAtIndex:(NSUInteger)index {
+    return index < self.count ? self.array[index] : nil;
 }
 
 - (NSUInteger)indexOfObject:(id)object {
-    return [self.data indexOfObject:[object nilUnwrappedObject]];
+    return [self.array indexOfObject:object];
+}
+
+- (void)insertObject:(id)object atIndex:(NSUInteger)index {
+    [self.array insertObject:object atIndex:index];
+    
+    [self notifyOfModelUpdateWithChange:[IDPArrayChangeModel insertModelWithIndex:index]];
 }
 
 - (void)addObject:(id)object {
-    [self.data addObject:[object nilUnwrappedObject]];
-    
-    [self notifyOfStateChange:IDPArrayModelObjectAdded];
+    [self insertObject:object atIndex:self.count];
 }
 
 - (void)removeObject:(id)object {
-    [self removeObjectAtIndex:[self indexOfObject:[object nilWrappedObject]]];
-}
-
-- (void)removeObjectAtIndex:(NSUInteger)index {
-    [self.data removeObjectAtIndex:index];
+    NSUInteger index = [self indexOfObject:object];
     
-    [self notifyOfStateChange:IDPArrayModelObjectRemoved];
-}
-
-- (void)pasteObject:(id)object atIndex:(NSUInteger)index {
-    [self.data insertObject:[object nilWrappedObject] atIndex:index];
-    
-    [self notifyOfStateChange:IDPArrayModelObjectPasted];
-}
-
-- (void)moveObject:(id)object toIndex:(NSUInteger)index {
-    [self moveObjectFromIndex:[self indexOfObject:object] toIndex:index];
-}
-
-- (void)moveObjectFromIndex:(NSUInteger)source toIndex:(NSUInteger)destination {
-    if (source >= self.count || destination >= self.count) {
+    if (NSNotFound == index) {
         return;
     }
     
-    id object = self[source];
-    [self removeObjectAtIndex:source];
-    [self pasteObject:object atIndex:destination];
+    [self removeObjectAtIndex:index];
+}
+
+- (void)removeObjectAtIndex:(NSUInteger)index {
+    [self.array removeObjectAtIndex:index];
+
+    [self notifyOfModelUpdateWithChange:[IDPArrayChangeModel removeModelWithIndex:index]];
+}
+
+- (void)moveObject:(id)object toIndex:(NSUInteger)index {
+    [self moveObjectToIndex:index fromIndex:[self indexOfObject:object]];
+}
+
+- (void)moveObjectToIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex {
+    if (fromIndex >= self.count || index >= self.count) {
+        return;
+    }
     
-    [self notifyOfStateChange:IDPArrayModelObjectMoved];
+    [self.array moveObjectToIndex:index fromIndex:fromIndex];
+    
+    [self notifyOfModelUpdateWithChange:[IDPArrayChangeModel moveModelToIndex:index
+                                                                    fromIndex:fromIndex]];
+}
+
+- (IDPArrayModel *)filteredArrayUsingFilterString:(NSString *)filter {
+    return [self copy];
+}
+
+#pragma mark - 
+#pragma mark Private Methods
+
+- (void)notifyOfModelUpdateWithChange:(IDPArrayChangeModel *)changeModel {
+    [self notifyOfStateChange:IDPArrayModelUpdated withObject:changeModel];
+}
+
+- (void)load {
+}
+
+#pragma mark -
+#pragma mark IDPObservableObject
+
+- (SEL)selectorForState:(NSUInteger)state {
+    switch (state) {
+        case IDPArrayModelUpdated:
+            return @selector(arrayModel: didUpdateWithChangeModel:);
+            
+        case IDPArrayModelLoaded:
+            return @selector(arrayModelDidLoad:);
+            
+        case IDPArrayModelLoading:
+            return @selector(arrayModelWillLoad:);
+            
+        case IDPArrayModelFailedLoading:
+            return @selector(arrayModelDidFailLoading:);
+            
+        default:
+            return [super selectorForState:state];
+    }
+}
+
+#pragma mark - 
+#pragma mark NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+    IDPArrayModel *model = [self copyWithZone:zone];
+    
+    model.array = [self.array copyWithZone:zone];
+    
+    return model;
 }
 
 @end

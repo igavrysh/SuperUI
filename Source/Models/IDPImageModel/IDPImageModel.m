@@ -7,15 +7,13 @@
 //
 
 #import "IDPImageModel.h"
-#import "IDPImageModelDispatcher.h"
-#import "IDPMacro.h"
+
+#import "IDPMacros.h"
+#import "IDPGCDQueue.h"
 
 @interface IDPImageModel ()
 @property (nonatomic, strong)   UIImage     *image;
 @property (nonatomic, strong)   NSURL       *url;
-@property (nonatomic, strong)   NSOperation *operation;
-
-- (NSOperation *)imageLoadingOperation;
 
 @end
 
@@ -31,10 +29,6 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (void)dealloc {
-    self.operation = nil;
-}
-
 - (instancetype)initWithURL:(NSURL *)url {
     self = [super init];
     if (self) {
@@ -45,66 +39,57 @@
 }
 
 #pragma mark -
-#pragma mark Accessors
-
-- (void)setOperation:(NSOperation *)operation {
-    if (_operation != operation) {
-        [_operation cancel];
-        
-        _operation = operation;
-        
-        if (operation) {
-            IDPImageModelDispatcher *dispatcher = [IDPImageModelDispatcher sharedDispatcher];
-            [dispatcher.queue addOperation:operation];
-        }
-    }
-}
-
-#pragma mark -
 #pragma mark Public Methods
 
 - (void)load {
     @synchronized(self) {
-        if (IDPImageModelLoading == self.state) {
-            return;
-        }
+        NSUInteger state = self.state;
         
-        if (IDPImageModelLoaded == self.state) {
-            [self notifyOfStateChange:IDPImageModelLoaded];
+        if (IDPImageModelLoading == state || IDPImageModelLoaded == state) {
+            [self notifyOfStateChange:state];
             return;
         }
         
         self.state = IDPImageModelLoading;
     }
     
-    self.operation = [self imageLoadingOperation];
+    IDPWeakify(self);
+    IDPAsyncPerformInBackgroundQueue(^{
+        IDPStrongifyAndReturnIfNil(self);
+        
+        self.image = [UIImage imageWithContentsOfFile:[self.url path]];
+        
+        @synchronized(self) {
+            self.state = self.image ? IDPImageModelLoaded : IDPImageModelFailedLoading;
+        }
+    });
 }
 
 - (void)dump {
-    self.operation = nil;
     self.image = nil;
     self.state = IDPImageModelUnloaded;
 }
 
 #pragma mark -
-#pragma mark Private
+#pragma mark IDPObservableObject
 
-- (NSOperation *)imageLoadingOperation {
-    IDPWeakify(self);
-    
-    NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-        IDPStrongifyAndReturnIfNil(self);
-        self.image = [UIImage imageWithContentsOfFile:[self.url absoluteString]];
-    }];
-    
-    operation.completionBlock = ^{
-        IDPStrongify(self);
-        @synchronized(self) {
-            self.state = self.image ? IDPImageModelLoaded : IDPImageModelFailedLoading;
-        }
-    };
-    
-    return operation;
+- (SEL)selectorForState:(NSUInteger)state {
+    switch (state) {
+        case IDPImageModelUnloaded:
+            return @selector(imageModelDidUnload:);
+            
+        case IDPImageModelLoading:
+            return @selector(imageModelWillLoad:);
+            
+        case IDPImageModelLoaded:
+            return @selector(imageModelDidLoad:);
+            
+        case IDPImageModelFailedLoading:
+            return @selector(imageModelDidFailLoading:);
+            
+        default:
+            return [super selectorForState:state];
+    }
 }
 
 @end

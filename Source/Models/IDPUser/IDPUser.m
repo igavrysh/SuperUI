@@ -8,24 +8,30 @@
 
 #import "IDPUser.h"
 
+#import "IDPImageModel.h"
+
 #import "NSString+IDPRandomName.h"
+
+NSString * const kIDPImageName = @"image_big";
+NSString * const kIDPImageExtension = @"jpg";
 
 @implementation IDPUser
 
 @dynamic fullName;
-@dynamic image;
+@dynamic imageModel;
 
 #pragma mark -
-#pragma mark Initializations and Deallocations
+#pragma mark Class Methods
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.name = [NSString randomName];
-        self.surname = [NSString randomName];
-    }
-    return self;
++ (instancetype)user {
+    IDPUser *user = [IDPUser new];
+    
+    user.name = [NSString randomName];
+    user.surname = [NSString randomName];
+    user.imageURL = [[NSBundle mainBundle] URLForResource:kIDPImageName
+                                            withExtension:kIDPImageExtension];
+    
+    return user;
 }
 
 #pragma mark - 
@@ -35,11 +41,21 @@
     return [NSString stringWithFormat:@"%@ %@", self.name, self.surname];
 }
 
-- (UIImage *)image {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"image" ofType:@"jpg"];
-    
-    return [UIImage imageWithContentsOfFile:path];
+- (IDPImageModel *)imageModel {
+    return [IDPImageModel imageWithURL:self.imageURL];
 }
 
+#pragma mark -
+#pragma mark NSCopying 
+
+- (id)copyWithZone:(NSZone *)zone {
+    IDPUser *user = [IDPUser new];
+    
+    user.name = self.name;
+    user.surname = self.surname;
+    user.imageURL = self.imageURL;
+    
+    return user;
+}
 
 @end

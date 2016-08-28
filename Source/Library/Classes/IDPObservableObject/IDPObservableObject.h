@@ -8,18 +8,27 @@
 
 #import <Foundation/Foundation.h>
 
-@class IDPBlockObservationController;
+@interface IDPObservableObject : NSObject <NSCopying>
+@property (nonatomic, assign)   NSUInteger      state;
+@property (nonatomic, readonly) NSSet           *observerSet;
 
-@interface IDPObservableObject : NSObject
-@property (nonatomic, assign) NSUInteger  state;
+- (void)addObservers:(NSArray *)observers;
+- (void)addObserver:(id)observer;
 
-- (void)setState:(NSUInteger)state withObject:(id)object;
+- (void)removeObservers:(NSArray *)observers;
+- (void)removeObserver:(id)observer;
 
-- (IDPBlockObservationController *)blockObservationControllerWithObserver:(id)observer;
+- (BOOL)isObservedByObject:(id)observer;
 
-// these methods are called in sublcasses
-// you should never call this methods dirctly from outside subclasses
+// This method is itended for subclassing
+- (SEL)selectorForState:(NSUInteger)state;
+
+- (void)setState:(NSUInteger)state object:(id)object;
+
 - (void)notifyOfStateChange:(NSUInteger)state;
 - (void)notifyOfStateChange:(NSUInteger)state withObject:(id)object;
+
+- (void)performBlockWithNotification:(void (^)(void))block;
+- (void)performBlockWithoutNotification:(void (^)(void))block;
 
 @end

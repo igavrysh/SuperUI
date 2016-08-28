@@ -9,7 +9,12 @@
 #import "AppDelegate.h"
 
 #import "IDPAnimationViewController.h"
-#import "IDPArrayViewController.h"
+#import "IDPUsersViewController.h"
+
+#import "IDPUserArrayModel.h"
+
+#import "UIWindow+IDPExtensions.h"
+#import "NSString+IDPRandomName.h"
 
 @interface AppDelegate ()
 
@@ -17,15 +22,16 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    UIWindow *window = [UIWindow fullScreenWindow];
     self.window = window;
     
-    IDPAnimationViewController *controller = [IDPAnimationViewController new];
+    IDPArrayViewController *controller = [IDPUsersViewController viewController];
+    controller.arrayModel = [IDPUserArrayModel new];
+    
+    //IDPAnimationViewController *controller = [IDPAnimationViewController viewController];
     
     window.rootViewController = controller;
-    window.backgroundColor = [UIColor greenColor];
     
     [window makeKeyAndVisible];
     

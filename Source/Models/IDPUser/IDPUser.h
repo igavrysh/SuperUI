@@ -9,10 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface IDPUser : NSObject
-@property (nonatomic, copy)     NSString    *name;
-@property (nonatomic, copy)     NSString    *surname;
-@property (nonatomic, readonly) NSString    *fullName;
-@property (nonatomic, readonly) UIImage     *image;
+@class IDPImageModel;
+
+@interface IDPUser : NSObject <NSCopying>
+@property (nonatomic, copy)     NSString        *name;
+@property (nonatomic, copy)     NSString        *surname;
+@property (nonatomic, readonly) NSString        *fullName;
+
+@property (nonatomic, copy)     NSURL           *imageURL;
+@property (nonatomic, readonly) IDPImageModel   *imageModel;
+
++ (instancetype)user;
 
 @end

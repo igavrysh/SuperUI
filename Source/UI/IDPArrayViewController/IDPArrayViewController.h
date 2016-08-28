@@ -8,6 +8,31 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IDPArrayViewController : UIViewController
+#import "IDPMacros.h"
+#import "IDPArrayView.h"
+#import "IDPArrayModel.h"
+
+#import "UIViewController+IDPExtensions.h"
+
+@protocol IDPModelCell
+@property (nonatomic, strong) id    model;
+
+@end
+
+@interface IDPArrayViewController : UIViewController <
+    UITableViewDelegate,
+    UITableViewDataSource,
+    IDPArrayModelObserver,
+    UISearchBarDelegate
+>
+@property (nonatomic, strong) IDPArrayModel *arrayModel;
+
+- (IBAction)onAddButton:(id)sender;
+- (IBAction)onEditButton:(id)sender;
+
+// methods for override
+
+- (UITableViewCell<IDPModelCell> *)cellForTable:(UITableView *)tableView
+                                  withIndexPath:(NSIndexPath *)indexPath;
 
 @end

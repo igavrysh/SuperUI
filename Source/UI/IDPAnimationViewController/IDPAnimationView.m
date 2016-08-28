@@ -8,7 +8,7 @@
 
 #import "IDPAnimationView.h"
 
-#import "IDPMacro.h"
+#import "IDPMacros.h"
 
 static NSTimeInterval IDPDuration   = 3.0;
 static NSTimeInterval IDPDelay      = 0.0;
