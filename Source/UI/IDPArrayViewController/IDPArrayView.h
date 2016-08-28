@@ -17,5 +17,6 @@
 
 @property (nonatomic, assign, getter=isEditing)     BOOL    editing;
 @property (nonatomic, assign, getter=isFiltered)    BOOL    filtered;
+@property (nonatomic, readonly)                     BOOL    canMoveRows;
 
 @end

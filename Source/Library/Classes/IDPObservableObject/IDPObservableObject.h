@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface IDPObservableObject : NSObject
+@interface IDPObservableObject : NSObject <NSCopying>
 @property (nonatomic, assign)   NSUInteger      state;
 @property (nonatomic, readonly) NSSet           *observerSet;
 

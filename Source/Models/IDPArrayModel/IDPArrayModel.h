@@ -32,8 +32,9 @@ typedef NS_ENUM(NSUInteger, IDPArrayModelState) {
 
 @end
 
-@interface IDPArrayModel : IDPObservableObject
-@property (nonatomic, readonly)     NSUInteger      count;
+@interface IDPArrayModel : IDPObservableObject <NSCopying>
+@property (nonatomic, readonly)         NSUInteger      count;
+@property (nonatomic, copy, readonly)   NSArray         *objects;
 
 - (instancetype)initWithArray:(NSArray *)array;
 
@@ -42,6 +43,7 @@ typedef NS_ENUM(NSUInteger, IDPArrayModelState) {
 - (NSUInteger)indexOfObject:(id)object;
 
 - (void)insertObject:(id)object atIndex:(NSUInteger)index;
+- (void)addObject:(id)object;
 
 - (void)removeObject:(id)object;
 - (void)removeObjectAtIndex:(NSUInteger)index;
@@ -51,5 +53,6 @@ typedef NS_ENUM(NSUInteger, IDPArrayModelState) {
 
 - (void)load;
 
+- (IDPArrayModel *)filteredArrayUsingFilterString:(NSString *)filter;
 
 @end

@@ -10,8 +10,9 @@
 
 #import "IDPUser.h"
 #import "IDPGCDQueue.h"
-
 #import "IDPObservableObject.h"
+
+#import "NSArray+IDPArrayEnumerator.h"
 
 const NSUInteger kIDPArrayModelSampleSize = 30;
 
@@ -59,6 +60,18 @@ const NSUInteger kIDPArrayModelSampleSize = 30;
         
         self.state = IDPArrayModelLoaded;
     });
+}
+
+- (IDPUserArrayModel *)filteredArrayUsingFilterString:(NSString *)filter {
+    NSArray *objects = [self.objects filteredArrayUsingBlock:^BOOL(IDPUser *user) {
+        return NSNotFound != [user.name rangeOfString:filter
+                                              options:NSCaseInsensitiveSearch].location;
+    }];
+    
+    IDPUserArrayModel *model = [[IDPUserArrayModel alloc] initWithArray:objects];
+    [model addObservers:[self.observerSet allObjects]];
+    
+    return model;
 }
 
 #pragma mark -

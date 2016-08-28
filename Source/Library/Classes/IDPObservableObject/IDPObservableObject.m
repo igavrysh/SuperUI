@@ -166,4 +166,14 @@ IDPClangIgnoredPerformSelectorLeaksPop
     self.notifyObservers = state;
 }
 
+#pragma mark -
+#pragma mark NSCopying
+
+- (id)copyWithZone:(nullable NSZone *)zone {
+    IDPObservableObject *copy = [[self class] new];
+    copy.observers = [self.observers copyWithZone:zone];
+    
+    return copy;
+}
+
 @end

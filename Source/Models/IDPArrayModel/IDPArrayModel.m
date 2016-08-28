@@ -53,6 +53,10 @@
     return self.array.count;
 }
 
+- (NSArray *)objects {
+    return [self.array copy];
+}
+
 #pragma mark -
 #pragma mark Public Methods
 
@@ -74,8 +78,18 @@
     [self notifyOfModelUpdateWithChange:[IDPArrayChangeModel insertModelWithIndex:index]];
 }
 
+- (void)addObject:(id)object {
+    [self insertObject:object atIndex:self.count];
+}
+
 - (void)removeObject:(id)object {
-    [self removeObjectAtIndex:[self indexOfObject:object]];
+    NSUInteger index = [self indexOfObject:object];
+    
+    if (NSNotFound == index) {
+        return;
+    }
+    
+    [self removeObjectAtIndex:index];
 }
 
 - (void)removeObjectAtIndex:(NSUInteger)index {
@@ -97,6 +111,10 @@
     
     [self notifyOfModelUpdateWithChange:[IDPArrayChangeModel moveModelToIndex:index
                                                                     fromIndex:fromIndex]];
+}
+
+- (IDPArrayModel *)filteredArrayUsingFilterString:(NSString *)filter {
+    return [self copy];
 }
 
 #pragma mark - 
@@ -129,6 +147,17 @@
         default:
             return [super selectorForState:state];
     }
+}
+
+#pragma mark - 
+#pragma mark NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+    IDPArrayModel *model = [self copyWithZone:zone];
+    
+    model.array = [self.array copyWithZone:zone];
+    
+    return model;
 }
 
 @end

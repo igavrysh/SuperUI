@@ -11,7 +11,7 @@
 
 @class IDPImageModel;
 
-@interface IDPUser : NSObject
+@interface IDPUser : NSObject <NSCopying>
 @property (nonatomic, copy)     NSString        *name;
 @property (nonatomic, copy)     NSString        *surname;
 @property (nonatomic, readonly) NSString        *fullName;

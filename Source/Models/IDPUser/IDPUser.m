@@ -45,5 +45,17 @@ NSString * const kIDPImageExtension = @"jpg";
     return [IDPImageModel imageWithURL:self.imageURL];
 }
 
+#pragma mark -
+#pragma mark NSCopying 
+
+- (id)copyWithZone:(NSZone *)zone {
+    IDPUser *user = [IDPUser new];
+    
+    user.name = self.name;
+    user.surname = self.surname;
+    user.imageURL = self.imageURL;
+    
+    return user;
+}
 
 @end

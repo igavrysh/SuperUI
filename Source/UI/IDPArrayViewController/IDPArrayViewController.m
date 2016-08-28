@@ -24,10 +24,15 @@ NSString * const kIDPRemoveButtonText = @"Remove";
 IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayView)
 
 @interface IDPArrayViewController ()
+@property (nonatomic, strong) IDPArrayModel *filteredModel;
+
+- (void)filterDataUsingFilterString:(NSString *)filter;
 
 @end
 
 @implementation IDPArrayViewController
+
+@synthesize arrayModel = _arrayModel;
 
 #pragma mark -
 #pragma mark Accessors
@@ -35,8 +40,10 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 - (void)setArrayModel:(IDPArrayModel *)arrayModel {
     if (_arrayModel != arrayModel) {
         [_arrayModel removeObserver:self];
+        [_filteredModel removeObserver:self];
         
         _arrayModel = arrayModel;
+        self.filteredModel = nil;
         
         [arrayModel addObserver:self];
         
@@ -44,6 +51,10 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
             [self.arrayModel load];
         }
     }
+}
+
+- (IDPArrayModel *)arrayModel {
+    return self.arrayView.filtered && _filteredModel ? _filteredModel : _arrayModel;
 }
 
 #pragma mark -
@@ -70,6 +81,28 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 
 #pragma mark -
 #pragma mark Private Methods
+
+- (void)filterDataUsingFilterString:(NSString *)filter {
+    IDPWeakify(self);
+    
+    IDPAsyncPerformInBackgroundQueue(^{
+        IDPStrongify(self);
+        
+        if (![filter isEqualToString:@""]) {
+            self.arrayView.filtered = YES;
+            
+            self.filteredModel = [_arrayModel filteredArrayUsingFilterString:filter];
+        } else {
+            self.arrayView.filtered = NO;
+            
+            self.filteredModel = nil;
+        }
+        
+        IDPAsyncPerformInMainQueue(^{
+            [self.arrayView.tableView reloadData];
+        });
+    });
+}
 
 #pragma mark -
 #pragma mark IDPArrayModelObserver
@@ -100,13 +133,11 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 - (void)arrayModelWillLoad:(IDPArrayModel *)array
 {
     IDPPrintMethod;
-    
 }
 
 - (void)arrayModelDidFailLoading:(IDPArrayModel *)array
 {
     IDPPrintMethod;
-    
 }
 
 #pragma mark -
@@ -135,7 +166,6 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
  didEndDisplayingCell:(IDPUserCell *)cell
     forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
 }
 
 - (IBAction)onEditButton:(id)sender {
@@ -150,7 +180,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 - (BOOL)        tableView:(UITableView *)tableView
     canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return YES;
+    return self.arrayView.canMoveRows;
 }
 
 #pragma mark - 
@@ -174,13 +204,18 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
     return YES;
 }
 
+- (void)        tableView:(UITableView *)tableView
+  didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+}
+
 #pragma mark -
 #pragma mark UITableViewDataSource
 
 - (BOOL)        tableView:(UITableView *)tableView
     canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return YES;
+    return YES; //self.editing;
 }
 
 - (void)    tableView:(UITableView *)tableView
@@ -200,11 +235,47 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
     forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.arrayModel performBlockWithNotification:^{
-            [self.arrayModel removeObjectAtIndex:indexPath.row];
-         }];
+        
+        IDPAsyncPerformInBackgroundQueue(^{
+            NSUInteger index = indexPath.row;
+            
+            if (self.arrayView.isFiltered) {
+                id object = _filteredModel[index];
+                [_filteredModel removeObjectAtIndex:index];
+                [_arrayModel performBlockWithoutNotification:^{
+                    [_arrayModel removeObject:object];
+                }];
+            } else {
+                [self.arrayModel removeObjectAtIndex:index];
+            }
+        });
     }
 }
 
+#pragma mark -
+#pragma mark UISearchBarDelegate
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    IDPPrintMethod;
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    IDPPrintMethod;
+}
+
+- (void)searchBar:(UISearchBar *)searchBar
+    textDidChange:(NSString *)searchText
+{
+    IDPPrintMethod;
+    [self filterDataUsingFilterString:searchBar.text];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [self.arrayView endEditing:YES];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [self.arrayView endEditing:YES];
+}
 
 @end

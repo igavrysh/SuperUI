@@ -37,6 +37,17 @@ NSString * const kIDPEditButtonItemDone = @"Done";
     self.editButtonItem.title = [self editBarButtonTitle];
 }
 
+- (void)setFiltered:(BOOL)filtered {
+    _filtered = filtered;
+    
+    //if (filtered) {
+    //    self.tableView.editing = false;
+    //}
+}
+
+- (BOOL)canMoveRows {
+    return !self.filtered && self.editing;
+}
 
 #pragma mark -
 #pragma mark Private Methods
