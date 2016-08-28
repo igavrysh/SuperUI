@@ -287,6 +287,13 @@
 			path = IDPView;
 			sourceTree = "<group>";
 		};
+		851A2A801D73630E00C32616 /* IDPLoadingView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = IDPLoadingView;
+			sourceTree = "<group>";
+		};
 		851EE14C1D6193AD0029B447 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -619,6 +626,7 @@
 		858238F71D5B5DEB00623348 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				851A2A801D73630E00C32616 /* IDPLoadingView */,
 				851A2A771D72D1E800C32616 /* IDPView */,
 				858238F81D5B5DEB00623348 /* IDPImageView */,
 			);
