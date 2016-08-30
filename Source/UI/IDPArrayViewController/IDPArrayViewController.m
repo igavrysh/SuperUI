@@ -128,10 +128,10 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 }
 
 #pragma mark -
-#pragma mark IDPArrayModelObserver
+#pragma mark IDPChangeableModelObserver
 
-- (void)        arrayModel:(IDPArrayModel *)array
-  didUpdateWithChangeModel:(IDPArrayChangeModel *)changeModel;
+- (void)            model:(IDPArrayModel *)array
+    didUpdateWithUserInfo:(IDPArrayChangeModel *)changeModel
 {
     IDPPrintMethod;
     
@@ -142,8 +142,10 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
     });
 }
 
-- (void)arrayModelDidLoad:(IDPArrayModel *)array
-{
+#pragma mark -
+#pragma mark IDPLoadableModelObserver
+
+- (void)modelDidLoad:(IDPArrayModel *)array {
     IDPPrintMethod;
     
     IDPWeakify(self);
@@ -153,13 +155,11 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
     });
 }
 
-- (void)arrayModelWillLoad:(IDPArrayModel *)array
-{
+- (void)modelWillLoad:(IDPArrayModel *)array {
     IDPPrintMethod;
 }
 
-- (void)arrayModelDidFailLoading:(IDPArrayModel *)array
-{
+- (void)modelDidFailLoading:(IDPArrayModel *)array {
     IDPPrintMethod;
 }
 
@@ -238,7 +238,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 - (BOOL)        tableView:(UITableView *)tableView
     canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return YES; //self.editing;
+    return YES;
 }
 
 - (void)    tableView:(UITableView *)tableView

@@ -43,32 +43,13 @@ const NSUInteger kIDPArrayModelSampleSize = 30;
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)load {
-    @synchronized(self) {
-        NSUInteger state = self.state;
-        
-        if (IDPArrayModelLoaded == state || IDPArrayModelLoading == state) {
-            [self notifyOfStateChange:state];
-            return;
-        }
-        
-        self.state = IDPArrayModelLoading;
-    }
-    
-    IDPAsyncPerformInBackgroundQueue(^{
-        [self fillModel];
-        
-        self.state = IDPArrayModelLoaded;
-    });
-}
-
 - (IDPUserArrayModel *)filteredArrayUsingFilterString:(NSString *)filter {
     NSArray *objects = [self.objects filteredArrayUsingBlock:^BOOL(IDPUser *user) {
         return NSNotFound != [user.name rangeOfString:filter
                                               options:NSCaseInsensitiveSearch].location;
     }];
     
-    IDPUserArrayModel *model = [[IDPUserArrayModel alloc] initWithArray:objects];
+    IDPUserArrayModel *model = [[IDPUserArrayModel alloc] initWithObjects:objects];
     [model addObservers:[self.observerSet allObjects]];
     
     return model;
@@ -83,6 +64,8 @@ const NSUInteger kIDPArrayModelSampleSize = 30;
             [self insertObject:[IDPUser user] atIndex:0];
         }
     }];
+    
+    self.state = IDPLoadableModelLoaded;
 }
 
 @end

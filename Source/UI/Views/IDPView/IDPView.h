@@ -10,4 +10,8 @@
 
 @interface IDPView : UIView
 
+- (void)showLoadingView;
+
+- (void)hideLoadingView;
+
 @end

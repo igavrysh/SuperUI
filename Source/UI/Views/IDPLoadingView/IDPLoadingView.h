@@ -11,11 +11,11 @@
 #import "IDPBlockTypes.h"
 #import "IDPArrayModel.h"
 
-@interface IDPLoadingView : IDPView <IDPArrayModelObserver>
+@interface IDPLoadingView : UIView
 @property (nonatomic, strong)   IBOutlet UIActivityIndicatorView  *spinner;
 @property (nonatomic, assign, getter=isVisible)     BOOL visible;
 
-+ (instancetype)loadingViewOnSuperView:(UIView *)superView;
++ (instancetype)loadingVieWithFrame:(CGRect)frame;
 
 - (void)setVisible:(BOOL)visible animated:(BOOL)animated;
 

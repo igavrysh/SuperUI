@@ -8,22 +8,6 @@
 
 #import "IDPObservableObject.h"
 
-typedef void(^IDPModelBlock)(id model);
-
-typedef NS_ENUM(NSUInteger, IDPLoadableModelState) {
-    IDPLoadableModelLoaded,
-    IDPLoadableModelLoading,
-    IDPLoadableModelFailedLoading
-};
-
-@protocol IDPLoadableModel <NSObject>
-- (void)load;
-@end
-
-
-@interface IDPModel : IDPObservableObject <IDPLoadableModel>
-
-- (void)load;
-
+@interface IDPModel : IDPObservableObject
 
 @end

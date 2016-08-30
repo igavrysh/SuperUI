@@ -11,20 +11,21 @@
 #import "IDPMacros.h"
 #import "IDPBlockMacros.h"
 
-static const double kIDPLoadingViewShowUpTime = 10.0f;
-static const double kIDPLoadingViewDelay = 0.1f;
+static const double     kIDPLoadingViewShowUpTime = 10.0f;
+static const double     kIDPLoadingViewDelay = 0.1f;
+static const CGFloat    kIDPDefaultAlpha = 0.7f;
 
 @implementation IDPLoadingView
 
 #pragma mark -
 #pragma mark Class Methods
 
-+ (instancetype)loadingViewOnSuperView:(UIView *)superView {
-    IDPLoadingView *view = [self new];
-    [superView addSubview:view];
++ (instancetype)loadingVieWithFrame:(CGRect)frame {
+    IDPLoadingView *view = [[self alloc] initWithFrame:frame];
     
     return view;
 }
+
 
 #pragma mark -
 #pragma mark Accessors
@@ -33,8 +34,7 @@ static const double kIDPLoadingViewDelay = 0.1f;
     [self setVisible:visible animated:NO completionBlock:nil];
 }
 
-- (void)setVisible:(BOOL)visible animated:(BOOL)animated
-{
+- (void)setVisible:(BOOL)visible animated:(BOOL)animated {
     [self setVisible:visible animated:animated completionBlock:nil];
 }
 
@@ -47,9 +47,9 @@ static const double kIDPLoadingViewDelay = 0.1f;
         IDPStrongify(self);
         
         if (visible) {
-            [[self superview] bringSubviewToFront:self];
+            self.alpha = kIDPDefaultAlpha;
         } else {
-            [self removeFromSuperview];
+            self.alpha = 0;
         }
     };
     
@@ -62,17 +62,6 @@ static const double kIDPLoadingViewDelay = 0.1f;
                          
                          IDPBlockPerform(completionBlock);
                      }];
-}
-
-#pragma mark -
-#pragma mark IDPArrayModelObserver
-
-- (void)arrayModelDidLoad:(IDPArrayModel *)array {
-    [self setVisible:NO animated:YES completionBlock:nil];
-}
-
-- (void)arrayModelWillLoad:(IDPArrayModel *)array {
-    [self setVisible:YES animated:YES completionBlock:nil];
 }
 
 @end

@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "IDPMacros.h"
 #import "IDPArrayView.h"
 #import "IDPArrayModel.h"
 
 #import "UIViewController+IDPExtensions.h"
+#import "IDPMacros.h"
 
 @protocol IDPModelCell
 @property (nonatomic, strong) id    model;
@@ -22,7 +22,8 @@
 @interface IDPArrayViewController : UIViewController <
     UITableViewDelegate,
     UITableViewDataSource,
-    IDPArrayModelObserver,
+    IDPLoadableModelObserver,
+    IDPChangeableModelObserver,
     UISearchBarDelegate
 >
 @property (nonatomic, strong) IDPArrayModel *arrayModel;

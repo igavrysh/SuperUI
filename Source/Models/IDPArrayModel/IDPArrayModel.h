@@ -8,35 +8,15 @@
 
 #import "IDPObservableObject.h"
 
-@class IDPArrayObject;
+#import "IDPChangeableModel.h"
+
 @class IDPArrayModel;
-@class IDPArrayChangeModel;
 
-typedef NS_ENUM(NSUInteger, IDPArrayModelState) {
-    IDPArrayModelUpdated,
-    IDPArrayModelLoaded,
-    IDPArrayModelLoading,
-    IDPArrayModelFailedLoading
-};
-
-@protocol IDPArrayModelObserver <NSObject>
-@optional
-- (void)        arrayModel:(IDPArrayModel *)array
-  didUpdateWithChangeModel:(IDPArrayChangeModel *)changeModel;
-
-- (void)arrayModelDidLoad:(IDPArrayModel *)array;
-
-- (void)arrayModelWillLoad:(IDPArrayModel *)array;
-
-- (void)arrayModelDidFailLoading:(IDPArrayModel *)array;
-
-@end
-
-@interface IDPArrayModel : IDPObservableObject <NSCopying>
+@interface IDPArrayModel : IDPChangeableModel <NSCopying>
 @property (nonatomic, readonly)         NSUInteger      count;
 @property (nonatomic, copy, readonly)   NSArray         *objects;
 
-- (instancetype)initWithArray:(NSArray *)array;
+- (instancetype)initWithObjects:(NSArray *)objects;
 
 - (id)objectAtIndexedSubscript:(NSUInteger)index;
 - (id)objectAtIndex:(NSUInteger)index;
@@ -50,8 +30,6 @@ typedef NS_ENUM(NSUInteger, IDPArrayModelState) {
 
 - (void)moveObject:(id)object toIndex:(NSUInteger)index;
 - (void)moveObjectToIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex;
-
-- (void)load;
 
 - (IDPArrayModel *)filteredArrayUsingFilterString:(NSString *)filter;
 

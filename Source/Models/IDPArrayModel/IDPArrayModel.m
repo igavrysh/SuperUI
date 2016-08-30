@@ -15,7 +15,7 @@
 #import "NSMutableArray+IDPExtensions.h"
 
 @interface IDPArrayModel ()
-@property (nonatomic, strong)   NSMutableArray  *array;
+@property (nonatomic, strong)   NSMutableArray  *mutableObjects;
 
 @end
 
@@ -27,19 +27,19 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.array = nil;
+    self.mutableObjects = nil;
 }
 
 - (instancetype)init {
-    return [self initWithArray:nil];
+    return [self initWithObjects:nil];
 }
 
-- (instancetype)initWithArray:(NSArray *)array {
+- (instancetype)initWithObjects:(NSArray *)objects {
     self = [super init];
     
-    self.array = [NSMutableArray new];
+    self.mutableObjects = [NSMutableArray new];
    
-    [array performBlockWithEachObject:^(id object) {
+    [objects performBlockWithEachObject:^(id object) {
         [self insertObject:object atIndex:0];
     }];
 
@@ -50,30 +50,30 @@
 #pragma mark Accessors
 
 - (NSUInteger)count {
-    return self.array.count;
+    return self.mutableObjects.count;
 }
 
 - (NSArray *)objects {
-    return [self.array copy];
+    return [self.mutableObjects copy];
 }
 
 #pragma mark -
 #pragma mark Public Methods
 
-- (IDPArrayObject *)objectAtIndexedSubscript:(NSUInteger)index {
+- (id)objectAtIndexedSubscript:(NSUInteger)index {
     return [self objectAtIndex:index];
 }
 
-- (IDPArrayObject *)objectAtIndex:(NSUInteger)index {
-    return index < self.count ? self.array[index] : nil;
+- (id)objectAtIndex:(NSUInteger)index {
+    return index < self.count ? self.mutableObjects[index] : nil;
 }
 
 - (NSUInteger)indexOfObject:(id)object {
-    return [self.array indexOfObject:object];
+    return [self.mutableObjects indexOfObject:object];
 }
 
 - (void)insertObject:(id)object atIndex:(NSUInteger)index {
-    [self.array insertObject:object atIndex:index];
+    [self.mutableObjects insertObject:object atIndex:index];
     
     [self notifyOfModelUpdateWithChange:[IDPArrayChangeModel insertModelWithIndex:index]];
 }
@@ -93,7 +93,7 @@
 }
 
 - (void)removeObjectAtIndex:(NSUInteger)index {
-    [self.array removeObjectAtIndex:index];
+    [self.mutableObjects removeObjectAtIndex:index];
 
     [self notifyOfModelUpdateWithChange:[IDPArrayChangeModel removeModelWithIndex:index]];
 }
@@ -107,7 +107,7 @@
         return;
     }
     
-    [self.array moveObjectToIndex:index fromIndex:fromIndex];
+    [self.mutableObjects moveObjectToIndex:index fromIndex:fromIndex];
     
     [self notifyOfModelUpdateWithChange:[IDPArrayChangeModel moveModelToIndex:index
                                                                     fromIndex:fromIndex]];
@@ -121,32 +121,7 @@
 #pragma mark Private Methods
 
 - (void)notifyOfModelUpdateWithChange:(IDPArrayChangeModel *)changeModel {
-    [self notifyOfStateChange:IDPArrayModelUpdated withObject:changeModel];
-}
-
-- (void)load {
-}
-
-#pragma mark -
-#pragma mark IDPObservableObject
-
-- (SEL)selectorForState:(NSUInteger)state {
-    switch (state) {
-        case IDPArrayModelUpdated:
-            return @selector(arrayModel: didUpdateWithChangeModel:);
-            
-        case IDPArrayModelLoaded:
-            return @selector(arrayModelDidLoad:);
-            
-        case IDPArrayModelLoading:
-            return @selector(arrayModelWillLoad:);
-            
-        case IDPArrayModelFailedLoading:
-            return @selector(arrayModelDidFailLoading:);
-            
-        default:
-            return [super selectorForState:state];
-    }
+    [self notifyOfStateChange:IDPChangeableModelUpdated withObject:changeModel];
 }
 
 #pragma mark - 
@@ -155,7 +130,7 @@
 - (id)copyWithZone:(NSZone *)zone {
     IDPArrayModel *model = [self copyWithZone:zone];
     
-    model.array = [self.array copyWithZone:zone];
+    model.mutableObjects = [self.mutableObjects copyWithZone:zone];
     
     return model;
 }
