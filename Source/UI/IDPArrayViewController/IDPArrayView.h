@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "SUIView.h"
+
 @class IDPArrayChangeModel;
 
-@interface IDPArrayView : UIView
+@interface IDPArrayView : SUIView
 @property (nonatomic, strong)   IBOutlet UITableView        *tableView;
 @property (nonatomic, strong)   IBOutlet UINavigationBar    *navigationBar;
 @property (nonatomic, strong)   IBOutlet UIBarButtonItem    *editButtonItem;

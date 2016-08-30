@@ -71,7 +71,8 @@
         | UIViewAutoresizingFlexibleHeight;
     
     self.loadingView = loadingView;
+    
+    [self addSubview:self.loadingView];
 }
-
 
 @end

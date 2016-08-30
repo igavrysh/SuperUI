@@ -28,7 +28,6 @@ NSString * const kIDPRemoveButtonText = @"Remove";
 IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayView)
 
 @interface IDPArrayViewController ()
-@property (nonatomic, strong)   IDPLoadingView  *loadingView;
 @property (nonatomic, strong)   IDPArrayModel   *filteredModel;
 
 - (void)filterDataUsingFilterString:(NSString *)filter;
@@ -40,27 +39,6 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 @synthesize arrayModel = _arrayModel;
 
 #pragma mark -
-#pragma mark Initializations and Deallocations
-
-- (instancetype)initWithCoder:(NSCoder *)coder {
-    self = [super initWithCoder:coder];
-    self.loadingView = [IDPLoadingView new];
-    
-    return self;
-}
-
-- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
-{
-    self = [super initWithNibName:nibName bundle:bundle];
-    
-    self.loadingView = [IDPLoadingView new];
-    
-    [self.arrayView addSubview:self.loadingView];
-    
-    return self;
-}
-
-#pragma mark -
 #pragma mark Accessors
 
 - (void)setArrayModel:(IDPArrayModel *)arrayModel {
@@ -70,8 +48,6 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
         
         _arrayModel = arrayModel;
         self.filteredModel = nil;
-        
-        [arrayModel addObservers:@[self, self.loadingView]];
         
         if (self.isViewLoaded) {
             [self.arrayModel load];
@@ -88,6 +64,8 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.arrayModel addObservers:@[self, self.arrayView]];
     
     [self.arrayModel load];
 }
