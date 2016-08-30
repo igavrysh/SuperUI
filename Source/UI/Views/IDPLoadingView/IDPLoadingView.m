@@ -26,6 +26,12 @@ static const CGFloat    kIDPDefaultAlpha = 0.7f;
     return view;
 }
 
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (void)dealloc {
+    self.spinner = nil;
+}
 
 #pragma mark -
 #pragma mark Accessors
