@@ -8,9 +8,10 @@
 
 #import "IDPImageView.h"
 
-#import "IDPMacros.h"
 #import "IDPGCDQueue.h"
 #import "IDPImageModel.h"
+
+#import "IDPMacros.h"
 
 @interface IDPImageView ()
 

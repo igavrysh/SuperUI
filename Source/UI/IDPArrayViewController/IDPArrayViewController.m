@@ -8,17 +8,20 @@
 
 #import "IDPArrayViewController.h"
 
-#import "IDPMacros.h"
-#import "IDPCompilerMacros.h"
 #import "IDPGCDQueue.h"
-#import "IDPArrayView.h"
-#import "IDPUserCell.h"
+
 #import "IDPUser.h"
 #import "IDPArrayModel.h"
 #import "IDPArrayChangeModel.h"
+#import "IDPUserCell.h"
+#import "IDPArrayView.h"
 #import "IDPLoadingView.h"
 
+
 #import "UITableView+IDPExtensions.h"
+
+#import "IDPMacros.h"
+#import "IDPCompilerMacros.h"
 
 NSString * const kIDPRemoveButtonText = @"Remove";
 

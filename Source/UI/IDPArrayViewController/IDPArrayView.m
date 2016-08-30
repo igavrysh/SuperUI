@@ -8,10 +8,11 @@
 
 #import "IDPArrayView.h"
 
-#import "IDPMacros.h"
 #import "IDPArrayModel.h"
 
 #import "UITableView+IDPExtensions.h"
+
+#import "IDPMacros.h"
 
 NSString * const kIDPEditButtonItemEdit = @"Edit";
 NSString * const kIDPEditButtonItemDone = @"Done";

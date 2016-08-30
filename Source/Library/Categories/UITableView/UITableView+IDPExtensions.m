@@ -10,8 +10,6 @@
 
 #import "IDPArrayChangeModel.h"
 #import "IDPArrayInsertChangeModel.h"
-#import "IDPBlockMacros.h"
-#import "IDPReturnMacros.h"
 
 #import "UINib+IDPExtensions.h"
 #import "IDPArrayChangeModel+IDPExtensions.h"
@@ -19,6 +17,9 @@
 #import "IDPArrayInsertChangeModel+IDPExtensions.h"
 #import "IDPArrayMoveChangeModel+IDPExtensions.h"
 #import "IDPArrayReplaceChangeModel+IDPExtensions.h"
+
+#import "IDPBlockMacros.h"
+#import "IDPReturnMacros.h"
 
 @implementation UITableView (IDPExtensions)
 

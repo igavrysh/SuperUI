@@ -9,12 +9,13 @@
 #import "IDPUsersViewController.h"
 
 #import "IDPUser.h"
-#import "IDPUsersView.h"
-#import "IDPUserCell.h"
 #import "IDPArrayModel.h"
+#import "IDPUserCell.h"
+#import "IDPUsersView.h"
+
+#import "UITableView+IDPExtensions.h"
 
 #import "IDPMacros.h"
-#import "UITableView+IDPExtensions.h"
 
 @implementation IDPUsersViewController
 

@@ -8,8 +8,9 @@
 
 #import "IDPView.h"
 
-#import "IDPBlockTypes.h"
 #import "IDPArrayModel.h"
+
+#import "IDPBlockTypes.h"
 
 @interface IDPLoadingView : UIView
 @property (nonatomic, strong)   IBOutlet UIActivityIndicatorView  *spinner;

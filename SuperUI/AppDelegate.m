@@ -8,10 +8,9 @@
 
 #import "AppDelegate.h"
 
+#import "IDPUserArrayModel.h"
 #import "IDPAnimationViewController.h"
 #import "IDPUsersViewController.h"
-
-#import "IDPUserArrayModel.h"
 
 #import "UIWindow+IDPExtensions.h"
 #import "NSString+IDPRandomName.h"

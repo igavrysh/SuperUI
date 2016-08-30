@@ -8,10 +8,10 @@
 
 #import "IDPObservableObject.h"
 
+#import "NSArray+IDPArrayEnumerator.h"
+
 #import "IDPMacros.h"
 #import "IDPCompilerMacros.h"
-
-#import "NSArray+IDPArrayEnumerator.h"
 
 @interface IDPObservableObject ()
 @property (nonatomic, retain) NSHashTable   *observers;

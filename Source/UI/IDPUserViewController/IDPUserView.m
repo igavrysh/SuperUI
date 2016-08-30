@@ -6,11 +6,11 @@
 //  Copyright © 2016 1mlndollarsasset. All rights reserved.
 //
 
+#import <math.h>
+
 #import "IDPUserView.h"
 
 #import "IDPUser.h"
-
-#import <math.h>
 
 @implementation IDPUserView
 
