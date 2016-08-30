@@ -9,14 +9,12 @@
 #import "IDPArrayViewController.h"
 
 #import "IDPGCDQueue.h"
-
 #import "IDPUser.h"
 #import "IDPArrayModel.h"
 #import "IDPArrayChangeModel.h"
 #import "IDPUserCell.h"
 #import "IDPArrayView.h"
 #import "IDPLoadingView.h"
-
 
 #import "UITableView+IDPExtensions.h"
 

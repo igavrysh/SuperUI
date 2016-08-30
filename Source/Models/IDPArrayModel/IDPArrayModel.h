@@ -8,11 +8,25 @@
 
 #import "IDPObservableObject.h"
 
-#import "IDPChangeableModel.h"
+#import "IDPModel.h"
+
+typedef NS_ENUM(NSUInteger, IDPChangeableModelState) {
+    IDPChangeableModelUpdated
+};
+
+@class IDPChangeableModel;
+
+@protocol IDPChangeableModelObserver <NSObject, IDPLoadableModelObserver>
+@optional
+
+- (void)model:(IDPChangeableModel *)model didUpdateWithUserInfo:(id)userInfo;
+
+@end
+
 
 @class IDPArrayModel;
 
-@interface IDPArrayModel : IDPChangeableModel <NSCopying>
+@interface IDPArrayModel :IDPModel <NSCopying, IDPChangeableModelObserver>
 @property (nonatomic, readonly)         NSUInteger      count;
 @property (nonatomic, copy, readonly)   NSArray         *objects;
 

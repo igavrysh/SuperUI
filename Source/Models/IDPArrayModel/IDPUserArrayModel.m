@@ -18,8 +18,6 @@ const NSUInteger kIDPArrayModelSampleSize = 30;
 
 @interface IDPUserArrayModel ()
 
-- (void)fillModel;
-
 @end
 
 @implementation IDPUserArrayModel
@@ -58,7 +56,7 @@ const NSUInteger kIDPArrayModelSampleSize = 30;
 #pragma mark -
 #pragma mark Private Methods
 
-- (void)fillModel {
+- (void)performLoading {
     [self performBlockWithoutNotification:^{
         for (NSUInteger i = 0; i < kIDPArrayModelSampleSize; i++) {
             [self insertObject:[IDPUser user] atIndex:0];

@@ -22,7 +22,6 @@
 @interface IDPArrayViewController : UIViewController <
     UITableViewDelegate,
     UITableViewDataSource,
-    IDPLoadableModelObserver,
     IDPChangeableModelObserver,
     UISearchBarDelegate
 >

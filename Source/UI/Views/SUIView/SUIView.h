@@ -8,7 +8,7 @@
 
 #import "IDPView.h"
 
-#import "IDPLoadableModel.h"
+#import "IDPModel.h"
 
 @interface SUIView : IDPView <IDPLoadableModelObserver>
 

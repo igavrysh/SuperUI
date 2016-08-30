@@ -135,4 +135,17 @@
     return model;
 }
 
+#pragma mark -
+#pragma mark IDPObservableObject
+
+- (SEL)selectorForState:(NSUInteger)state {
+    switch (state) {
+        case IDPChangeableModelUpdated:
+            return @selector(model:didUpdateWithUserInfo:);
+            
+        default:
+            return [super selectorForState:state];
+    }
+}
+
 @end
