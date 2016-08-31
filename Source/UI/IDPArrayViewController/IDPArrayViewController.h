@@ -20,7 +20,7 @@
 
 @end
 
-@interface IDPArrayViewController : UIViewController <
+@interface IDPArrayViewController : SUIViewController <
     UITableViewDelegate,
     UITableViewDataSource,
     UISearchBarDelegate,

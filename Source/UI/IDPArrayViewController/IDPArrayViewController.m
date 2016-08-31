@@ -34,27 +34,27 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 
 @implementation IDPArrayViewController
 
-@synthesize arrayModel = _arrayModel;
+@dynamic arrayModel;
 
 #pragma mark -
 #pragma mark Accessors
 
 - (void)setArrayModel:(IDPArrayModel *)arrayModel {
-    if (_arrayModel != arrayModel) {
-        [_arrayModel removeObserver:self];
+    if (arrayModel != super.model) {
+        super.model = arrayModel;
+        
         [_filteredModel removeObserver:self];
         
-        _arrayModel = arrayModel;
-        self.filteredModel = nil;
-        
         if (self.isViewLoaded) {
+            self.arrayView.model = super.model;
+            
             [self.arrayModel load];
         }
     }
 }
 
 - (IDPArrayModel *)arrayModel {
-    return self.arrayView.filtered && _filteredModel ? _filteredModel : _arrayModel;
+    return self.arrayView.filtered && _filteredModel ? _filteredModel : (IDPArrayModel *)super.model;
 }
 
 #pragma mark -
@@ -69,9 +69,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.arrayModel addObservers:@[self]];
-    
-    self.arrayView.model = self.arrayModel;
+    self.arrayView.model = super.model;
     
     [self.arrayModel load];
 }
@@ -101,7 +99,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
         if (![filter isEqualToString:@""]) {
             self.arrayView.filtered = YES;
             
-            self.filteredModel = [_arrayModel filteredArrayUsingFilterString:filter];
+            self.filteredModel = [self.arrayModel filteredArrayUsingFilterString:filter];
         } else {
             self.arrayView.filtered = NO;
             
@@ -252,8 +250,8 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
             if (self.arrayView.isFiltered) {
                 id object = _filteredModel[index];
                 [_filteredModel removeObjectAtIndex:index];
-                [_arrayModel performBlockWithoutNotification:^{
-                    [_arrayModel removeObject:object];
+                [self.arrayModel performBlockWithoutNotification:^{
+                    [self.arrayModel removeObject:object];
                 }];
             } else {
                 [self.arrayModel removeObjectAtIndex:index];

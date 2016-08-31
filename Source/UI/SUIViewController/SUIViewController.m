@@ -22,4 +22,5 @@
         [model addObserver:self];
     }
 }
+
 @end
