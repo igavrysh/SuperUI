@@ -10,10 +10,9 @@
 
 #import "IDPLoadingView.h"
 
-@interface IDPView ()
-@property (nonatomic, retain)   IDPLoadingView  *loadingView;
+#import "IDPMacros.h"
 
-- (void)initSubviews;
+@interface IDPView ()
 
 @end
 
@@ -34,45 +33,51 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     
-    [self initSubviews];
+    self.loadingView = [self defaultLoadingView];
     
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    
-    [self initSubviews];
-    
-    return self;
+- (void)awakeFromNib {
+    if (!self.loadingView) {
+        self.loadingView = [self defaultLoadingView];
+    }
+}
+
+#pragma mark -
+#pragma mark Accessors 
+
+- (void)setLoadingView:(IDPLoadingView *)loadingView {
+    if (_loadingView != loadingView) {
+        [_loadingView removeFromSuperview];
+        
+        _loadingView = loadingView;
+        
+        [self addSubview:loadingView];
+    }
 }
 
 #pragma mark -
 #pragma mark Public Methods
 
 - (void)showLoadingView {
-    [self.loadingView setVisible:YES animated:YES];
+    IDPPrintMethod;
+    
+    IDPLoadingView *loadingView = self.loadingView;
+    
+    [loadingView setVisible:YES animated:YES];
+    
+    [self bringSubviewToFront:loadingView];
 }
 
 - (void)hideLoadingView {
+    IDPPrintMethod;
+    
     [self.loadingView setVisible:NO animated:YES];
 }
 
-#pragma mark - 
-#pragma mark Private Methods
-
-- (void)initSubviews {
-    IDPLoadingView *loadingView = [[IDPLoadingView alloc] initWithFrame:self.bounds];
-    loadingView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin
-        | UIViewAutoresizingFlexibleWidth
-        | UIViewAutoresizingFlexibleRightMargin
-        | UIViewAutoresizingFlexibleRightMargin
-        | UIViewAutoresizingFlexibleTopMargin
-        | UIViewAutoresizingFlexibleHeight;
-    
-    self.loadingView = loadingView;
-    
-    [self addSubview:self.loadingView];
+- (IDPLoadingView *)defaultLoadingView {
+    return [IDPLoadingView loadingViewInSuperview:self];
 }
 
 @end

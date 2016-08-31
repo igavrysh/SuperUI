@@ -32,8 +32,20 @@
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     
-    
     return self;
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (void)setModel:(IDPModel *)model {
+    if (_model != model) {
+        [_model removeObserver:self];
+        
+        _model = model;
+        
+        [model addObserver:self];
+    }
 }
 
 #pragma mark -

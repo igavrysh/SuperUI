@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class IDPLoadingView;
+
 @interface IDPView : UIView
+@property (nonatomic, strong) IBOutlet  IDPLoadingView  *loadingView;
 
 - (void)showLoadingView;
-
 - (void)hideLoadingView;
+
+- (IDPLoadingView *)defaultLoadingView;
 
 @end

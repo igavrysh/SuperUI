@@ -22,8 +22,8 @@
 @interface IDPArrayViewController : UIViewController <
     UITableViewDelegate,
     UITableViewDataSource,
-    IDPChangeableModelObserver,
-    UISearchBarDelegate
+    UISearchBarDelegate,
+    IDPChangeableModelObserver
 >
 @property (nonatomic, strong) IDPArrayModel *arrayModel;
 

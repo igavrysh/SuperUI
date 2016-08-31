@@ -8,6 +8,8 @@
 
 #import "UINib+IDPExtensions.h"
 
+#import "NSArray+IDPExtensions.h"
+
 @implementation UINib (IDPExtensions)
 
 #pragma mark -
@@ -24,26 +26,20 @@
 }
 
 + (id)objectFromNibWithClass:(Class)class {
-    return [[self nibWithClass:class] objectWithClass:class];
+    return [self objectFromNibWithClass:class inBundle:nil];
+}
+
++ (id)objectFromNibWithClass:(Class)class
+                    inBundle:(NSBundle *)bundle
+{
+    return [[self nibWithClass:class bundle:bundle] objectWithClass:class];
 }
 
 #pragma mark -
 #pragma mark Public methods
 
-- (id)firstObject {
-    return [[self objects] firstObject];
-}
-
 - (id)objectWithClass:(Class)class {
-    NSArray *objects = [self objects];
-    
-    for (id object in objects) {
-        if ([object isKindOfClass:class]) {
-            return object;
-        }
-    }
-    
-    return nil;
+    return [[self objects] objectWithClass:class];
 }
 
 - (NSArray *)objects {

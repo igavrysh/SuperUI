@@ -14,8 +14,8 @@
 + (UINib *)nibWithClass:(Class)class bundle:(NSBundle *)bundle;
 
 + (id)objectFromNibWithClass:(Class)class;
++ (id)objectFromNibWithClass:(Class)class inBundle:(NSBundle *)bundle;
 
-- (id)firstObject;
 - (id)objectWithClass:(Class)class;
 - (NSArray *)objects;
 
