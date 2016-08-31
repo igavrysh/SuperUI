@@ -20,13 +20,14 @@
 
 @end
 
-@interface IDPArrayViewController : UIViewController <
+@interface IDPArrayViewController : SUIViewController <
     UITableViewDelegate,
     UITableViewDataSource,
     UISearchBarDelegate,
     IDPChangeableModelObserver
 >
-@property (nonatomic, strong) IDPArrayModel *arrayModel;
+@property (nonatomic, strong)   IDPArrayView    *arrayView;
+@property (nonatomic, strong)   IDPArrayModel   *arrayModel;
 
 - (IBAction)onAddButton:(id)sender;
 - (IBAction)onEditButton:(id)sender;

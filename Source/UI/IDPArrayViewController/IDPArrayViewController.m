@@ -23,8 +23,6 @@
 
 NSString * const kIDPRemoveButtonText = @"Remove";
 
-IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayView)
-
 @interface IDPArrayViewController ()
 @property (nonatomic, strong)   IDPArrayModel   *filteredModel;
 
@@ -34,50 +32,27 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 
 @implementation IDPArrayViewController
 
-@synthesize arrayModel = _arrayModel;
+@dynamic arrayModel;
+@dynamic arrayView;
 
 #pragma mark -
 #pragma mark Accessors
 
 - (void)setArrayModel:(IDPArrayModel *)arrayModel {
-    if (_arrayModel != arrayModel) {
-        [_arrayModel removeObserver:self];
-        [_filteredModel removeObserver:self];
-        
-        _arrayModel = arrayModel;
-        self.filteredModel = nil;
-        
-        if (self.isViewLoaded) {
-            [self.arrayModel load];
-        }
-    }
+    [super setModel:arrayModel];
 }
 
 - (IDPArrayModel *)arrayModel {
-    return self.arrayView.filtered && _filteredModel ? _filteredModel : _arrayModel;
+    return self.arrayView.filtered && _filteredModel
+        ? _filteredModel : (IDPArrayModel *)super.model;
 }
 
-#pragma mark -
-#pragma mark View Lifecycle
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    
-    self.arrayView.model = self.arrayModel;
+- (void)setArrayView:(IDPArrayView *)arrayView {
+    [super setView:arrayView];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    [self.arrayModel addObservers:@[self]];
-    
-    self.arrayView.model = self.arrayModel;
-    
-    [self.arrayModel load];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (IDPArrayView *)arrayView {
+    return (IDPArrayView *)super.view;
 }
 
 #pragma mark -
@@ -101,7 +76,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
         if (![filter isEqualToString:@""]) {
             self.arrayView.filtered = YES;
             
-            self.filteredModel = [_arrayModel filteredArrayUsingFilterString:filter];
+            self.filteredModel = [self.arrayModel filteredArrayUsingFilterString:filter];
         } else {
             self.arrayView.filtered = NO;
             
@@ -252,8 +227,8 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
             if (self.arrayView.isFiltered) {
                 id object = _filteredModel[index];
                 [_filteredModel removeObjectAtIndex:index];
-                [_arrayModel performBlockWithoutNotification:^{
-                    [_arrayModel removeObject:object];
+                [self.arrayModel performBlockWithoutNotification:^{
+                    [self.arrayModel removeObject:object];
                 }];
             } else {
                 [self.arrayModel removeObjectAtIndex:index];
