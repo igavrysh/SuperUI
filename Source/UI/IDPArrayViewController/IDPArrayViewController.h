@@ -10,6 +10,7 @@
 
 #import "IDPArrayView.h"
 #import "IDPArrayModel.h"
+#import "SUIViewController.h"
 
 #import "UIViewController+IDPExtensions.h"
 #import "IDPMacros.h"

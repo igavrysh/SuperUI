@@ -61,13 +61,17 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 #pragma mark View Lifecycle
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     self.arrayView.model = self.arrayModel;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.arrayModel addObservers:@[self, self.arrayView]];
+    [self.arrayModel addObservers:@[self]];
+    
+    self.arrayView.model = self.arrayModel;
     
     [self.arrayModel load];
 }

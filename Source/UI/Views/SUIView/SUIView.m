@@ -8,6 +8,8 @@
 
 #import "SUIView.h"
 
+#import "IDPMacros.h"
+
 @implementation SUIView
 
 #pragma mark -
@@ -25,7 +27,6 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     
-    
     return self;
 }
 
@@ -33,6 +34,12 @@
     self = [super initWithCoder:coder];
     
     return self;
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    IDPPrintMethod;
 }
 
 #pragma mark -

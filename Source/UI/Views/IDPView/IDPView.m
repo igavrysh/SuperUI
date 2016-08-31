@@ -39,6 +39,8 @@
 }
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     if (!self.loadingView) {
         self.loadingView = [self defaultLoadingView];
     }
