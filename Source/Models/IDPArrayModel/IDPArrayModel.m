@@ -56,6 +56,10 @@
 #pragma mark -
 #pragma mark Public Methods
 
+- (void)substituteObjectsWithObjects:(NSArray *)objects {
+    self.mutableObjects = [objects mutableCopy];
+}
+
 - (id)objectAtIndexedSubscript:(NSUInteger)index {
     return [self objectAtIndex:index];
 }
@@ -138,7 +142,7 @@
     switch (state) {
         case IDPChangeableModelUpdated:
             return @selector(model:didUpdateWithUserInfo:);
-            
+        
         default:
             return [super selectorForState:state];
     }

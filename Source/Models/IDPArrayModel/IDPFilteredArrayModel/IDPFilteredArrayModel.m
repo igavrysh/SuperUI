@@ -8,11 +8,16 @@
 
 #import "IDPFilteredArrayModel.h"
 
+#import "IDPGCDQueue.h"
+#import "IDPArrayChangeModel.h"
+
+#import "NSArray+IDPArrayEnumerator.h"
+
 #import "IDPMacros.h"
 
 @interface IDPFilteredArrayModel ()
-@property (nonatomic, strong)   IDPArrayModel   *filteredObjects;
-@property (nonatomic, strong)   NSString        *filterString;
+
+- (void)filterArrayModel;
 
 @end
 
@@ -28,110 +33,70 @@
 - (instancetype)initWithObjects:(NSArray *)objects {
     self = [super initWithObjects:objects];
     
-    self.filteredObjects = [[IDPArrayModel alloc] initWithObjects:objects];
-    
     return self;
+}
+
+- (void)setArrayModel:(IDPArrayModel *)arrayModel {
+    if (_arrayModel != arrayModel) {
+        [_arrayModel removeObserver:self];
+        
+        _arrayModel = arrayModel;
+        
+        [arrayModel addObserver:self];
+    }
 }
 
 #pragma mark - 
 #pragma mark Accessors
 
 - (NSArray *)objects {
-    return [self.filteredObjects objects];
-}
-
-- (NSUInteger)count {
-    return self.filteredObjects.count;
+    return [[self objects] copy];
 }
 
 #pragma mark -
 #pragma mark Public Methods
 
-- (id)objectAtIndexedSubscript:(NSUInteger)index {
-    return [self.filteredObjects objectAtIndexedSubscript:index];
+- (BOOL)isObjectEligible:(id)object {
+    return YES;
 }
 
-- (id)objectAtIndex:(NSUInteger)index {
-    return [self.filteredObjects objectAtIndex:index];
-}
-
-- (NSUInteger)indexOfObject:(id)object {
-    return [self.filteredObjects indexOfObject:object];
-}
-
-- (void)insertObject:(id)object atIndex:(NSUInteger)index {
-    IDPWeakify(self);
-    [self performBlockWithoutNotification:^{
-        IDPStrongify(self);
+- (void)filterArrayModel {
+    IDPAsyncPerformInBackgroundQueue(^{
+        NSArray *models = [self.arrayModel.objects filteredArrayUsingBlock:^BOOL(id object) {
+            return [self isObjectEligible:object];
+        }];
         
-        [super insertObject:object atIndex:index];
-    }];
+        [self substituteObjectsWithObjects:models];
+        
+        self.state = IDPLoadableModelLoaded;
+    });
+}
+
+#pragma mark -
+#pragma mark IDPChangeableModelObserver
+
+- (void)            model:(IDPArrayModel *)array
+    didUpdateWithUserInfo:(IDPArrayChangeModel *)changeModel
+{
+    IDPPrintMethod;
     
-    if ([self objectShouldNotBeFiltered:object]) {
-        [self insertObject:object atIndex:index < self.count ? index : self.count];
-    }
+    self.state = IDPLoadableModelLoaded;
 }
 
-- (void)addObject:(id)object {
-    IDPWeakify(self);
-    [self performBlockWithoutNotification:^{
-        IDPStrongify(self);
-        
-        [super addObject:object];
-    }];
-    
-    if ([self objectShouldNotBeFiltered:object]) {
-        [self.filteredObjects addObject:object];
-    }
+#pragma mark -
+#pragma mark IDPLoadableModelObserver
+
+- (void)modelDidLoad:(IDPArrayModel *)array {
+    self.state = IDPLoadableModelLoaded;
 }
 
-- (void)removeObject:(id)object {
-    IDPWeakify(self);
-    [self performBlockWithoutNotification:^{
-        IDPStrongify(self);
-        
-        [super removeObject:object];
-    }];
-    
-    [self.filteredObjects removeObject:object];
+- (void)modelWillLoad:(IDPArrayModel *)array {
+    self.state = IDPLoadableModelLoading;
 }
 
-- (void)removeObjectAtIndex:(NSUInteger)index {
-    id object = [super objectAtIndex:index];
-    IDPWeakify(self);
-    [self performBlockWithoutNotification:^{
-        IDPStrongify(self);
-        
-        [super removeObjectAtIndex:index];
-    }];
-    
-    [self.filteredObjects removeObject:object];
+- (void)modelDidFailLoading:(IDPArrayModel *)array {
+    self.state = IDPLoadableModelFailedLoading;
 }
 
-- (void)moveObject:(id)object toIndex:(NSUInteger)index {
-    IDPWeakify(self);
-    [self performBlockWithoutNotification:^{
-        IDPStrongify(self);
-        
-        [super moveObject:object toIndex:index];
-    }];
-}
-
-- (void)moveObjectToIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex {
-    IDPWeakify(self);
-    [self performBlockWithoutNotification:^{
-        IDPStrongify(self);
-        
-        [super moveObjectToIndex:index fromIndex:fromIndex];
-    }];
-}
-
-- (BOOL)objectShouldBeFiltered:(id)object {
-    return NO;
-}
-
-- (BOOL)objectShouldNotBeFiltered:(id)object {
-    return [self objectShouldBeFiltered:object];
-}
 
 @end

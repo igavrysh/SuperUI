@@ -17,7 +17,6 @@
 #import "IDPBlockMacros.h"
 
 static const double     kIDPLoadingViewShowUpTime = 0.1f;
-static const double     kIDPLoadingViewDelay = 0.0f;
 static const CGFloat    kIDPDefaultAlpha = 0.7f;
 
 @implementation IDPLoadingView

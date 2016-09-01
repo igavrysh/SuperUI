@@ -8,6 +8,11 @@
 
 #import "IDPArrayModel.h"
 
-@interface IDPFilteredArrayModel : IDPArrayModel
+@interface IDPFilteredArrayModel : IDPArrayModel <IDPChangeableModelObserver>
+@property (nonatomic, strong)   IDPArrayModel   *arrayModel;
+
+- (BOOL)isObjectEligible:(id)object;
+
+- (void)filterArrayModel;
 
 @end

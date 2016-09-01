@@ -12,6 +12,7 @@
 #import "IDPUser.h"
 #import "IDPArrayModel.h"
 #import "IDPArrayChangeModel.h"
+#import "IDPFilteredUserArrayModel.h"
 #import "IDPUserCell.h"
 #import "IDPArrayView.h"
 #import "IDPLoadingView.h"
@@ -26,7 +27,8 @@ NSString * const kIDPRemoveButtonText = @"Remove";
 IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayView)
 
 @interface IDPArrayViewController ()
-@property (nonatomic, strong)   IDPArrayModel   *filteredModel;
+@property (nonatomic, strong)   IDPArrayModel               *internalModel;
+@property (nonatomic, readonly) IDPFilteredUserArrayModel   *filteredModel;
 
 - (void)filterDataUsingFilterString:(NSString *)filter;
 
@@ -35,26 +37,41 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 @implementation IDPArrayViewController
 
 @dynamic arrayModel;
+@dynamic filteredModel;
+
+#pragma mark -
+#pragma mark Initializations and Deallocations 
+
+- (instancetype)init {
+    self = [super init];
+    
+    return self;
+}
 
 #pragma mark -
 #pragma mark Accessors
 
 - (void)setArrayModel:(IDPArrayModel *)arrayModel {
     if (arrayModel != super.model) {
-        super.model = arrayModel;
-        
-        [_filteredModel removeObserver:self];
+        self.internalModel = arrayModel;
+        super.model = [[IDPFilteredUserArrayModel alloc] initWithArrayModel:arrayModel
+                                                                             filter:@""];
+    
         
         if (self.isViewLoaded) {
             self.arrayView.model = super.model;
             
-            [self.arrayModel load];
+            [self.internalModel load];
         }
     }
 }
 
 - (IDPArrayModel *)arrayModel {
-    return self.arrayView.filtered && _filteredModel ? _filteredModel : (IDPArrayModel *)super.model;
+    return (IDPArrayModel *)super.model;
+}
+
+- (IDPFilteredUserArrayModel *)filteredModel {
+    return (IDPFilteredUserArrayModel *)super.model;
 }
 
 #pragma mark -
@@ -91,25 +108,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 #pragma mark Private Methods
 
 - (void)filterDataUsingFilterString:(NSString *)filter {
-    IDPWeakify(self);
-    
-    IDPAsyncPerformInBackgroundQueue(^{
-        IDPStrongify(self);
-        
-        if (![filter isEqualToString:@""]) {
-            self.arrayView.filtered = YES;
-            
-            self.filteredModel = [self.arrayModel filteredArrayUsingFilterString:filter];
-        } else {
-            self.arrayView.filtered = NO;
-            
-            self.filteredModel = nil;
-        }
-        
-        IDPAsyncPerformInMainQueue(^{
-            [self.arrayView.tableView reloadData];
-        });
-    });
+    self.filteredModel.filter = filter;
 }
 
 #pragma mark -
@@ -245,17 +244,9 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         IDPAsyncPerformInBackgroundQueue(^{
-            NSUInteger index = indexPath.row;
+            id object = self.arrayModel[indexPath.row];
             
-            if (self.arrayView.isFiltered) {
-                id object = _filteredModel[index];
-                [_filteredModel removeObjectAtIndex:index];
-                [self.arrayModel performBlockWithoutNotification:^{
-                    [self.arrayModel removeObject:object];
-                }];
-            } else {
-                [self.arrayModel removeObjectAtIndex:index];
-            }
+            [self.internalModel removeObject:object];
         });
     }
 }

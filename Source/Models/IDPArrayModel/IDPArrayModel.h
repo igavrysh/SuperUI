@@ -11,18 +11,20 @@
 #import "IDPModel.h"
 
 typedef NS_ENUM(NSUInteger, IDPChangeableModelState) {
-    IDPChangeableModelUpdated
+    IDPChangeableModelUpdated,
+    IDPChangeableModelReloading,
+    IDPChangeableModelReloaded
 };
 
 @class IDPChangeableModel;
+@class IDPArrayModel;
 
 @protocol IDPChangeableModelObserver <NSObject, IDPLoadableModelObserver>
 @optional
 
-- (void)model:(IDPChangeableModel *)model didUpdateWithUserInfo:(id)userInfo;
+- (void)model:(IDPArrayModel *)model didUpdateWithUserInfo:(IDPChangeableModel *)userInfo;
 
 @end
-
 
 @class IDPArrayModel;
 
@@ -31,6 +33,9 @@ typedef NS_ENUM(NSUInteger, IDPChangeableModelState) {
 @property (nonatomic, copy, readonly)   NSArray         *objects;
 
 - (instancetype)initWithObjects:(NSArray *)objects;
+
+// ToDo: remove this and make objects mutable
+- (void)substituteObjectsWithObjects:(NSArray *)objects;
 
 - (id)objectAtIndexedSubscript:(NSUInteger)index;
 - (id)objectAtIndex:(NSUInteger)index;

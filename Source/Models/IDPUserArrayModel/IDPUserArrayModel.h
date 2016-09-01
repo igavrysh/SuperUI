@@ -8,6 +8,8 @@
 
 #import "IDPArrayModel.h"
 
+#import "IDPFilteredUserArrayModel.h"
+
 @interface IDPUserArrayModel : IDPArrayModel
 
 + (instancetype)userArrayModel;

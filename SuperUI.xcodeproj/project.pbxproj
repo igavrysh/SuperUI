@@ -112,6 +112,8 @@
 		85BB7D4F1D70ACBA00DBC84B /* UIViewController+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BB7D4D1D70ACBA00DBC84B /* UIViewController+IDPExtensions.m */; };
 		85C16CBF1D764A550087EC1E /* NSBundle+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C16CBE1D764A550087EC1E /* NSBundle+IDPExtensions.m */; };
 		85C16CC01D764A550087EC1E /* NSBundle+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C16CBE1D764A550087EC1E /* NSBundle+IDPExtensions.m */; };
+		85C550C01D78106F00C803AA /* IDPFilteredUserArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C550BF1D78106F00C803AA /* IDPFilteredUserArrayModel.m */; };
+		85C550C11D78106F00C803AA /* IDPFilteredUserArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C550BF1D78106F00C803AA /* IDPFilteredUserArrayModel.m */; };
 		85C8DD921D530D6E009E227C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C8DD911D530D6E009E227C /* main.m */; };
 		85C8DD951D530D6E009E227C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C8DD941D530D6E009E227C /* AppDelegate.m */; };
 		85C8DDB31D530FD3009E227C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C8DDA81D530FD3009E227C /* Assets.xcassets */; };
@@ -250,6 +252,8 @@
 		85BB7D4D1D70ACBA00DBC84B /* UIViewController+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+IDPExtensions.m"; sourceTree = "<group>"; };
 		85C16CBD1D764A550087EC1E /* NSBundle+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+IDPExtensions.h"; sourceTree = "<group>"; };
 		85C16CBE1D764A550087EC1E /* NSBundle+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+IDPExtensions.m"; sourceTree = "<group>"; };
+		85C550BE1D78106F00C803AA /* IDPFilteredUserArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPFilteredUserArrayModel.h; sourceTree = "<group>"; };
+		85C550BF1D78106F00C803AA /* IDPFilteredUserArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPFilteredUserArrayModel.m; sourceTree = "<group>"; };
 		85C8DD8D1D530D6E009E227C /* SuperUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85C8DD911D530D6E009E227C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		85C8DD931D530D6E009E227C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -742,6 +746,8 @@
 			children = (
 				8585267A1D77A53100E2EA6C /* IDPUserArrayModel.h */,
 				8585267B1D77A53100E2EA6C /* IDPUserArrayModel.m */,
+				85C550BE1D78106F00C803AA /* IDPFilteredUserArrayModel.h */,
+				85C550BF1D78106F00C803AA /* IDPFilteredUserArrayModel.m */,
 			);
 			path = IDPUserArrayModel;
 			sourceTree = "<group>";
@@ -1038,6 +1044,7 @@
 				858239321D5B5E9D00623348 /* IDPImageModel.m in Sources */,
 				858239391D5B7C9A00623348 /* IDPArrayModel.m in Sources */,
 				858239061D5B5DEB00623348 /* IDPObservableObject.m in Sources */,
+				85C550C11D78106F00C803AA /* IDPFilteredUserArrayModel.m in Sources */,
 				8582391C1D5B5DEB00623348 /* IDPUserCell.m in Sources */,
 				8582390A1D5B5DEB00623348 /* IDPTableViewCell.m in Sources */,
 				85E85A5F1D689DE7005A0342 /* IDPGCDQueue.m in Sources */,
@@ -1144,6 +1151,7 @@
 				8585267C1D77A53100E2EA6C /* IDPUserArrayModel.m in Sources */,
 				85C16CBF1D764A550087EC1E /* NSBundle+IDPExtensions.m in Sources */,
 				858239311D5B5E9D00623348 /* IDPImageModel.m in Sources */,
+				85C550C01D78106F00C803AA /* IDPFilteredUserArrayModel.m in Sources */,
 				85C8DD921D530D6E009E227C /* main.m in Sources */,
 				8582390F1D5B5DEB00623348 /* IDPAnimationView.m in Sources */,
 				857795001D6BA6A500C16BA4 /* UINib+IDPExtensions.m in Sources */,

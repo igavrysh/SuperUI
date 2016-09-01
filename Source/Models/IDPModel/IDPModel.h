@@ -15,16 +15,16 @@ typedef NS_ENUM(NSUInteger, IDPLoadableModelState) {
     IDPLoadableModelFailedLoading
 };
 
-@class IDPLoadableModel;
+@class IDPModel;
 
 @protocol IDPLoadableModelObserver <NSObject>
 @optional
 
-- (void)modelDidLoad:(IDPLoadableModel *)model;
+- (void)modelDidLoad:(IDPModel *)model;
 
-- (void)modelWillLoad:(IDPLoadableModel *)model;
+- (void)modelWillLoad:(IDPModel *)model;
 
-- (void)modelDidFailLoading:(IDPLoadableModel *)model;
+- (void)modelDidFailLoading:(IDPModel *)model;
 
 @end
 

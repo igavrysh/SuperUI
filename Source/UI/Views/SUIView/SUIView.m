@@ -30,12 +30,6 @@
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)coder {
-    self = [super initWithCoder:coder];
-    
-    return self;
-}
-
 - (void)awakeFromNib {
     [super awakeFromNib];
     
@@ -58,11 +52,11 @@
 #pragma mark -
 #pragma mark IDPLoadableModelObserver
 
-- (void)modelDidLoad:(IDPLoadableModel *)model {
+- (void)modelDidLoad:(IDPModel *)model {
     [self hideLoadingView];
 }
 
-- (void)modelWillLoad:(IDPLoadableModel *)model {
+- (void)modelWillLoad:(IDPModel *)model {
     [self showLoadingView];
 }
 
