@@ -26,7 +26,7 @@ typedef NS_ENUM(NSUInteger, IDPChangeableModelState) {
 
 @class IDPArrayModel;
 
-@interface IDPArrayModel :IDPModel <NSCopying, IDPChangeableModelObserver>
+@interface IDPArrayModel : IDPModel <NSCopying, IDPChangeableModelObserver>
 @property (nonatomic, readonly)         NSUInteger      count;
 @property (nonatomic, copy, readonly)   NSArray         *objects;
 

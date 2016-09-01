@@ -26,10 +26,6 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (void)dealloc {
-    self.mutableObjects = nil;
-}
-
 - (instancetype)init {
     return [self initWithObjects:nil];
 }
