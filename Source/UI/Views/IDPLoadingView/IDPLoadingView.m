@@ -17,7 +17,8 @@
 #import "IDPBlockMacros.h"
 
 static const double     kIDPLoadingViewShowUpTime = 0.1f;
-static const CGFloat    kIDPDefaultAlpha = 0.7f;
+static const CGFloat    kIDPHiddenAlpha = 0.0f;
+static const CGFloat    kIDPVisibleAlpha = 1.f;
 
 @implementation IDPLoadingView
 
@@ -62,9 +63,7 @@ static const CGFloat    kIDPDefaultAlpha = 0.7f;
     IDPVoidBlock animations = ^{
         IDPStrongify(self);
         
-        IDPAsyncPerformInMainQueue(^{
-            self.alpha = visible ? kIDPDefaultAlpha : 0;
-        });
+        self.alpha = visible ? kIDPVisibleAlpha : kIDPHiddenAlpha;
     };
     
     [UIView animateWithDuration:animated ? kIDPLoadingViewShowUpTime : 0.f

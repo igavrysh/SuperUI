@@ -12,7 +12,8 @@ typedef NS_ENUM(NSUInteger, IDPLoadableModelState) {
     IDPLoadableModelUnloaded,
     IDPLoadableModelLoaded,
     IDPLoadableModelLoading,
-    IDPLoadableModelFailedLoading
+    IDPLoadableModelFailedLoading,
+    IDPLoadableModelStateCount
 };
 
 @class IDPModel;

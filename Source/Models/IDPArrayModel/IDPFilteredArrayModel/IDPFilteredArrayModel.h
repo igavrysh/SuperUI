@@ -9,10 +9,10 @@
 #import "IDPArrayModel.h"
 
 @interface IDPFilteredArrayModel : IDPArrayModel <IDPChangeableModelObserver>
-@property (nonatomic, strong)   IDPArrayModel   *arrayModel;
+@property (nonatomic, strong)   NSPredicate     *predicate;
 
-- (BOOL)isObjectEligible:(id)object;
+- (instancetype)initWithArrayModel:(IDPArrayModel *)arrayModel;
 
-- (void)filterArrayModel;
+- (void)performFiltering;
 
 @end

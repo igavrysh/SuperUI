@@ -142,6 +142,12 @@
     switch (state) {
         case IDPChangeableModelUpdated:
             return @selector(model:didUpdateWithUserInfo:);
+            
+        case IDPChangeableModelReloading:
+            return @selector(modelWillReload:);
+            
+        case IDPChangeableModelReloaded:
+            return @selector(modelDidReload:);
         
         default:
             return [super selectorForState:state];

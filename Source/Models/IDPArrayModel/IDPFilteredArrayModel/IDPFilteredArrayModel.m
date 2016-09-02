@@ -16,8 +16,7 @@
 #import "IDPMacros.h"
 
 @interface IDPFilteredArrayModel ()
-
-- (void)filterArrayModel;
+@property (nonatomic, strong)   IDPArrayModel   *arrayModel;
 
 @end
 
@@ -27,14 +26,18 @@
 #pragma mark Initializations and Deallocations
 
 - (instancetype)init {
-    return [self initWithObjects:nil];
+    return [self initWithArrayModel:nil];
 }
 
-- (instancetype)initWithObjects:(NSArray *)objects {
-    self = [super initWithObjects:objects];
+- (instancetype)initWithArrayModel:(IDPArrayModel *)arrayModel {
+    self = [super init];
+    self.arrayModel = arrayModel;
     
     return self;
 }
+
+#pragma mark - 
+#pragma mark Accessors
 
 - (void)setArrayModel:(IDPArrayModel *)arrayModel {
     if (_arrayModel != arrayModel) {
@@ -46,30 +49,25 @@
     }
 }
 
-#pragma mark - 
-#pragma mark Accessors
-
-- (NSArray *)objects {
-    return [[self objects] copy];
+- (NSPredicate *)predicate {
+    return nil;
 }
 
 #pragma mark -
 #pragma mark Public Methods
 
-- (BOOL)isObjectEligible:(id)object {
-    return YES;
+- (void)performFiltering {
+    IDPAsyncPerformInBackgroundQueue(^{
+        NSArray *filteredObjects = [self.arrayModel.objects filteredArrayUsingPredicate:self.predicate];
+        
+        [self substituteObjectsWithObjects:filteredObjects];
+        
+        self.state = IDPChangeableModelReloaded;
+    });
 }
 
-- (void)filterArrayModel {
-    IDPAsyncPerformInBackgroundQueue(^{
-        NSArray *models = [self.arrayModel.objects filteredArrayUsingBlock:^BOOL(id object) {
-            return [self isObjectEligible:object];
-        }];
-        
-        [self substituteObjectsWithObjects:models];
-        
-        self.state = IDPLoadableModelLoaded;
-    });
+- (void)load {
+    [self.arrayModel load];
 }
 
 #pragma mark -
@@ -80,23 +78,44 @@
 {
     IDPPrintMethod;
     
-    self.state = IDPLoadableModelLoaded;
+    [self performBlockWithoutNotification:^{
+        self.state = IDPChangeableModelUpdated;
+    }];
+    
+    [self notifyOfStateChange:IDPChangeableModelUpdated withObject:changeModel];
+}
+
+- (void)modelWillReload:(IDPArrayModel *)model {
+    IDPPrintMethod;
+    
+    self.state = IDPChangeableModelReloading;
+}
+
+- (void)modelDidReload:(IDPArrayModel *)model {
+    IDPPrintMethod;
+    
+    self.state = IDPChangeableModelReloaded;
 }
 
 #pragma mark -
 #pragma mark IDPLoadableModelObserver
 
 - (void)modelDidLoad:(IDPArrayModel *)array {
+    IDPPrintMethod;
+    
     self.state = IDPLoadableModelLoaded;
 }
 
 - (void)modelWillLoad:(IDPArrayModel *)array {
+    IDPPrintMethod;
+    
     self.state = IDPLoadableModelLoading;
 }
 
 - (void)modelDidFailLoading:(IDPArrayModel *)array {
+    IDPPrintMethod;
+    
     self.state = IDPLoadableModelFailedLoading;
 }
-
 
 @end

@@ -14,7 +14,7 @@
 
 #import "NSArray+IDPArrayEnumerator.h"
 
-const NSUInteger kIDPArrayModelSampleSize = 300;
+const NSUInteger kIDPArrayModelSampleSize = 10;
 
 @interface IDPUserArrayModel ()
 

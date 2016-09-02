@@ -26,7 +26,7 @@
     self.window = window;
     
     IDPArrayViewController *controller = [IDPUsersViewController viewController];
-    controller.arrayModel = [IDPUserArrayModel new];
+    controller.model = [IDPUserArrayModel new];
     
     //IDPAnimationViewController *controller = [IDPAnimationViewController viewController];
     

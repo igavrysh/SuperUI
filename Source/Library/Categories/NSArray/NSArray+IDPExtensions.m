@@ -13,9 +13,9 @@
 #pragma mark - 
 #pragma mark Public Methods
 
-- (id)objectWithClass:(Class)class {
+- (id)objectWithClass:(Class)cls {
     for (id object in self) {
-        if ([object isKindOfClass:class]) {
+        if ([object isKindOfClass:cls]) {
             return object;
         }
     }

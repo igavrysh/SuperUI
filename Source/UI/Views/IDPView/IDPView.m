@@ -9,6 +9,7 @@
 #import "IDPView.h"
 
 #import "IDPLoadingView.h"
+#import "IDPGCDQueue.h"
 
 #import "IDPMacros.h"
 
@@ -67,15 +68,19 @@
     
     IDPLoadingView *loadingView = self.loadingView;
     
-    [loadingView setVisible:YES animated:YES];
+    IDPSyncPerformInMainQueue(^{
+        [loadingView setVisible:YES animated:YES];
     
-    [self bringSubviewToFront:loadingView];
+        [self bringSubviewToFront:loadingView];
+    });
 }
 
 - (void)hideLoadingView {
     IDPPrintMethod;
     
-    [self.loadingView setVisible:NO animated:YES];
+    IDPSyncPerformInMainQueue(^{
+        [self.loadingView setVisible:NO animated:YES];
+    });
 }
 
 - (IDPLoadingView *)defaultLoadingView {

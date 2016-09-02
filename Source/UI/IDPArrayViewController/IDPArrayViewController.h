@@ -26,7 +26,6 @@
     UISearchBarDelegate,
     IDPChangeableModelObserver
 >
-@property (nonatomic, strong) IDPArrayModel *arrayModel;
 
 - (IBAction)onAddButton:(id)sender;
 - (IBAction)onEditButton:(id)sender;

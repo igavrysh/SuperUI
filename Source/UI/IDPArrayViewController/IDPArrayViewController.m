@@ -24,75 +24,41 @@
 
 NSString * const kIDPRemoveButtonText = @"Remove";
 
-IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayView)
-
 @interface IDPArrayViewController ()
-@property (nonatomic, strong)   IDPArrayModel               *internalModel;
-@property (nonatomic, readonly) IDPFilteredUserArrayModel   *filteredModel;
+@property (nonatomic, strong)   IDPArrayModel               *arrayModel;
+@property (nonatomic, strong)   IDPFilteredUserArrayModel   *model;
 
 - (void)filterDataUsingFilterString:(NSString *)filter;
+- (void)reloadTableView;
 
 @end
 
 @implementation IDPArrayViewController
 
-@dynamic arrayModel;
-@dynamic filteredModel;
-
-#pragma mark -
-#pragma mark Initializations and Deallocations 
-
-- (instancetype)init {
-    self = [super init];
-    
-    return self;
-}
+@dynamic model;
 
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setArrayModel:(IDPArrayModel *)arrayModel {
-    if (arrayModel != super.model) {
-        self.internalModel = arrayModel;
-        super.model = [[IDPFilteredUserArrayModel alloc] initWithArrayModel:arrayModel
-                                                                             filter:@""];
-    
+- (void)setModel:(IDPArrayModel *)model {
+    if (model != super.model) {
+        super.model = [[IDPFilteredUserArrayModel alloc] initWithArrayModel:model];
+        self.arrayModel = model;
         
         if (self.isViewLoaded) {
             self.arrayView.model = super.model;
             
-            [self.internalModel load];
+            [self.arrayModel load];
         }
     }
 }
 
-- (IDPArrayModel *)arrayModel {
+- (IDPArrayModel *)model {
     return (IDPArrayModel *)super.model;
 }
 
-- (IDPFilteredUserArrayModel *)filteredModel {
-    return (IDPFilteredUserArrayModel *)super.model;
-}
-
-#pragma mark -
-#pragma mark View Lifecycle
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    
-    self.arrayView.model = self.arrayModel;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.arrayView.model = super.model;
-    
-    [self.arrayModel load];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (IDPArrayView *)arrayView {
+    return (IDPArrayView *)self.view;
 }
 
 #pragma mark -
@@ -108,7 +74,15 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 #pragma mark Private Methods
 
 - (void)filterDataUsingFilterString:(NSString *)filter {
-    self.filteredModel.filter = filter;
+    ((IDPFilteredUserArrayModel *)self.model).filter = filter;
+}
+
+- (void)reloadTableView {
+    IDPWeakify(self);
+    IDPAsyncPerformInMainQueue(^{
+        IDPStrongifyAndReturnIfNil(self);
+        [self.arrayView.tableView reloadData];
+    });
 }
 
 #pragma mark -
@@ -129,14 +103,20 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 #pragma mark -
 #pragma mark IDPLoadableModelObserver
 
+- (void)modelWillReload:(IDPArrayModel *)model {
+    IDPPrintMethod;
+    
+    [self reloadTableView];
+}
+
+- (void)modelDidReload:(IDPArrayModel *)model {
+    IDPPrintMethod;
+}
+
 - (void)modelDidLoad:(IDPArrayModel *)array {
     IDPPrintMethod;
     
-    IDPWeakify(self);
-    IDPAsyncPerformInMainQueue(^{
-        IDPStrongifyAndReturnIfNil(self);
-        [self.arrayView.tableView reloadData];
-    });
+    [self reloadTableView];
 }
 
 - (void)modelWillLoad:(IDPArrayModel *)array {
@@ -246,7 +226,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
         IDPAsyncPerformInBackgroundQueue(^{
             id object = self.arrayModel[indexPath.row];
             
-            [self.internalModel removeObject:object];
+            [self.arrayModel removeObject:object];
         });
     }
 }
