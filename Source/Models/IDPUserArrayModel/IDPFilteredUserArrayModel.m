@@ -25,7 +25,7 @@
         
         self.state = IDPChangeableModelReloading;
         
-        [self filter];
+        [self performFiltering];
     }
 }
 
@@ -34,12 +34,14 @@
 
 - (NSPredicate *)predicate {
     return [NSPredicate predicateWithBlock:^BOOL(IDPUser *user, NSDictionary *bindings) {
-        if (!self.filter) {
+        if (!self.filter || [self.filter isEqualToString:@""]) {
             return YES;
         }
         
-        return NSNotFound != [user.name rangeOfString:self.filter
-                                              options:NSCaseInsensitiveSearch].location;
+        NSUInteger res = [user.name rangeOfString:self.filter
+                               options:NSCaseInsensitiveSearch].location;
+        
+        return NSNotFound != res;
     }];
 }
 

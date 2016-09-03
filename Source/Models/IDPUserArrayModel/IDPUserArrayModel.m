@@ -14,7 +14,7 @@
 
 #import "NSArray+IDPArrayEnumerator.h"
 
-const NSUInteger kIDPArrayModelSampleSize = 10;
+const NSUInteger kIDPArrayModelSampleSize = 5;
 
 @interface IDPUserArrayModel ()
 
@@ -57,13 +57,13 @@ const NSUInteger kIDPArrayModelSampleSize = 10;
 #pragma mark Private Methods
 
 - (void)performLoading {
+    [NSThread sleepForTimeInterval:3.0f];
+    
     [self performBlockWithoutNotification:^{
         for (NSUInteger i = 0; i < kIDPArrayModelSampleSize; i++) {
             [self insertObject:[IDPUser user] atIndex:0];
         }
     }];
-    
-    [NSThread sleepForTimeInterval:10.0f];
     
     self.state = IDPLoadableModelLoaded;
 }

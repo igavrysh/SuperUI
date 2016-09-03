@@ -69,9 +69,10 @@
     IDPLoadingView *loadingView = self.loadingView;
     
     IDPSyncPerformInMainQueue(^{
-        [loadingView setVisible:YES animated:YES];
-    
         [self bringSubviewToFront:loadingView];
+        
+        [loadingView setVisible:YES animated:YES];
+        
     });
 }
 

@@ -8,16 +8,12 @@
 
 #import "SUIViewController.h"
 
-#import "SUIView.h"
-
-#import "IDPMacros.h"
-
-IDPViewControllerBaseViewProperty(SUIViewController, rootView, SUIView)
-
 @implementation SUIViewController
 
 #pragma mark - 
 #pragma mark Accessors
+
+IDPBaseViewGetterSynthesize(rootView, SUIView);
 
 - (void)setModel:(IDPModel *)model {
     if (_model != model) {
@@ -43,7 +39,7 @@ IDPViewControllerBaseViewProperty(SUIViewController, rootView, SUIView)
     
     self.rootView.model = self.model;
     
-    [self.model load];
+    [(IDPModel *)self.model load];
 }
 
 @end

@@ -103,6 +103,8 @@
 - (void)modelDidLoad:(IDPArrayModel *)array {
     IDPPrintMethod;
     
+    [self substituteObjectsWithObjects:self.arrayModel.objects];
+    
     self.state = IDPLoadableModelLoaded;
 }
 

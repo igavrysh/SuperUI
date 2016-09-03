@@ -9,7 +9,7 @@
 #import "IDPArrayModel.h"
 
 @interface IDPFilteredArrayModel : IDPArrayModel <IDPChangeableModelObserver>
-@property (nonatomic, strong)   NSPredicate     *predicate;
+@property (nonatomic, readonly) NSPredicate     *predicate;
 
 - (instancetype)initWithArrayModel:(IDPArrayModel *)arrayModel;
 

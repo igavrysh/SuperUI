@@ -13,8 +13,10 @@
 #define IDPDefineBaseViewProperty(propertyName, viewClass) \
     @property (nonatomic, readonly) viewClass     *propertyName;
 
-#define IDPBaseViewGetterSynthesize(selector, viewClass) \
-    - (viewClass *)selector { \
+#define IDPBaseViewGetterSynthesize(propertyName, viewClass) \
+    @dynamic propertyName; \
+    \
+    - (viewClass *)propertyName { \
         if ([self isViewLoaded] && [self.view isKindOfClass:[viewClass class]]) { \
             return (viewClass *)self.view; \
         } \
@@ -29,8 +31,6 @@
     @end \
     \
     @implementation viewControllerClass (__IDPPrivateBaseView) \
-    \
-    @dynamic propertyName; \
     \
     IDPBaseViewGetterSynthesize(propertyName, baseViewClass); \
     \

@@ -26,7 +26,7 @@ NSString * const kIDPRemoveButtonText = @"Remove";
 
 @interface IDPArrayViewController ()
 @property (nonatomic, strong)   IDPArrayModel               *arrayModel;
-@property (nonatomic, strong)   IDPFilteredUserArrayModel   *model;
+@property (nonatomic, readonly) IDPArrayView                *arrayView;
 
 - (void)filterDataUsingFilterString:(NSString *)filter;
 - (void)reloadTableView;
@@ -35,30 +35,26 @@ NSString * const kIDPRemoveButtonText = @"Remove";
 
 @implementation IDPArrayViewController
 
-@dynamic model;
+@dynamic arrayView;
 
 #pragma mark -
 #pragma mark Accessors
 
 - (void)setModel:(IDPArrayModel *)model {
-    if (model != super.model) {
+    if (super.model != model) {
         super.model = [[IDPFilteredUserArrayModel alloc] initWithArrayModel:model];
         self.arrayModel = model;
         
         if (self.isViewLoaded) {
-            self.arrayView.model = super.model;
+            self.rootView.model = self.model;
             
             [self.arrayModel load];
         }
     }
 }
 
-- (IDPArrayModel *)model {
-    return (IDPArrayModel *)super.model;
-}
-
 - (IDPArrayView *)arrayView {
-    return (IDPArrayView *)self.view;
+    return (IDPArrayView *)self.rootView;
 }
 
 #pragma mark -
@@ -81,6 +77,7 @@ NSString * const kIDPRemoveButtonText = @"Remove";
     IDPWeakify(self);
     IDPAsyncPerformInMainQueue(^{
         IDPStrongifyAndReturnIfNil(self);
+
         [self.arrayView.tableView reloadData];
     });
 }
@@ -96,6 +93,7 @@ NSString * const kIDPRemoveButtonText = @"Remove";
     IDPWeakify(self);
     IDPAsyncPerformInMainQueue(^{
         IDPStrongifyAndReturnIfNil(self);
+        
         [self.arrayView.tableView applyChangeModel:changeModel];
     });
 }
@@ -105,12 +103,12 @@ NSString * const kIDPRemoveButtonText = @"Remove";
 
 - (void)modelWillReload:(IDPArrayModel *)model {
     IDPPrintMethod;
-    
-    [self reloadTableView];
 }
 
 - (void)modelDidReload:(IDPArrayModel *)model {
     IDPPrintMethod;
+    
+    [self reloadTableView];
 }
 
 - (void)modelDidLoad:(IDPArrayModel *)array {
@@ -133,7 +131,7 @@ NSString * const kIDPRemoveButtonText = @"Remove";
 - (NSInteger)   tableView:(UITableView *)tableView
     numberOfRowsInSection:(NSInteger)section
 {
-    return self.arrayModel.count;
+    return ((IDPArrayModel *)self.model).count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -141,7 +139,7 @@ NSString * const kIDPRemoveButtonText = @"Remove";
 {
     UITableViewCell<IDPModelCell> *cell = [self cellForTable:tableView withIndexPath:indexPath];
     
-    cell.model = self.arrayModel[indexPath.row];
+    cell.model = self.model[indexPath.row];
     
     return cell;
 }
@@ -160,7 +158,7 @@ NSString * const kIDPRemoveButtonText = @"Remove";
 }
 
 - (IBAction)onAddButton:(id)sender {
-    [self.arrayModel insertObject:[IDPUser user] atIndex:0];
+    [self.model insertObject:[IDPUser user] atIndex:0];
 }
 
 
