@@ -14,6 +14,8 @@
 #import "NSArray+IDPArrayEnumerator.h"
 #import "NSMutableArray+IDPExtensions.h"
 
+#import "IDPMacros.h"
+
 @interface IDPArrayModel ()
 @property (nonatomic, strong)   NSMutableArray  *mutableObjects;
 
@@ -84,6 +86,15 @@
     [self insertObject:object atIndex:self.count];
 }
 
+- (void)removeObjects:(NSArray *)objects {
+    IDPWeakify(self);
+    [objects performBlockWithEachObject:^(id object) {
+        IDPStrongifyAndReturnIfNil(self);
+        
+        [self removeObject:object];
+    }];
+}
+
 - (void)removeObject:(id)object {
     NSUInteger index = [self indexOfObject:object];
     
@@ -100,6 +111,16 @@
     IDPArrayChangeModel *model = [IDPArrayChangeModel removeModelWithArrayModel:self
                                                                           index:index];
     [self notifyOfModelUpdateWithChange:model];
+}
+
+- (void)replaceObject:(id)object withObject:(id)replaceObject {
+    NSUInteger index = [self indexOfObject:object];
+    
+    if (NSNotFound == index) {
+        return;
+    }
+    
+    [self replaceObjectAtIndex:index withObject:replaceObject];
 }
 
 - (void)replaceObjectAtIndex:(NSUInteger)index

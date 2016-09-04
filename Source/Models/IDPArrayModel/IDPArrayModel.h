@@ -48,7 +48,9 @@ typedef NS_ENUM(NSUInteger, IDPChangeableModelState) {
 
 - (void)removeObject:(id)object;
 - (void)removeObjectAtIndex:(NSUInteger)index;
+- (void)removeObjects:(NSArray *)objects;
 
+- (void)replaceObject:(id)object withObject:(id)replaceObject;
 - (void)replaceObjectAtIndex:(NSUInteger)index
                   withObject:(id)object;
 

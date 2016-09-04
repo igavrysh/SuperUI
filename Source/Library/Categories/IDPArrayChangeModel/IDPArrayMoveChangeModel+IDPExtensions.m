@@ -23,7 +23,18 @@
 {
 }
 
-#pragma mark -
-#pragma mark 
+- (void)applyToArrayModel:(IDPArrayModel *)arrayModel {
+    IDPArrayModel *applyArrayModel = self.arrayModel;
+    NSUInteger toIndex = self.index;
+    NSUInteger fromIndex = self.fromIndex;
+    
+    id toObject = applyArrayModel[toIndex];
+    
+    if (self.arrayModel.count == arrayModel.count
+        && arrayModel[fromIndex] == toObject)
+    {
+        [arrayModel moveObjectToIndex:toIndex fromIndex:fromIndex];
+    }
+}
 
 @end

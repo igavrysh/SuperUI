@@ -10,6 +10,7 @@
 
 #import "IDPArrayModel.h"
 
+#import "NSArray+IDPArrayEnumerator.h"
 #import "NSIndexPath+IDPExtensions.h"
 #import "UITableView+IDPExtensions.h"
 
@@ -28,9 +29,11 @@
 }
 
 - (void)applyToArrayModel:(IDPArrayModel *)arrayModel {
-    NSUInteger index = self.index;
+    NSArray *objects = [arrayModel.objects filteredArrayUsingBlock:^BOOL(id object) {
+        return ![self.arrayModel.objects containsObject:object];
+    }];
     
-    [arrayModel removeObjectAtIndex:index];
+    [arrayModel removeObjects:objects];
 }
 
 @end

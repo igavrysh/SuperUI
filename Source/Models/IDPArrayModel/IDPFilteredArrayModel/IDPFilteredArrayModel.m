@@ -12,6 +12,7 @@
 #import "IDPArrayChangeModel.h"
 
 #import "NSArray+IDPArrayEnumerator.h"
+#import "IDPArrayModel+IDPExtensions.h"
 
 #import "IDPMacros.h"
 
@@ -82,20 +83,13 @@
 {
     IDPPrintMethod;
     
-    [self performBlockWithoutNotification:^{
-        self.state = IDPChangeableModelUpdatedWithChangeModel;
-        
-        [self performFiltering];
-    }];
-    
-    //[self notifyOfStateChange:IDPChangeableModelUpdatedWithChangeModel
-    //               withObject:changeModel];
+    [self applyChangeModel:changeModel];
 }
 
 - (void)modelDidUpdate:(IDPArrayModel *)model {
     IDPPrintMethod;
     
-    self.state = IDPChangeableModelUpdated;
+    [self performFiltering];
 }
 
 #pragma mark -
