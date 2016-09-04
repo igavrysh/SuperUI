@@ -63,7 +63,9 @@
 - (void)setLoadingViewVisible:(BOOL)loadingViewVisible {
     IDPPrintMethod;
     
-    self.loadingView.visible = loadingViewVisible;
+    IDPAsyncPerformInMainQueue(^{
+        self.loadingView.visible = loadingViewVisible;
+    });
 }
 
 - (BOOL)isLoadingViewVisible {

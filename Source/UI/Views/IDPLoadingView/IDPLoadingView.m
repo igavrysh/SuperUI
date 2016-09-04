@@ -67,19 +67,15 @@ static const CGFloat    kIDPVisibleAlpha = 1.f;
         self.alpha = visible ? kIDPVisibleAlpha : kIDPHiddenAlpha;
     };
     
-    IDPSyncPerformInMainQueue(^{
-        IDPStrongify(self);
-        
-        [self.superview bringSubviewToFront:self];
-       
-        [UIView animateWithDuration:animated ? kIDPLoadingViewShowUpTime : 0.f
-                         animations:animations
-                         completion:^(BOOL finished) {
-                             _visible = visible;
-                             
-                             IDPBlockPerform(completionBlock);
-                         }];
-    });
+    [self.superview bringSubviewToFront:self];
+   
+    [UIView animateWithDuration:animated ? kIDPLoadingViewShowUpTime : 0.f
+                     animations:animations
+                     completion:^(BOOL finished) {
+                         _visible = visible;
+                         
+                         IDPBlockPerform(completionBlock);
+                     }];
 }
 
 @end
