@@ -11,10 +11,8 @@
 @class IDPLoadingView;
 
 @interface IDPView : UIView
-@property (nonatomic, strong) IBOutlet  IDPLoadingView  *loadingView;
-
-- (void)showLoadingView;
-- (void)hideLoadingView;
+@property (nonatomic, strong)                               IBOutlet  IDPLoadingView    *loadingView;
+@property (nonatomic, assign, getter=isLoadingViewVisible)  BOOL                        loadingViewVisible;
 
 - (IDPLoadingView *)defaultLoadingView;
 

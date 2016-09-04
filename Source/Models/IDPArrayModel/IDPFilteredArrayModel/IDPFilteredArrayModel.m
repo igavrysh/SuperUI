@@ -106,7 +106,7 @@
 - (void)modelWillLoad:(IDPArrayModel *)array {
     IDPPrintMethod;
     
-    self.state = IDPLoadableModelLoading;
+    self.state = IDPLoadableModelWillLoad;
 }
 
 - (void)modelDidFailLoading:(IDPArrayModel *)array {

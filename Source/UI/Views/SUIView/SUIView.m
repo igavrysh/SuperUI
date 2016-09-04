@@ -53,11 +53,11 @@
 #pragma mark IDPLoadableModelObserver
 
 - (void)modelDidLoad:(IDPModel *)model {
-    [self hideLoadingView];
+    self.loadingViewVisible = NO;
 }
 
 - (void)modelWillLoad:(IDPModel *)model {
-    [self showLoadingView];
+    self.loadingViewVisible = YES;
 }
 
 @end

@@ -36,7 +36,6 @@ typedef NS_ENUM(NSUInteger, IDPChangeableModelState) {
 
 - (instancetype)initWithObjects:(NSArray *)objects;
 
-// ToDo: remove this and make objects mutable
 - (void)substituteObjectsWithObjects:(NSArray *)objects;
 
 - (id)objectAtIndexedSubscript:(NSUInteger)index;

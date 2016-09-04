@@ -48,7 +48,7 @@ static const CGFloat    kIDPVisibleAlpha = 1.f;
 #pragma mark Accessors
 
 - (void)setVisible:(BOOL)visible {
-    [self setVisible:visible animated:NO completionBlock:nil];
+    [self setVisible:visible animated:YES completionBlock:nil];
 }
 
 - (void)setVisible:(BOOL)visible animated:(BOOL)animated {
@@ -60,19 +60,26 @@ static const CGFloat    kIDPVisibleAlpha = 1.f;
    completionBlock:(IDPVoidBlock)completionBlock
 {
     IDPWeakify(self);
+
     IDPVoidBlock animations = ^{
         IDPStrongify(self);
         
         self.alpha = visible ? kIDPVisibleAlpha : kIDPHiddenAlpha;
     };
     
-    [UIView animateWithDuration:animated ? kIDPLoadingViewShowUpTime : 0.f
-                     animations:animations
-                     completion:^(BOOL finished) {
-                         _visible = visible;
-                         
-                         IDPBlockPerform(completionBlock);
-                     }];
+    IDPSyncPerformInMainQueue(^{
+        IDPStrongify(self);
+        
+        [self.superview bringSubviewToFront:self];
+       
+        [UIView animateWithDuration:animated ? kIDPLoadingViewShowUpTime : 0.f
+                         animations:animations
+                         completion:^(BOOL finished) {
+                             _visible = visible;
+                             
+                             IDPBlockPerform(completionBlock);
+                         }];
+    });
 }
 
 @end

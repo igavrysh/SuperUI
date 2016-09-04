@@ -23,12 +23,12 @@
     @synchronized(self) {
         NSUInteger state = self.state;
         
-        if (IDPLoadableModelLoaded == state || IDPLoadableModelLoading == state) {
+        if (IDPLoadableModelLoaded == state || IDPLoadableModelWillLoad == state) {
             [self notifyOfStateChange:state];
             return;
         }
         
-        self.state = IDPLoadableModelLoading;
+        self.state = IDPLoadableModelWillLoad;
     }
     
     IDPAsyncPerformInBackgroundQueue(^{
@@ -48,7 +48,7 @@
         case IDPLoadableModelLoaded:
             return @selector(modelDidLoad:);
             
-        case IDPLoadableModelLoading:
+        case IDPLoadableModelWillLoad:
             return @selector(modelWillLoad:);
             
         case IDPLoadableModelFailedLoading:

@@ -60,29 +60,18 @@
     }
 }
 
+- (void)setLoadingViewVisible:(BOOL)loadingViewVisible {
+    IDPPrintMethod;
+    
+    self.loadingView.visible = loadingViewVisible;
+}
+
+- (BOOL)isLoadingViewVisible {
+    return self.loadingView.isVisible;
+}
+
 #pragma mark -
 #pragma mark Public Methods
-
-- (void)showLoadingView {
-    IDPPrintMethod;
-    
-    IDPLoadingView *loadingView = self.loadingView;
-    
-    IDPSyncPerformInMainQueue(^{
-        [self bringSubviewToFront:loadingView];
-        
-        [loadingView setVisible:YES animated:YES];
-        
-    });
-}
-
-- (void)hideLoadingView {
-    IDPPrintMethod;
-    
-    IDPSyncPerformInMainQueue(^{
-        [self.loadingView setVisible:NO animated:YES];
-    });
-}
 
 - (IDPLoadingView *)defaultLoadingView {
     return [IDPLoadingView loadingViewInSuperview:self];
