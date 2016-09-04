@@ -15,7 +15,7 @@
 
 - (id)objectWithClass:(Class)cls {
     for (id object in self) {
-        if ([object isKindOfClass:cls]) {
+        if ([object isMemberOfClass:cls]) {
             return object;
         }
     }
