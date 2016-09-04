@@ -8,13 +8,15 @@
 
 #import "IDPArrayModel+IDPExtensions.h"
 
+#import "IDPArrayChangeModel+IDPExtensions.h"
+
 @implementation IDPArrayModel (IDPExtensions)
 
 #pragma mark -
 #pragma mark Public Methods
 
 - (void)applyChangeModel:(IDPArrayChangeModel *)model {
-    
+    [model applyToArrayModel:self];
 }
 
 @end

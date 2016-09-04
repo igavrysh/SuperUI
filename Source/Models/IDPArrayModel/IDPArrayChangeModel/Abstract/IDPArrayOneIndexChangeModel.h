@@ -8,11 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+@class IDPArrayModel;
+
 @interface IDPArrayOneIndexChangeModel : NSObject
-@property (nonatomic, readonly) NSUInteger index;
+@property (nonatomic, readonly) NSUInteger      index;
+@property (nonatomic, readonly) IDPArrayModel   *arrayModel;
 
-+ (instancetype)modelWithIndex:(NSUInteger)index;
++ (instancetype)modelWithArrayModel:(IDPArrayModel *)arrayModel
+                              index:(NSUInteger)index;
 
-- (instancetype)initWithIndex:(NSUInteger)index;
+- (instancetype)initWithArrayModel:(IDPArrayModel *)arrayModel
+                             index:(NSUInteger)index;
 
 @end

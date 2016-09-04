@@ -18,23 +18,34 @@
 #pragma mark -
 #pragma mark Public Methods
 
-+ (id)insertModelWithIndex:(NSUInteger)index {
-    return [IDPArrayInsertChangeModel modelWithIndex:index];
-}
-
-+ (id)removeModelWithIndex:(NSUInteger)index {
-    return [IDPArrayRemoveChangeModel modelWithIndex:index];
-}
-
-+ (id)replaceModelWithIndex:(NSUInteger)index {
-    return [IDPArrayReplaceChangeModel modelWithIndex:index];
-}
-
-+ (id)moveModelToIndex:(NSUInteger)index
-             fromIndex:(NSUInteger)fromIndex
++ (id)insertModelWithArrayModel:(IDPArrayModel *)arrayModel
+                          index:(NSUInteger)index
 {
-    return [IDPArrayMoveChangeModel modelWithToIndex:index
-                                           fromIndex:fromIndex];
+    return [IDPArrayInsertChangeModel modelWithArrayModel:arrayModel
+                                                    index:index];
+}
+
++ (id)removeModelWithArrayModel:(IDPArrayModel *)arrayModel
+                          index:(NSUInteger)index
+{
+    return [IDPArrayRemoveChangeModel modelWithArrayModel:arrayModel
+                                                    index:index];
+}
+
++ (id)replaceModelWithArrayModel:(IDPArrayModel *)arrayModel
+                           index:(NSUInteger)index
+{
+    return [IDPArrayReplaceChangeModel modelWithArrayModel:arrayModel
+                                                     index:index];
+}
+
++ (id)moveModelWithArrayModel:(IDPArrayModel *)arrayModel
+                      toIndex:(NSUInteger)index
+                    fromIndex:(NSUInteger)fromIndex
+{
+    return [IDPArrayMoveChangeModel modelWithArrayModel:arrayModel
+                                                toIndex:index
+                                              fromIndex:fromIndex];
 }
 
 

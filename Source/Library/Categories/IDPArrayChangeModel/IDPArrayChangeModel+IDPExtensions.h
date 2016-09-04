@@ -15,4 +15,6 @@
 - (void)applyToTableView:(UITableView *)tableView
            withRowAnimation:(UITableViewRowAnimation) animation;
 
+- (void)applyToArrayModel:(IDPArrayModel *)arrayModel;
+
 @end
