@@ -62,7 +62,11 @@
         
         [self substituteObjectsWithObjects:filteredObjects];
         
-        self.state = IDPChangeableModelReloaded;
+        [self performBlockWithoutNotification:^{
+            self.state = IDPChangeableModelUpdated;
+        }];
+        
+        [self notifyOfStateChange:IDPChangeableModelUpdated];
     });
 }
 
@@ -73,28 +77,25 @@
 #pragma mark -
 #pragma mark IDPChangeableModelObserver
 
-- (void)            model:(IDPArrayModel *)array
-    didUpdateWithUserInfo:(IDPArrayChangeModel *)changeModel
+- (void)            model:(IDPArrayModel *)model
+ didUpdateWithChangeModel:(IDPArrayChangeModel *)changeModel
 {
     IDPPrintMethod;
     
     [self performBlockWithoutNotification:^{
-        self.state = IDPChangeableModelUpdated;
+        self.state = IDPChangeableModelUpdatedWithChangeModel;
+        
+        [self performFiltering];
     }];
     
-    [self notifyOfStateChange:IDPChangeableModelUpdated withObject:changeModel];
+    //[self notifyOfStateChange:IDPChangeableModelUpdatedWithChangeModel
+    //               withObject:changeModel];
 }
 
-- (void)modelWillReload:(IDPArrayModel *)model {
+- (void)modelDidUpdate:(IDPArrayModel *)model {
     IDPPrintMethod;
     
-    self.state = IDPChangeableModelReloading;
-}
-
-- (void)modelDidReload:(IDPArrayModel *)model {
-    IDPPrintMethod;
-    
-    self.state = IDPChangeableModelReloaded;
+    self.state = IDPChangeableModelUpdated;
 }
 
 #pragma mark -

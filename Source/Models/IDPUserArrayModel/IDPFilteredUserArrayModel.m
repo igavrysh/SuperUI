@@ -19,11 +19,9 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setFilter:(NSString *)filter{
+- (void)setFilter:(NSString *)filter {
     if (_filter!= filter) {
         _filter = filter;
-        
-        self.state = IDPChangeableModelReloading;
         
         [self performFiltering];
     }

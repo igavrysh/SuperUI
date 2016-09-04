@@ -121,7 +121,8 @@
 #pragma mark Private Methods
 
 - (void)notifyOfModelUpdateWithChange:(IDPArrayChangeModel *)changeModel {
-    [self notifyOfStateChange:IDPChangeableModelUpdated withObject:changeModel];
+    [self notifyOfStateChange:IDPChangeableModelUpdatedWithChangeModel
+                   withObject:changeModel];
 }
 
 #pragma mark - 
@@ -140,14 +141,11 @@
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
+        case IDPChangeableModelUpdatedWithChangeModel:
+            return @selector(model:didUpdateWithChangeModel:);
+            
         case IDPChangeableModelUpdated:
-            return @selector(model:didUpdateWithUserInfo:);
-            
-        case IDPChangeableModelReloading:
-            return @selector(modelWillReload:);
-            
-        case IDPChangeableModelReloaded:
-            return @selector(modelDidReload:);
+            return @selector(modelDidUpdate:);
         
         default:
             return [super selectorForState:state];

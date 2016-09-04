@@ -17,4 +17,8 @@
     [self doesNotRecognizeSelector:_cmd];
 }
 
+- (void)applyToArrayModel:(IDPArrayModel *)arrayModel {
+    [self doesNotRecognizeSelector:_cmd];
+}
+
 @end

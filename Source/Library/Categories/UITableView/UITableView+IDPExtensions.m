@@ -26,18 +26,18 @@
 #pragma mark - 
 #pragma mark Public methods
 
-- (id)cellWithClass:(Class)class {
-    return [self cellWithClass:class bundle:nil];
+- (id)cellWithClass:(Class)cls {
+    return [self cellWithClass:cls bundle:nil];
 }
 
-- (id)cellWithClass:(Class)class bundle:(NSBundle *)bundle; {
-    NSString *cellClass = NSStringFromClass(class);
+- (id)cellWithClass:(Class)cls bundle:(NSBundle *)bundle; {
+    NSString *cellClass = NSStringFromClass(cls);
     
     UITableViewCell *cell = [self dequeueReusableCellWithIdentifier:cellClass];
     
     if (!cell) {
-        UINib *nib = [UINib nibWithClass:class bundle:bundle];
-        cell = [nib objectWithClass:class];
+        UINib *nib = [UINib nibWithClass:cls bundle:bundle];
+        cell = [nib objectWithClass:cls];
     }
     
     return cell;

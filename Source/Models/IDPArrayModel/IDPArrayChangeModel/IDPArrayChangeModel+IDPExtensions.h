@@ -10,8 +10,12 @@
 
 #import "IDPArrayChangeModel.h"
 
+#import "IDPArrayModel.h"
+
 @interface IDPArrayChangeModel (IDPExtensions)
 
 - (void)applyToTableView:(UITableView *)tableView;
+
+- (void)applyToArrayModel:(IDPArrayModel *)arrayModel;
 
 @end

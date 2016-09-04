@@ -11,22 +11,20 @@
 #import "IDPModel.h"
 
 typedef NS_ENUM(NSUInteger, IDPChangeableModelState) {
-    IDPChangeableModelUpdated = IDPLoadableModelStateCount,
-    IDPChangeableModelReloading,
-    IDPChangeableModelReloaded
+    IDPChangeableModelUpdatedWithChangeModel = IDPLoadableModelStateCount,
+    IDPChangeableModelUpdated
 };
 
-@class IDPChangeableModel;
+@class IDPArrayChangeModel;
 @class IDPArrayModel;
 
 @protocol IDPChangeableModelObserver <NSObject, IDPLoadableModelObserver>
 @optional
 
-- (void)model:(IDPArrayModel *)model didUpdateWithUserInfo:(IDPChangeableModel *)userInfo;
+- (void)            model:(IDPArrayModel *)model
+ didUpdateWithChangeModel:(IDPArrayChangeModel *)changeModel;
 
-- (void)modelWillReload:(IDPArrayModel *)model;
-
-- (void)modelDidReload:(IDPArrayModel *)model;
+- (void)modelDidUpdate:(IDPArrayModel *)model;
 
 @end
 

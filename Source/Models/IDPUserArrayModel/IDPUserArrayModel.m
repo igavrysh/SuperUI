@@ -57,7 +57,7 @@ const NSUInteger kIDPArrayModelSampleSize = 5;
 #pragma mark Private Methods
 
 - (void)performLoading {
-    [NSThread sleepForTimeInterval:3.0f];
+    //[NSThread sleepForTimeInterval:3.0f];
     
     [self performBlockWithoutNotification:^{
         for (NSUInteger i = 0; i < kIDPArrayModelSampleSize; i++) {

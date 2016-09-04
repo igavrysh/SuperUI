@@ -24,7 +24,7 @@
                         <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
                     </textAttributes>
                     <items>
-                        <navigationItem title="♕" id="L3w-NR-UCS">
+                        <navigationItem title="Amazing Controller" id="L3w-NR-UCS">
                             <barButtonItem key="leftBarButtonItem" systemItem="add" id="2Kb-Wa-Tjo">
                                 <connections>
                                     <action selector="onAddButton:" destination="-1" id="5Vf-eD-krD"/>

@@ -86,13 +86,16 @@ NSString * const kIDPRemoveButtonText = @"Remove";
 #pragma mark IDPChangeableModelObserver
 
 - (void)            model:(IDPArrayModel *)array
-    didUpdateWithUserInfo:(IDPArrayChangeModel *)changeModel
+ didUpdateWithChangeModel:(IDPArrayChangeModel *)changeModel
 {
     IDPPrintMethod;
     
     IDPWeakify(self);
     IDPAsyncPerformInMainQueue(^{
         IDPStrongifyAndReturnIfNil(self);
+        
+        NSLog(@"presented model elem. count = %lu, actual count = %lu",
+              (unsigned long)((IDPArrayModel *)self.model).count, self.arrayModel.count);
         
         [self.arrayView.tableView applyChangeModel:changeModel];
     });
@@ -101,11 +104,7 @@ NSString * const kIDPRemoveButtonText = @"Remove";
 #pragma mark -
 #pragma mark IDPLoadableModelObserver
 
-- (void)modelWillReload:(IDPArrayModel *)model {
-    IDPPrintMethod;
-}
-
-- (void)modelDidReload:(IDPArrayModel *)model {
+- (void)modelDidUpdate:(IDPArrayModel *)model {
     IDPPrintMethod;
     
     [self reloadTableView];
@@ -158,7 +157,7 @@ NSString * const kIDPRemoveButtonText = @"Remove";
 }
 
 - (IBAction)onAddButton:(id)sender {
-    [self.model insertObject:[IDPUser user] atIndex:0];
+    [self.arrayModel insertObject:[IDPUser user] atIndex:0];
 }
 
 
@@ -209,20 +208,17 @@ NSString * const kIDPRemoveButtonText = @"Remove";
 {
     NSLog(@"from row: %ld to row: %ld", sourceIndexPath.row, (long)destinationIndexPath.row);
     
-    [self.arrayModel performBlockWithoutNotification:^{
-        [self.arrayModel moveObjectToIndex:destinationIndexPath.row
-                                 fromIndex:sourceIndexPath.row];
-    }];
+    [self.arrayModel moveObjectToIndex:destinationIndexPath.row
+                             fromIndex:sourceIndexPath.row];
 }
 
 - (void)    tableView:(UITableView *)tableView
    commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
     forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
+    if (UITableViewCellEditingStyleDelete == editingStyle) {
         IDPAsyncPerformInBackgroundQueue(^{
-            id object = self.arrayModel[indexPath.row];
+            id object = self.model[indexPath.row];
             
             [self.arrayModel removeObject:object];
         });
@@ -244,6 +240,7 @@ NSString * const kIDPRemoveButtonText = @"Remove";
     textDidChange:(NSString *)searchText
 {
     IDPPrintMethod;
+    
     [self filterDataUsingFilterString:searchBar.text];
 }
 
