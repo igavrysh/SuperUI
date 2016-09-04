@@ -8,15 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+@class IDPArrayModel;
+
 @interface IDPArrayChangeModel : NSObject
 
-+ (id)insertModelWithIndex:(NSUInteger)index;
++ (id)insertModelWithArrayModel:(IDPArrayModel *)arrayModel
+                          index:(NSUInteger)index;
 
-+ (id)removeModelWithIndex:(NSUInteger)index;
++ (id)removeModelWithArrayModel:(IDPArrayModel *)arrayModel
+                          index:(NSUInteger)index;
 
-+ (id)replaceModelWithIndex:(NSUInteger)index;
++ (id)replaceModelWithArrayModel:(IDPArrayModel *)arrayModel
+                           index:(NSUInteger)index;
 
-+ (id)moveModelToIndex:(NSUInteger)index
-             fromIndex:(NSUInteger)fromIndex;
++ (id)moveModelWithArrayModel:(IDPArrayModel *)arrayModel
+                      toIndex:(NSUInteger)index
+                    fromIndex:(NSUInteger)fromIndex;
 
 @end

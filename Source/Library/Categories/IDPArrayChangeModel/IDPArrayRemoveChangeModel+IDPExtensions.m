@@ -8,6 +8,8 @@
 
 #import "IDPArrayRemoveChangeModel+IDPExtensions.h"
 
+#import "IDPArrayModel.h"
+
 #import "NSIndexPath+IDPExtensions.h"
 #import "UITableView+IDPExtensions.h"
 
@@ -23,6 +25,12 @@
         [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForIndex:self.index]]
                          withRowAnimation:animation];
     }];
+}
+
+- (void)applyToArrayModel:(IDPArrayModel *)arrayModel {
+    NSUInteger index = self.index;
+    
+    [arrayModel removeObjectAtIndex:index];
 }
 
 @end

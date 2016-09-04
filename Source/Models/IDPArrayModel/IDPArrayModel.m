@@ -75,7 +75,9 @@
 - (void)insertObject:(id)object atIndex:(NSUInteger)index {
     [self.mutableObjects insertObject:object atIndex:index];
     
-    [self notifyOfModelUpdateWithChange:[IDPArrayChangeModel insertModelWithIndex:index]];
+    IDPArrayChangeModel *model = [IDPArrayChangeModel insertModelWithArrayModel:self
+                                                                          index:index];
+    [self notifyOfModelUpdateWithChange:model];
 }
 
 - (void)addObject:(id)object {
@@ -95,7 +97,19 @@
 - (void)removeObjectAtIndex:(NSUInteger)index {
     [self.mutableObjects removeObjectAtIndex:index];
 
-    [self notifyOfModelUpdateWithChange:[IDPArrayChangeModel removeModelWithIndex:index]];
+    IDPArrayChangeModel *model = [IDPArrayChangeModel removeModelWithArrayModel:self
+                                                                          index:index];
+    [self notifyOfModelUpdateWithChange:model];
+}
+
+- (void)replaceObjectAtIndex:(NSUInteger)index
+                  withObject:(id)object
+{
+    [self.mutableObjects replaceObjectAtIndex:index withObject:object];
+    
+    IDPArrayChangeModel *model = [IDPArrayChangeModel replaceModelWithArrayModel:self
+                                                                           index:index];
+    [self notifyOfModelUpdateWithChange:model];
 }
 
 - (void)moveObject:(id)object toIndex:(NSUInteger)index {
@@ -109,8 +123,10 @@
     
     [self.mutableObjects moveObjectToIndex:index fromIndex:fromIndex];
     
-    [self notifyOfModelUpdateWithChange:[IDPArrayChangeModel moveModelToIndex:index
-                                                                    fromIndex:fromIndex]];
+    IDPArrayChangeModel *model = [IDPArrayChangeModel moveModelWithArrayModel:self
+                                                                      toIndex:index
+                                                                    fromIndex:fromIndex];
+    [self notifyOfModelUpdateWithChange:model];
 }
 
 - (IDPArrayModel *)filteredArrayUsingFilterString:(NSString *)filter {

@@ -10,9 +10,16 @@
 
 @implementation IDPArrayChangeModel (IDPExtensions)
 
+#pragma mark -
+#pragma mark Public Methods
+
 - (void)applyToTableView:(UITableView *)tableView
         withRowAnimation:(UITableViewRowAnimation) animation
 {
+}
+
+- (void)applyToArrayModel:(IDPArrayModel *)arrayModel {
+    
 }
 
 @end

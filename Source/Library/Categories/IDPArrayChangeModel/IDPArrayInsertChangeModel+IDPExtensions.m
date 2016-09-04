@@ -8,6 +8,8 @@
 
 #import "IDPArrayInsertChangeModel+IDPExtensions.h"
 
+#import "IDPArrayModel.h"
+
 #import "NSIndexPath+IDPExtensions.h"
 #import "UITableView+IDPExtensions.h"
 
@@ -23,6 +25,13 @@
         [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForIndex:self.index]]
                          withRowAnimation:animation];
     }];
+}
+
+- (void)applyToArrayModel:(IDPArrayModel *)arrayModel {
+    NSUInteger index = self.index;
+    id object = self.arrayModel[index];
+    
+    [arrayModel insertObject:object atIndex:index];
 }
 
 @end

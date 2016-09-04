@@ -8,6 +8,8 @@
 
 #import "IDPArrayMoveChangeModel+IDPExtensions.h"
 
+#import "IDPArrayModel.h"
+
 #import "NSIndexPath+IDPExtensions.h"
 #import "UITableView+IDPExtensions.h"
 
@@ -20,5 +22,8 @@
         withRowAnimation:(UITableViewRowAnimation) animation
 {
 }
+
+#pragma mark -
+#pragma mark 
 
 @end
