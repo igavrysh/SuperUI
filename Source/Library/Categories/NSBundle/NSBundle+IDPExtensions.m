@@ -22,7 +22,7 @@
 + (id)objectFromBundle:(NSBundle *)bundle
              withClass:(Class)class
 {
-    return [UINib objectFromNibWithClass:class inBundle:bundle];
+    return [UINib objectWithClass:class inBundle:bundle];
 }
 
 @end

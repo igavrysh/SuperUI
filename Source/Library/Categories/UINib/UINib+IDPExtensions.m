@@ -15,35 +15,46 @@
 #pragma mark -
 #pragma mark Class methods
 
-+ (UINib *)nibWithClass:(Class)class {
-    return [self nibWithClass:class bundle:nil];
++ (UINib *)nibWithClass:(Class)cls {
+    return [self nibWithClass:cls bundle:nil];
 }
 
-+ (UINib *)nibWithClass:(Class)class bundle:(NSBundle *)bundle {
-    NSString *nibName = NSStringFromClass(class);
++ (UINib *)nibWithClass:(Class)cls bundle:(NSBundle *)bundle {
+    NSString *nibName = NSStringFromClass(cls);
     
     return [self nibWithNibName:nibName bundle:bundle];
 }
 
-+ (id)objectFromNibWithClass:(Class)class {
-    return [self objectFromNibWithClass:class inBundle:nil];
++ (id)objectWithClass:(Class)cls {
+    return [self objectWithClass:cls inBundle:nil owner:nil];
 }
 
-+ (id)objectFromNibWithClass:(Class)class
-                    inBundle:(NSBundle *)bundle
++ (id)objectWithClass:(Class)cls owner:(id)owner {
+    return [self objectWithClass:cls inBundle:nil owner:owner];
+}
+
++ (id)objectWithClass:(Class)cls inBundle:(NSBundle *)bundle {
+    return [self objectWithClass:cls inBundle:bundle owner:nil];
+}
+
++ (id)objectWithClass:(Class)cls
+             inBundle:(NSBundle *)bundle
+                owner:(id)owner
 {
-    return [[self nibWithClass:class bundle:bundle] objectWithClass:class];
+    UINib *nib = [self nibWithClass:cls bundle:bundle];
+    
+    return [nib objectWithClass:cls owner:owner];
 }
 
 #pragma mark -
 #pragma mark Public methods
 
-- (id)objectWithClass:(Class)class {
-    return [[self objects] objectWithClass:class];
+- (id)objectWithClass:(Class)cls owner:(id)owner {
+    return [[self objectsWithOwner:(id)owner] objectWithClass:cls];
 }
 
-- (NSArray *)objects {
-    return [self instantiateWithOwner:nil options:nil];
+- (NSArray *)objectsWithOwner:(id)owner {
+    return [self instantiateWithOwner:owner options:nil];
 }
 
 @end

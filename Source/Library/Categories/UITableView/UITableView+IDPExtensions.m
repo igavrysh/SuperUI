@@ -37,7 +37,7 @@
     
     if (!cell) {
         UINib *nib = [UINib nibWithClass:cls bundle:bundle];
-        cell = [nib objectWithClass:cls];
+        cell = [nib objectWithClass:cls owner:self];
     }
     
     return cell;

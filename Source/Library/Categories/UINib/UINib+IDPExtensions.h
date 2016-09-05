@@ -13,10 +13,12 @@
 + (UINib *)nibWithClass:(Class)class;
 + (UINib *)nibWithClass:(Class)class bundle:(NSBundle *)bundle;
 
-+ (id)objectFromNibWithClass:(Class)class;
-+ (id)objectFromNibWithClass:(Class)class inBundle:(NSBundle *)bundle;
++ (id)objectWithClass:(Class)cls;
++ (id)objectWithClass:(Class)cls owner:(id)owner;
++ (id)objectWithClass:(Class)cls inBundle:(NSBundle *)bundle;
++ (id)objectWithClass:(Class)cls inBundle:(NSBundle *)bundle owner:(id)owner;
 
-- (id)objectWithClass:(Class)class;
-- (NSArray *)objects;
+- (id)objectWithClass:(Class)cls owner:(id)owner;
+- (NSArray *)objectsWithOwner:(id)owner;
 
 @end
