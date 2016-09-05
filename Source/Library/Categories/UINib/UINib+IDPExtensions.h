@@ -19,6 +19,6 @@
 + (id)objectWithClass:(Class)cls inBundle:(NSBundle *)bundle owner:(id)owner;
 
 - (id)objectWithClass:(Class)cls owner:(id)owner;
-- (NSArray *)objectsWithOwner:(id)owner;
+- (NSArray *)objectsWithOwner:(id)owner options:(NSDictionary *)options;
 
 @end
