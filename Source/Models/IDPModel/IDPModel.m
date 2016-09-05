@@ -10,11 +10,28 @@
 
 #import "IDPGCDQueue.h"
 
+#import "NSFileManager+IDPExtensions.h"
+
 @interface IDPModel ()
 
 @end
 
 @implementation IDPModel
+
+#pragma mark -
+#pragma mark Class Methods
+
++ (NSString *)modelPlistName {
+    return [NSString stringWithFormat:@"%@.plist", NSStringFromClass([self class])];
+}
+
++ (NSString *)cachePath {
+    return [[NSFileManager applicaitonCachePath] stringByAppendingString:[self modelPlistName]];
+}
+
++ (BOOL)cacheExists {
+    return [[NSFileManager defaultManager] fileExistsAtPath:[self cachePath]];
+}
 
 #pragma mark -
 #pragma mark Public Methods
@@ -34,6 +51,10 @@
     IDPAsyncPerformInBackgroundQueue(^{
         [self performLoading];
     });
+}
+
+- (void)save {
+    
 }
 
 - (void)performLoading {

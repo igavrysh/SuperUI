@@ -12,8 +12,13 @@
 
 #import "NSString+IDPRandomName.h"
 
-NSString * const kIDPImageName = @"image_big";
-NSString * const kIDPImageExtension = @"jpg";
+static NSString * const kIDPImageName = @"image_big";
+static NSString * const kIDPImageExtension = @"jpg";
+
+static NSString * const kIDPUserNameKey = @"IDPUserNameKey";
+static NSString * const kIDPUserSurnameKey = @"IDPUserSurnameKey";
+static NSString * const kIDPUserURLKey = @"IDPUserURLKey";
+
 
 @implementation IDPUser
 
@@ -56,6 +61,26 @@ NSString * const kIDPImageExtension = @"jpg";
     user.imageURL = self.imageURL;
     
     return user;
+}
+
+
+#pragma mark -
+#pragma mark NSCoding
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:self.name forKey:kIDPUserNameKey];
+    [coder encodeObject:self.surname forKey:kIDPUserSurnameKey];
+    [coder encodeObject:self.imageURL forKey:kIDPUserURLKey];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super init];
+    
+    self.name = [coder decodeObjectForKey:kIDPUserNameKey];
+    self.surname = [coder decodeObjectForKey:kIDPUserSurnameKey];
+    self.imageURL = [coder decodeObjectForKey:kIDPUserURLKey];
+    
+    return self;
 }
 
 @end

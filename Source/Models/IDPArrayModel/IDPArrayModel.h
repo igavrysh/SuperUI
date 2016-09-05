@@ -56,6 +56,4 @@ typedef NS_ENUM(NSUInteger, IDPChangeableModelState) {
 - (void)moveObject:(id)object toIndex:(NSUInteger)index;
 - (void)moveObjectToIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex;
 
-- (IDPArrayModel *)filteredArrayUsingFilterString:(NSString *)filter;
-
 @end

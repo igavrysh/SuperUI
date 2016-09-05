@@ -39,29 +39,23 @@ const NSUInteger kIDPArrayModelSampleSize = 5;
 }
 
 #pragma mark -
-#pragma mark Public Methods
-
-- (IDPUserArrayModel *)filteredArrayUsingFilterString:(NSString *)filter {
-    NSArray *objects = [self.objects filteredArrayUsingBlock:^BOOL(IDPUser *user) {
-        return NSNotFound != [user.name rangeOfString:filter
-                                              options:NSCaseInsensitiveSearch].location;
-    }];
-    
-    IDPUserArrayModel *model = [[IDPUserArrayModel alloc] initWithObjects:objects];
-    [model addObservers:[self.observerSet allObjects]];
-    
-    return model;
-}
-
-#pragma mark -
 #pragma mark Private Methods
 
 - (void)performLoading {
     //[NSThread sleepForTimeInterval:3.0f];
     
-    [self performBlockWithoutNotification:^{
+    NSMutableArray *users = nil;
+    if ([IDPUserArrayModel cacheExists]) {
+        users = [NSKeyedUnarchiver unarchiveObjectWithFile:[IDPUserArrayModel cachePath]];
+    } else {
         for (NSUInteger i = 0; i < kIDPArrayModelSampleSize; i++) {
-            [self insertObject:[IDPUser user] atIndex:0];
+            [users addObject:[IDPUser user]];
+        }
+    }
+    
+    [self performBlockWithoutNotification:^{
+        for (NSUInteger i = 0; i < users.count; i++) {
+            [self insertObject: users[i] atIndex:i];
         }
     }];
     

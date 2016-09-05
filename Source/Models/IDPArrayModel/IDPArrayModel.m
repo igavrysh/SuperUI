@@ -13,8 +13,11 @@
 
 #import "NSArray+IDPArrayEnumerator.h"
 #import "NSMutableArray+IDPExtensions.h"
+#import "NSFileManager+IDPExtensions.h"
 
 #import "IDPMacros.h"
+
+static NSString * const kIDPArrayModelObjectsKey = @"ArrayModelObjects";
 
 @interface IDPArrayModel ()
 @property (nonatomic, strong)   NSMutableArray  *mutableObjects;
@@ -24,6 +27,9 @@
 @implementation IDPArrayModel
 
 @dynamic count;
+
+#pragma mark  -
+#pragma mark Class Methods
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -150,8 +156,9 @@
     [self notifyOfModelUpdateWithChange:model];
 }
 
-- (IDPArrayModel *)filteredArrayUsingFilterString:(NSString *)filter {
-    return [self copy];
+- (void)save {
+    [NSKeyedArchiver archiveRootObject:self.objects
+                                toFile:[IDPArrayModel cachePath]];
 }
 
 #pragma mark - 
