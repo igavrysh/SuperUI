@@ -44,9 +44,9 @@ const NSUInteger kIDPArrayModelSampleSize = 5;
 - (void)performLoading {
     //[NSThread sleepForTimeInterval:3.0f];
     
-    NSMutableArray *users = nil;
+    NSMutableArray *users = [NSMutableArray new];
     if ([IDPUserArrayModel cacheExists]) {
-        users = [NSKeyedUnarchiver unarchiveObjectWithFile:[IDPUserArrayModel cachePath]];
+        users = [NSKeyedUnarchiver unarchiveObjectWithFile:[[self class] cachePath]];
     } else {
         for (NSUInteger i = 0; i < kIDPArrayModelSampleSize; i++) {
             [users addObject:[IDPUser user]];

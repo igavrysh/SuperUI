@@ -158,7 +158,7 @@ static NSString * const kIDPArrayModelObjectsKey = @"ArrayModelObjects";
 
 - (void)save {
     [NSKeyedArchiver archiveRootObject:self.objects
-                                toFile:[IDPArrayModel cachePath]];
+                                toFile:[[self class] cachePath]];
 }
 
 #pragma mark - 

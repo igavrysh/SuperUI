@@ -15,7 +15,10 @@
 #import "UIWindow+IDPExtensions.h"
 #import "NSString+IDPRandomName.h"
 
+#import "IDPMacros.h"
+
 @interface AppDelegate ()
+@property (nonatomic, strong) IDPUsersViewController *usersController;
 
 @end
 
@@ -25,12 +28,12 @@
     UIWindow *window = [UIWindow fullScreenWindow];
     self.window = window;
     
-    IDPArrayViewController *controller = [IDPUsersViewController viewController];
-    controller.model = [IDPUserArrayModel new];
+    self.usersController = [IDPUsersViewController viewController];
+    self.usersController.model = [IDPUserArrayModel new];
     
     //IDPAnimationViewController *controller = [IDPAnimationViewController viewController];
     
-    window.rootViewController = controller;
+    window.rootViewController = self.usersController;
     
     [window makeKeyAndVisible];
     
@@ -38,18 +41,25 @@
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
+    IDPPrintMethod;
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    IDPPrintMethod;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    IDPPrintMethod;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    IDPPrintMethod;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
+    IDPPrintMethod;
+    
+    [(IDPArrayModel *)self.usersController.model save];
 }
 
 @end

@@ -75,6 +75,10 @@
     [self.arrayModel load];
 }
 
+- (void)save {
+    [self.arrayModel save];
+}
+
 #pragma mark -
 #pragma mark IDPChangeableModelObserver
 
