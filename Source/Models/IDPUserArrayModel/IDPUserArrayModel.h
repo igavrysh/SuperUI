@@ -14,4 +14,8 @@
 
 + (instancetype)userArrayModel;
 
++ (NSString *)modelPlistName;
++ (NSString *)cachePath;
++ (BOOL)cacheExists;
+
 @end

@@ -9,11 +9,11 @@
 #import "IDPObservableObject.h"
 
 typedef NS_ENUM(NSUInteger, IDPLoadableModelState) {
-    IDPLoadableModelDidUnload,
-    IDPLoadableModelDidLoad,
-    IDPLoadableModelWillLoad,
-    IDPLoadableModelDidFailLoading,
-    IDPLoadableModelStateCount
+    IDPModelDidUnload,
+    IDPModelDidLoad,
+    IDPModelWillLoad,
+    IDPModelDidFailLoading,
+    IDPModelStateCount
 };
 
 @class IDPModel;

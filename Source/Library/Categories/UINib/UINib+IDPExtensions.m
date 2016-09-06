@@ -55,6 +55,13 @@
     return [[self objectsWithOwner:(id)owner options:nil] objectWithClass:cls];
 }
 
+- (id)objectWithClass:(Class)cls
+                owner:(id)owner
+              options:(NSDictionary *)options
+{
+    return [[self objectsWithOwner:(id)owner options:options] objectWithClass:cls];
+}
+
 - (NSArray *)objectsWithOwner:(id)owner options:(NSDictionary *)options {
     return [self instantiateWithOwner:owner options:nil];
 }

@@ -14,11 +14,9 @@
 
 #import "UIWindow+IDPExtensions.h"
 #import "NSString+IDPRandomName.h"
-
-#import "IDPMacros.h"
+#import "NSNotificationCenter+IDPExtensions.h"
 
 @interface AppDelegate ()
-@property (nonatomic, strong) IDPUsersViewController *usersController;
 
 @end
 
@@ -28,12 +26,10 @@
     UIWindow *window = [UIWindow fullScreenWindow];
     self.window = window;
     
-    self.usersController = [IDPUsersViewController viewController];
-    self.usersController.model = [IDPUserArrayModel new];
+    IDPUsersViewController *usersController = [IDPUsersViewController viewController];
+    usersController.model = [IDPUserArrayModel new];
     
-    //IDPAnimationViewController *controller = [IDPAnimationViewController viewController];
-    
-    window.rootViewController = self.usersController;
+    window.rootViewController = usersController;
     
     [window makeKeyAndVisible];
     
@@ -42,24 +38,32 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     IDPPrintMethod;
+    
+    [NSNotificationCenter postNotificationName:kIDPApplicationWillResignActive];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     IDPPrintMethod;
+    
+    [NSNotificationCenter postNotificationName:kIDPApplicationDidEnterBackground];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     IDPPrintMethod;
+    
+    [NSNotificationCenter postNotificationName:kIDPApplicationWillEnterForeground];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     IDPPrintMethod;
+    
+    [NSNotificationCenter postNotificationName:kIDPApplicationDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     IDPPrintMethod;
     
-    [(IDPArrayModel *)self.usersController.model save];
+    [NSNotificationCenter postNotificationName:kIDPApplicationWillTerminate];
 }
 
 @end

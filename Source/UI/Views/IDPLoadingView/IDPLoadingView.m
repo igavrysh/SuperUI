@@ -59,11 +59,7 @@ static const CGFloat    kIDPVisibleAlpha = 1.f;
           animated:(BOOL)animated
    completionBlock:(IDPVoidBlock)completionBlock
 {
-    IDPWeakify(self);
-
     IDPVoidBlock animations = ^{
-        IDPStrongify(self);
-        
         self.alpha = visible ? kIDPVisibleAlpha : kIDPHiddenAlpha;
     };
     
@@ -72,8 +68,6 @@ static const CGFloat    kIDPVisibleAlpha = 1.f;
     [UIView animateWithDuration:animated ? kIDPLoadingViewShowUpTime : 0.f
                      animations:animations
                      completion:^(BOOL finished) {
-                         IDPStrongify(self);
-                         
                          _visible = visible;
                          
                          IDPBlockPerform(completionBlock);

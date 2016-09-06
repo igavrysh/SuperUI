@@ -22,6 +22,8 @@
 		852569A91D7E0CE100E3EB35 /* IDPDispatchMacros.m in Sources */ = {isa = PBXBuildFile; fileRef = 852569A71D7E0CE100E3EB35 /* IDPDispatchMacros.m */; };
 		853F963A1D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 853F96391D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.m */; };
 		853F963B1D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 853F96391D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.m */; };
+		854E11FC1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 854E11FB1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m */; };
+		854E11FD1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 854E11FB1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m */; };
 		855022A91D73FA6100A81AAA /* IDPBlockTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 855022A81D73FA6100A81AAA /* IDPBlockTypes.m */; };
 		855022AA1D73FA6100A81AAA /* IDPBlockTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 855022A81D73FA6100A81AAA /* IDPBlockTypes.m */; };
 		85607A4A1D74F19E00F6D5E9 /* SUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85607A491D74F19E00F6D5E9 /* SUIView.m */; };
@@ -172,6 +174,8 @@
 		852569A71D7E0CE100E3EB35 /* IDPDispatchMacros.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPDispatchMacros.m; sourceTree = "<group>"; };
 		853F96381D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+IDPExtensions.h"; sourceTree = "<group>"; };
 		853F96391D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+IDPExtensions.m"; sourceTree = "<group>"; };
+		854E11FA1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+IDPExtensions.h"; sourceTree = "<group>"; };
+		854E11FB1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+IDPExtensions.m"; sourceTree = "<group>"; };
 		855022A71D73FA6100A81AAA /* IDPBlockTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPBlockTypes.h; sourceTree = "<group>"; };
 		855022A81D73FA6100A81AAA /* IDPBlockTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPBlockTypes.m; sourceTree = "<group>"; };
 		85607A481D74F19E00F6D5E9 /* SUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUIView.h; sourceTree = "<group>"; };
@@ -375,6 +379,15 @@
 				853F96391D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.m */,
 			);
 			path = NSFileManager;
+			sourceTree = "<group>";
+		};
+		854E11F91D7F715700A2A0A9 /* NSNotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				854E11FA1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.h */,
+				854E11FB1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m */,
+			);
+			path = NSNotificationCenter;
 			sourceTree = "<group>";
 		};
 		855022A61D73FA3600A81AAA /* IDPTypes */ = {
@@ -582,6 +595,7 @@
 		858238BF1D5B5DEB00623348 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				854E11F91D7F715700A2A0A9 /* NSNotificationCenter */,
 				853F96371D7D9F5E00AE2C50 /* NSFileManager */,
 				859D96831D7C5FD1005C05C6 /* IDPArrayChangeModel */,
 				8584F7081D7B5E140076D751 /* IDPArrayModel */,
@@ -1129,6 +1143,7 @@
 				853F963B1D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.m in Sources */,
 				859D968F1D7C5FD1005C05C6 /* IDPArrayChangeModel+IDPExtensions.m in Sources */,
 				8577950D1D6BA6A500C16BA4 /* UITableView+IDPExtensions.m in Sources */,
+				854E11FD1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m in Sources */,
 				857795181D6BAB3500C16BA4 /* IDPCompilerMacros.m in Sources */,
 				858239201D5B5DEB00623348 /* IDPUserView.m in Sources */,
 				856988001D5BE0DA00DBB5CE /* IDPArrayViewController.m in Sources */,
@@ -1143,6 +1158,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				854E11FC1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m in Sources */,
 				85607A4A1D74F19E00F6D5E9 /* SUIView.m in Sources */,
 				857795221D6BAE3300C16BA4 /* IDPBlockMacros.m in Sources */,
 				8582391F1D5B5DEB00623348 /* IDPUserView.m in Sources */,

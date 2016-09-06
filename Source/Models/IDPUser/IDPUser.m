@@ -11,15 +11,16 @@
 #import "IDPImageModel.h"
 
 #import "NSString+IDPRandomName.h"
+#import "NSArray+IDPArrayEnumerator.h"
 
 #import "IDPMacros.h"
 
 static NSString * const kIDPImageName = @"image_big";
 static NSString * const kIDPImageExtension = @"jpg";
 
-kIDPModelObjectsKey(kIDPUserNameKey);
-kIDPModelObjectsKey(kIDPUserSurnameKey);
-kIDPModelObjectsKey(kIDPUserURLKey);
+kIDPStringKeyDefinition(kIDPUserNameKey);
+kIDPStringKeyDefinition(kIDPUserSurnameKey);
+kIDPStringKeyDefinition(kIDPUserURLKey);
 
 @implementation IDPUser
 
@@ -40,14 +41,8 @@ kIDPModelObjectsKey(kIDPUserURLKey);
     return user;
 }
 
-+ (NSMutableArray *)usersWithCount:(NSUInteger)count {
-    NSMutableArray *users = [NSMutableArray new];
-    
-    for (int i = 0; i < count; i++) {
-        [users addObject:[IDPUser user]];
-    }
-    
-    return users;
++ (NSArray *)usersWithCount:(NSUInteger)count {
+    return [NSArray objectsWithCount:count block:^{ return [IDPUser user]; }];
 }
 
 #pragma mark - 

@@ -15,8 +15,8 @@ static NSString * const kIDPApplicationCacheDirectoryName = @"ApplicationCache";
 
 @implementation NSFileManager (IDPExtensions)
 
-+ (NSString *)library {
-    IDPFactoryBlock pathFactory = ^id(void) {
++ (NSString *)libraryPath {
+    IDPFactoryBlock pathFactory = ^{
         NSArray *directories = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,
                                                                    NSUserDomainMask,
                                                                    YES);
@@ -30,8 +30,8 @@ static NSString * const kIDPApplicationCacheDirectoryName = @"ApplicationCache";
 #pragma mark Class Methods
 
 + (NSString *)applicationCachePath {
-    IDPFactoryBlock pathFactory = ^id(void) {
-        NSString *domainPath = [NSFileManager library];
+    IDPFactoryBlock pathFactory = ^{
+        NSString *domainPath = [NSFileManager libraryPath];
         
         NSString *path = [domainPath stringByAppendingPathComponent:kIDPApplicationCacheDirectoryName];
         

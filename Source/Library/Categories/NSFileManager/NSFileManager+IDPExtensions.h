@@ -10,7 +10,7 @@
 
 @interface NSFileManager (IDPExtensions)
 
-+ (NSString *)library;
++ (NSString *)libraryPath;
 
 + (NSString *)applicationCachePath;
 

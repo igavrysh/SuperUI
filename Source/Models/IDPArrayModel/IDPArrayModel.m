@@ -13,11 +13,10 @@
 
 #import "NSArray+IDPArrayEnumerator.h"
 #import "NSMutableArray+IDPExtensions.h"
-#import "NSFileManager+IDPExtensions.h"
 
 #import "IDPMacros.h"
 
-kIDPModelObjectsKey(kIDPArrayModelObjectsKey);
+kIDPStringKeyDefinition(kIDPArrayModelObjectsKey);
 
 @interface IDPArrayModel ()
 @property (nonatomic, strong)   NSMutableArray  *mutableObjects;
@@ -27,21 +26,6 @@ kIDPModelObjectsKey(kIDPArrayModelObjectsKey);
 @implementation IDPArrayModel
 
 @dynamic count;
-
-#pragma mark  -
-#pragma mark Class Methods
-
-+ (NSString *)modelPlistName {
-    return [NSString stringWithFormat:@"%@.plist", NSStringFromClass([self class])];
-}
-
-+ (NSString *)cachePath {
-    return [[NSFileManager applicationCachePath] stringByAppendingString:[self modelPlistName]];
-}
-
-+ (BOOL)cacheExists {
-    return [[NSFileManager defaultManager] fileExistsAtPath:[self cachePath]];
-}
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -178,15 +162,13 @@ kIDPModelObjectsKey(kIDPArrayModelObjectsKey);
 }
 
 - (void)save {
-    [NSKeyedArchiver archiveRootObject:self.objects
-                                toFile:[[self class] cachePath]];
 }
 
 #pragma mark - 
 #pragma mark Private Methods
 
 - (void)notifyOfModelUpdateWithChange:(IDPArrayChangeModel *)changeModel {
-    [self notifyOfStateChange:IDPChangeableModelDidUpdateWithChangeModel
+    [self notifyOfStateChange:IDPArrayModelDidUpdateWithChangeModel
                    withObject:changeModel];
 }
 
@@ -206,10 +188,10 @@ kIDPModelObjectsKey(kIDPArrayModelObjectsKey);
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
-        case IDPChangeableModelDidUpdateWithChangeModel:
+        case IDPArrayModelDidUpdateWithChangeModel:
             return @selector(model:didUpdateWithChangeModel:);
             
-        case IDPChangeableModelDidUpdate:
+        case IDPArrayModelDidUpdate:
             return @selector(modelDidUpdate:);
         
         default:
