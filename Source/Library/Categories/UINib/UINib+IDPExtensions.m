@@ -39,18 +39,7 @@
                 owner:(id)owner
               options:(NSDictionary *)options
 {
-    return [self objectWithClass:cls
-                           owner:owner
-                         options:options
-                          bundle:nil];
-}
-
-+ (id)objectWithClass:(Class)cls
-                owner:(id)owner
-              options:(NSDictionary *)options
-               bundle:(NSBundle *)bundle
-{
-    UINib *nib = [self nibWithClass:cls bundle:bundle];
+    UINib *nib = [self nibWithClass:cls bundle:nil];
     
     return [nib objectWithClass:cls owner:owner];
 }
