@@ -55,7 +55,7 @@ const NSUInteger kIDPArrayModelSampleSize = 5;
         [self addObjects:users];
     }];
     
-    self.state = IDPLoadableModelLoaded;
+    self.state = IDPLoadableModelDidLoad;
 }
 
 @end

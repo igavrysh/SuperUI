@@ -25,7 +25,7 @@
     @synchronized(self) {
         NSUInteger state = self.state;
         
-        if (IDPLoadableModelLoaded == state || IDPLoadableModelWillLoad == state) {
+        if (IDPLoadableModelDidLoad == state || IDPLoadableModelWillLoad == state) {
             [self notifyOfStateChange:state];
             return;
         }
@@ -47,13 +47,13 @@
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
-        case IDPLoadableModelLoaded:
+        case IDPLoadableModelDidLoad:
             return @selector(modelDidLoad:);
             
         case IDPLoadableModelWillLoad:
             return @selector(modelWillLoad:);
             
-        case IDPLoadableModelFailedLoading:
+        case IDPLoadableModelDidFailLoading:
             return @selector(modelDidFailLoading:);
             
         default:

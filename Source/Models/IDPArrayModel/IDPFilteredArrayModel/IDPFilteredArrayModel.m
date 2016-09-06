@@ -64,10 +64,10 @@
         [self substituteObjectsWithObjects:filteredObjects];
         
         [self performBlockWithoutNotification:^{
-            self.state = IDPChangeableModelUpdated;
+            self.state = IDPChangeableModelDidUpdate;
         }];
         
-        [self notifyOfStateChange:IDPChangeableModelUpdated];
+        [self notifyOfStateChange:IDPChangeableModelDidUpdate];
     });
 }
 
@@ -104,7 +104,7 @@
     
     [self substituteObjectsWithObjects:self.arrayModel.objects];
     
-    self.state = IDPLoadableModelLoaded;
+    self.state = IDPLoadableModelDidLoad;
 }
 
 - (void)modelWillLoad:(IDPArrayModel *)array {
@@ -116,7 +116,7 @@
 - (void)modelDidFailLoading:(IDPArrayModel *)array {
     IDPPrintMethod;
     
-    self.state = IDPLoadableModelFailedLoading;
+    self.state = IDPLoadableModelDidFailLoading;
 }
 
 @end

@@ -186,7 +186,7 @@ kIDPModelObjectsKey(kIDPArrayModelObjectsKey);
 #pragma mark Private Methods
 
 - (void)notifyOfModelUpdateWithChange:(IDPArrayChangeModel *)changeModel {
-    [self notifyOfStateChange:IDPChangeableModelUpdatedWithChangeModel
+    [self notifyOfStateChange:IDPChangeableModelDidUpdateWithChangeModel
                    withObject:changeModel];
 }
 
@@ -206,10 +206,10 @@ kIDPModelObjectsKey(kIDPArrayModelObjectsKey);
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
-        case IDPChangeableModelUpdatedWithChangeModel:
+        case IDPChangeableModelDidUpdateWithChangeModel:
             return @selector(model:didUpdateWithChangeModel:);
             
-        case IDPChangeableModelUpdated:
+        case IDPChangeableModelDidUpdate:
             return @selector(modelDidUpdate:);
         
         default:
