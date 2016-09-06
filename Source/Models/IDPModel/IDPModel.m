@@ -39,7 +39,7 @@
 }
 
 - (void)performLoading {
-    
+    self.state = IDPModelDidLoad;
 }
 
 #pragma mark -

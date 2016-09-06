@@ -8,6 +8,7 @@
 
 #import "SUIView.h"
 
+#import "IDPGCDQueue.h"
 #import "IDPMacros.h"
 
 @implementation SUIView
@@ -53,11 +54,15 @@
 #pragma mark IDPLoadableModelObserver
 
 - (void)modelDidLoad:(IDPModel *)model {
-    self.loadingViewVisible = NO;
+    IDPAsyncPerformInMainQueue(^{
+        self.loadingViewVisible = NO;
+    });
 }
 
 - (void)modelWillLoad:(IDPModel *)model {
-    self.loadingViewVisible = YES;
+    IDPAsyncPerformInMainQueue(^{
+        self.loadingViewVisible = YES;
+    });
 }
 
 @end

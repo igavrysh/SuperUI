@@ -63,9 +63,7 @@
 }
 
 - (void)setLoadingViewVisible:(BOOL)loadingViewVisible {
-    IDPAsyncPerformInMainQueue(^{
-        self.loadingView.visible = loadingViewVisible;
-    });
+    self.loadingView.visible = loadingViewVisible;
 }
 
 - (BOOL)isLoadingViewVisible {
