@@ -19,6 +19,8 @@
 
 @implementation IDPView
 
+@dynamic loadingViewVisible;
+
 #pragma mark -
 #pragma mark Class Methods
 
@@ -61,8 +63,6 @@
 }
 
 - (void)setLoadingViewVisible:(BOOL)loadingViewVisible {
-    IDPPrintMethod;
-    
     IDPAsyncPerformInMainQueue(^{
         self.loadingView.visible = loadingViewVisible;
     });

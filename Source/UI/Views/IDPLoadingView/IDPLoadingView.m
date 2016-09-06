@@ -26,7 +26,7 @@ static const CGFloat    kIDPVisibleAlpha = 1.f;
 #pragma mark Class Methods
 
 + (instancetype)loadingViewInSuperview:(UIView *)superview {
-    IDPLoadingView *view = [NSBundle objectFromMainBundleWithClass:[self class]];
+    IDPLoadingView *view = [NSBundle objectWithClass:[self class]];
     
     view.frame = superview.bounds;
     
@@ -72,6 +72,8 @@ static const CGFloat    kIDPVisibleAlpha = 1.f;
     [UIView animateWithDuration:animated ? kIDPLoadingViewShowUpTime : 0.f
                      animations:animations
                      completion:^(BOOL finished) {
+                         IDPStrongify(self);
+                         
                          _visible = visible;
                          
                          IDPBlockPerform(completionBlock);

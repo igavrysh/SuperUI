@@ -17,7 +17,7 @@
 
 #import "IDPMacros.h"
 
-static NSString * const kIDPArrayModelObjectsKey = @"ArrayModelObjects";
+kIDPModelObjectsKey(kIDPArrayModelObjectsKey);
 
 @interface IDPArrayModel ()
 @property (nonatomic, strong)   NSMutableArray  *mutableObjects;

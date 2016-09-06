@@ -8,12 +8,14 @@
 
 #import "IDPCompilerMacros.h"
 
+#define kIDPModelObjectsKey(key)    static NSString * const key = @#key
+
 #define IDPEmpty
 
-#define IDPDefineBaseViewProperty(propertyName, viewClass) \
+#define IDPDefineBaseViewProperty(viewClass, propertyName) \
     @property (nonatomic, readonly) viewClass     *propertyName;
 
-#define IDPBaseViewGetterSynthesize(propertyName, viewClass) \
+#define IDPBaseViewGetterSynthesize(viewClass, propertyName) \
     @dynamic propertyName; \
     \
     - (viewClass *)propertyName { \
@@ -24,15 +26,15 @@
         return nil; \
     }
 
-#define IDPViewControllerBaseViewProperty(viewControllerClass, propertyName, baseViewClass) \
+#define IDPViewControllerBaseViewProperty(viewControllerClass, baseViewClass, propertyName) \
     @interface viewControllerClass (__IDPPrivateBaseView) \
-    IDPDefineBaseViewProperty(propertyName, baseViewClass); \
+    IDPDefineBaseViewProperty(baseViewClass, propertyName); \
     \
     @end \
     \
     @implementation viewControllerClass (__IDPPrivateBaseView) \
     \
-    IDPBaseViewGetterSynthesize(propertyName, baseViewClass); \
+    IDPBaseViewGetterSynthesize(baseViewClass, propertyName); \
     \
     @end \
 

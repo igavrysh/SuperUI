@@ -10,9 +10,23 @@
 
 @interface NSBundle (IDPExtensions)
 
-+ (id)objectFromMainBundleWithClass:(Class)class;
++ (id)objectWithClass:(Class)cls;
 
-+ (id)objectFromBundle:(NSBundle *)bundle
-             withClass:(Class)class;
++ (id)objectWithClass:(Class)cls
+                owner:(id)owner;
+
++ (id)objectWithClass:(Class)cls
+                owner:(id)owner
+              options:(NSDictionary *)options;
+
+
+- (id)objectWithClass:(Class)cls;
+
+- (id)objectWithClass:(Class)cls
+                owner:(id)owner;
+
+- (id)objectWithClass:(Class)cls
+                owner:(id)owner
+              options:(NSDictionary *)options;
 
 @end

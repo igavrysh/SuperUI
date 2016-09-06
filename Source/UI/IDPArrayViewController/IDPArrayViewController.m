@@ -22,27 +22,26 @@
 #import "IDPMacros.h"
 #import "IDPCompilerMacros.h"
 
-NSString * const kIDPRemoveButtonText = @"Remove";
+static NSString * const kIDPRemoveButtonText = @"Remove";
 
 @interface IDPArrayViewController ()
 @property (nonatomic, strong)   IDPArrayModel               *arrayModel;
-@property (nonatomic, readonly) IDPArrayView                *arrayView;
 
 - (void)filterDataUsingFilterString:(NSString *)filter;
 - (void)reloadTableView;
 
 @end
 
-@implementation IDPArrayViewController
+IDPViewControllerBaseViewProperty(IDPArrayViewController, IDPArrayView, arrayView);
 
-@dynamic arrayView;
+@implementation IDPArrayViewController
 
 #pragma mark -
 #pragma mark Accessors
 
 - (void)setModel:(IDPArrayModel *)model {
-    if (super.model != model) {
-        super.model = [[IDPFilteredUserArrayModel alloc] initWithArrayModel:model];
+    if ([super model] != model) {
+        [super setModel:[[IDPFilteredUserArrayModel alloc] initWithArrayModel:model]];
         self.arrayModel = model;
         
         if (self.isViewLoaded) {
@@ -70,7 +69,9 @@ NSString * const kIDPRemoveButtonText = @"Remove";
 #pragma mark Private Methods
 
 - (void)filterDataUsingFilterString:(NSString *)filter {
-    ((IDPFilteredUserArrayModel *)self.model).filter = filter;
+    IDPFilteredUserArrayModel *model = self.model;
+    
+    model.filter = filter;
 }
 
 - (void)reloadTableView {
@@ -177,8 +178,8 @@ NSString * const kIDPRemoveButtonText = @"Remove";
 }
 
 - (NSString *)                              tableView:(UITableView *)tableView
-    titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{    
     return kIDPRemoveButtonText;
 }
 

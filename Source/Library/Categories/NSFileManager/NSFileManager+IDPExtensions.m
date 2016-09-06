@@ -8,28 +8,32 @@
 
 #import "NSFileManager+IDPExtensions.h"
 
+#import "IDPDispatchMacros.h"
+#import "IDPBlockTypes.h"
+
 static NSString * const kIDPApplicationCacheDirectoryName = @"ApplicationCache";
 
 @implementation NSFileManager (IDPExtensions)
 
-+ (NSString *)libraryUserDomainPath {
-    NSArray *directories = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,
-                                                               NSUserDomainMask,
-                                                               YES);
-    return [directories firstObject];
++ (NSString *)library {
+    IDPFactoryBlock pathFactory = ^id(void) {
+        NSArray *directories = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,
+                                                                   NSUserDomainMask,
+                                                                   YES);
+        return [directories firstObject];
+    };
+
+    IDPSetAndReturnStaticVariableWithBlock(pathFactory);
 }
 
 #pragma mark -
 #pragma mark Class Methods
 
-+ (NSString *)applicaitonCachePath {
-    static NSString *path = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSString *domainPath = [NSFileManager libraryUserDomainPath];
++ (NSString *)applicationCachePath {
+    IDPFactoryBlock pathFactory = ^id(void) {
+        NSString *domainPath = [NSFileManager library];
         
-        path = [domainPath stringByAppendingPathComponent:kIDPApplicationCacheDirectoryName];
+        NSString *path = [domainPath stringByAppendingPathComponent:kIDPApplicationCacheDirectoryName];
         
         NSFileManager *fileManager = [self defaultManager];
         
@@ -39,9 +43,11 @@ static NSString * const kIDPApplicationCacheDirectoryName = @"ApplicationCache";
                                     attributes:nil
                                          error:nil];
         }
-    });
+        
+        return path;
+    };
     
-    return path;
+    IDPSetAndReturnStaticVariableWithBlock(pathFactory);
 }
 
 @end

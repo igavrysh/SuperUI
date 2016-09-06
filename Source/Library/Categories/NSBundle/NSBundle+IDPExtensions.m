@@ -9,20 +9,45 @@
 #import "NSBundle+IDPExtensions.h"
 
 #import "UINib+IDPExtensions.h"
+#import "NSArray+IDPExtensions.h"
 
 @implementation NSBundle (IDPExtensions)
 
 #pragma mark -
 #pragma mark Class Methods
 
-+ (id)objectFromMainBundleWithClass:(Class)class {
-    return [self objectFromBundle:[NSBundle mainBundle] withClass:class];
++ (id)objectWithClass:(Class)cls {
+    return [self objectWithClass:cls owner:nil options:nil];
 }
 
-+ (id)objectFromBundle:(NSBundle *)bundle
-             withClass:(Class)class
++ (id)objectWithClass:(Class)cls owner:(id)owner {
+    return [self objectWithClass:cls owner:owner options:nil];
+}
+
++ (id)objectWithClass:(Class)cls
+                owner:(id)owner
+              options:(NSDictionary *)options
 {
-    return [UINib objectWithClass:class inBundle:bundle];
+    return [[self mainBundle] objectWithClass:cls owner:owner options:options];
+}
+
+#pragma mark -
+#pragma mark Public Methods
+
+- (id)objectWithClass:(Class)cls {
+    return [self objectWithClass:cls owner:nil options:nil];
+}
+
+- (id)objectWithClass:(Class)cls owner:(id)owner {
+    return [self objectWithClass:cls owner:owner options:nil];
+}
+
+- (id)objectWithClass:(Class)cls owner:(id)owner options:(NSDictionary *)options {
+    NSString *nibName = NSStringFromClass(cls);
+    
+    NSArray *objects = [self loadNibNamed:nibName owner:owner options:options];
+    
+    return [objects objectWithClass:cls];
 }
 
 @end

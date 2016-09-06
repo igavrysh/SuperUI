@@ -26,20 +26,29 @@
 }
 
 + (id)objectWithClass:(Class)cls {
-    return [self objectWithClass:cls inBundle:nil owner:nil];
+    return [self objectWithClass:cls owner:nil];
 }
 
 + (id)objectWithClass:(Class)cls owner:(id)owner {
-    return [self objectWithClass:cls inBundle:nil owner:owner];
-}
-
-+ (id)objectWithClass:(Class)cls inBundle:(NSBundle *)bundle {
-    return [self objectWithClass:cls inBundle:bundle owner:nil];
+    return [self objectWithClass:cls
+                           owner:owner
+                         options:nil];
 }
 
 + (id)objectWithClass:(Class)cls
-             inBundle:(NSBundle *)bundle
                 owner:(id)owner
+              options:(NSDictionary *)options
+{
+    return [self objectWithClass:cls
+                           owner:owner
+                         options:options
+                          bundle:nil];
+}
+
++ (id)objectWithClass:(Class)cls
+                owner:(id)owner
+              options:(NSDictionary *)options
+               bundle:(NSBundle *)bundle
 {
     UINib *nib = [self nibWithClass:cls bundle:bundle];
     
@@ -48,6 +57,10 @@
 
 #pragma mark -
 #pragma mark Public methods
+
+- (id)objectWithClass:(Class)cls {
+    return [self objectWithClass:cls owner:nil];
+}
 
 - (id)objectWithClass:(Class)cls owner:(id)owner {
     return [[self objectsWithOwner:(id)owner options:nil] objectWithClass:cls];

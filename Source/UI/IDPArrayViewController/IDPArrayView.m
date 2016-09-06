@@ -14,8 +14,8 @@
 
 #import "IDPMacros.h"
 
-NSString * const kIDPEditButtonItemEdit = @"Edit";
-NSString * const kIDPEditButtonItemDone = @"Done";
+static NSString * const kIDPEditButtonItemEdit = @"Edit";
+static NSString * const kIDPEditButtonItemDone = @"Done";
 
 @interface IDPArrayView ()
 

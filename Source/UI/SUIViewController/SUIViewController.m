@@ -13,7 +13,7 @@
 #pragma mark - 
 #pragma mark Accessors
 
-IDPBaseViewGetterSynthesize(rootView, SUIView);
+IDPBaseViewGetterSynthesize(SUIView, rootView);
 
 - (void)setModel:(IDPModel *)model {
     if (_model != model) {

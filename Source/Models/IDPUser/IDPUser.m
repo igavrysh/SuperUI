@@ -12,13 +12,14 @@
 
 #import "NSString+IDPRandomName.h"
 
+#import "IDPMacros.h"
+
 static NSString * const kIDPImageName = @"image_big";
 static NSString * const kIDPImageExtension = @"jpg";
 
-static NSString * const kIDPUserNameKey = @"IDPUserNameKey";
-static NSString * const kIDPUserSurnameKey = @"IDPUserSurnameKey";
-static NSString * const kIDPUserURLKey = @"IDPUserURLKey";
-
+kIDPModelObjectsKey(kIDPUserNameKey);
+kIDPModelObjectsKey(kIDPUserSurnameKey);
+kIDPModelObjectsKey(kIDPUserURLKey);
 
 @implementation IDPUser
 

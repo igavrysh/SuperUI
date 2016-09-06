@@ -16,7 +16,7 @@
 @interface SUIViewController : UIViewController <IDPLoadableModelObserver>
 @property (nonatomic, strong) id    model;
 
-IDPDefineBaseViewProperty(rootView, SUIView);
+IDPDefineBaseViewProperty(SUIView, rootView);
 
 @end
 

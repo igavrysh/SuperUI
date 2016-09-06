@@ -32,14 +32,13 @@
 
 - (NSPredicate *)predicate {
     return [NSPredicate predicateWithBlock:^BOOL(IDPUser *user, NSDictionary *bindings) {
-        if (!self.filter || [self.filter isEqualToString:@""]) {
+        if (![self.filter length]) {
             return YES;
         }
         
-        NSUInteger res = [user.name rangeOfString:self.filter
-                               options:NSCaseInsensitiveSearch].location;
+        NSRange range = [user.name rangeOfString:self.filter options:NSCaseInsensitiveSearch];
         
-        return NSNotFound != res;
+        return NSNotFound != range.location;
     }];
 }
 

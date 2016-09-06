@@ -26,7 +26,7 @@
 }
 
 + (NSString *)cachePath {
-    return [[NSFileManager applicaitonCachePath] stringByAppendingString:[self modelPlistName]];
+    return [[NSFileManager applicationCachePath] stringByAppendingString:[self modelPlistName]];
 }
 
 + (BOOL)cacheExists {
