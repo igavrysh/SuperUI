@@ -19,21 +19,6 @@
 @implementation IDPModel
 
 #pragma mark -
-#pragma mark Class Methods
-
-+ (NSString *)modelPlistName {
-    return [NSString stringWithFormat:@"%@.plist", NSStringFromClass([self class])];
-}
-
-+ (NSString *)cachePath {
-    return [[NSFileManager applicationCachePath] stringByAppendingString:[self modelPlistName]];
-}
-
-+ (BOOL)cacheExists {
-    return [[NSFileManager defaultManager] fileExistsAtPath:[self cachePath]];
-}
-
-#pragma mark -
 #pragma mark Public Methods
 
 - (void)load {
@@ -51,10 +36,6 @@
     IDPAsyncPerformInBackgroundQueue(^{
         [self performLoading];
     });
-}
-
-- (void)save {
-    
 }
 
 - (void)performLoading {

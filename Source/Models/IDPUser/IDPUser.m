@@ -40,6 +40,16 @@ kIDPModelObjectsKey(kIDPUserURLKey);
     return user;
 }
 
++ (NSMutableArray *)usersWithCount:(NSUInteger)count {
+    NSMutableArray *users = [NSMutableArray new];
+    
+    for (int i = 0; i < count; i++) {
+        [users addObject:[IDPUser user]];
+    }
+    
+    return users;
+}
+
 #pragma mark - 
 #pragma mark Accessors
 

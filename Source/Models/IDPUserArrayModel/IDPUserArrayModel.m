@@ -45,18 +45,14 @@ const NSUInteger kIDPArrayModelSampleSize = 5;
     //[NSThread sleepForTimeInterval:3.0f];
     
     NSMutableArray *users = [NSMutableArray new];
-    if ([IDPUserArrayModel cacheExists]) {
+    if ([[self class] cacheExists]) {
         users = [NSKeyedUnarchiver unarchiveObjectWithFile:[[self class] cachePath]];
     } else {
-        for (NSUInteger i = 0; i < kIDPArrayModelSampleSize; i++) {
-            [users addObject:[IDPUser user]];
-        }
+        users = [IDPUser usersWithCount:kIDPArrayModelSampleSize];
     }
     
     [self performBlockWithoutNotification:^{
-        for (NSUInteger i = 0; i < users.count; i++) {
-            [self insertObject: users[i] atIndex:i];
-        }
+        [self addObjects:users];
     }];
     
     self.state = IDPLoadableModelLoaded;

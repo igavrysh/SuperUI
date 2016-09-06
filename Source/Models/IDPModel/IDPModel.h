@@ -31,12 +31,7 @@ typedef NS_ENUM(NSUInteger, IDPLoadableModelState) {
 
 @interface IDPModel : IDPObservableObject
 
-+ (NSString *)modelPlistName;
-+ (NSString *)cachePath;
-+ (BOOL)cacheExists;
-
 - (void)load;
-- (void)save;
 
 - (void)performLoading;
 

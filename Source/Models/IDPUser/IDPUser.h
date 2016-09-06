@@ -20,5 +20,6 @@
 @property (nonatomic, readonly) IDPImageModel   *imageModel;
 
 + (instancetype)user;
++ (NSMutableArray *)usersWithCount:(NSUInteger)count;
 
 @end
