@@ -8,13 +8,17 @@
 
 #import "IDPCompilerMacros.h"
 
+#define kIDPStringKeyDefinition(key)    static NSString * const key = @#key
+
 #define IDPEmpty
 
-#define IDPDefineBaseViewProperty(propertyName, viewClass) \
+#define IDPDefineBaseViewProperty(viewClass, propertyName) \
     @property (nonatomic, readonly) viewClass     *propertyName;
 
-#define IDPBaseViewGetterSynthesize(selector, viewClass) \
-    - (viewClass *)selector { \
+#define IDPBaseViewGetterSynthesize(viewClass, propertyName) \
+    @dynamic propertyName; \
+    \
+    - (viewClass *)propertyName { \
         if ([self isViewLoaded] && [self.view isKindOfClass:[viewClass class]]) { \
             return (viewClass *)self.view; \
         } \
@@ -22,17 +26,15 @@
         return nil; \
     }
 
-#define IDPViewControllerBaseViewProperty(viewControllerClass, propertyName, baseViewClass) \
+#define IDPViewControllerBaseViewProperty(viewControllerClass, baseViewClass, propertyName) \
     @interface viewControllerClass (__IDPPrivateBaseView) \
-    IDPDefineBaseViewProperty(propertyName, baseViewClass); \
+    IDPDefineBaseViewProperty(baseViewClass, propertyName); \
     \
     @end \
     \
     @implementation viewControllerClass (__IDPPrivateBaseView) \
     \
-    @dynamic propertyName; \
-    \
-    IDPBaseViewGetterSynthesize(propertyName, baseViewClass); \
+    IDPBaseViewGetterSynthesize(baseViewClass, propertyName); \
     \
     @end \
 
@@ -44,7 +46,7 @@
         block(__VA_ARGS__); \
     } \
 
-#define IDPPrintMethod NSLog(@"%@", NSStringFromSelector(_cmd))
+#define IDPPrintMethod NSLog(@"%@ -> %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd))
 
 // you should only call this method after you called weakify for the same variable
 #define IDPStrongify(variable) \

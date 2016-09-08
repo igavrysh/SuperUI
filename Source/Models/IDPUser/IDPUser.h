@@ -11,7 +11,7 @@
 
 @class IDPImageModel;
 
-@interface IDPUser : NSObject <NSCopying>
+@interface IDPUser : NSObject <NSCopying, NSCoding>
 @property (nonatomic, copy)     NSString        *name;
 @property (nonatomic, copy)     NSString        *surname;
 @property (nonatomic, readonly) NSString        *fullName;
@@ -20,5 +20,6 @@
 @property (nonatomic, readonly) IDPImageModel   *imageModel;
 
 + (instancetype)user;
++ (NSArray *)usersWithCount:(NSUInteger)count;
 
 @end

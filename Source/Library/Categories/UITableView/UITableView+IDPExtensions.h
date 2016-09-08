@@ -14,8 +14,8 @@ typedef void (^IDPApplyChangeBlock)(void);
 
 @interface UITableView (IDPExtensions)
 
-- (id)cellWithClass:(Class)class;
-- (id)cellWithClass:(Class)class bundle:(NSBundle *)bundle;
+- (id)cellWithClass:(Class)cls;
+- (id)cellWithClass:(Class)cls bundle:(NSBundle *)bundle;
 
 - (void)applyChangeModel:(IDPArrayChangeModel *)model;
 - (void)applyChangeModel:(IDPArrayChangeModel *)model

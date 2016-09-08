@@ -13,5 +13,4 @@
 @interface IDPUserViewController : UIViewController
 @property (nonatomic, strong)   IDPUser     *user;
 
-
 @end

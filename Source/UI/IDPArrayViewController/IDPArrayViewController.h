@@ -8,24 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
-#import "IDPMacros.h"
 #import "IDPArrayView.h"
 #import "IDPArrayModel.h"
+#import "SUIViewController.h"
 
 #import "UIViewController+IDPExtensions.h"
+#import "IDPMacros.h"
 
 @protocol IDPModelCell
 @property (nonatomic, strong) id    model;
 
 @end
 
-@interface IDPArrayViewController : UIViewController <
+@interface IDPArrayViewController : SUIViewController <
     UITableViewDelegate,
     UITableViewDataSource,
-    IDPArrayModelObserver,
-    UISearchBarDelegate
+    UISearchBarDelegate,
+    IDPChangeableModelObserver
 >
-@property (nonatomic, strong) IDPArrayModel *arrayModel;
 
 - (IBAction)onAddButton:(id)sender;
 - (IBAction)onEditButton:(id)sender;

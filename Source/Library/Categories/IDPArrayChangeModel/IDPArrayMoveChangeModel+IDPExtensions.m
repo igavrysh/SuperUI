@@ -8,6 +8,8 @@
 
 #import "IDPArrayMoveChangeModel+IDPExtensions.h"
 
+#import "IDPArrayModel.h"
+
 #import "NSIndexPath+IDPExtensions.h"
 #import "UITableView+IDPExtensions.h"
 
@@ -19,6 +21,20 @@
 - (void)applyToTableView:(UITableView *)tableView
         withRowAnimation:(UITableViewRowAnimation) animation
 {
+}
+
+- (void)applyToArrayModel:(IDPArrayModel *)arrayModel {
+    IDPArrayModel *applyArrayModel = self.arrayModel;
+    NSUInteger toIndex = self.index;
+    NSUInteger fromIndex = self.fromIndex;
+    
+    id toObject = applyArrayModel[toIndex];
+    
+    if (self.arrayModel.count == arrayModel.count
+        && arrayModel[fromIndex] == toObject)
+    {
+        [arrayModel moveObjectToIndex:toIndex fromIndex:fromIndex];
+    }
 }
 
 @end

@@ -10,8 +10,6 @@
 
 #import "IDPArrayChangeModel.h"
 #import "IDPArrayInsertChangeModel.h"
-#import "IDPBlockMacros.h"
-#import "IDPReturnMacros.h"
 
 #import "UINib+IDPExtensions.h"
 #import "IDPArrayChangeModel+IDPExtensions.h"
@@ -20,23 +18,26 @@
 #import "IDPArrayMoveChangeModel+IDPExtensions.h"
 #import "IDPArrayReplaceChangeModel+IDPExtensions.h"
 
+#import "IDPBlockMacros.h"
+#import "IDPReturnMacros.h"
+
 @implementation UITableView (IDPExtensions)
 
 #pragma mark - 
 #pragma mark Public methods
 
-- (id)cellWithClass:(Class)class {
-    return [self cellWithClass:class bundle:nil];
+- (id)cellWithClass:(Class)cls {
+    return [self cellWithClass:cls bundle:nil];
 }
 
-- (id)cellWithClass:(Class)class bundle:(NSBundle *)bundle; {
-    NSString *cellClass = NSStringFromClass(class);
+- (id)cellWithClass:(Class)cls bundle:(NSBundle *)bundle; {
+    NSString *cellClass = NSStringFromClass(cls);
     
     UITableViewCell *cell = [self dequeueReusableCellWithIdentifier:cellClass];
     
     if (!cell) {
-        UINib *nib = [UINib nibWithClass:class bundle:bundle];
-        cell = [nib objectWithClass:class];
+        UINib *nib = [UINib nibWithClass:cls bundle:bundle];
+        cell = [nib objectWithClass:cls owner:self];
     }
     
     return cell;

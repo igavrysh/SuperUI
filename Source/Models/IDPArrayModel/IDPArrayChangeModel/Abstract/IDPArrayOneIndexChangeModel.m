@@ -8,8 +8,11 @@
 
 #import "IDPArrayOneIndexChangeModel.h"
 
+#import "IDPArrayModel.h"
+
 @interface IDPArrayOneIndexChangeModel ()
-@property (nonatomic, assign) NSUInteger index;
+@property (nonatomic, assign) NSUInteger        index;
+@property (nonatomic, strong) IDPArrayModel     *arrayModel;
 
 @end
 
@@ -18,17 +21,25 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (instancetype)modelWithIndex:(NSUInteger)index {
-    return [[self alloc] initWithIndex:index];
++ (instancetype)modelWithArrayModel:(IDPArrayModel *)arrayModel
+                              index:(NSUInteger)index
+
+{
+    return [[self alloc] initWithArrayModel:arrayModel
+                                      index:index];
 }
 
 #pragma mark -
 #pragma mark Public Methods
 
-- (instancetype)initWithIndex:(NSUInteger)index {
+- (instancetype)initWithArrayModel:(IDPArrayModel *)arrayModel
+                             index:(NSUInteger)index
+
+{
     self = [super init];
 
     self.index = index;
+    self.arrayModel = arrayModel;
     
     return self;
 }

@@ -9,65 +9,51 @@
 #import "IDPArrayViewController.h"
 
 #import "IDPGCDQueue.h"
-#import "IDPCompilerMacros.h"
-#import "IDPArrayView.h"
-#import "IDPUserCell.h"
 #import "IDPUser.h"
 #import "IDPArrayModel.h"
 #import "IDPArrayChangeModel.h"
-#import "IDPMacros.h"
+#import "IDPFilteredUserArrayModel.h"
+#import "IDPUserCell.h"
+#import "IDPArrayView.h"
+#import "IDPLoadingView.h"
 
 #import "UITableView+IDPExtensions.h"
 
-NSString * const kIDPRemoveButtonText = @"Remove";
+#import "IDPMacros.h"
+#import "IDPCompilerMacros.h"
 
-IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayView)
+static NSString * const kIDPRemoveButtonText = @"Remove";
 
 @interface IDPArrayViewController ()
-@property (nonatomic, strong) IDPArrayModel *filteredModel;
+@property (nonatomic, strong)   IDPArrayModel               *arrayModel;
 
 - (void)filterDataUsingFilterString:(NSString *)filter;
+- (void)reloadTableView;
 
 @end
 
-@implementation IDPArrayViewController
+IDPViewControllerBaseViewProperty(IDPArrayViewController, IDPArrayView, arrayView);
 
-@synthesize arrayModel = _arrayModel;
+@implementation IDPArrayViewController
 
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setArrayModel:(IDPArrayModel *)arrayModel {
-    if (_arrayModel != arrayModel) {
-        [_arrayModel removeObserver:self];
-        [_filteredModel removeObserver:self];
-        
-        _arrayModel = arrayModel;
-        self.filteredModel = nil;
-        
-        [arrayModel addObserver:self];
+- (void)setModel:(IDPArrayModel *)model {
+    if ([super model] != model) {
+        [super setModel:[[IDPFilteredUserArrayModel alloc] initWithArrayModel:model]];
+        self.arrayModel = model;
         
         if (self.isViewLoaded) {
+            self.rootView.model = self.model;
+            
             [self.arrayModel load];
         }
     }
 }
 
-- (IDPArrayModel *)arrayModel {
-    return self.arrayView.filtered && _filteredModel ? _filteredModel : _arrayModel;
-}
-
-#pragma mark -
-#pragma mark View Lifecycle
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    [self.arrayModel load];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (IDPArrayView *)arrayView {
+    return (IDPArrayView *)self.rootView;
 }
 
 #pragma mark -
@@ -83,60 +69,59 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 #pragma mark Private Methods
 
 - (void)filterDataUsingFilterString:(NSString *)filter {
-    IDPWeakify(self);
+    IDPFilteredUserArrayModel *model = self.model;
     
-    IDPAsyncPerformInBackgroundQueue(^{
-        IDPStrongify(self);
-        
-        if (![filter isEqualToString:@""]) {
-            self.arrayView.filtered = YES;
-            
-            self.filteredModel = [_arrayModel filteredArrayUsingFilterString:filter];
-        } else {
-            self.arrayView.filtered = NO;
-            
-            self.filteredModel = nil;
-        }
-        
-        IDPAsyncPerformInMainQueue(^{
-            [self.arrayView.tableView reloadData];
-        });
-    });
+    model.filter = filter;
 }
 
-#pragma mark -
-#pragma mark IDPArrayModelObserver
-
-- (void)        arrayModel:(IDPArrayModel *)array
-  didUpdateWithChangeModel:(IDPArrayChangeModel *)changeModel;
-{
-    IDPPrintMethod;
-    
+- (void)reloadTableView {
     IDPWeakify(self);
     IDPAsyncPerformInMainQueue(^{
         IDPStrongifyAndReturnIfNil(self);
-        [self.arrayView.tableView applyChangeModel:changeModel];
-    });
-}
 
-- (void)arrayModelDidLoad:(IDPArrayModel *)array
-{
-    IDPPrintMethod;
-    
-    IDPWeakify(self);
-    IDPAsyncPerformInMainQueue(^{
-        IDPStrongifyAndReturnIfNil(self);
         [self.arrayView.tableView reloadData];
     });
 }
 
-- (void)arrayModelWillLoad:(IDPArrayModel *)array
+#pragma mark -
+#pragma mark IDPChangeableModelObserver
+
+- (void)            model:(IDPArrayModel *)array
+ didUpdateWithChangeModel:(IDPArrayChangeModel *)changeModel
 {
+    IDPPrintMethod;
+    
+    IDPWeakify(self);
+    IDPAsyncPerformInMainQueue(^{
+        IDPStrongifyAndReturnIfNil(self);
+        
+        NSLog(@"presented model elem. count = %lu, actual count = %lu",
+              (unsigned long)((IDPArrayModel *)self.model).count, self.arrayModel.count);
+        
+        [self.arrayView.tableView applyChangeModel:changeModel];
+    });
+}
+
+#pragma mark -
+#pragma mark IDPLoadableModelObserver
+
+- (void)modelDidUpdate:(IDPArrayModel *)model {
+    IDPPrintMethod;
+    
+    [self reloadTableView];
+}
+
+- (void)modelDidLoad:(IDPArrayModel *)array {
+    IDPPrintMethod;
+    
+    [self reloadTableView];
+}
+
+- (void)modelWillLoad:(IDPArrayModel *)array {
     IDPPrintMethod;
 }
 
-- (void)arrayModelDidFailLoading:(IDPArrayModel *)array
-{
+- (void)modelDidFailLoading:(IDPArrayModel *)array {
     IDPPrintMethod;
 }
 
@@ -146,7 +131,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 - (NSInteger)   tableView:(UITableView *)tableView
     numberOfRowsInSection:(NSInteger)section
 {
-    return self.arrayModel.count;
+    return ((IDPArrayModel *)self.model).count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -154,7 +139,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 {
     UITableViewCell<IDPModelCell> *cell = [self cellForTable:tableView withIndexPath:indexPath];
     
-    cell.model = self.arrayModel[indexPath.row];
+    cell.model = self.model[indexPath.row];
     
     return cell;
 }
@@ -193,8 +178,8 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 }
 
 - (NSString *)                              tableView:(UITableView *)tableView
-    titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{    
     return kIDPRemoveButtonText;
 }
 
@@ -215,7 +200,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 - (BOOL)        tableView:(UITableView *)tableView
     canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return YES; //self.editing;
+    return YES;
 }
 
 - (void)    tableView:(UITableView *)tableView
@@ -224,30 +209,19 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
 {
     NSLog(@"from row: %ld to row: %ld", sourceIndexPath.row, (long)destinationIndexPath.row);
     
-    [self.arrayModel performBlockWithoutNotification:^{
-        [self.arrayModel moveObjectToIndex:destinationIndexPath.row
-                                 fromIndex:sourceIndexPath.row];
-    }];
+    [self.arrayModel moveObjectToIndex:destinationIndexPath.row
+                             fromIndex:sourceIndexPath.row];
 }
 
 - (void)    tableView:(UITableView *)tableView
    commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
     forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
+    if (UITableViewCellEditingStyleDelete == editingStyle) {
         IDPAsyncPerformInBackgroundQueue(^{
-            NSUInteger index = indexPath.row;
+            id object = self.model[indexPath.row];
             
-            if (self.arrayView.isFiltered) {
-                id object = _filteredModel[index];
-                [_filteredModel removeObjectAtIndex:index];
-                [_arrayModel performBlockWithoutNotification:^{
-                    [_arrayModel removeObject:object];
-                }];
-            } else {
-                [self.arrayModel removeObjectAtIndex:index];
-            }
+            [self.arrayModel removeObject:object];
         });
     }
 }
@@ -267,6 +241,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, arrayView, IDPArrayVie
     textDidChange:(NSString *)searchText
 {
     IDPPrintMethod;
+    
     [self filterDataUsingFilterString:searchBar.text];
 }
 

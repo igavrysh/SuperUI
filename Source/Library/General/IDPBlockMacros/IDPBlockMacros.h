@@ -17,11 +17,11 @@
     } while(0) \
 
 #define IDPBlockPerform(block, ...) \
-    __IDPPerformBlock(IDPEmpty, IDPEmpty, block, __VA_ARGS__)
+    __IDPBlockPerform(IDPEmpty, IDPEmpty, block, __VA_ARGS__)
 
 #define IDPReturnBlockPerform(block, ...) \
-    __IDPPerformBlock(IDPEmpty, return, block, __VA_ARGS__)
+    __IDPBlockPerform(IDPEmpty, return, block, __VA_ARGS__)
 
 #define IDPAssignBlockPerform(block, variable, ...) \
-    __IDPPerformBlock(variable, =, block, __VA_ARGS__)
+    __IDPBlockPerform(variable, =, block, __VA_ARGS__)
 

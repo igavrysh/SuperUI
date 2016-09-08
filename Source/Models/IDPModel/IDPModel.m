@@ -10,37 +10,55 @@
 
 #import "IDPGCDQueue.h"
 
+#import "NSFileManager+IDPExtensions.h"
+
 @interface IDPModel ()
-@property (nonatomic, strong)   id  model;
 
 @end
 
 @implementation IDPModel
 
 #pragma mark -
-#pragma mark IDPLoadableModel
+#pragma mark Public Methods
 
 - (void)load {
     @synchronized(self) {
         NSUInteger state = self.state;
         
-        if (IDPLoadableModelLoaded == state || IDPLoadableModelLoading == state) {
+        if (IDPModelDidLoad == state || IDPModelWillLoad == state) {
             [self notifyOfStateChange:state];
             return;
         }
         
-        self.state = IDPLoadableModelLoading;
+        self.state = IDPModelWillLoad;
     }
     
     IDPAsyncPerformInBackgroundQueue(^{
-        [self fillModel];
-        
-        self.state = self.model ? IDPLoadableModelLoaded : IDPLoadableModelFailedLoading;
+        [self performLoading];
     });
 }
 
-- (void)fillModel {
-    
+- (void)performLoading {
+    self.state = IDPModelDidLoad;
+}
+
+#pragma mark -
+#pragma mark IDPObservableObject
+
+- (SEL)selectorForState:(NSUInteger)state {
+    switch (state) {
+        case IDPModelDidLoad:
+            return @selector(modelDidLoad:);
+            
+        case IDPModelWillLoad:
+            return @selector(modelWillLoad:);
+            
+        case IDPModelDidFailLoading:
+            return @selector(modelDidFailLoading:);
+            
+        default:
+            return [super selectorForState:state];
+    }
 }
 
 @end

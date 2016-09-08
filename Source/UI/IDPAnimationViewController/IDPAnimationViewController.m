@@ -9,9 +9,10 @@
 #import "IDPAnimationViewController.h"
 
 #import "IDPAnimationView.h"
+
 #import "IDPMacros.h"
 
-IDPViewControllerBaseViewProperty(IDPAnimationViewController, animationView, IDPAnimationView);
+IDPViewControllerBaseViewProperty(IDPAnimationViewController, IDPAnimationView, animationView);
 
 @interface IDPAnimationViewController ()
 

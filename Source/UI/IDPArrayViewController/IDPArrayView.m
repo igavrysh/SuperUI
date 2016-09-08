@@ -8,13 +8,14 @@
 
 #import "IDPArrayView.h"
 
-#import "IDPMacros.h"
 #import "IDPArrayModel.h"
 
 #import "UITableView+IDPExtensions.h"
 
-NSString * const kIDPEditButtonItemEdit = @"Edit";
-NSString * const kIDPEditButtonItemDone = @"Done";
+#import "IDPMacros.h"
+
+static NSString * const kIDPEditButtonItemEdit = @"Edit";
+static NSString * const kIDPEditButtonItemDone = @"Done";
 
 @interface IDPArrayView ()
 
@@ -40,7 +41,7 @@ NSString * const kIDPEditButtonItemDone = @"Done";
 - (void)setFiltered:(BOOL)filtered {
     _filtered = filtered;
     
-    //if (filtered) {
+   // if (filtered) {
     //    self.tableView.editing = false;
     //}
 }

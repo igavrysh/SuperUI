@@ -8,6 +8,10 @@
 
 #import "IDPArrayModel.h"
 
+#import "IDPFilteredUserArrayModel.h"
+
+static const NSUInteger kIDPArrayModelSampleSize = 5;
+
 @interface IDPUserArrayModel : IDPArrayModel
 
 + (instancetype)userArrayModel;

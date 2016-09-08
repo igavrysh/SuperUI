@@ -12,7 +12,7 @@
 
 #import "IDPMacros.h"
 
-IDPViewControllerBaseViewProperty(IDPUserViewController, userView, IDPUserView)
+IDPViewControllerBaseViewProperty(IDPUserViewController, IDPUserView, userView);
 
 @implementation IDPUserViewController
 

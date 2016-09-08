@@ -11,9 +11,17 @@
 #import "IDPImageModel.h"
 
 #import "NSString+IDPRandomName.h"
+#import "NSArray+IDPArrayEnumerator.h"
+#include "NSBundle+IDPExtensions.h"
 
-NSString * const kIDPImageName = @"image_big";
-NSString * const kIDPImageExtension = @"jpg";
+#import "IDPMacros.h"
+
+static NSString * const kIDPImageName = @"image_big";
+static NSString * const kIDPImageExtension = @"jpg";
+
+kIDPStringKeyDefinition(kIDPUserNameKey);
+kIDPStringKeyDefinition(kIDPUserSurnameKey);
+kIDPStringKeyDefinition(kIDPUserURLKey);
 
 @implementation IDPUser
 
@@ -32,6 +40,10 @@ NSString * const kIDPImageExtension = @"jpg";
                                             withExtension:kIDPImageExtension];
     
     return user;
+}
+
++ (NSArray *)usersWithCount:(NSUInteger)count {
+    return [NSArray objectsWithCount:count block:^{ return [IDPUser user]; }];
 }
 
 #pragma mark - 
@@ -56,6 +68,27 @@ NSString * const kIDPImageExtension = @"jpg";
     user.imageURL = self.imageURL;
     
     return user;
+}
+
+#pragma mark -
+#pragma mark NSCoding
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:self.name forKey:kIDPUserNameKey];
+    [coder encodeObject:self.surname forKey:kIDPUserSurnameKey];
+    [coder encodeObject:self.imageURL forKey:kIDPUserURLKey];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super init];
+    
+    self.name = [coder decodeObjectForKey:kIDPUserNameKey];
+    self.surname = [coder decodeObjectForKey:kIDPUserSurnameKey];
+                    
+    NSString *fileName = [[coder decodeObjectForKey:kIDPUserURLKey] lastPathComponent];
+    self.imageURL = [NSURL URLWithString:[NSBundle pathForBundleFile:fileName]];
+    
+    return self;
 }
 
 @end

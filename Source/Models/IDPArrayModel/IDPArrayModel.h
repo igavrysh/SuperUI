@@ -8,51 +8,57 @@
 
 #import "IDPObservableObject.h"
 
-@class IDPArrayObject;
-@class IDPArrayModel;
-@class IDPArrayChangeModel;
+#import "IDPModel.h"
 
-typedef NS_ENUM(NSUInteger, IDPArrayModelState) {
-    IDPArrayModelUpdated,
-    IDPArrayModelLoaded,
-    IDPArrayModelLoading,
-    IDPArrayModelFailedLoading
+typedef NS_ENUM(NSUInteger, IDPChangeableModelState) {
+    IDPArrayModelDidUpdateWithChangeModel = IDPModelStateCount,
+    IDPArrayModelDidUpdate
 };
 
-@protocol IDPArrayModelObserver <NSObject>
+@class IDPArrayChangeModel;
+@class IDPArrayModel;
+
+@protocol IDPChangeableModelObserver <NSObject, IDPLoadableModelObserver>
 @optional
-- (void)        arrayModel:(IDPArrayModel *)array
-  didUpdateWithChangeModel:(IDPArrayChangeModel *)changeModel;
 
-- (void)arrayModelDidLoad:(IDPArrayModel *)array;
+- (void)            model:(IDPArrayModel *)model
+ didUpdateWithChangeModel:(IDPArrayChangeModel *)changeModel;
 
-- (void)arrayModelWillLoad:(IDPArrayModel *)array;
-
-- (void)arrayModelDidFailLoading:(IDPArrayModel *)array;
+- (void)modelDidUpdate:(IDPArrayModel *)model;
 
 @end
 
-@interface IDPArrayModel : IDPObservableObject <NSCopying>
+@class IDPArrayModel;
+
+@interface IDPArrayModel : IDPModel <NSCopying, IDPChangeableModelObserver>
 @property (nonatomic, readonly)         NSUInteger      count;
 @property (nonatomic, copy, readonly)   NSArray         *objects;
 
-- (instancetype)initWithArray:(NSArray *)array;
+- (instancetype)initWithObjects:(NSArray *)objects;
+
+- (void)substituteObjectsWithObjects:(NSArray *)objects;
 
 - (id)objectAtIndexedSubscript:(NSUInteger)index;
 - (id)objectAtIndex:(NSUInteger)index;
 - (NSUInteger)indexOfObject:(id)object;
 
 - (void)insertObject:(id)object atIndex:(NSUInteger)index;
+
+- (void)addObjects:(NSArray *)objects;
 - (void)addObject:(id)object;
 
+- (void)removeObjects:(NSArray *)objects;
 - (void)removeObject:(id)object;
 - (void)removeObjectAtIndex:(NSUInteger)index;
+
+
+- (void)replaceObject:(id)object withObject:(id)replaceObject;
+- (void)replaceObjectAtIndex:(NSUInteger)index
+                  withObject:(id)object;
 
 - (void)moveObject:(id)object toIndex:(NSUInteger)index;
 - (void)moveObjectToIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex;
 
-- (void)load;
-
-- (IDPArrayModel *)filteredArrayUsingFilterString:(NSString *)filter;
+- (void)save;
 
 @end

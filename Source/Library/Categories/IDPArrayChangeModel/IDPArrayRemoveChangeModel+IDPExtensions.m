@@ -8,6 +8,9 @@
 
 #import "IDPArrayRemoveChangeModel+IDPExtensions.h"
 
+#import "IDPArrayModel.h"
+
+#import "NSArray+IDPArrayEnumerator.h"
 #import "NSIndexPath+IDPExtensions.h"
 #import "UITableView+IDPExtensions.h"
 
@@ -23,6 +26,14 @@
         [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForIndex:self.index]]
                          withRowAnimation:animation];
     }];
+}
+
+- (void)applyToArrayModel:(IDPArrayModel *)arrayModel {
+    NSArray *objects = [arrayModel.objects filteredArrayUsingBlock:^BOOL(id object) {
+        return ![self.arrayModel.objects containsObject:object];
+    }];
+    
+    [arrayModel removeObjects:objects];
 }
 
 @end

@@ -18,19 +18,24 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (instancetype)modelWithToIndex:(NSUInteger)index
-                       fromIndex:(NSUInteger)fromIndex
++ (instancetype)modelWithArrayModel:(IDPArrayModel *)arrayModel
+                            toIndex:(NSUInteger)index
+                          fromIndex:(NSUInteger)fromIndex
 {
-    return [[self alloc] initWithIndex:index];
+    return [[self alloc] initWithArrayModel:arrayModel
+                                    toIndex:index
+                                  fromIndex:fromIndex];
 }
 
 #pragma mark -
 #pragma mark Public Methods
 
-- (instancetype)initWithToIndex:(NSUInteger)index
-                      fromIndex:(NSUInteger)fromIndex
+- (instancetype)initWithArrayModel:(IDPArrayModel *)arrayModel
+                           toIndex:(NSUInteger)index
+                         fromIndex:(NSUInteger)fromIndex
+
 {
-    self = [super initWithIndex:index];
+    self = [super initWithArrayModel:arrayModel index:index];
     
     self.fromIndex = fromIndex;
     
