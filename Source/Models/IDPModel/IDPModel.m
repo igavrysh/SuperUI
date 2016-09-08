@@ -47,6 +47,9 @@
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
+        case IDPModelDidUnload:
+            return @selector(modelDidUnload:);
+            
         case IDPModelDidLoad:
             return @selector(modelDidLoad:);
             

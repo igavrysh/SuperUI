@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "SUIView.h"
 #import "IDPImageModel.h"
 
-@interface IDPImageView : UIView <IDPImageModelObserver>
+@interface IDPImageView : SUIView
 @property (nonatomic, strong)   IBOutlet UIImageView    *contentImageView;
 @property (nonatomic, strong)   IDPImageModel           *imageModel;
 

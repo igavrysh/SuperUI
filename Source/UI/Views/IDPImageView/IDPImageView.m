@@ -94,31 +94,38 @@
 #pragma mark -
 #pragma mark IDPImageModelObserver
 
-- (void)imageModelDidUnload:(IDPImageModel *)imageModel {
+- (void)modelDidUnload:(IDPImageModel *)imageModel {
     IDPWeakify(self);
     IDPAsyncPerformInMainQueue(^{
         IDPStrongifyAndReturnIfNil(self);
         self.contentImageView.image = imageModel.image;
     });
+    
+    [super modelDidUnload:imageModel];
 }
 
-- (void)imageModelWillLoad:(IDPImageModel *)imageModel {
+- (void)modelWillLoad:(IDPImageModel *)imageModel {
+    [super modelWillLoad:imageModel];
 }
 
-- (void)imageModelDidLoad:(IDPImageModel *)imageModel {
+- (void)modelDidLoad:(IDPImageModel *)imageModel {
     IDPWeakify(self);
     IDPAsyncPerformInMainQueue(^{
         IDPStrongifyAndReturnIfNil(self);
         self.contentImageView.image = imageModel.image;
     });
+    
+    [super modelDidLoad:imageModel];
 }
 
-- (void)imageModelDidFailLoading:(IDPImageModel *)imageModel {
+- (void)modelDidFailLoading:(IDPImageModel *)imageModel {
     IDPWeakify(self);
     IDPAsyncPerformInMainQueue(^{
         IDPStrongifyAndReturnIfNil(self);
         [self.imageModel load];
     });
+    
+    [super modelDidFailLoading:imageModel];
 }
 
 @end
