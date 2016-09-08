@@ -64,10 +64,10 @@
         [self substituteObjectsWithObjects:filteredObjects];
         
         [self performBlockWithoutNotification:^{
-            self.state = IDPArrayModelDidUpdate;
+            self.state = IDPModelDidUpdate;
         }];
         
-        [self notifyOfStateChange:IDPArrayModelDidUpdate];
+        [self notifyOfStateChange:IDPModelDidUpdate];
     });
 }
 

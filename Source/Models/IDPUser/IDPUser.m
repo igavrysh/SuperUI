@@ -86,7 +86,7 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
     self.surname = [coder decodeObjectForKey:kIDPUserSurnameKey];
                     
     NSString *fileName = [[coder decodeObjectForKey:kIDPUserURLKey] lastPathComponent];
-    self.imageURL = [NSURL URLWithString:[NSBundle pathForBundleFile:fileName]];
+    self.imageURL = [NSURL URLWithString:[NSBundle pathForFile:fileName]];
     
     return self;
 }

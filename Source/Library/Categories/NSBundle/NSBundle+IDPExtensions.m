@@ -19,14 +19,14 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (NSString *)bundlePath {
++ (NSString *)path {
     IDPSetAndReturnStaticVariableWithBlock(^{
         return [[NSBundle mainBundle] bundlePath];
     });
 }
 
-+ (NSString *)pathForBundleFile:(NSString *)fileName {
-    return [[NSBundle mainBundle] pathForBundleFile:fileName];
++ (NSString *)pathForFile:(NSString *)fileName {
+    return [[NSBundle mainBundle] pathForFile:fileName];
 }
 
 + (id)objectWithClass:(Class)cls {
@@ -67,7 +67,7 @@
     return [self resourcePath];
 }
 
-- (NSString *)pathForBundleFile:(NSString *)fileName {
+- (NSString *)pathForFile:(NSString *)fileName {
     return [NSString pathWithComponents:@[[self bundlePath], fileName]];
 }
 

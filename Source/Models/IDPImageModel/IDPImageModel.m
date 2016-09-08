@@ -16,6 +16,8 @@
 @property (nonatomic, strong)   UIImage     *image;
 @property (nonatomic, strong)   NSURL       *url;
 
+- (void)dump;
+
 @end
 
 @implementation IDPImageModel

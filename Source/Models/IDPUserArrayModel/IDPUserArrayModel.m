@@ -14,19 +14,13 @@
 
 #import "NSArray+IDPArrayEnumerator.h"
 #import "NSNotificationCenter+IDPExtensions.h"
+#import "NSFileManager+IDPExtensions.h"
 
 @interface IDPUserArrayModel ()
 
 @end
 
 @implementation IDPUserArrayModel
-
-#pragma mark - 
-#pragma mark Class Methods
-
-+ (instancetype)userArrayModel {
-    return [[self alloc] init];
-}
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -40,7 +34,8 @@
     
     [NSNotificationCenter addObserver:self
                              selector:@selector(save)
-                                names:@[kIDPApplicationWillTerminate, kIDPApplicationDidEnterBackground]];
+                                names:@[UIApplicationWillTerminateNotification,
+                                        UIApplicationDidEnterBackgroundNotification]];
     
     return self;
 }
@@ -48,16 +43,37 @@
 #pragma mark - Public Methods
 
 - (void)save {
+    [NSKeyedArchiver archiveRootObject:self.objects
+                                toFile:[self cachePath]];
 }
 
 - (void)performLoading {
-    NSArray *users = [IDPUser usersWithCount:kIDPArrayModelSampleSize];
+    //[NSThread sleepForTimeInterval:3.0f];
+    
+    NSArray *users = [NSMutableArray new];
+    if ([self cacheExists]) {
+        users = [NSKeyedUnarchiver unarchiveObjectWithFile:[self cachePath]];
+    } else {
+        users = [IDPUser usersWithCount:kIDPArrayModelSampleSize];
+    }
     
     [self performBlockWithoutNotification:^{
         [self addObjects:users];
     }];
     
     self.state = IDPModelDidLoad;
+}
+
+- (NSString *)modelPlistName {
+    return [NSString stringWithFormat:@"%@.plist", NSStringFromClass([self class])];
+}
+
+- (NSString *)cachePath {
+    return [[NSFileManager applicationCachePath] stringByAppendingString:[self modelPlistName]];
+}
+
+- (BOOL)cacheExists {
+    return [[NSFileManager defaultManager] fileExistsAtPath:[self cachePath]];
 }
 
 @end

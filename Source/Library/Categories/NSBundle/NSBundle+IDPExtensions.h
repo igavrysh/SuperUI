@@ -10,9 +10,9 @@
 
 @interface NSBundle (IDPExtensions)
 
-+ (NSString *)bundlePath;
++ (NSString *)path;
 
-+ (NSString *)pathForBundleFile:(NSString *)fileName;
++ (NSString *)pathForFile:(NSString *)fileName;
 
 + (id)objectWithClass:(Class)cls;
 
@@ -25,7 +25,7 @@
 
 - (NSString *)bundlePath;
 
-- (NSString *)pathForBundleFile:(NSString *)fileName;
+- (NSString *)pathForFile:(NSString *)fileName;
 
 - (id)objectWithClass:(Class)cls;
 

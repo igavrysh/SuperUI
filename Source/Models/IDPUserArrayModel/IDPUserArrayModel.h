@@ -14,6 +14,8 @@ static const NSUInteger kIDPArrayModelSampleSize = 5;
 
 @interface IDPUserArrayModel : IDPArrayModel
 
-+ (instancetype)userArrayModel;
+- (NSString *)modelPlistName;
+- (NSString *)cachePath;
+- (BOOL)cacheExists;
 
 @end

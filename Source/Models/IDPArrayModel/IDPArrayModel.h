@@ -11,8 +11,9 @@
 #import "IDPModel.h"
 
 typedef NS_ENUM(NSUInteger, IDPChangeableModelState) {
-    IDPArrayModelDidUpdateWithChangeModel = IDPModelStateCount,
-    IDPArrayModelDidUpdate
+    IDPModelDidUpdateWithChangeModel = IDPModelStateCount,
+    IDPModelDidUpdate,
+    IDPChangeableModelStateCount
 };
 
 @class IDPArrayChangeModel;
@@ -50,7 +51,6 @@ typedef NS_ENUM(NSUInteger, IDPChangeableModelState) {
 - (void)removeObjects:(NSArray *)objects;
 - (void)removeObject:(id)object;
 - (void)removeObjectAtIndex:(NSUInteger)index;
-
 
 - (void)replaceObject:(id)object withObject:(id)replaceObject;
 - (void)replaceObjectAtIndex:(NSUInteger)index

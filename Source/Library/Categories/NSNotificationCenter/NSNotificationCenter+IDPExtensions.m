@@ -28,7 +28,7 @@
 + (void)addObserver:(id)observer selector:(SEL)selector name:(NSString *)name {
     [[NSNotificationCenter defaultCenter] addObserver:observer
                                              selector:selector
-                                                 name:kIDPApplicationWillTerminate
+                                                 name:name
                                                object:nil];
 }
 

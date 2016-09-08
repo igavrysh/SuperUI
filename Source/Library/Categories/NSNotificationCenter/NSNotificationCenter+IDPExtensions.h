@@ -10,12 +10,6 @@
 
 #import "IDPMacros.h"
 
-kIDPStringKeyDefinition(kIDPApplicationWillResignActive);
-kIDPStringKeyDefinition(kIDPApplicationDidEnterBackground);
-kIDPStringKeyDefinition(kIDPApplicationWillEnterForeground);
-kIDPStringKeyDefinition(kIDPApplicationDidBecomeActive);
-kIDPStringKeyDefinition(kIDPApplicationWillTerminate);
-
 @interface NSNotificationCenter (IDPExtensions)
 
 + (void)postNotificationName:(NSString *)notificationName;

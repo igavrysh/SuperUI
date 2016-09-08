@@ -37,4 +37,6 @@ typedef NS_ENUM(NSUInteger, IDPLoadableModelState) {
 
 - (void)performLoading;
 
+- (BOOL)shouldNotifyOfState:(IDPLoadableModelState)state;
+
 @end

@@ -25,7 +25,7 @@
     @synchronized(self) {
         NSUInteger state = self.state;
         
-        if (IDPModelDidLoad == state || IDPModelWillLoad == state) {
+        if ([self shouldNotifyOfState:state]) {
             [self notifyOfStateChange:state];
             return;
         }
@@ -40,6 +40,10 @@
 
 - (void)performLoading {
     self.state = IDPModelDidLoad;
+}
+
+- (BOOL)shouldNotifyOfState:(IDPLoadableModelState)state {
+    return IDPModelDidLoad == state || IDPModelWillLoad == state;
 }
 
 #pragma mark -
