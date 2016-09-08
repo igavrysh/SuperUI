@@ -13,10 +13,7 @@
 #import "IDPObservableObject.h"
 
 #import "NSArray+IDPArrayEnumerator.h"
-#import "NSFileManager+IDPExtensions.h"
 #import "NSNotificationCenter+IDPExtensions.h"
-
-const NSUInteger kIDPArrayModelSampleSize = 5;
 
 @interface IDPUserArrayModel ()
 
@@ -29,18 +26,6 @@ const NSUInteger kIDPArrayModelSampleSize = 5;
 
 + (instancetype)userArrayModel {
     return [[self alloc] init];
-}
-
-+ (NSString *)modelPlistName {
-    return [NSString stringWithFormat:@"%@.plist", NSStringFromClass([self class])];
-}
-
-+ (NSString *)cachePath {
-    return [[NSFileManager applicationCachePath] stringByAppendingString:[self modelPlistName]];
-}
-
-+ (BOOL)cacheExists {
-    return [[NSFileManager defaultManager] fileExistsAtPath:[self cachePath]];
 }
 
 #pragma mark -
@@ -63,22 +48,10 @@ const NSUInteger kIDPArrayModelSampleSize = 5;
 #pragma mark - Public Methods
 
 - (void)save {
-    [NSKeyedArchiver archiveRootObject:self.objects
-                                toFile:[[self class] cachePath]];
 }
 
-#pragma mark -
-#pragma mark Private Methods
-
 - (void)performLoading {
-    //[NSThread sleepForTimeInterval:3.0f];
-    
-    NSArray *users = [NSMutableArray new];
-    if ([[self class] cacheExists]) {
-        users = [NSKeyedUnarchiver unarchiveObjectWithFile:[[self class] cachePath]];
-    } else {
-        users = [IDPUser usersWithCount:kIDPArrayModelSampleSize];
-    }
+    NSArray *users = [IDPUser usersWithCount:kIDPArrayModelSampleSize];
     
     [self performBlockWithoutNotification:^{
         [self addObjects:users];

@@ -12,6 +12,10 @@
 
 + (NSString *)libraryPath;
 
++ (NSString *)documentPath;
+
++ (NSString *)applicationPath;
+
 + (NSString *)applicationCachePath;
 
 @end

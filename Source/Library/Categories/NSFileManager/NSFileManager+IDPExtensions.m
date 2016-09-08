@@ -13,21 +13,48 @@
 
 static NSString * const kIDPApplicationCacheDirectoryName = @"ApplicationCache";
 
-@implementation NSFileManager (IDPExtensions)
+@interface NSFileManager(NSFileManagerPrivate)
 
-+ (NSString *)libraryPath {
-    IDPFactoryBlock pathFactory = ^{
-        NSArray *directories = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,
++ (IDPFactoryBlock)pathFactoryWithType:(NSSearchPathDirectory)type;
+
+@end
+
+@implementation NSFileManager (NSFileManagerPrivate)
+
++ (IDPFactoryBlock)pathFactoryWithType:(NSSearchPathDirectory)type {
+    return ^{
+        NSArray *directories = NSSearchPathForDirectoriesInDomains(type,
                                                                    NSUserDomainMask,
                                                                    YES);
         return [directories firstObject];
     };
-
-    IDPSetAndReturnStaticVariableWithBlock(pathFactory);
 }
+
+@end
+
+@implementation NSFileManager (IDPExtensions)
 
 #pragma mark -
 #pragma mark Class Methods
+
++ (NSString *)libraryPath {
+    IDPFactoryBlock pathFactory = [self pathFactoryWithType:NSLibraryDirectory];
+    
+    IDPSetAndReturnStaticVariableWithBlock(pathFactory);
+}
+
++ (NSString *)documentPath {
+    IDPFactoryBlock pathFactory = [self pathFactoryWithType:NSDocumentDirectory];
+    
+    IDPSetAndReturnStaticVariableWithBlock(pathFactory);
+}
+
++ (NSString *)applicationPath {
+    IDPFactoryBlock pathFactory = [self pathFactoryWithType:NSApplicationDirectory];
+    
+    IDPSetAndReturnStaticVariableWithBlock(pathFactory);
+}
+
 
 + (NSString *)applicationCachePath {
     IDPFactoryBlock pathFactory = ^{

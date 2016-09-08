@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import "IDPUserArrayModel.h"
+#import "IDPCachedUserArrayModel.h"
 #import "IDPAnimationViewController.h"
 #import "IDPUsersViewController.h"
 
@@ -27,7 +27,7 @@
     self.window = window;
     
     IDPUsersViewController *usersController = [IDPUsersViewController viewController];
-    usersController.model = [IDPUserArrayModel new];
+    usersController.model = [IDPCachedUserArrayModel new];
     
     window.rootViewController = usersController;
     

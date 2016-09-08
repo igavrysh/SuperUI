@@ -8,6 +8,9 @@
 
 #import "NSBundle+IDPExtensions.h"
 
+#import "IDPDispatchMacros.h"
+#import "IDPBlockTypes.h"
+
 #import "UINib+IDPExtensions.h"
 #import "NSArray+IDPExtensions.h"
 
@@ -15,6 +18,16 @@
 
 #pragma mark -
 #pragma mark Class Methods
+
++ (NSString *)bundlePath {
+    IDPSetAndReturnStaticVariableWithBlock(^{
+        return [[NSBundle mainBundle] bundlePath];
+    });
+}
+
++ (NSString *)pathForBundleFile:(NSString *)fileName {
+    return [[NSBundle mainBundle] pathForBundleFile:fileName];
+}
 
 + (id)objectWithClass:(Class)cls {
     return [self objectWithClass:cls owner:nil options:nil];
@@ -48,6 +61,14 @@
     NSArray *objects = [self loadNibNamed:nibName owner:owner options:options];
     
     return [objects objectWithClass:cls];
+}
+
+- (NSString *)bundlePath {
+    return [self resourcePath];
+}
+
+- (NSString *)pathForBundleFile:(NSString *)fileName {
+    return [NSString pathWithComponents:@[[self bundlePath], fileName]];
 }
 
 @end

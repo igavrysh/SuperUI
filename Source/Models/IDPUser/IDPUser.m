@@ -12,6 +12,7 @@
 
 #import "NSString+IDPRandomName.h"
 #import "NSArray+IDPArrayEnumerator.h"
+#include "NSBundle+IDPExtensions.h"
 
 #import "IDPMacros.h"
 
@@ -69,7 +70,6 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
     return user;
 }
 
-
 #pragma mark -
 #pragma mark NSCoding
 
@@ -84,7 +84,9 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
     
     self.name = [coder decodeObjectForKey:kIDPUserNameKey];
     self.surname = [coder decodeObjectForKey:kIDPUserSurnameKey];
-    self.imageURL = [coder decodeObjectForKey:kIDPUserURLKey];
+                    
+    NSString *fileName = [[coder decodeObjectForKey:kIDPUserURLKey] lastPathComponent];
+    self.imageURL = [NSURL URLWithString:[NSBundle pathForBundleFile:fileName]];
     
     return self;
 }
