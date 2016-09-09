@@ -112,9 +112,9 @@
     IDPAsyncPerformInMainQueue(^{
         IDPStrongifyAndReturnIfNil(self);
         self.contentImageView.image = imageModel.image;
+        
+        [super modelDidLoad:imageModel];
     });
-    
-    [super modelDidLoad:imageModel];
 }
 
 - (void)modelDidFailLoading:(IDPImageModel *)imageModel {
@@ -122,9 +122,9 @@
     IDPAsyncPerformInMainQueue(^{
         IDPStrongifyAndReturnIfNil(self);
         [self.imageModel load];
+        
+        [super modelDidFailLoading:imageModel];
     });
-    
-    [super modelDidFailLoading:imageModel];
 }
 
 @end
