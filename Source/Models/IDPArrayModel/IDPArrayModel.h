@@ -10,10 +10,10 @@
 
 #import "IDPModel.h"
 
-typedef NS_ENUM(NSUInteger, IDPChangeableModelState) {
-    IDPModelDidUpdateWithChangeModel = IDPModelStateCount,
-    IDPModelDidUpdate,
-    IDPChangeableModelStateCount
+typedef NS_ENUM(NSUInteger, IDPArrayModelState) {
+    IDPArrayModelDidUpdateWithChangeModel = IDPModelStateCount,
+    IDPArrayModelDidUpdate,
+    IDPArrayModelStateCount
 };
 
 @class IDPArrayChangeModel;

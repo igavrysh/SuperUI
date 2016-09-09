@@ -19,6 +19,7 @@
 #import "NSFileManager+IDPExtensions.h"
 
 @interface IDPUserArrayModel ()
+@property (nonatomic, strong) id    observer;
 
 - (void)startObservingNotificationsForNames:(NSArray *)names
                                   withBlock:(IDPVoidBlock)block;
@@ -33,6 +34,10 @@
 @end
 
 @implementation IDPUserArrayModel
+
+@dynamic plistName;
+@dynamic cacheExists;
+@dynamic cachePath;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -54,11 +59,27 @@
     return self;
 }
 
-#pragma mark - Public Methods
+#pragma mark -
+#pragma mark Accessors
+
+- (NSString *)plistName {
+    return [NSString stringWithFormat:@"%@.plist", NSStringFromClass([self class])];
+}
+
+- (BOOL)isCacheExists {
+    return [[NSFileManager defaultManager] fileExistsAtPath:self.cachePath];
+}
+
+- (NSString *)cachePath {
+    return [[NSFileManager applicationCachePath] stringByAppendingString:self.plistName];
+}
+
+#pragma mark - 
+#pragma mark Public Methods
 
 - (void)save {
     [NSKeyedArchiver archiveRootObject:self.objects
-                                toFile:[self cachePath]];
+                                toFile:self.cachePath];
 }
 
 
@@ -66,8 +87,8 @@
     //[NSThread sleepForTimeInterval:3.0f];
     
     NSArray *users = [NSMutableArray new];
-    if ([self cacheExists]) {
-        users = [NSKeyedUnarchiver unarchiveObjectWithFile:[self cachePath]];
+    if (self.cacheExists) {
+        users = [NSKeyedUnarchiver unarchiveObjectWithFile:self.cachePath];
     } else {
         users = [IDPUser usersWithCount:kIDPArrayModelSampleSize];
     }
@@ -77,18 +98,6 @@
     }];
     
     self.state = IDPModelDidLoad;
-}
-
-- (NSString *)modelPlistName {
-    return [NSString stringWithFormat:@"%@.plist", NSStringFromClass([self class])];
-}
-
-- (NSString *)cachePath {
-    return [[NSFileManager applicationCachePath] stringByAppendingString:[self modelPlistName]];
-}
-
-- (BOOL)cacheExists {
-    return [[NSFileManager defaultManager] fileExistsAtPath:[self cachePath]];
 }
 
 #pragma mark -
@@ -106,12 +115,12 @@
                                  withBlock:(IDPVoidBlock)block
 {
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center addObserverForName:name
-                          object:nil
-                           queue:nil
-                      usingBlock:^(NSNotification * _Nonnull note) {
-                          IDPPerformBlock(block);
-    }];
+    self.observer = [center addObserverForName:name
+                                        object:nil
+                                         queue:nil
+                                    usingBlock:^(NSNotification * _Nonnull note) {
+                                        IDPPerformBlock(block);
+                                    }];
 }
 
 - (void)stopObservingNotificationsForNames:(NSArray *)names {
@@ -121,6 +130,6 @@
 }
 
 - (void)stopObservingNotificationsForName:(NSString *)name {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:name object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self.observer name:name object:nil];
 }
 @end
