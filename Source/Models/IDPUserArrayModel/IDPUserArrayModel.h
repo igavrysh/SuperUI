@@ -13,7 +13,8 @@
 static const NSUInteger kIDPArrayModelSampleSize = 5;
 
 @interface IDPUserArrayModel : IDPArrayModel
-
-+ (instancetype)userArrayModel;
+@property (nonatomic, readonly)                         NSString    *plistName;
+@property (nonatomic, readonly)                         NSString    *cachePath;
+@property (nonatomic, readonly, getter=isCacheExists)   BOOL        cacheExists;
 
 @end

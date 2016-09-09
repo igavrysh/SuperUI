@@ -8,6 +8,8 @@
 
 #import "NSNotificationCenter+IDPExtensions.h"
 
+#import "IDPBlockTypes.h"
+#import "IDPBlockMacros.h"
 #import "NSArray+IDPArrayEnumerator.h"
 
 @implementation NSNotificationCenter (IDPExtensions)
@@ -28,8 +30,11 @@
 + (void)addObserver:(id)observer selector:(SEL)selector name:(NSString *)name {
     [[NSNotificationCenter defaultCenter] addObserver:observer
                                              selector:selector
-                                                 name:kIDPApplicationWillTerminate
+                                                 name:name
                                                object:nil];
 }
+
+
+
 
 @end

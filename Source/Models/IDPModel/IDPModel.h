@@ -21,6 +21,8 @@ typedef NS_ENUM(NSUInteger, IDPLoadableModelState) {
 @protocol IDPLoadableModelObserver <NSObject>
 @optional
 
+- (void)modelDidUnload:(IDPModel *)model;
+
 - (void)modelDidLoad:(IDPModel *)model;
 
 - (void)modelWillLoad:(IDPModel *)model;
@@ -34,5 +36,7 @@ typedef NS_ENUM(NSUInteger, IDPLoadableModelState) {
 - (void)load;
 
 - (void)performLoading;
+
+- (BOOL)shouldNotifyOfState:(IDPLoadableModelState)state;
 
 @end

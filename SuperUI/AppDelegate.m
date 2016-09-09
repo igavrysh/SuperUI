@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import "IDPCachedUserArrayModel.h"
+#import "IDPUserArrayModel.h"
 #import "IDPAnimationViewController.h"
 #import "IDPUsersViewController.h"
 
@@ -27,7 +27,7 @@
     self.window = window;
     
     IDPUsersViewController *usersController = [IDPUsersViewController viewController];
-    usersController.model = [IDPCachedUserArrayModel new];
+    usersController.model = [IDPUserArrayModel new];
     
     window.rootViewController = usersController;
     
@@ -38,32 +38,22 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     IDPPrintMethod;
-    
-    [NSNotificationCenter postNotificationName:kIDPApplicationWillResignActive];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     IDPPrintMethod;
-    
-    [NSNotificationCenter postNotificationName:kIDPApplicationDidEnterBackground];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     IDPPrintMethod;
-    
-    [NSNotificationCenter postNotificationName:kIDPApplicationWillEnterForeground];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     IDPPrintMethod;
-    
-    [NSNotificationCenter postNotificationName:kIDPApplicationDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     IDPPrintMethod;
-    
-    [NSNotificationCenter postNotificationName:kIDPApplicationWillTerminate];
 }
 
 @end

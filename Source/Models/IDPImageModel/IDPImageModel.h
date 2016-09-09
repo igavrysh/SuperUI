@@ -8,27 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-#import "IDPObservableObject.h"
+#import "IDPModel.h"
 
-@class IDPImageModel;
-
-typedef NS_ENUM(NSUInteger, IDPImageModelState) {
-    IDPImageModelUnloaded,
-    IDPImageModelLoading,
-    IDPImageModelLoaded,
-    IDPImageModelFailedLoading
-};
-
-@protocol IDPImageModelObserver <NSObject>
-@optional
-- (void)imageModelDidUnload:(IDPImageModel *)imageModel;
-- (void)imageModelWillLoad:(IDPImageModel *)imageModel;
-- (void)imageModelDidLoad:(IDPImageModel *)imageModel;
-- (void)imageModelDidFailLoading:(IDPImageModel *)imageModel;
-
-@end
-
-@interface IDPImageModel : IDPObservableObject
+@interface IDPImageModel : IDPModel
 @property (nonatomic, readonly)     UIImage     *image;
 @property (nonatomic, readonly)     NSURL       *url;
 
@@ -37,8 +19,5 @@ typedef NS_ENUM(NSUInteger, IDPImageModelState) {
 + (instancetype)imageWithURL:(NSURL *)url;
 
 - (instancetype)initWithURL:(NSURL *)url;
-
-- (void)load;
-- (void)dump;
 
 @end

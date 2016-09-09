@@ -16,6 +16,8 @@
 @property (nonatomic, strong)   UIImage     *image;
 @property (nonatomic, strong)   NSURL       *url;
 
+- (void)dump;
+
 @end
 
 @implementation IDPImageModel
@@ -42,55 +44,15 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)load {
-    @synchronized(self) {
-        NSUInteger state = self.state;
-        
-        if (IDPImageModelLoading == state || IDPImageModelLoaded == state) {
-            [self notifyOfStateChange:state];
-            return;
-        }
-        
-        self.state = IDPImageModelLoading;
-    }
+- (void)performLoading {
+    self.image = [UIImage imageWithContentsOfFile:[self.url path]];
     
-    IDPWeakify(self);
-    IDPAsyncPerformInBackgroundQueue(^{
-        IDPStrongifyAndReturnIfNil(self);
-        
-        self.image = [UIImage imageWithContentsOfFile:[self.url path]];
-        
-        @synchronized(self) {
-            self.state = self.image ? IDPImageModelLoaded : IDPImageModelFailedLoading;
-        }
-    });
+    self.state = IDPModelDidLoad;
 }
 
 - (void)dump {
     self.image = nil;
-    self.state = IDPImageModelUnloaded;
-}
-
-#pragma mark -
-#pragma mark IDPObservableObject
-
-- (SEL)selectorForState:(NSUInteger)state {
-    switch (state) {
-        case IDPImageModelUnloaded:
-            return @selector(imageModelDidUnload:);
-            
-        case IDPImageModelLoading:
-            return @selector(imageModelWillLoad:);
-            
-        case IDPImageModelLoaded:
-            return @selector(imageModelDidLoad:);
-            
-        case IDPImageModelFailedLoading:
-            return @selector(imageModelDidFailLoading:);
-            
-        default:
-            return [super selectorForState:state];
-    }
+    self.state = IDPModelDidUnload;
 }
 
 @end

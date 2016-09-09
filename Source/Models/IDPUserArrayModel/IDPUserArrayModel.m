@@ -10,48 +10,88 @@
 
 #import "IDPUser.h"
 #import "IDPGCDQueue.h"
+#import "IDPBlockTypes.h"
+#import "IDPBlockMacros.h"
 #import "IDPObservableObject.h"
 
 #import "NSArray+IDPArrayEnumerator.h"
 #import "NSNotificationCenter+IDPExtensions.h"
+#import "NSFileManager+IDPExtensions.h"
 
 @interface IDPUserArrayModel ()
+@property (nonatomic, strong) id    observer;
+
+- (void)startObservingNotificationsForNames:(NSArray *)names
+                                  withBlock:(IDPVoidBlock)block;
+
+- (void)startObservingNotificationsForName:(NSString *)name
+                                 withBlock:(IDPVoidBlock)block;
+
+- (void)stopObservingNotificationsForNames:(NSArray *)names;
+
+- (void)stopObservingNotificationsForName:(NSString *)name;
 
 @end
 
 @implementation IDPUserArrayModel
 
-#pragma mark - 
-#pragma mark Class Methods
-
-+ (instancetype)userArrayModel {
-    return [[self alloc] init];
-}
+@dynamic plistName;
+@dynamic cacheExists;
+@dynamic cachePath;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self stopObservingNotificationsForNames:@[UIApplicationWillTerminateNotification,
+                                               UIApplicationDidEnterBackgroundNotification]];
 }
 
 - (instancetype)init {
     self = [super init];
     
-    [NSNotificationCenter addObserver:self
-                             selector:@selector(save)
-                                names:@[kIDPApplicationWillTerminate, kIDPApplicationDidEnterBackground]];
+    [self startObservingNotificationsForNames:@[UIApplicationWillTerminateNotification,
+                                               UIApplicationDidEnterBackgroundNotification]
+                                    withBlock:^{
+                                        [self save];
+                                    }];
     
     return self;
 }
 
-#pragma mark - Public Methods
+#pragma mark -
+#pragma mark Accessors
 
-- (void)save {
+- (NSString *)plistName {
+    return [NSString stringWithFormat:@"%@.plist", NSStringFromClass([self class])];
 }
 
+- (BOOL)isCacheExists {
+    return [[NSFileManager defaultManager] fileExistsAtPath:self.cachePath];
+}
+
+- (NSString *)cachePath {
+    return [[NSFileManager applicationCachePath] stringByAppendingString:self.plistName];
+}
+
+#pragma mark - 
+#pragma mark Public Methods
+
+- (void)save {
+    [NSKeyedArchiver archiveRootObject:self.objects
+                                toFile:self.cachePath];
+}
+
+
 - (void)performLoading {
-    NSArray *users = [IDPUser usersWithCount:kIDPArrayModelSampleSize];
+    //[NSThread sleepForTimeInterval:3.0f];
+    
+    NSArray *users = [NSMutableArray new];
+    if (self.cacheExists) {
+        users = [NSKeyedUnarchiver unarchiveObjectWithFile:self.cachePath];
+    } else {
+        users = [IDPUser usersWithCount:kIDPArrayModelSampleSize];
+    }
     
     [self performBlockWithoutNotification:^{
         [self addObjects:users];
@@ -60,4 +100,36 @@
     self.state = IDPModelDidLoad;
 }
 
+#pragma mark -
+#pragma mark Private Methods
+
+- (void)startObservingNotificationsForNames:(NSArray *)names
+                                  withBlock:(IDPVoidBlock)block
+{
+    [names performBlockWithEachObject:^(NSString *name) {
+        [self startObservingNotificationsForName:name withBlock:block];
+    }];
+}
+
+- (void)startObservingNotificationsForName:(NSString *)name
+                                 withBlock:(IDPVoidBlock)block
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    self.observer = [center addObserverForName:name
+                                        object:nil
+                                         queue:nil
+                                    usingBlock:^(NSNotification * _Nonnull note) {
+                                        IDPPerformBlock(block);
+                                    }];
+}
+
+- (void)stopObservingNotificationsForNames:(NSArray *)names {
+    [names performBlockWithEachObject:^(NSString *name) {
+        [self stopObservingNotificationsForName:name];
+    }];
+}
+
+- (void)stopObservingNotificationsForName:(NSString *)name {
+    [[NSNotificationCenter defaultCenter] removeObserver:self.observer name:name object:nil];
+}
 @end
