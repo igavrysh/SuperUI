@@ -43,6 +43,12 @@ static NSString * const kIDPApplicationCacheDirectoryName = @"ApplicationCache";
     IDPSetAndReturnStaticVariableWithBlock(pathFactory);
 }
 
++ (NSString *)cachesPath {
+    IDPFactoryBlock pathFactory = [self pathFactoryWithType:NSCachesDirectory];
+    
+    IDPSetAndReturnStaticVariableWithBlock(pathFactory);
+}
+
 + (NSString *)documentPath {
     IDPFactoryBlock pathFactory = [self pathFactoryWithType:NSDocumentDirectory];
     

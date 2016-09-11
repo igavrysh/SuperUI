@@ -35,8 +35,9 @@ typedef NS_ENUM(NSUInteger, IDPLoadableModelState) {
 
 - (void)load;
 
-- (void)performLoading;
-
 - (BOOL)shouldNotifyOfState:(IDPLoadableModelState)state;
+
+// method for override
+- (void)performLoading;
 
 @end

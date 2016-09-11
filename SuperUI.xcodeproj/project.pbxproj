@@ -38,6 +38,8 @@
 		856988021D5BE0DA00DBB5CE /* IDPArrayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 856987FE1D5BE0DA00DBB5CE /* IDPArrayViewController.xib */; };
 		8572E36A1D70E5050092DE15 /* IDPModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8572E3691D70E5050092DE15 /* IDPModel.m */; };
 		8572E36B1D70E5050092DE15 /* IDPModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8572E3691D70E5050092DE15 /* IDPModel.m */; };
+		857638541D857B63004DC4BC /* IDPGlobalImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 857638531D857B63004DC4BC /* IDPGlobalImageModel.m */; };
+		857638551D857B63004DC4BC /* IDPGlobalImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 857638531D857B63004DC4BC /* IDPGlobalImageModel.m */; };
 		857781441D76C772007EEF52 /* NSArray+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 857781431D76C772007EEF52 /* NSArray+IDPExtensions.m */; };
 		857781451D76C772007EEF52 /* NSArray+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 857781431D76C772007EEF52 /* NSArray+IDPExtensions.m */; };
 		857781491D773EFE007EEF52 /* SUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 857781481D773EFE007EEF52 /* SUIViewController.m */; };
@@ -189,6 +191,8 @@
 		856987FE1D5BE0DA00DBB5CE /* IDPArrayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPArrayViewController.xib; sourceTree = "<group>"; };
 		8572E3681D70E5050092DE15 /* IDPModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPModel.h; sourceTree = "<group>"; };
 		8572E3691D70E5050092DE15 /* IDPModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPModel.m; sourceTree = "<group>"; };
+		857638521D857B63004DC4BC /* IDPGlobalImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPGlobalImageModel.h; sourceTree = "<group>"; };
+		857638531D857B63004DC4BC /* IDPGlobalImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPGlobalImageModel.m; sourceTree = "<group>"; };
 		857781421D76C772007EEF52 /* NSArray+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+IDPExtensions.h"; sourceTree = "<group>"; };
 		857781431D76C772007EEF52 /* NSArray+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+IDPExtensions.m"; sourceTree = "<group>"; };
 		857781471D773EFE007EEF52 /* SUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUIViewController.h; sourceTree = "<group>"; };
@@ -659,6 +663,8 @@
 			children = (
 				8582392C1D5B5E9D00623348 /* IDPImageModel.h */,
 				8582392D1D5B5E9D00623348 /* IDPImageModel.m */,
+				857638521D857B63004DC4BC /* IDPGlobalImageModel.h */,
+				857638531D857B63004DC4BC /* IDPGlobalImageModel.m */,
 			);
 			path = IDPImageModel;
 			sourceTree = "<group>";
@@ -1130,6 +1136,7 @@
 				851A2A881D738E9E00C32616 /* IDPLoadingView.m in Sources */,
 				856198751D66E2EF0051367A /* IDPArrayChangeModel+IDPExtensions.m in Sources */,
 				859D96951D7C5FD1005C05C6 /* IDPArrayRemoveChangeModel+IDPExtensions.m in Sources */,
+				857638551D857B63004DC4BC /* IDPGlobalImageModel.m in Sources */,
 				8577950F1D6BA6A500C16BA4 /* UIWindow+IDPExtensions.m in Sources */,
 				858239221D5B5DEB00623348 /* IDPUserViewController.m in Sources */,
 				859D96971D7C5FD1005C05C6 /* IDPArrayReplaceChangeModel+IDPExtensions.m in Sources */,
@@ -1176,6 +1183,7 @@
 				856987F41D5BBD0400DBB5CE /* IDPRandom.m in Sources */,
 				85D415121D662EB5007BDE85 /* IDPArrayChangeModel.m in Sources */,
 				858239171D5B5DEB00623348 /* IDPUsersViewController.m in Sources */,
+				857638541D857B63004DC4BC /* IDPGlobalImageModel.m in Sources */,
 				85D415061D662E8F007BDE85 /* IDPArrayTwoIndexChangeModel.m in Sources */,
 				859D968E1D7C5FD1005C05C6 /* IDPArrayChangeModel+IDPExtensions.m in Sources */,
 				851A2A831D738E8400C32616 /* IDPView.m in Sources */,

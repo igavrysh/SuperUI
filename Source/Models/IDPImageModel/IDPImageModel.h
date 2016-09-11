@@ -13,8 +13,7 @@
 @interface IDPImageModel : IDPModel
 @property (nonatomic, readonly)     UIImage     *image;
 @property (nonatomic, readonly)     NSURL       *url;
-
-@property (nonatomic, readonly, getter=isLoaded)    BOOL loaded;
+@property (nonatomic, readonly)     NSURL       *localURL;
 
 + (instancetype)imageWithURL:(NSURL *)url;
 

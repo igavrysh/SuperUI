@@ -18,6 +18,7 @@
 
 static NSString * const kIDPImageName = @"image_big";
 static NSString * const kIDPImageExtension = @"jpg";
+static NSString * const kIDPSampleImageURL = @"https://pbs.twimg.com/profile_images/609903623640723457/A4B7DT8s.png";
 
 kIDPStringKeyDefinition(kIDPUserNameKey);
 kIDPStringKeyDefinition(kIDPUserSurnameKey);
@@ -36,8 +37,11 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
     
     user.name = [NSString randomName];
     user.surname = [NSString randomName];
-    user.imageURL = [[NSBundle mainBundle] URLForResource:kIDPImageName
-                                            withExtension:kIDPImageExtension];
+    user.imageURL = [NSURL URLWithString:kIDPSampleImageURL];
+    
+    
+    //[[NSBundle mainBundle] URLForResource:kIDPImageName
+    //                                        withExtension:kIDPImageExtension];
     
     return user;
 }
@@ -84,9 +88,7 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
     
     self.name = [coder decodeObjectForKey:kIDPUserNameKey];
     self.surname = [coder decodeObjectForKey:kIDPUserSurnameKey];
-                    
-    NSString *fileName = [[coder decodeObjectForKey:kIDPUserURLKey] lastPathComponent];
-    self.imageURL = [NSURL URLWithString:[NSBundle pathForFile:fileName]];
+    self.imageURL = [coder decodeObjectForKey:kIDPUserURLKey];
     
     return self;
 }
