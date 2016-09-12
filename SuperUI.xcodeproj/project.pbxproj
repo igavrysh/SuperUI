@@ -14,6 +14,8 @@
 		851A2A881D738E9E00C32616 /* IDPLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 851A2A861D738E9E00C32616 /* IDPLoadingView.m */; };
 		851A2A8A1D738F4300C32616 /* IDPLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851A2A891D738F4300C32616 /* IDPLoadingView.xib */; };
 		851A2A8B1D738F4300C32616 /* IDPLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851A2A891D738F4300C32616 /* IDPLoadingView.xib */; };
+		851AA12A1D86251700E7D0A6 /* IDPObjectsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 851AA1291D86251700E7D0A6 /* IDPObjectsCache.m */; };
+		851AA12B1D86251700E7D0A6 /* IDPObjectsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 851AA1291D86251700E7D0A6 /* IDPObjectsCache.m */; };
 		851EE14F1D6193AD0029B447 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851EE14D1D6193AD0029B447 /* image.jpg */; };
 		851EE1501D6193AD0029B447 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851EE14D1D6193AD0029B447 /* image.jpg */; };
 		851EE1511D6193AD0029B447 /* image_big.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851EE14E1D6193AD0029B447 /* image_big.jpg */; };
@@ -40,6 +42,10 @@
 		8572E36B1D70E5050092DE15 /* IDPModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8572E3691D70E5050092DE15 /* IDPModel.m */; };
 		857638541D857B63004DC4BC /* IDPGlobalImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 857638531D857B63004DC4BC /* IDPGlobalImageModel.m */; };
 		857638551D857B63004DC4BC /* IDPGlobalImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 857638531D857B63004DC4BC /* IDPGlobalImageModel.m */; };
+		857638591D858D60004DC4BC /* UIImage+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 857638581D858D60004DC4BC /* UIImage+IDPExtensions.m */; };
+		8576385A1D858D60004DC4BC /* UIImage+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 857638581D858D60004DC4BC /* UIImage+IDPExtensions.m */; };
+		8576385E1D8592A9004DC4BC /* IDPErrorMacros.m in Sources */ = {isa = PBXBuildFile; fileRef = 8576385D1D8592A9004DC4BC /* IDPErrorMacros.m */; };
+		8576385F1D8592A9004DC4BC /* IDPErrorMacros.m in Sources */ = {isa = PBXBuildFile; fileRef = 8576385D1D8592A9004DC4BC /* IDPErrorMacros.m */; };
 		857781441D76C772007EEF52 /* NSArray+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 857781431D76C772007EEF52 /* NSArray+IDPExtensions.m */; };
 		857781451D76C772007EEF52 /* NSArray+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 857781431D76C772007EEF52 /* NSArray+IDPExtensions.m */; };
 		857781491D773EFE007EEF52 /* SUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 857781481D773EFE007EEF52 /* SUIViewController.m */; };
@@ -170,6 +176,8 @@
 		851A2A851D738E9E00C32616 /* IDPLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPLoadingView.h; sourceTree = "<group>"; };
 		851A2A861D738E9E00C32616 /* IDPLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPLoadingView.m; sourceTree = "<group>"; };
 		851A2A891D738F4300C32616 /* IDPLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPLoadingView.xib; sourceTree = "<group>"; };
+		851AA1281D86251700E7D0A6 /* IDPObjectsCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPObjectsCache.h; sourceTree = "<group>"; };
+		851AA1291D86251700E7D0A6 /* IDPObjectsCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPObjectsCache.m; sourceTree = "<group>"; };
 		851EE14D1D6193AD0029B447 /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
 		851EE14E1D6193AD0029B447 /* image_big.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_big.jpg; sourceTree = "<group>"; };
 		852569A61D7E0CE100E3EB35 /* IDPDispatchMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPDispatchMacros.h; sourceTree = "<group>"; };
@@ -193,6 +201,10 @@
 		8572E3691D70E5050092DE15 /* IDPModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPModel.m; sourceTree = "<group>"; };
 		857638521D857B63004DC4BC /* IDPGlobalImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPGlobalImageModel.h; sourceTree = "<group>"; };
 		857638531D857B63004DC4BC /* IDPGlobalImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPGlobalImageModel.m; sourceTree = "<group>"; };
+		857638571D858D60004DC4BC /* UIImage+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+IDPExtensions.h"; sourceTree = "<group>"; };
+		857638581D858D60004DC4BC /* UIImage+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+IDPExtensions.m"; sourceTree = "<group>"; };
+		8576385C1D8592A9004DC4BC /* IDPErrorMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPErrorMacros.h; sourceTree = "<group>"; };
+		8576385D1D8592A9004DC4BC /* IDPErrorMacros.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPErrorMacros.m; sourceTree = "<group>"; };
 		857781421D76C772007EEF52 /* NSArray+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+IDPExtensions.h"; sourceTree = "<group>"; };
 		857781431D76C772007EEF52 /* NSArray+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+IDPExtensions.m"; sourceTree = "<group>"; };
 		857781471D773EFE007EEF52 /* SUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUIViewController.h; sourceTree = "<group>"; };
@@ -358,6 +370,15 @@
 			path = IDPLoadingView;
 			sourceTree = "<group>";
 		};
+		851AA1271D86250B00E7D0A6 /* IDPObjectsCache */ = {
+			isa = PBXGroup;
+			children = (
+				851AA1281D86251700E7D0A6 /* IDPObjectsCache.h */,
+				851AA1291D86251700E7D0A6 /* IDPObjectsCache.m */,
+			);
+			path = IDPObjectsCache;
+			sourceTree = "<group>";
+		};
 		851EE14C1D6193AD0029B447 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -440,6 +461,24 @@
 				8572E3691D70E5050092DE15 /* IDPModel.m */,
 			);
 			path = IDPModel;
+			sourceTree = "<group>";
+		};
+		857638561D858D4F004DC4BC /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				857638571D858D60004DC4BC /* UIImage+IDPExtensions.h */,
+				857638581D858D60004DC4BC /* UIImage+IDPExtensions.m */,
+			);
+			path = UIImage;
+			sourceTree = "<group>";
+		};
+		8576385B1D859294004DC4BC /* IDPErrorMacros */ = {
+			isa = PBXGroup;
+			children = (
+				8576385C1D8592A9004DC4BC /* IDPErrorMacros.h */,
+				8576385D1D8592A9004DC4BC /* IDPErrorMacros.m */,
+			);
+			path = IDPErrorMacros;
 			sourceTree = "<group>";
 		};
 		857781461D773EBB007EEF52 /* SUIViewController */ = {
@@ -538,6 +577,7 @@
 		857795101D6BAB3500C16BA4 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				8576385B1D859294004DC4BC /* IDPErrorMacros */,
 				852569A21D7E0CB100E3EB35 /* IDPDispatchMacros */,
 				855022A61D73FA3600A81AAA /* IDPTypes */,
 				8577951F1D6BAE2600C16BA4 /* IDPBlockMacros */,
@@ -599,6 +639,7 @@
 		858238BF1D5B5DEB00623348 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				857638561D858D4F004DC4BC /* UIImage */,
 				854E11F91D7F715700A2A0A9 /* NSNotificationCenter */,
 				853F96371D7D9F5E00AE2C50 /* NSFileManager */,
 				859D96831D7C5FD1005C05C6 /* IDPArrayChangeModel */,
@@ -649,6 +690,7 @@
 		858238DE1D5B5DEB00623348 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				851AA1271D86250B00E7D0A6 /* IDPObjectsCache */,
 				858239351D5B7BBA00623348 /* IDPArrayModel */,
 				858526791D77A53100E2EA6C /* IDPUserArrayModel */,
 				8572E3661D70E4B00092DE15 /* IDPModel */,
@@ -1126,6 +1168,7 @@
 				858239101D5B5DEB00623348 /* IDPAnimationView.m in Sources */,
 				85193DF21D53B8120085BCC2 /* SuperUITests.m in Sources */,
 				85D4150F1D662E8F007BDE85 /* IDPArrayReplaceChangeModel.m in Sources */,
+				8576385A1D858D60004DC4BC /* UIImage+IDPExtensions.m in Sources */,
 				856987F51D5BBD0400DBB5CE /* IDPRandom.m in Sources */,
 				859D96931D7C5FD1005C05C6 /* IDPArrayMoveChangeModel+IDPExtensions.m in Sources */,
 				857794FF1D6BA6A500C16BA4 /* NSString+IDPRandomName.m in Sources */,
@@ -1143,6 +1186,7 @@
 				8572E36B1D70E5050092DE15 /* IDPModel.m in Sources */,
 				858526781D779CD500E2EA6C /* IDPFilteredArrayModel.m in Sources */,
 				859D96911D7C5FD1005C05C6 /* IDPArrayInsertChangeModel+IDPExtensions.m in Sources */,
+				851AA12B1D86251700E7D0A6 /* IDPObjectsCache.m in Sources */,
 				85C16CC01D764A550087EC1E /* NSBundle+IDPExtensions.m in Sources */,
 				857794F51D6BA6A500C16BA4 /* NSArray+IDPArrayEnumerator.m in Sources */,
 				851A2A841D738E8400C32616 /* IDPView.m in Sources */,
@@ -1158,6 +1202,7 @@
 				853F963B1D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.m in Sources */,
 				859D968F1D7C5FD1005C05C6 /* IDPArrayChangeModel+IDPExtensions.m in Sources */,
 				8577950D1D6BA6A500C16BA4 /* UITableView+IDPExtensions.m in Sources */,
+				8576385F1D8592A9004DC4BC /* IDPErrorMacros.m in Sources */,
 				854E11FD1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m in Sources */,
 				857795181D6BAB3500C16BA4 /* IDPCompilerMacros.m in Sources */,
 				858239201D5B5DEB00623348 /* IDPUserView.m in Sources */,
@@ -1174,6 +1219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				854E11FC1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m in Sources */,
+				857638591D858D60004DC4BC /* UIImage+IDPExtensions.m in Sources */,
 				85607A4A1D74F19E00F6D5E9 /* SUIView.m in Sources */,
 				857795221D6BAE3300C16BA4 /* IDPBlockMacros.m in Sources */,
 				8582391F1D5B5DEB00623348 /* IDPUserView.m in Sources */,
@@ -1211,6 +1257,7 @@
 				85C8DD951D530D6E009E227C /* AppDelegate.m in Sources */,
 				857794F81D6BA6A500C16BA4 /* NSMutableArray+IDPExtensions.m in Sources */,
 				85D4150C1D662E8F007BDE85 /* IDPArrayRemoveChangeModel.m in Sources */,
+				851AA12A1D86251700E7D0A6 /* IDPObjectsCache.m in Sources */,
 				8577951D1D6BAB5D00C16BA4 /* IDPReturnMacros.m in Sources */,
 				858239251D5B5DEB00623348 /* IDPImageView.m in Sources */,
 				85D415041D662E8F007BDE85 /* IDPArrayOneIndexChangeModel.m in Sources */,
@@ -1227,6 +1274,7 @@
 				859D96901D7C5FD1005C05C6 /* IDPArrayInsertChangeModel+IDPExtensions.m in Sources */,
 				85F749781D5CE3320088A09F /* IDPArrayView.m in Sources */,
 				859D96941D7C5FD1005C05C6 /* IDPArrayRemoveChangeModel+IDPExtensions.m in Sources */,
+				8576385E1D8592A9004DC4BC /* IDPErrorMacros.m in Sources */,
 				857794F61D6BA6A500C16BA4 /* NSIndexPath+IDPExtensions.m in Sources */,
 				8577950E1D6BA6A500C16BA4 /* UIWindow+IDPExtensions.m in Sources */,
 				8585267C1D77A53100E2EA6C /* IDPUserArrayModel.m in Sources */,

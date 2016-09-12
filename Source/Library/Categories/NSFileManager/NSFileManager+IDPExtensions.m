@@ -10,6 +10,7 @@
 
 #import "IDPDispatchMacros.h"
 #import "IDPBlockTypes.h"
+#import "IDPErrorMacros.h"
 
 static NSString * const kIDPApplicationCacheDirectoryName = @"ApplicationCache";
 
@@ -61,7 +62,6 @@ static NSString * const kIDPApplicationCacheDirectoryName = @"ApplicationCache";
     IDPSetAndReturnStaticVariableWithBlock(pathFactory);
 }
 
-
 + (NSString *)applicationCachePath {
     IDPFactoryBlock pathFactory = ^{
         NSString *domainPath = [NSFileManager libraryPath];
@@ -81,6 +81,48 @@ static NSString * const kIDPApplicationCacheDirectoryName = @"ApplicationCache";
     };
     
     IDPSetAndReturnStaticVariableWithBlock(pathFactory);
+}
+
+#pragma mark -
+#pragma mark Public Methods
+
+- (void)createDirectoryAtURL:(NSURL *)url error:(NSError **)error {
+    if (url.isFileURL) {
+        [self createDirectoryAtPath:url.path error:error];
+    }
+}
+
+- (void)createDirectoryAtPath:(NSString *)path error:(NSError **)error {
+    if (![self fileExistsAtPath:path]) {
+        [self createDirectoryAtPath:path
+        withIntermediateDirectories:YES
+                         attributes:nil
+                              error:error];
+    }
+}
+
+- (void)saveData:(NSData *)data atURL:(NSURL *)url error:(NSError **)error {
+    if (url.isFileURL) {
+        [self saveData:data atPath:url.path error:error];
+    }
+}
+
+- (void)saveData:(NSData *)data atPath:(NSString *)path error:(NSError **)error {
+    [self createDirectoryAtPath:[path stringByDeletingLastPathComponent] error:error];
+    
+    IDPReturnVoidIfError(*error);
+    
+    [data writeToFile:path options:NSAtomicWrite error:error];
+}
+
+- (BOOL)fileExistsAtURL:(NSURL *)url {
+    return url.isFileURL && [self fileExistsAtPath:url.path];
+}
+
+- (void)removeFileAtURL:(NSURL *)url {
+    if ([self fileExistsAtURL:url]) {
+        [self removeFileAtURL:url];
+    }
 }
 
 @end

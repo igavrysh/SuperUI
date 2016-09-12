@@ -1,13 +1,10 @@
 //
-//  IDPGlobalImageModel.h
+//  IDPErrorMacros.m
 //  SuperUI
 //
 //  Created by Ievgen on 9/11/16.
 //  Copyright © 2016 1mlndollarsasset. All rights reserved.
 //
 
-#import "IDPImageModel.h"
+#import "IDPErrorMacros.h"
 
-@interface IDPGlobalImageModel : IDPImageModel
-
-@end
