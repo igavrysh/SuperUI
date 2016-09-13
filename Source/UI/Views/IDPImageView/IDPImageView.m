@@ -22,10 +22,6 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (void)dealloc {
-    self.contentImageView = nil;
-}
-
 - (instancetype)init {
     self = [super init];
     if (self) {
