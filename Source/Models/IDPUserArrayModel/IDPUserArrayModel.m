@@ -18,6 +18,9 @@
 #import "NSNotificationCenter+IDPExtensions.h"
 #import "NSFileManager+IDPExtensions.h"
 
+#import "IDPDispatchMacros.h"
+#import "IDPBlockTypes.h"
+
 @interface IDPUserArrayModel ()
 @property (nonatomic, strong) id    observer;
 
@@ -31,6 +34,8 @@
 
 - (void)stopObservingNotificationsForName:(NSString *)name;
 
+- (NSArray *)subscribedApplicationNotifications;
+
 @end
 
 @implementation IDPUserArrayModel
@@ -43,15 +48,13 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    [self stopObservingNotificationsForNames:@[UIApplicationWillTerminateNotification,
-                                               UIApplicationDidEnterBackgroundNotification]];
+    [self stopObservingNotificationsForNames:[self subscribedApplicationNotifications]];
 }
 
 - (instancetype)init {
     self = [super init];
     
-    [self startObservingNotificationsForNames:@[UIApplicationWillTerminateNotification,
-                                               UIApplicationDidEnterBackgroundNotification]
+    [self startObservingNotificationsForNames:[self subscribedApplicationNotifications]
                                     withBlock:^{
                                         [self save];
                                     }];
@@ -132,4 +135,13 @@
 - (void)stopObservingNotificationsForName:(NSString *)name {
     [[NSNotificationCenter defaultCenter] removeObserver:self.observer name:name object:nil];
 }
+
+- (NSArray *)subscribedApplicationNotifications {
+    IDPFactoryBlock block = ^{
+        return @[UIApplicationWillTerminateNotification, UIApplicationDidEnterBackgroundNotification];
+    };
+    
+    IDPReturnAfterSettingVariableWithBlockOnce(block);
+}
+
 @end

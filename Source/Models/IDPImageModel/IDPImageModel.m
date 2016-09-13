@@ -8,80 +8,40 @@
 
 #import "IDPImageModel.h"
 
-#import "IDPGCDQueue.h"
-#import "IDPObjectsCache.h"
-
-#import "NSFileManager+IDPExtensions.h"
-
-#import "IDPMacros.h"
+#import "IDPLocalImageModel.h"
+#import "IDPInternetImageModel.h"
 
 @interface IDPImageModel ()
-@property (nonatomic, strong)   NSURL               *url;
-
-- (void)dump;
 
 @end
 
 @implementation IDPImageModel
 
-@dynamic localURL;
-
 #pragma mark -
 #pragma mark Class Methods
 
-+ (instancetype)imageWithURL:(NSURL *)url {
++ (id)imageWithURL:(NSURL *)url {
     return [[self alloc] initWithURL:url];
 }
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (instancetype)initWithURL:(NSURL *)url {
-    id object = [[IDPObjectsCache cache] objectForKey:url];
-    if (object) {
-        self = nil;
-        
-        return object;
+- (id)initWithURL:(NSURL *)url {
+    self = nil;
+    
+    if ([url isFileURL]) {
+        return [IDPLocalImageModel imageWithURL:url];
     }
     
-    self = [super init];
-    
-    self.url = url;
-    
-    [[IDPObjectsCache cache] setObject:self forKey:url];
-
-    return self;
+    return [IDPInternetImageModel imageWithURL:url];
 }
 
 #pragma mark -
 #pragma mark Accessors
 
-- (NSURL *)localURL {
-    return self.url;
-}
-
-#pragma mark -
-#pragma mark Public Methods
-
-- (void)performLoading {
-    NSURL *url = self.localURL;
-    
-    NSData * data = [NSData dataWithContentsOfFile:url.path];
-    
-    self.image = [UIImage imageWithData:data];
-    
-    if (!self.image) {
-        [[NSFileManager defaultManager] removeFileAtURL:url];
-        
-        [super load];
-    } else {
-        self.state = IDPModelDidLoad;
-    }
-}
-
-- (void)dump {
-    self.image = nil;
-    self.state = IDPModelDidUnload;
+- (UIImage *)image {
+    return nil;
 }
 
 @end

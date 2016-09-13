@@ -8,13 +8,14 @@
 
 #import "IDPBlockMacros.h"
 
-#define IDPSetAndReturnStaticVariableWithBlock(factoryBlock) \
+#define IDPReturnAfterSettingVariableWithBlockOnce(factoryBlock) \
     do { \
         static id variable = nil; \
         static dispatch_once_t onceToken; \
         dispatch_once(&onceToken, ^{ \
             IDPAssignBlockPerform(factoryBlock, variable); \
         }); \
+        \
         return variable; \
     \
     } while(0) \

@@ -9,7 +9,6 @@
 #import "IDPUser.h"
 
 #import "IDPImageModel.h"
-#import "IDPGlobalImageModel.h"
 
 #import "NSString+IDPRandomName.h"
 #import "NSArray+IDPArrayEnumerator.h"
@@ -59,7 +58,7 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
 }
 
 - (IDPImageModel *)imageModel {
-    return [IDPGlobalImageModel imageWithURL:self.imageURL];
+    return [IDPImageModel imageWithURL:self.imageURL];
 }
 
 #pragma mark -

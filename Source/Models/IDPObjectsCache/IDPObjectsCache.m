@@ -21,7 +21,7 @@
 #pragma mark Class Methods
 
 + (instancetype)cache {
-    IDPSetAndReturnStaticVariableWithBlock(^{
+    IDPReturnAfterSettingVariableWithBlockOnce(^{
         return [self new];
     });
 }

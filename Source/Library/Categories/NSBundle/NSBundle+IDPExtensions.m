@@ -20,7 +20,7 @@
 #pragma mark Class Methods
 
 + (NSString *)path {
-    IDPSetAndReturnStaticVariableWithBlock(^{
+    IDPReturnAfterSettingVariableWithBlockOnce(^{
         return [[NSBundle mainBundle] bundlePath];
     });
 }

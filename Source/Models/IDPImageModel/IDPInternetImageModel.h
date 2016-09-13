@@ -6,8 +6,8 @@
 //  Copyright © 2016 1mlndollarsasset. All rights reserved.
 //
 
-#import "IDPImageModel.h"
+#import "IDPLocalImageModel.h"
 
-@interface IDPGlobalImageModel : IDPImageModel
+@interface IDPInternetImageModel : IDPLocalImageModel
 
 @end

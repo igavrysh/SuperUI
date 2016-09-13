@@ -41,25 +41,25 @@ static NSString * const kIDPApplicationCacheDirectoryName = @"ApplicationCache";
 + (NSString *)libraryPath {
     IDPFactoryBlock pathFactory = [self pathFactoryWithType:NSLibraryDirectory];
     
-    IDPSetAndReturnStaticVariableWithBlock(pathFactory);
+    IDPReturnAfterSettingVariableWithBlockOnce(pathFactory);
 }
 
 + (NSString *)cachesPath {
     IDPFactoryBlock pathFactory = [self pathFactoryWithType:NSCachesDirectory];
     
-    IDPSetAndReturnStaticVariableWithBlock(pathFactory);
+    IDPReturnAfterSettingVariableWithBlockOnce(pathFactory);
 }
 
 + (NSString *)documentPath {
     IDPFactoryBlock pathFactory = [self pathFactoryWithType:NSDocumentDirectory];
     
-    IDPSetAndReturnStaticVariableWithBlock(pathFactory);
+    IDPReturnAfterSettingVariableWithBlockOnce(pathFactory);
 }
 
 + (NSString *)applicationPath {
     IDPFactoryBlock pathFactory = [self pathFactoryWithType:NSApplicationDirectory];
     
-    IDPSetAndReturnStaticVariableWithBlock(pathFactory);
+    IDPReturnAfterSettingVariableWithBlockOnce(pathFactory);
 }
 
 + (NSString *)applicationCachePath {
@@ -80,7 +80,7 @@ static NSString * const kIDPApplicationCacheDirectoryName = @"ApplicationCache";
         return path;
     };
     
-    IDPSetAndReturnStaticVariableWithBlock(pathFactory);
+    IDPReturnAfterSettingVariableWithBlockOnce(pathFactory);
 }
 
 #pragma mark -
@@ -99,20 +99,6 @@ static NSString * const kIDPApplicationCacheDirectoryName = @"ApplicationCache";
                          attributes:nil
                               error:error];
     }
-}
-
-- (void)saveData:(NSData *)data atURL:(NSURL *)url error:(NSError **)error {
-    if (url.isFileURL) {
-        [self saveData:data atPath:url.path error:error];
-    }
-}
-
-- (void)saveData:(NSData *)data atPath:(NSString *)path error:(NSError **)error {
-    [self createDirectoryAtPath:[path stringByDeletingLastPathComponent] error:error];
-    
-    IDPReturnVoidIfError(*error);
-    
-    [data writeToFile:path options:NSAtomicWrite error:error];
 }
 
 - (BOOL)fileExistsAtURL:(NSURL *)url {
