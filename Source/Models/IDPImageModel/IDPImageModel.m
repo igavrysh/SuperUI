@@ -30,18 +30,9 @@
 - (id)initWithURL:(NSURL *)url {
     self = nil;
     
-    if ([url isFileURL]) {
-        return [IDPLocalImageModel imageWithURL:url];
-    }
+    Class class = url.isFileURL ? [IDPLocalImageModel class] : [IDPInternetImageModel class];
     
-    return [IDPInternetImageModel imageWithURL:url];
-}
-
-#pragma mark -
-#pragma mark Accessors
-
-- (UIImage *)image {
-    return nil;
+    return [class imageWithURL:url];
 }
 
 @end

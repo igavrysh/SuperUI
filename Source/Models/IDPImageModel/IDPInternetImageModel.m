@@ -38,15 +38,10 @@
     NSData *data = [NSData dataWithContentsOfURL:self.url
                                          options:NSDataReadingMappedIfSafe
                                            error:&error];
-    if (error) {
-        self.state = IDPModelDidFailLoading;
-        
-        return;
-    }
     
     self.image = [UIImage imageWithData:data];
     
-    if (!self.image) {
+    if (!self.image || error) {
         self.state = IDPModelDidFailLoading;
         
         return;
@@ -66,8 +61,11 @@
         IDPStrongify(self);
         
         NSURL *localURL = self.localURL;
+        NSURL *directoryURL = [localURL URLByDeletingLastPathComponent];
         
         NSError *error = nil;
+        [[NSFileManager defaultManager] createDirectoryAtURL:directoryURL error:&error];
+        
         [data writeToURL:localURL options:NSAtomicWrite error:&error];
         
         IDPReturnVoidIfError(error);

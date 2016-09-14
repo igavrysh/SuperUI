@@ -11,6 +11,7 @@
 #import "IDPObjectsCache.h"
 
 #import "NSFileManager+IDPExtensions.h"
+#import "NSString+IDPExtensions.h"
 
 #import "IDPErrorMacros.h"
 
@@ -61,19 +62,22 @@
 - (NSURL *)localURL {
     NSURL *url = self.url;
     
-    if ([url isFileURL]) {
+    if (url.isFileURL) {
         return url;
     }
     
-    NSString *cachePath = [NSFileManager cachesPath];
-    NSString *host = [url.host stringByReplacingOccurrencesOfString:@"."
-                                                         withString:@"/"];
-    NSString *relativePath = url.relativePath;
+    id slashSubstitution = @{ @"/" : (@"") };
+    id dotSubstitution = @{ @"." : (@"") };
     
-    return [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/images/%@%@",
-                                   cachePath,
-                                   host,
-                                   relativePath]];
+    NSString *host = [url.host stringBySubstitutingSymbols:dotSubstitution];
+    NSString *relativePath = [url.relativePath stringBySubstitutingSymbols:slashSubstitution];
+    
+    NSString *path = [NSString stringWithFormat:@"%@/images/%@%@",
+                      [NSFileManager cachesPath],
+                      host,
+                      relativePath];
+    
+    return [NSURL fileURLWithPath:path isDirectory:NO];
 }
 
 - (BOOL)isCached {
@@ -85,25 +89,24 @@
 
 - (void)performLoading {
     NSError *error = nil;
-    NSURL *url = self.url;
-    NSData *data = [NSData dataWithContentsOfURL:url
+    
+    NSData *data = [NSData dataWithContentsOfURL:self.localURL
                                          options:NSDataReadingMappedIfSafe
                                            error:&error];
-    if (error) {
-        [self removeCache];
-        
-        return;
-    }
     
     self.image = [UIImage imageWithData:data];
     
-    if (!self.image) {
+    if (!self.image || error) {
         [self removeCache];
         
         return;
     }
     
     self.state = IDPModelDidLoad;
+}
+
+- (void)perfomLoadingWithURL:(NSURL *)url {
+    
 }
 
 #pragma mark -

@@ -11,8 +11,7 @@
 #import "IDPModel.h"
 #import "IDPImageModel.h"
 
-@interface IDPLocalImageModel : IDPModel<IDPImageContainer>
-@property (nonatomic, strong)                       UIImage     *image;
+@interface IDPLocalImageModel : IDPImageModel
 @property (nonatomic, readonly)                     NSURL       *url;
 @property (nonatomic, readonly)                     NSURL       *localURL;
 @property (nonatomic, readonly, getter=isCached)    BOOL        cached;

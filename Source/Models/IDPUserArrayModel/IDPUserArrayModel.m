@@ -34,7 +34,7 @@
 
 - (void)stopObservingNotificationsForName:(NSString *)name;
 
-- (NSArray *)subscribedApplicationNotifications;
+- (NSArray *)applicationNotifications;
 
 @end
 
@@ -48,13 +48,13 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    [self stopObservingNotificationsForNames:[self subscribedApplicationNotifications]];
+    [self stopObservingNotificationsForNames:[self applicationNotifications]];
 }
 
 - (instancetype)init {
     self = [super init];
     
-    [self startObservingNotificationsForNames:[self subscribedApplicationNotifications]
+    [self startObservingNotificationsForNames:[self applicationNotifications]
                                     withBlock:^{
                                         [self save];
                                     }];
@@ -136,7 +136,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self.observer name:name object:nil];
 }
 
-- (NSArray *)subscribedApplicationNotifications {
+- (NSArray *)applicationNotifications {
     IDPFactoryBlock block = ^{
         return @[UIApplicationWillTerminateNotification, UIApplicationDidEnterBackgroundNotification];
     };

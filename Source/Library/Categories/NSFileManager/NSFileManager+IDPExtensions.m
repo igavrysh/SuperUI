@@ -89,6 +89,8 @@ static NSString * const kIDPApplicationCacheDirectoryName = @"ApplicationCache";
 - (void)createDirectoryAtURL:(NSURL *)url error:(NSError **)error {
     if (url.isFileURL) {
         [self createDirectoryAtPath:url.path error:error];
+    } else {
+        *error = [NSError errorWithDomain:@"URL is not file URL" code:0 userInfo:nil];
     }
 }
 

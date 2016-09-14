@@ -10,13 +10,8 @@
 
 #import "IDPModel.h"
 
-@protocol IDPImageContainer <NSObject>
-@property   (nonatomic, readonly) UIImage   *image;
-
-@end
-
-
-@interface IDPImageModel : IDPModel<IDPImageContainer>
+@interface IDPImageModel : IDPModel
+@property (nonatomic, strong) UIImage     *image;
 
 + (id)imageWithURL:(NSURL *)url;
 
