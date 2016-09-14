@@ -11,7 +11,15 @@
 #import "IDPLocalImageModel.h"
 #import "IDPInternetImageModel.h"
 
+#import "IDPDispatchMacros.h"
+
 @interface IDPImageModel ()
+
++ (NSMapTable *)cluster;
+
++ (void)registerClass:(Class)class forURL:(NSURL *)url;
+
++ (Class)classForURL:(NSURL *)url;
 
 @end
 
@@ -24,15 +32,37 @@
     return [[self alloc] initWithURL:url];
 }
 
++ (NSMapTable *)cluster {
+    IDPReturnAfterSettingVariableWithBlockOnce(^{
+        return [NSMapTable mapTableWithKeyOptions:NSPointerFunctionsStrongMemory | NSPointerFunctionsObjectPersonality
+                                     valueOptions:NSPointerFunctionsWeakMemory];
+    });
+}
+
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (id)initWithURL:(NSURL *)url {
     self = nil;
     
-    Class class = url.isFileURL ? [IDPLocalImageModel class] : [IDPInternetImageModel class];
+    Class class = [IDPImageModel classForURL:url];
+    
+    if (!class) {
+        class = url.isFileURL ? [IDPLocalImageModel class] : [IDPInternetImageModel class];
+    }
     
     return [class imageWithURL:url];
+}
+
+#pragma mark - 
+#pragma mark Private Methods
+
++ (void)registerClass:(Class)class forURL:(NSURL *)url {
+    [[self cluster] setObject:class forKey:url];
+}
+
++ (Class)classForURL:(NSURL *)url {
+    return [[self cluster] objectForKey:url];
 }
 
 @end
