@@ -18,6 +18,8 @@
 
 - (void)saveData:(NSData *)data;
 
+- (void)removeCache;
+
 @end
 
 @implementation IDPInternetImageModel
@@ -70,6 +72,11 @@
         
         IDPReturnVoidIfError(error);
     });
+}
+
+- (void)removeCache {
+    [[NSFileManager defaultManager] removeFileAtURL:self.url];
+    self.image = nil;
 }
 
 @end

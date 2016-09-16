@@ -58,11 +58,15 @@
 #pragma mark Private Methods
 
 + (void)registerClass:(Class)class forURL:(NSURL *)url {
-    [[self cluster] setObject:class forKey:url];
+    @synchronized(self) {
+        [[self cluster] setObject:class forKey:url];
+    }
 }
 
 + (Class)classForURL:(NSURL *)url {
-    return [[self cluster] objectForKey:url];
+    @synchronized(self) {
+        return [[self cluster] objectForKey:url];
+    }
 }
 
 @end

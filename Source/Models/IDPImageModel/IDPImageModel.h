@@ -11,7 +11,8 @@
 #import "IDPModel.h"
 
 @interface IDPImageModel : IDPModel
-@property (nonatomic, strong) UIImage     *image;
+@property (nonatomic, strong)   UIImage     *image;
+@property (nonatomic, strong)   NSURL       *url;
 
 + (id)imageWithURL:(NSURL *)url;
 

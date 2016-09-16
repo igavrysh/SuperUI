@@ -15,12 +15,11 @@
 
 #import "IDPErrorMacros.h"
 
+typedef id (^IDPLoadingCompletionBlock)(void);
+
 @interface IDPLocalImageModel ()
-@property (nonatomic, strong)   NSURL       *url;
 
 - (void)dump;
-
-- (void)removeCache;
 
 @end
 
@@ -67,10 +66,9 @@
     }
     
     id slashSubstitution = @{ @"/" : (@"") };
-    id dotSubstitution = @{ @"." : (@"") };
     
-    NSString *host = [url.host stringBySubstitutingSymbols:dotSubstitution];
-    NSString *relativePath = [url.relativePath stringBySubstitutingSymbols:slashSubstitution];
+    NSString *host = [[url.host stringBySubstitutingSymbols:slashSubstitution] stringByRemovingPercentEncoding];
+    NSString *relativePath = [[url.relativePath stringBySubstitutingSymbols:slashSubstitution] stringByRemovingPercentEncoding];
     
     NSString *path = [NSString stringWithFormat:@"%@/images/%@%@",
                       [NSFileManager cachesPath],
@@ -96,17 +94,7 @@
     
     self.image = [UIImage imageWithData:data];
     
-    if (!self.image || error) {
-        [self removeCache];
-        
-        return;
-    }
-    
-    self.state = IDPModelDidLoad;
-}
-
-- (void)perfomLoadingWithURL:(NSURL *)url {
-    
+    self.state = !self.image || error ? IDPModelDidFailLoading : IDPModelDidLoad;
 }
 
 #pragma mark -
@@ -115,11 +103,6 @@
 - (void)dump {
     self.image = nil;
     self.state = IDPModelDidUnload;
-}
-
-- (void)removeCache {
-    [[NSFileManager defaultManager] removeFileAtURL:self.url];
-    self.image = nil;
 }
 
 @end
