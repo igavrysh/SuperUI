@@ -86,15 +86,28 @@ typedef id (^IDPLoadingCompletionBlock)(void);
 #pragma mark Public Methods
 
 - (void)performLoading {
+    [self performLoadingWithURL:self.localURL
+                completionBlock:^(UIImage *image, NSError * *error) {
+                    self.state = !self.image || error ? IDPModelDidFailLoading : IDPModelDidLoad;
+                }];
+}
+
+- (void)performLoadingWithURL:(NSURL *)url
+              completionBlock:(IDPImageLoadingCompletionBlock)block
+{
     NSError *error = nil;
     
-    NSData *data = [NSData dataWithContentsOfURL:self.localURL
+    NSData *data = [NSData dataWithContentsOfURL:url
                                          options:NSDataReadingMappedIfSafe
                                            error:&error];
     
     self.image = [UIImage imageWithData:data];
     
-    self.state = !self.image || error ? IDPModelDidFailLoading : IDPModelDidLoad;
+    if (!block) {
+        block(self.image, &error);
+    }
+    
+    
 }
 
 #pragma mark -

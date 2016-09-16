@@ -28,30 +28,32 @@
 #pragma mark Public Methods
 
 - (void)performLoading {
-    if (self.cached) {
-        [super performLoading];
-        
-        if (self.image) {
-            return;
+    [self performBlockWithoutNotification:^{
+        if (self.cached) {
+            [super performLoading];
         }
-    }
+    }];
     
-    NSError *error = nil;
-    NSData *data = [NSData dataWithContentsOfURL:self.url
-                                         options:NSDataReadingMappedIfSafe
-                                           error:&error];
-    
-    self.image = [UIImage imageWithData:data];
-    
-    if (!self.image || error) {
-        self.state = IDPModelDidFailLoading;
+    if (IDPModelDidFailLoading == self.state) {
+        [self removeCache];
+    } else {
+        [self notifyOfStateChange:self.state];
         
         return;
     }
     
-    self.state = IDPModelDidLoad;
+    IDPImageLoadingCompletionBlock completionBlock = ^(UIImage *image, NSError **error){
+        if (!self.image || error) {
+            self.state = IDPModelDidFailLoading;
+        } else {
+            self.state = IDPModelDidLoad;
+            
+            [self saveData:UIImagePNGRepresentation(image)];
+        }
+    };
     
-    [self saveData:data];
+    [self performLoadingWithURL:self.url
+                completionBlock:completionBlock];
 }
 
 #pragma mark -
