@@ -64,7 +64,9 @@
     
     self.image = [UIImage imageWithData:data];
     
-    IDPPerformBlock(block, self.image, &error);
+    self.state = !self.image || error ? IDPModelDidFailLoading : IDPModelDidLoad;
+    
+    IDPPerformBlock(block, data, &error);
 }
 
 #pragma mark -

@@ -90,9 +90,7 @@
 #pragma mark IDPImageModelObserver
 
 - (void)modelDidUnload:(IDPImageModel *)imageModel {
-    IDPWeakify(self);
     IDPAsyncPerformInMainQueue(^{
-        IDPStrongifyAndReturnIfNil(self);
         self.contentImageView.image = imageModel.image;
     });
     
@@ -104,9 +102,7 @@
 }
 
 - (void)modelDidLoad:(IDPImageModel *)imageModel {
-    IDPWeakify(self);
     IDPAsyncPerformInMainQueue(^{
-        IDPStrongifyAndReturnIfNil(self);
         self.contentImageView.image = imageModel.image;
         
         [super modelDidLoad:imageModel];
@@ -114,11 +110,7 @@
 }
 
 - (void)modelDidFailLoading:(IDPImageModel *)imageModel {
-    IDPWeakify(self);
     IDPAsyncPerformInMainQueue(^{
-        IDPStrongifyAndReturnIfNil(self);
-        [self.imageModel load];
-        
         [super modelDidFailLoading:imageModel];
     });
 }

@@ -10,7 +10,7 @@
 
 #import "IDPModel.h"
 
-typedef void (^IDPImageLoadingCompletionBlock)(UIImage *image, NSError **error);
+typedef void (^IDPImageLoadingCompletionBlock)(NSData *data, NSError **error);
 
 @interface IDPImageModel : IDPModel
 @property (nonatomic, strong)   UIImage     *image;

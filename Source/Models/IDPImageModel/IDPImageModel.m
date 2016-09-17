@@ -72,9 +72,7 @@
 
 - (void)performLoading {
     [self performLoadingWithURL:self.url
-                completionBlock:^(UIImage *image, NSError **error) {
-                    self.state = !self.image || error ? IDPModelDidFailLoading : IDPModelDidLoad;
-                }];
+                completionBlock:nil];
 }
 
 - (void)performLoadingWithURL:(NSURL *)url

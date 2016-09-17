@@ -62,22 +62,31 @@ static NSString * const IDPImageCahceFolder = @"images";
 - (void)performLoadingWithURL:(NSURL *)url
               completionBlock:(IDPImageLoadingCompletionBlock)block
 {
-    IDPImageLoadingCompletionBlock completionBlock = ^(UIImage *image, NSError **error) {
-        if (error || !image) {
-            [self removeCache];
-            
-            [super performLoadingWithURL:self.url completionBlock:^(UIImage *image, NSError **error) {
-                self.state = !self.image || *error ? IDPModelDidFailLoading : IDPModelDidLoad;
+    if (self.isCached) {
+        [self performBlockWithoutNotification:^{
+            [super performLoadingWithURL:self.localURL completionBlock:^(NSData *data, NSError **error) {
+                if (!data || *error) {
+                    NSLog(@"Error: reading from the local cache");
+                    
+                    [self removeCache];
                 
-                [self saveData:UIImagePNGRepresentation(image)];
+                    [self performLoading];
+                } else {
+                    [self performBlockWithNotification:^{
+                        [self notifyOfStateChange:self.state];
+                    }];
+                }
             }];
-        } else {
-            self.state = !self.image || error ? IDPModelDidFailLoading : IDPModelDidLoad;
-        }
-    };
+        }];
+        
+        return;
+    }
     
-    [super performLoadingWithURL:self.localURL
-                 completionBlock:completionBlock];
+    [super performLoadingWithURL:self.url completionBlock:^(NSData *data, NSError **error) {
+        if (data && !*error) {
+            [self saveData:data];
+        }
+    }];
 }
 
 #pragma mark -
@@ -98,7 +107,7 @@ static NSString * const IDPImageCahceFolder = @"images";
 }
 
 - (void)removeCache {
-    [[NSFileManager defaultManager] removeFileAtURL:self.url];
+    [[NSFileManager defaultManager] removeFileAtURL:self.localURL];
     self.image = nil;
 }
 
