@@ -349,10 +349,10 @@
 		850054181D8A126E0026E0C4 /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				850054191D8A126E0026E0C4 /* IDPInternetImageModel.h */,
-				8500541A1D8A126E0026E0C4 /* IDPInternetImageModel.m */,
 				8500541B1D8A126E0026E0C4 /* IDPLocalImageModel.h */,
 				8500541C1D8A126E0026E0C4 /* IDPLocalImageModel.m */,
+				850054191D8A126E0026E0C4 /* IDPInternetImageModel.h */,
+				8500541A1D8A126E0026E0C4 /* IDPInternetImageModel.m */,
 			);
 			path = Private;
 			sourceTree = "<group>";

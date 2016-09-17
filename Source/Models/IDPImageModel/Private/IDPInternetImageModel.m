@@ -14,6 +14,8 @@
 
 #import "IDPErrorMacros.h"
 
+static NSString * const IDPImageCahceFolder = @"images";
+
 @interface IDPInternetImageModel ()
 
 - (void)saveData:(NSData *)data;
@@ -24,46 +26,65 @@
 
 @implementation IDPInternetImageModel
 
+@dynamic localURL;
+@dynamic cached;
+
+#pragma mark -
+#pragma mark Accessors
+
+- (NSURL *)localURL {
+    NSURL *url = self.url;
+    
+    if (url.isFileURL) {
+        return url;
+    }
+    
+    NSCharacterSet *charset = [NSCharacterSet alphanumericCharacterSet];
+    NSString *host = [url.host stringByAddingPercentEncodingWithAllowedCharacters:charset];
+    NSString *relativePath = [url.relativePath stringByAddingPercentEncodingWithAllowedCharacters:charset];
+    
+    NSString *path = [NSString stringWithFormat:@"%@/%@/%@%@",
+                      [NSFileManager cachesPath],
+                      IDPImageCahceFolder,
+                      host,
+                      relativePath];
+    
+    return [NSURL fileURLWithPath:path isDirectory:NO];
+}
+
+- (BOOL)isCached {
+    return [[NSFileManager defaultManager] fileExistsAtURL:self.localURL];
+}
+
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)performLoading {
-    [self performBlockWithoutNotification:^{
-        if (self.cached) {
-            [super performLoading];
-        }
-    }];
-    
-    if (IDPModelDidFailLoading == self.state) {
-        [self removeCache];
-    } else {
-        [self notifyOfStateChange:self.state];
-        
-        return;
-    }
-    
-    IDPImageLoadingCompletionBlock completionBlock = ^(UIImage *image, NSError **error){
-        if (!self.image || error) {
-            self.state = IDPModelDidFailLoading;
-        } else {
-            self.state = IDPModelDidLoad;
+- (void)performLoadingWithURL:(NSURL *)url
+              completionBlock:(IDPImageLoadingCompletionBlock)block
+{
+    IDPImageLoadingCompletionBlock completionBlock = ^(UIImage *image, NSError **error) {
+        if (error || !image) {
+            [self removeCache];
             
-            [self saveData:UIImagePNGRepresentation(image)];
+            [super performLoadingWithURL:self.url completionBlock:^(UIImage *image, NSError **error) {
+                self.state = !self.image || *error ? IDPModelDidFailLoading : IDPModelDidLoad;
+                
+                [self saveData:UIImagePNGRepresentation(image)];
+            }];
+        } else {
+            self.state = !self.image || error ? IDPModelDidFailLoading : IDPModelDidLoad;
         }
     };
     
-    [self performLoadingWithURL:self.url
-                completionBlock:completionBlock];
+    [super performLoadingWithURL:self.localURL
+                 completionBlock:completionBlock];
 }
 
 #pragma mark -
 #pragma mark Private Methods
 
 - (void)saveData:(NSData *)data {
-    IDPWeakify(self);
     IDPAsyncPerformInBackgroundQueue(^{
-        IDPStrongify(self);
-        
         NSURL *localURL = self.localURL;
         NSURL *directoryURL = [localURL URLByDeletingLastPathComponent];
         

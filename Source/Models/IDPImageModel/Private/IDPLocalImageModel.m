@@ -15,8 +15,6 @@
 
 #import "IDPErrorMacros.h"
 
-typedef id (^IDPLoadingCompletionBlock)(void);
-
 @interface IDPLocalImageModel ()
 
 - (void)dump;
@@ -24,9 +22,6 @@ typedef id (^IDPLoadingCompletionBlock)(void);
 @end
 
 @implementation IDPLocalImageModel
-
-@dynamic localURL;
-@dynamic cached;
 
 #pragma mark -
 #pragma mark Class Methods
@@ -56,41 +51,7 @@ typedef id (^IDPLoadingCompletionBlock)(void);
 }
 
 #pragma mark -
-#pragma mark Accessors
-
-- (NSURL *)localURL {
-    NSURL *url = self.url;
-    
-    if (url.isFileURL) {
-        return url;
-    }
-    
-    id slashSubstitution = @{ @"/" : (@"") };
-    
-    NSString *host = [[url.host stringBySubstitutingSymbols:slashSubstitution] stringByRemovingPercentEncoding];
-    NSString *relativePath = [[url.relativePath stringBySubstitutingSymbols:slashSubstitution] stringByRemovingPercentEncoding];
-    
-    NSString *path = [NSString stringWithFormat:@"%@/images/%@%@",
-                      [NSFileManager cachesPath],
-                      host,
-                      relativePath];
-    
-    return [NSURL fileURLWithPath:path isDirectory:NO];
-}
-
-- (BOOL)isCached {
-    return [[NSFileManager defaultManager] fileExistsAtURL:self.localURL];
-}
-
-#pragma mark -
 #pragma mark Public Methods
-
-- (void)performLoading {
-    [self performLoadingWithURL:self.localURL
-                completionBlock:^(UIImage *image, NSError * *error) {
-                    self.state = !self.image || error ? IDPModelDidFailLoading : IDPModelDidLoad;
-                }];
-}
 
 - (void)performLoadingWithURL:(NSURL *)url
               completionBlock:(IDPImageLoadingCompletionBlock)block
@@ -103,11 +64,7 @@ typedef id (^IDPLoadingCompletionBlock)(void);
     
     self.image = [UIImage imageWithData:data];
     
-    if (!block) {
-        block(self.image, &error);
-    }
-    
-    
+    IDPPerformBlock(block, self.image, &error);
 }
 
 #pragma mark -

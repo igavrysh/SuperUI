@@ -39,6 +39,19 @@
     });
 }
 
++ (void)registerClass:(Class)class forURL:(NSURL *)url {
+    @synchronized(self) {
+        [[self cluster] setObject:class forKey:url];
+    }
+}
+
++ (Class)classForURL:(NSURL *)url {
+    @synchronized(self) {
+        return [[self cluster] objectForKey:url];
+    }
+}
+
+
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
@@ -54,19 +67,20 @@
     return [class imageWithURL:url];
 }
 
-#pragma mark - 
-#pragma mark Private Methods
+#pragma mark -
+#pragma mark Public Methods
 
-+ (void)registerClass:(Class)class forURL:(NSURL *)url {
-    @synchronized(self) {
-        [[self cluster] setObject:class forKey:url];
-    }
+- (void)performLoading {
+    [self performLoadingWithURL:self.url
+                completionBlock:^(UIImage *image, NSError **error) {
+                    self.state = !self.image || error ? IDPModelDidFailLoading : IDPModelDidLoad;
+                }];
 }
 
-+ (Class)classForURL:(NSURL *)url {
-    @synchronized(self) {
-        return [[self cluster] objectForKey:url];
-    }
+- (void)performLoadingWithURL:(NSURL *)url
+              completionBlock:(IDPImageLoadingCompletionBlock)block
+{
+    IDPBlockPerform(block, nil, nil);
 }
 
 @end
