@@ -66,6 +66,14 @@
     return [class imageWithURL:url];
 }
 
+#pragma mark - Accessors
+
+- (void)setImageWithData:(NSData *)data {
+    self.image = [UIImage imageWithData:data];
+    
+    self.state = !self.image ? IDPModelDidFailLoading : IDPModelDidLoad;
+}
+
 #pragma mark -
 #pragma mark Public Methods
 
