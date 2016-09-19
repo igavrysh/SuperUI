@@ -17,6 +17,9 @@
 static NSString * const IDPImageCahceFolder = @"images";
 
 @interface IDPInternetImageModel ()
+@property (nonatomic, strong)   NSURLSessionDownloadTask    *task;
+
+- (void)performLoadingWithInternetURL:(NSURL *)url;
 
 - (void)saveData:(NSData *)data;
 
@@ -82,15 +85,36 @@ static NSString * const IDPImageCahceFolder = @"images";
         return;
     }
     
-    [super performLoadingWithURL:self.url completionBlock:^(NSData *data, NSError **error) {
-        if (data && !*error) {
-            [self saveData:data];
-        }
-    }];
+    [self performLoadingWithInternetURL:self.url];
+}
+
+- (void)cancelLoad {
+    [self.task cancel];
 }
 
 #pragma mark -
 #pragma mark Private Methods
+
+- (void)performLoadingWithInternetURL:(NSURL *)url {
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    
+    id completionHandler = ^(NSURL *location, NSURLResponse *response, NSError *error) {
+        NSData *data = location.dataRepresentation;
+        
+        self.image = [UIImage imageWithData:data];
+        
+        self.state = !self.image || error ? IDPModelDidFailLoading : IDPModelDidLoad;
+        
+        if (data && !error) {
+            [self saveData:data];
+        }
+    };
+    
+    self.task = [session downloadTaskWithURL:url
+                           completionHandler:completionHandler];
+    
+    [self.task resume];
+}
 
 - (void)saveData:(NSData *)data {
     IDPAsyncPerformInBackgroundQueue(^{

@@ -20,7 +20,6 @@ typedef void (^IDPImageLoadingCompletionBlock)(NSData *data, NSError **error);
 
 - (id)initWithURL:(NSURL *)url;
 
-
 - (void)performLoading;
 - (void)performLoadingWithURL:(NSURL *)url
               completionBlock:(IDPImageLoadingCompletionBlock)block;
