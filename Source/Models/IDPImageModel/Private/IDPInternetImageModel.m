@@ -33,6 +33,13 @@ static NSString * const IDPImageCahceFolder = @"images";
 @dynamic cached;
 
 #pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (void)dealloc {
+    [self cancelLoad];
+}
+
+#pragma mark -
 #pragma mark Accessors
 
 - (NSURL *)localURL {
