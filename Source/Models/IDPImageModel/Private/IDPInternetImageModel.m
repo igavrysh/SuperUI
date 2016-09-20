@@ -14,6 +14,7 @@
 
 #import "NSFileManager+IDPExtensions.h"
 #import "NSString+IDPExtensions.h"
+#import "NSURLSession+IDPExtensions.h"
 
 #import "IDPErrorMacros.h"
 #import "IDPDispatchMacros.h"
@@ -24,6 +25,7 @@
 @property (nonatomic, strong)       NSString                    *imagesCachePath;
 
 - (void)saveData:(NSData *)data;
+- (void)saveWithURL:(NSURL *)url;
 
 - (void)removeCache;
 
@@ -40,7 +42,7 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    [self cancelLoad];
+    [self cancelTask];
 }
 
 #pragma mark -
@@ -56,6 +58,16 @@
     NSString *path = [self.imagesCachePath stringByAppendingPathComponent:self.fileName];
     
     return [NSURL fileURLWithPath:path isDirectory:NO];
+}
+
+- (void)setTask:(NSURLSessionDownloadTask *)task {
+    if (_task != task) {
+        [self cancelLoad];
+        
+        _task = task;
+        
+        [_task resume];
+    }
 }
 
 - (BOOL)isCached {
@@ -79,31 +91,34 @@
             }
         }];
     } else {
-        NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-        
         id completionHandler = ^(NSURL *location, NSURLResponse *response, NSError *error) {
             [super performLoadingWithURL:location completionBlock:^(UIImage *image, NSError *error) {
                 IDPPerformBlock(block, image, error);
+                
+                if (!error) {
+                    [self saveWithURL:location];
+                }
+                
             }];
-            
-            if (!error) {
-                [self saveData:location.dataRepresentation];
-            }
         };
         
-        self.task = [session downloadTaskWithURL:url
-                               completionHandler:completionHandler];
-        
-        [self.task resume];
+        self.task = [[NSURLSession sharedDefaultSession] downloadTaskWithURL:url
+                                                           completionHandler:completionHandler];
     }
 }
 
-- (void)cancelLoad {
+- (void)cancelTask {
     [self.task cancel];
 }
 
 #pragma mark -
 #pragma mark Private Methods
+
+- (void)saveWithURL:(NSURL *)url {
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    
+    [self saveData:data];
+}
 
 - (void)saveData:(NSData *)data {
     IDPAsyncPerformInBackgroundQueue(^{

@@ -32,6 +32,8 @@
 		854E11FD1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 854E11FB1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m */; };
 		855022A91D73FA6100A81AAA /* IDPBlockTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 855022A81D73FA6100A81AAA /* IDPBlockTypes.m */; };
 		855022AA1D73FA6100A81AAA /* IDPBlockTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 855022A81D73FA6100A81AAA /* IDPBlockTypes.m */; };
+		855ED9941D91ADA200783C83 /* NSURLSession+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 855ED9931D91ADA200783C83 /* NSURLSession+IDPExtensions.m */; };
+		855ED9951D91ADA200783C83 /* NSURLSession+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 855ED9931D91ADA200783C83 /* NSURLSession+IDPExtensions.m */; };
 		85607A4A1D74F19E00F6D5E9 /* SUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85607A491D74F19E00F6D5E9 /* SUIView.m */; };
 		85607A4B1D74F19E00F6D5E9 /* SUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85607A491D74F19E00F6D5E9 /* SUIView.m */; };
 		856198741D66E2EF0051367A /* IDPArrayChangeModel+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 856198731D66E2EF0051367A /* IDPArrayChangeModel+IDPExtensions.m */; };
@@ -194,6 +196,8 @@
 		854E11FB1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+IDPExtensions.m"; sourceTree = "<group>"; };
 		855022A71D73FA6100A81AAA /* IDPBlockTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPBlockTypes.h; sourceTree = "<group>"; };
 		855022A81D73FA6100A81AAA /* IDPBlockTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPBlockTypes.m; sourceTree = "<group>"; };
+		855ED9921D91ADA200783C83 /* NSURLSession+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLSession+IDPExtensions.h"; sourceTree = "<group>"; };
+		855ED9931D91ADA200783C83 /* NSURLSession+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+IDPExtensions.m"; sourceTree = "<group>"; };
 		85607A481D74F19E00F6D5E9 /* SUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUIView.h; sourceTree = "<group>"; };
 		85607A491D74F19E00F6D5E9 /* SUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUIView.m; sourceTree = "<group>"; };
 		856198721D66E2EF0051367A /* IDPArrayChangeModel+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IDPArrayChangeModel+IDPExtensions.h"; sourceTree = "<group>"; };
@@ -439,6 +443,15 @@
 			path = IDPTypes;
 			sourceTree = "<group>";
 		};
+		855ED9911D91AD6F00783C83 /* NSURLSession */ = {
+			isa = PBXGroup;
+			children = (
+				855ED9921D91ADA200783C83 /* NSURLSession+IDPExtensions.h */,
+				855ED9931D91ADA200783C83 /* NSURLSession+IDPExtensions.m */,
+			);
+			path = NSURLSession;
+			sourceTree = "<group>";
+		};
 		85607A471D74F18D00F6D5E9 /* SUIView */ = {
 			isa = PBXGroup;
 			children = (
@@ -654,6 +667,7 @@
 		858238BF1D5B5DEB00623348 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				855ED9911D91AD6F00783C83 /* NSURLSession */,
 				857638561D858D4F004DC4BC /* UIImage */,
 				854E11F91D7F715700A2A0A9 /* NSNotificationCenter */,
 				853F96371D7D9F5E00AE2C50 /* NSFileManager */,
@@ -1166,6 +1180,7 @@
 				85D415131D662EB5007BDE85 /* IDPArrayChangeModel.m in Sources */,
 				8577814A1D773EFE007EEF52 /* SUIViewController.m in Sources */,
 				857794FB1D6BA6A500C16BA4 /* NSObject+IDPObject.m in Sources */,
+				855ED9951D91ADA200783C83 /* NSURLSession+IDPExtensions.m in Sources */,
 				85902F681D80E39800846ED2 /* IDPFilteredUserArrayModel.m in Sources */,
 				852569A91D7E0CE100E3EB35 /* IDPDispatchMacros.m in Sources */,
 				858239321D5B5E9D00623348 /* IDPImageModel.m in Sources */,
@@ -1264,6 +1279,7 @@
 				8582392A1D5B5E6D00623348 /* IDPUser.m in Sources */,
 				858239151D5B5DEB00623348 /* IDPUsersView.m in Sources */,
 				857781491D773EFE007EEF52 /* SUIViewController.m in Sources */,
+				855ED9941D91ADA200783C83 /* NSURLSession+IDPExtensions.m in Sources */,
 				856987FF1D5BE0DA00DBB5CE /* IDPArrayViewController.m in Sources */,
 				8577950C1D6BA6A500C16BA4 /* UITableView+IDPExtensions.m in Sources */,
 				85E85A5E1D689DE7005A0342 /* IDPGCDQueue.m in Sources */,

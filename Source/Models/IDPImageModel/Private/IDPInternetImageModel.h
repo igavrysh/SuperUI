@@ -12,6 +12,6 @@
 @property (nonatomic, readonly)                     NSURL       *localURL;
 @property (nonatomic, readonly, getter=isCached)    BOOL        cached;
 
-- (void)cancelLoad;
+- (void)cancelTask;
 
 @end
