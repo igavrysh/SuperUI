@@ -13,6 +13,8 @@
 #import "IDPErrorMacros.h"
 
 static NSString * const kIDPApplicationCacheDirectoryName = @"ApplicationCache";
+static NSString * const IDPImagesCacheFolder = @"images";
+
 
 @interface NSFileManager(NSFileManagerPrivate)
 
@@ -83,6 +85,16 @@ static NSString * const kIDPApplicationCacheDirectoryName = @"ApplicationCache";
     IDPReturnAfterSettingVariableWithBlockOnce(pathFactory);
 }
 
++ (NSString *)imagesCachePath {
+    IDPFactoryBlock pathFactory = ^{
+        NSString *cachePath = [NSFileManager cachesPath];
+        
+        return [cachePath stringByAppendingPathComponent:IDPImagesCacheFolder];
+    };
+    
+    IDPReturnAfterSettingVariableWithBlockOnce(pathFactory);
+}
+
 #pragma mark -
 #pragma mark Public Methods
 
@@ -107,9 +119,11 @@ static NSString * const kIDPApplicationCacheDirectoryName = @"ApplicationCache";
     return url.isFileURL && [self fileExistsAtPath:url.path];
 }
 
-- (void)removeFileAtURL:(NSURL *)url {
+- (void)removeFileAtURL:(NSURL *)url error:(NSError **)error {
     if ([self fileExistsAtURL:url]) {
-        [self removeFileAtURL:url];
+        NSError *error = nil;
+        
+        [self removeItemAtURL:url error:&error];
     }
 }
 

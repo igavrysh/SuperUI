@@ -10,11 +10,11 @@
 
 #import "IDPModel.h"
 
-typedef void (^IDPImageLoadingCompletionBlock)(NSData *data, NSError **error);
+typedef void (^IDPImageLoadingCompletionBlock)(UIImage *image, NSError *error);
 
 @interface IDPImageModel : IDPModel
-@property (nonatomic, strong)   UIImage     *image;
-@property (nonatomic, strong)   NSURL       *url;
+@property (nonatomic, readonly)     UIImage     *image;
+@property (nonatomic, readonly)     NSURL       *url;
 
 + (id)imageWithURL:(NSURL *)url;
 

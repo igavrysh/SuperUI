@@ -13,8 +13,4 @@
 
 @interface IDPLocalImageModel : IDPImageModel
 
-+ (instancetype)imageWithURL:(NSURL *)url;
-
-- (instancetype)initWithURL:(NSURL *)url;
-
 @end

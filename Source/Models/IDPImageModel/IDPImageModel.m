@@ -10,10 +10,13 @@
 
 #import "IDPLocalImageModel.h"
 #import "IDPInternetImageModel.h"
+#import "IDPObjectsCache.h"
 
 #import "IDPDispatchMacros.h"
 
 @interface IDPImageModel ()
+@property (nonatomic, strong)   UIImage     *image;
+@property (nonatomic, strong)   NSURL       *url;
 
 + (NSMapTable *)cluster;
 
@@ -29,7 +32,23 @@
 #pragma mark Class Methods
 
 + (id)imageWithURL:(NSURL *)url {
-    return [[self alloc] initWithURL:url];
+    IDPImageModel *image = [[IDPObjectsCache cache] objectForKey:url];
+    
+    if (image) {
+        return image;
+    }
+    
+    Class class = [IDPImageModel classForURL:url];
+    
+    if (!class) {
+        class = url.isFileURL ? [IDPLocalImageModel class] : [IDPInternetImageModel class];
+    }
+    
+    image = [[class alloc] initWithURL:url];
+    
+    [[IDPObjectsCache cache] setObject:image forKey:image.url];
+    
+    return image;
 }
 
 + (NSMapTable *)cluster {
@@ -55,23 +74,11 @@
 #pragma mark Initializations and Deallocations
 
 - (id)initWithURL:(NSURL *)url {
-    self = nil;
+    self = [super init];
     
-    Class class = [IDPImageModel classForURL:url];
+    self.url = url;
     
-    if (!class) {
-        class = url.isFileURL ? [IDPLocalImageModel class] : [IDPInternetImageModel class];
-    }
-    
-    return [class imageWithURL:url];
-}
-
-#pragma mark - Accessors
-
-- (void)setImageWithData:(NSData *)data {
-    self.image = [UIImage imageWithData:data];
-    
-    self.state = !self.image ? IDPModelDidFailLoading : IDPModelDidLoad;
+    return self;
 }
 
 #pragma mark -
@@ -79,13 +86,28 @@
 
 - (void)performLoading {
     [self performLoadingWithURL:self.url
-                completionBlock:nil];
+                completionBlock:^(UIImage *image, NSError *error) {
+                    self.image = image;
+                    
+                    self.state = !self.image || error ? IDPModelDidFailLoading : IDPModelDidLoad;
+                }];
 }
 
 - (void)performLoadingWithURL:(NSURL *)url
               completionBlock:(IDPImageLoadingCompletionBlock)block
 {
     IDPBlockPerform(block, nil, nil);
+}
+
+#pragma mark -
+#pragma mark Private
+
+#pragma mark -
+#pragma mark Private Methods
+
+- (void)dump {
+    self.image = nil;
+    self.state = IDPModelDidUnload;
 }
 
 @end

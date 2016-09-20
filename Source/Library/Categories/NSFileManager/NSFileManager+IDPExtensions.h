@@ -20,11 +20,13 @@
 
 + (NSString *)applicationCachePath;
 
++ (NSString *)imagesCachePath;
+
 - (void)createDirectoryAtURL:(NSURL *)url error:(NSError **)error;
 - (void)createDirectoryAtPath:(NSString *)path error:(NSError **)error;
 
 - (BOOL)fileExistsAtURL:(NSURL *)url;
 
-- (void)removeFileAtURL:(NSURL *)url;
+- (void)removeFileAtURL:(NSURL *)url error:(NSError **)error;
 
 @end

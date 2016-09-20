@@ -75,21 +75,6 @@ static const NSUInteger kNSStringDefaultRandomStringLength  = 30;
     return [self stringWithString:result];
 }
 
-- (instancetype)stringBySubstitutingSymbols:(NSDictionary *)dictionary {
-    NSArray *keys = [dictionary allKeys];
-    
-    NSMutableString *string = [self mutableCopy];
-    
-    [keys performBlockWithEachObject:^(NSString *key) {
-        [string replaceOccurrencesOfString:key
-                                withString:[dictionary valueForKey:key]
-                                   options:NSCaseInsensitiveSearch
-                                     range:NSMakeRange(0, [string length])];
-    }];
-    
-    return [string copy];
-}
-
 #pragma mark -
 #pragma mark Public Methods
 
@@ -103,6 +88,27 @@ static const NSUInteger kNSStringDefaultRandomStringLength  = 30;
     }
     
     return [result copy];
+}
+
+- (instancetype)stringByAddingPercentEncodingWithAlphanumericCharSet {
+    NSCharacterSet *charset = [NSCharacterSet alphanumericCharacterSet];
+    
+    return [self stringByAddingPercentEncodingWithAllowedCharacters:charset];
+}
+
+- (instancetype)stringBySubstitutingSymbols:(NSDictionary *)dictionary {
+    NSArray *keys = [dictionary allKeys];
+    
+    NSMutableString *string = [self mutableCopy];
+    
+    [keys performBlockWithEachObject:^(NSString *key) {
+        [string replaceOccurrencesOfString:key
+                                withString:[dictionary valueForKey:key]
+                                   options:NSCaseInsensitiveSearch
+                                     range:NSMakeRange(0, [string length])];
+    }];
+    
+    return [string copy];
 }
 
 @end

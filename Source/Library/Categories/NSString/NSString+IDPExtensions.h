@@ -39,6 +39,8 @@
 // with the class of receiver
 + (instancetype)randomStringWithLength:(NSUInteger)length alphabet:(NSString *)alphabet;
 
+- (instancetype)stringByAddingPercentEncodingWithAlphanumericCharSet;
+
 - (instancetype)stringBySubstitutingSymbols:(NSDictionary *)dictionary;
 
 - (NSArray *)symbols;

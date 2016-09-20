@@ -10,16 +10,18 @@
 
 #import "IDPGCDQueue.h"
 
+#import "IDPBlockTypes.h"
+
 #import "NSFileManager+IDPExtensions.h"
+#import "NSString+IDPExtensions.h"
 
 #import "IDPErrorMacros.h"
-
-static NSString * const IDPImageCahceFolder = @"images";
+#import "IDPDispatchMacros.h"
 
 @interface IDPInternetImageModel ()
-@property (nonatomic, strong)   NSURLSessionDownloadTask    *task;
-
-- (void)performLoadingWithInternetURL:(NSURL *)url;
+@property (nonatomic, strong)       NSURLSessionDownloadTask    *task;
+@property (nonatomic, readonly)     NSString                    *fileName;
+@property (nonatomic, strong)       NSString                    *imagesCachePath;
 
 - (void)saveData:(NSData *)data;
 
@@ -31,6 +33,8 @@ static NSString * const IDPImageCahceFolder = @"images";
 
 @dynamic localURL;
 @dynamic cached;
+@dynamic fileName;
+@dynamic imagesCachePath;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -49,15 +53,7 @@ static NSString * const IDPImageCahceFolder = @"images";
         return url;
     }
     
-    NSCharacterSet *charset = [NSCharacterSet alphanumericCharacterSet];
-    NSString *host = [url.host stringByAddingPercentEncodingWithAllowedCharacters:charset];
-    NSString *relativePath = [url.relativePath stringByAddingPercentEncodingWithAllowedCharacters:charset];
-    
-    NSString *path = [NSString stringWithFormat:@"%@/%@/%@%@",
-                      [NSFileManager cachesPath],
-                      IDPImageCahceFolder,
-                      host,
-                      relativePath];
+    NSString *path = [self.imagesCachePath stringByAppendingPathComponent:self.fileName];
     
     return [NSURL fileURLWithPath:path isDirectory:NO];
 }
@@ -73,26 +69,33 @@ static NSString * const IDPImageCahceFolder = @"images";
               completionBlock:(IDPImageLoadingCompletionBlock)block
 {
     if (self.isCached) {
-        [self performBlockWithoutNotification:^{
-            [super performLoadingWithURL:self.localURL completionBlock:^(NSData *data, NSError **error) {
-                if (!data || *error) {
-                    NSLog(@"Error: reading from the local cache");
-                    
-                    [self removeCache];
+        [super performLoadingWithURL:self.localURL completionBlock:^(UIImage *image, NSError *error) {
+            if (!image || error) {
+                [self removeCache];
                 
-                    [self performLoading];
-                } else {
-                    [self performBlockWithNotification:^{
-                        [self notifyOfStateChange:self.state];
-                    }];
-                }
-            }];
+                [self performLoadingWithURL:self.url completionBlock:block];
+            } else {
+                IDPPerformBlock(block, image, error);
+            }
         }];
+    } else {
+        NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
         
-        return;
+        id completionHandler = ^(NSURL *location, NSURLResponse *response, NSError *error) {
+            [super performLoadingWithURL:location completionBlock:^(UIImage *image, NSError *error) {
+                IDPPerformBlock(block, image, error);
+            }];
+            
+            if (!error) {
+                [self saveData:location.dataRepresentation];
+            }
+        };
+        
+        self.task = [session downloadTaskWithURL:url
+                               completionHandler:completionHandler];
+        
+        [self.task resume];
     }
-    
-    [self performLoadingWithInternetURL:self.url];
 }
 
 - (void)cancelLoad {
@@ -101,27 +104,6 @@ static NSString * const IDPImageCahceFolder = @"images";
 
 #pragma mark -
 #pragma mark Private Methods
-
-- (void)performLoadingWithInternetURL:(NSURL *)url {
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    
-    id completionHandler = ^(NSURL *location, NSURLResponse *response, NSError *error) {
-        NSData *data = location.dataRepresentation;
-        
-        self.image = [UIImage imageWithData:data];
-        
-        self.state = !self.image || error ? IDPModelDidFailLoading : IDPModelDidLoad;
-        
-        if (data && !error) {
-            [self saveData:data];
-        }
-    };
-    
-    self.task = [session downloadTaskWithURL:url
-                           completionHandler:completionHandler];
-    
-    [self.task resume];
-}
 
 - (void)saveData:(NSData *)data {
     IDPAsyncPerformInBackgroundQueue(^{
@@ -138,8 +120,26 @@ static NSString * const IDPImageCahceFolder = @"images";
 }
 
 - (void)removeCache {
-    [[NSFileManager defaultManager] removeFileAtURL:self.localURL];
-    self.image = nil;
+    NSError *error = nil;
+    
+    [[NSFileManager defaultManager] removeFileAtURL:self.localURL error:&error];
+}
+
+- (NSString *)fileName {
+    NSString *fileName = self.url.relativePath;
+    NSString *extension = [fileName pathExtension];
+    fileName = [fileName stringByDeletingPathExtension];
+    fileName = [fileName stringByAddingPercentEncodingWithAlphanumericCharSet];
+    
+    return [fileName stringByAppendingPathExtension:extension];
+}
+
+- (NSString *)imagesCachePath {
+    NSString *cachePath = [NSFileManager imagesCachePath];
+    
+    NSString *host = [self.url.host stringByAddingPercentEncodingWithAlphanumericCharSet];
+        
+    return [cachePath stringByAppendingPathComponent:host];
 }
 
 @end
