@@ -16,8 +16,8 @@
 
 #import "IDPMacros.h"
 
-static NSString * const kIDPImageName = @"image_big";
-static NSString * const kIDPImageExtension = @"jpg";
+static NSString * const kIDPNoImageName = @"nope_image";
+static NSString * const kIDPNoImageExtension = @"jpg";
 static NSString * const kIDPSampleImageURL = @"https://pbs.twimg.com/profile_images/609903623640723457/A4B7DT8s.png";
 
 kIDPStringKeyDefinition(kIDPUserNameKey);
@@ -39,10 +39,6 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
     user.surname = [NSString randomName];
     user.imageURL = [NSURL URLWithString:kIDPSampleImageURL];
     
-    
-    //[[NSBundle mainBundle] URLForResource:kIDPImageName
-    //                                        withExtension:kIDPImageExtension];
-    
     return user;
 }
 
@@ -58,7 +54,12 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
 }
 
 - (IDPImageModel *)imageModel {
-    return [IDPImageModel imageWithURL:self.imageURL];
+    IDPImageModel *model = [IDPImageModel imageWithURL:self.imageURL];
+    
+    model.defaultImageURL = [[NSBundle mainBundle] URLForResource:kIDPNoImageName
+                                                    withExtension:kIDPNoImageExtension];
+    
+    return model;
 }
 
 #pragma mark -

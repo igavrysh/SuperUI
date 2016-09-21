@@ -107,6 +107,12 @@
     IDPBlockPerform(block, nil, nil);
 }
 
+- (void)setDefaultImage {
+    self.url = self.defaultImageURL;
+    
+    [self performLoading];
+}
+
 #pragma mark -
 #pragma mark Private Methods
 
@@ -114,21 +120,5 @@
     self.image = nil;
     self.state = IDPModelDidUnload;
 }
-
-#pragma mark -
-#pragma mar IDPObservableObject
-
-- (void)modelDidLoad:(IDPModel *)model {
-    
-}
-
-- (void)modelWillLoad:(IDPModel *)model {
-    
-}
-
-- (void)modelDidFailLoading:(IDPModel *)model {
-    
-}
-
 
 @end

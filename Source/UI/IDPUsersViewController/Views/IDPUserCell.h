@@ -16,6 +16,7 @@
 @interface IDPUserCell : UITableViewCell<IDPModelCell>
 @property (nonatomic, strong)   IBOutlet UILabel        *fullNameLabel;
 @property (nonatomic, strong)   IBOutlet IDPImageView   *userImageView;
+@property (nonatomic, strong)   IBOutlet IDPImageView   *defaultImageView;
 
 @property (nonatomic, strong)   IDPUser     *model;
 
