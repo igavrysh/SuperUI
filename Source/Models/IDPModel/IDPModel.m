@@ -42,7 +42,7 @@
     self.state = IDPModelDidLoad;
 }
 
-- (BOOL)shouldNotifyOfState:(IDPLoadableModelState)state {
+- (BOOL)shouldNotifyOfState:(IDPModelState)state {
     return IDPModelDidLoad == state || IDPModelWillLoad == state;
 }
 

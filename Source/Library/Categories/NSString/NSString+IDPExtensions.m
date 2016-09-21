@@ -8,9 +8,14 @@
 
 #import "NSString+IDPExtensions.h"
 
+#import "NSArray+IDPArrayEnumerator.h"
+
 static const NSUInteger kNSStringDefaultRandomStringLength  = 30;
 
 @implementation NSString (IDPExtensions)
+
+#pragma mark -
+#pragma mark Class Methods
 
 + (instancetype)alphanumericAlphabet {
     NSMutableString *result = [NSMutableString stringWithString:[self letterAlphabet]];
@@ -70,6 +75,9 @@ static const NSUInteger kNSStringDefaultRandomStringLength  = 30;
     return [self stringWithString:result];
 }
 
+#pragma mark -
+#pragma mark Public Methods
+
 - (NSArray *)symbols {
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:[self length]];
     NSUInteger length = [self length];
@@ -80,6 +88,27 @@ static const NSUInteger kNSStringDefaultRandomStringLength  = 30;
     }
     
     return [result copy];
+}
+
+- (instancetype)stringByAddingPercentEncodingWithAlphanumericCharSet {
+    NSCharacterSet *charset = [NSCharacterSet alphanumericCharacterSet];
+    
+    return [self stringByAddingPercentEncodingWithAllowedCharacters:charset];
+}
+
+- (instancetype)stringBySubstitutingSymbols:(NSDictionary *)dictionary {
+    NSArray *keys = [dictionary allKeys];
+    
+    NSMutableString *string = [self mutableCopy];
+    
+    [keys performBlockWithEachObject:^(NSString *key) {
+        [string replaceOccurrencesOfString:key
+                                withString:[dictionary valueForKey:key]
+                                   options:NSCaseInsensitiveSearch
+                                     range:NSMakeRange(0, [string length])];
+    }];
+    
+    return [string copy];
 }
 
 @end

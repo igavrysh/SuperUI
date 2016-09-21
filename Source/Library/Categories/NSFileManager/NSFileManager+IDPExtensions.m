@@ -10,8 +10,11 @@
 
 #import "IDPDispatchMacros.h"
 #import "IDPBlockTypes.h"
+#import "IDPErrorMacros.h"
 
 static NSString * const kIDPApplicationCacheDirectoryName = @"ApplicationCache";
+static NSString * const IDPImagesCacheFolder = @"images";
+
 
 @interface NSFileManager(NSFileManagerPrivate)
 
@@ -40,21 +43,26 @@ static NSString * const kIDPApplicationCacheDirectoryName = @"ApplicationCache";
 + (NSString *)libraryPath {
     IDPFactoryBlock pathFactory = [self pathFactoryWithType:NSLibraryDirectory];
     
-    IDPSetAndReturnStaticVariableWithBlock(pathFactory);
+    IDPReturnAfterSettingVariableWithBlockOnce(pathFactory);
+}
+
++ (NSString *)cachesPath {
+    IDPFactoryBlock pathFactory = [self pathFactoryWithType:NSCachesDirectory];
+    
+    IDPReturnAfterSettingVariableWithBlockOnce(pathFactory);
 }
 
 + (NSString *)documentPath {
     IDPFactoryBlock pathFactory = [self pathFactoryWithType:NSDocumentDirectory];
     
-    IDPSetAndReturnStaticVariableWithBlock(pathFactory);
+    IDPReturnAfterSettingVariableWithBlockOnce(pathFactory);
 }
 
 + (NSString *)applicationPath {
     IDPFactoryBlock pathFactory = [self pathFactoryWithType:NSApplicationDirectory];
     
-    IDPSetAndReturnStaticVariableWithBlock(pathFactory);
+    IDPReturnAfterSettingVariableWithBlockOnce(pathFactory);
 }
-
 
 + (NSString *)applicationCachePath {
     IDPFactoryBlock pathFactory = ^{
@@ -74,7 +82,63 @@ static NSString * const kIDPApplicationCacheDirectoryName = @"ApplicationCache";
         return path;
     };
     
-    IDPSetAndReturnStaticVariableWithBlock(pathFactory);
+    IDPReturnAfterSettingVariableWithBlockOnce(pathFactory);
+}
+
++ (NSString *)imagesCachePath {
+    IDPFactoryBlock pathFactory = ^{
+        NSString *cachePath = [NSFileManager cachesPath];
+        
+        return [cachePath stringByAppendingPathComponent:IDPImagesCacheFolder];
+    };
+    
+    IDPReturnAfterSettingVariableWithBlockOnce(pathFactory);
+}
+
+#pragma mark -
+#pragma mark Public Methods
+
+- (void)createDirectoryAtURL:(NSURL *)url error:(NSError **)error {
+    if (url.isFileURL) {
+        [self createDirectoryAtPath:url.path error:error];
+    } else {
+        *error = [NSError errorWithDomain:@"URL is not file URL" code:0 userInfo:nil];
+    }
+}
+
+- (void)createDirectoryAtPath:(NSString *)path error:(NSError **)error {
+    if (![self fileExistsAtPath:path]) {
+        [self createDirectoryAtPath:path
+        withIntermediateDirectories:YES
+                         attributes:nil
+                              error:error];
+    }
+}
+
+- (BOOL)fileExistsAtURL:(NSURL *)url {
+    return url.isFileURL && [self fileExistsAtPath:url.path];
+}
+
+- (void)removeFileAtURL:(NSURL *)url error:(NSError **)error {
+    if ([self fileExistsAtURL:url]) {
+        NSError *error = nil;
+        
+        [self removeItemAtURL:url error:&error];
+    }
+}
+
+- (void)copyItemWithDirectoryCreationAtURL:(NSURL *)url
+                                     toURL:(NSURL *)toURL
+                                     error:(NSError **)error
+{
+    [self createDirectoryAtURL:[toURL URLByDeletingLastPathComponent]
+                         error:error];
+    
+    if (*error) {
+        return;
+    }
+    
+    [self copyItemAtURL:url toURL:toURL error:error];
 }
 
 @end

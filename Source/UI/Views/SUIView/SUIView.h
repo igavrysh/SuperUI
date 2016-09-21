@@ -10,7 +10,7 @@
 
 #import "IDPModel.h"
 
-@interface SUIView : IDPView <IDPLoadableModelObserver>
+@interface SUIView : IDPView <IDPModelObserver>
 @property (nonatomic, strong) IDPModel  *model;
 
 @end

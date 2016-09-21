@@ -40,10 +40,6 @@ static NSString * const kIDPEditButtonItemDone = @"Done";
 
 - (void)setFiltered:(BOOL)filtered {
     _filtered = filtered;
-    
-   // if (filtered) {
-    //    self.tableView.editing = false;
-    //}
 }
 
 - (BOOL)canMoveRows {

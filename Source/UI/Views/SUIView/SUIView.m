@@ -37,6 +37,13 @@
     IDPPrintMethod;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    IDPPrintMethod;
+    
+    return self;
+}
+
 #pragma mark -
 #pragma mark Accessors
 
@@ -51,7 +58,7 @@
 }
 
 #pragma mark -
-#pragma mark IDPLoadableModelObserver
+#pragma mark IDPModelObserver
 
 - (void)modelDidLoad:(IDPModel *)model {
     IDPAsyncPerformInMainQueue(^{
@@ -62,6 +69,12 @@
 - (void)modelWillLoad:(IDPModel *)model {
     IDPAsyncPerformInMainQueue(^{
         self.loadingViewVisible = YES;
+    });
+}
+
+- (void)modelDidFailLoading:(IDPModel *)model {
+    IDPAsyncPerformInMainQueue(^{
+        self.loadingViewVisible = NO;
     });
 }
 
