@@ -9,9 +9,8 @@
 #import "IDPLocalImageModel.h"
 
 @interface IDPInternetImageModel : IDPLocalImageModel
-@property (nonatomic, readonly)                     NSURL       *localURL;
-@property (nonatomic, readonly, getter=isCached)    BOOL        cached;
-
-- (void)cancelTask;
+@property (nonatomic, readonly)                     NSURL           *localURL;
+@property (nonatomic, readonly, getter=isCached)    BOOL            cached;
+@property (nonatomic, readonly)                     NSURLSession    *session;
 
 @end

@@ -14,7 +14,6 @@
 
 #import "NSFileManager+IDPExtensions.h"
 #import "NSString+IDPExtensions.h"
-#import "NSURLSession+IDPExtensions.h"
 
 #import "IDPErrorMacros.h"
 #import "IDPDispatchMacros.h"
@@ -24,10 +23,7 @@
 @property (nonatomic, readonly)     NSString                    *fileName;
 @property (nonatomic, strong)       NSString                    *imagesCachePath;
 
-- (void)saveData:(NSData *)data;
-- (void)saveWithURL:(NSURL *)url;
-
-- (void)removeCache;
+- (void)removeCache:(NSError **)error;
 
 @end
 
@@ -37,12 +33,13 @@
 @dynamic cached;
 @dynamic fileName;
 @dynamic imagesCachePath;
+@dynamic session;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    [self cancelTask];
+    [self.task cancel];
 }
 
 #pragma mark -
@@ -62,16 +59,26 @@
 
 - (void)setTask:(NSURLSessionDownloadTask *)task {
     if (_task != task) {
-        [self cancelLoad];
+        [_task cancel];
         
         _task = task;
         
-        [_task resume];
+        [task resume];
     }
 }
 
 - (BOOL)isCached {
     return [[NSFileManager defaultManager] fileExistsAtURL:self.localURL];
+}
+
+- (NSURLSession *)session {
+    IDPFactoryBlock block = ^{
+        NSURLSessionConfiguration *settings = [NSURLSessionConfiguration defaultSessionConfiguration];
+        
+        return [NSURLSession sessionWithConfiguration:settings];
+    };
+    
+    IDPReturnAfterSettingVariableWithBlockOnce(block);
 }
 
 #pragma mark -
@@ -80,73 +87,42 @@
 - (void)performLoadingWithURL:(NSURL *)url
               completionBlock:(IDPImageLoadingCompletionBlock)block
 {
-    if (self.isCached) {
-        [super performLoadingWithURL:self.localURL completionBlock:^(UIImage *image, NSError *error) {
-            if (!image || error) {
-                [self removeCache];
-                
-                [self performLoadingWithURL:self.url completionBlock:block];
-            } else {
-                IDPPerformBlock(block, image, error);
-            }
-        }];
-    } else {
-        id completionHandler = ^(NSURL *location, NSURLResponse *response, NSError *error) {
-            [super performLoadingWithURL:location completionBlock:^(UIImage *image, NSError *error) {
-                IDPPerformBlock(block, image, error);
-                
-                if (!error) {
-                    [self saveWithURL:location];
-                }
-                
-            }];
-        };
+    id sessionBlock = ^(NSURL *location, NSURLResponse *response, NSError *error) {
+        if (!error) {
+            NSFileManager *manager = [NSFileManager defaultManager];
+            [manager copyItemWithDirectoryCreationAtURL:location
+                                                  toURL:self.localURL
+                                                  error:&error];
+            
+            [super performLoadingWithURL:location completionBlock:block];
+        }
+    };
+    
+    id completionBlock = ^(UIImage *image, NSError *error) {
+        if (!image || error) {
+            error = nil;
+            
+            [self removeCache:&error];
+            
+            self.task = [self.session downloadTaskWithURL:self.url
+                                        completionHandler:sessionBlock];
+        }
         
-        self.task = [[NSURLSession sharedDefaultSession] downloadTaskWithURL:url
-                                                           completionHandler:completionHandler];
-    }
-}
-
-- (void)cancelTask {
-    [self.task cancel];
+        IDPPerformBlock(block, image, error);
+    };
+    
+    [super performLoadingWithURL:self.localURL completionBlock:completionBlock];
 }
 
 #pragma mark -
 #pragma mark Private Methods
 
-- (void)saveWithURL:(NSURL *)url {
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    
-    [self saveData:data];
+- (void)removeCache:(NSError **)error {
+    [[NSFileManager defaultManager] removeFileAtURL:self.localURL error:error];
 }
 
-- (void)saveData:(NSData *)data {
-    IDPAsyncPerformInBackgroundQueue(^{
-        NSURL *localURL = self.localURL;
-        NSURL *directoryURL = [localURL URLByDeletingLastPathComponent];
-        
-        NSError *error = nil;
-        [[NSFileManager defaultManager] createDirectoryAtURL:directoryURL error:&error];
-        
-        [data writeToURL:localURL options:NSAtomicWrite error:&error];
-        
-        IDPReturnVoidIfError(error);
-    });
-}
-
-- (void)removeCache {
-    NSError *error = nil;
-    
-    [[NSFileManager defaultManager] removeFileAtURL:self.localURL error:&error];
-}
-
-- (NSString *)fileName {
-    NSString *fileName = self.url.relativePath;
-    NSString *extension = [fileName pathExtension];
-    fileName = [fileName stringByDeletingPathExtension];
-    fileName = [fileName stringByAddingPercentEncodingWithAlphanumericCharSet];
-    
-    return [fileName stringByAppendingPathExtension:extension];
+- (NSString *)fileName {    
+    return [self.url.relativePath stringByAddingPercentEncodingWithAlphanumericCharSet];
 }
 
 - (NSString *)imagesCachePath {

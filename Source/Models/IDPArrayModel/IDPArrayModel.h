@@ -19,7 +19,7 @@ typedef NS_ENUM(NSUInteger, IDPArrayModelState) {
 @class IDPArrayChangeModel;
 @class IDPArrayModel;
 
-@protocol IDPChangeableModelObserver <NSObject, IDPLoadableModelObserver>
+@protocol IDPChangeableModelObserver <NSObject, IDPModelObserver>
 @optional
 
 - (void)            model:(IDPArrayModel *)model

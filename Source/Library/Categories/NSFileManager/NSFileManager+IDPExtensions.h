@@ -29,4 +29,8 @@
 
 - (void)removeFileAtURL:(NSURL *)url error:(NSError **)error;
 
+- (void)copyItemWithDirectoryCreationAtURL:(NSURL *)url
+                                     toURL:(NSURL *)toURL
+                                     error:(NSError **)error;
+
 @end

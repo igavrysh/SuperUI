@@ -8,7 +8,7 @@
 
 #import "IDPObservableObject.h"
 
-typedef NS_ENUM(NSUInteger, IDPLoadableModelState) {
+typedef NS_ENUM(NSUInteger, IDPModelState) {
     IDPModelDidUnload,
     IDPModelDidLoad,
     IDPModelWillLoad,
@@ -18,7 +18,7 @@ typedef NS_ENUM(NSUInteger, IDPLoadableModelState) {
 
 @class IDPModel;
 
-@protocol IDPLoadableModelObserver <NSObject>
+@protocol IDPModelObserver <NSObject>
 @optional
 
 - (void)modelDidUnload:(IDPModel *)model;
@@ -35,7 +35,7 @@ typedef NS_ENUM(NSUInteger, IDPLoadableModelState) {
 
 - (void)load;
 
-- (BOOL)shouldNotifyOfState:(IDPLoadableModelState)state;
+- (BOOL)shouldNotifyOfState:(IDPModelState)state;
 
 // method for override
 - (void)performLoading;

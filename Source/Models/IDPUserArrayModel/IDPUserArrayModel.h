@@ -10,7 +10,7 @@
 
 #import "IDPFilteredUserArrayModel.h"
 
-static const NSUInteger kIDPArrayModelSampleSize = 5;
+static const NSUInteger kIDPArrayModelSampleSize = 2;
 
 @interface IDPUserArrayModel : IDPArrayModel
 @property (nonatomic, readonly)                         NSString    *plistName;

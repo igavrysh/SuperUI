@@ -85,8 +85,16 @@
 #pragma mark Public Methods
 
 - (void)performLoading {
+    IDPWeakify(self);
     [self performLoadingWithURL:self.url
                 completionBlock:^(UIImage *image, NSError *error) {
+                    IDPStrongify(self);
+                    NSLog(@"class = %@", NSStringFromClass([self class]));
+                    
+                    if (!self) {
+                        return;
+                    }
+                    
                     self.image = image;
                     
                     self.state = !self.image || error ? IDPModelDidFailLoading : IDPModelDidLoad;
@@ -100,14 +108,27 @@
 }
 
 #pragma mark -
-#pragma mark Private
-
-#pragma mark -
 #pragma mark Private Methods
 
 - (void)dump {
     self.image = nil;
     self.state = IDPModelDidUnload;
 }
+
+#pragma mark -
+#pragma mar IDPObservableObject
+
+- (void)modelDidLoad:(IDPModel *)model {
+    
+}
+
+- (void)modelWillLoad:(IDPModel *)model {
+    
+}
+
+- (void)modelDidFailLoading:(IDPModel *)model {
+    
+}
+
 
 @end

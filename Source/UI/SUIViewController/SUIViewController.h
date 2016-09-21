@@ -13,7 +13,7 @@
 
 #import "IDPMacros.h"
 
-@interface SUIViewController : UIViewController <IDPLoadableModelObserver>
+@interface SUIViewController : UIViewController <IDPModelObserver>
 @property (nonatomic, strong) id    model;
 
 IDPDefineBaseViewProperty(SUIView, rootView);

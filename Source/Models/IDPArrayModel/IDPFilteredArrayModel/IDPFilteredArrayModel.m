@@ -97,7 +97,7 @@
 }
 
 #pragma mark -
-#pragma mark IDPLoadableModelObserver
+#pragma mark IDPModelObserver
 
 - (void)modelDidLoad:(IDPArrayModel *)array {
     IDPPrintMethod;
