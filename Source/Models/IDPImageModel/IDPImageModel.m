@@ -107,12 +107,6 @@
     IDPBlockPerform(block, nil, nil);
 }
 
-- (void)setDefaultImage {
-    self.url = self.defaultImageURL;
-    
-    [self performLoading];
-}
-
 #pragma mark -
 #pragma mark Private Methods
 

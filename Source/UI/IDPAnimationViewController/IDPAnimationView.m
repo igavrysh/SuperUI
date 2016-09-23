@@ -81,7 +81,6 @@ static NSTimeInterval IDPDelay      = 0.0;
         }
     };
     
-
     [UIView animateWithDuration:!animated ? 0 : IDPDuration
                           delay:IDPDelay
                         options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionBeginFromCurrentState

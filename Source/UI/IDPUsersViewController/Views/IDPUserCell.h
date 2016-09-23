@@ -12,13 +12,13 @@
 
 @class IDPUser;
 @class IDPImageView;
+@class IDPImageModel;
 
-@interface IDPUserCell : UITableViewCell<IDPModelCell>
+@interface IDPUserCell : UITableViewCell<IDPModelCell, IDPModelObserver>
 @property (nonatomic, strong)   IBOutlet UILabel        *fullNameLabel;
 @property (nonatomic, strong)   IBOutlet IDPImageView   *userImageView;
-@property (nonatomic, strong)   IBOutlet IDPImageView   *defaultImageView;
-
-@property (nonatomic, strong)   IDPUser     *model;
+@property (nonatomic, strong)   IDPImageModel           *defaultImageModel;
+@property (nonatomic, strong)   IDPUser                 *model;
 
 - (void)fillWithUser:(IDPUser *)user;
 

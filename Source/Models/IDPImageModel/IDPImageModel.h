@@ -15,7 +15,6 @@ typedef void (^IDPImageLoadingCompletionBlock)(UIImage *image, NSError *error);
 @interface IDPImageModel : IDPModel
 @property (nonatomic, readonly)     UIImage     *image;
 @property (nonatomic, readonly)     NSURL       *url;
-@property (nonatomic, strong)       NSURL       *defaultImageURL;
 
 + (id)imageWithURL:(NSURL *)url;
 
@@ -24,7 +23,5 @@ typedef void (^IDPImageLoadingCompletionBlock)(UIImage *image, NSError *error);
 - (void)performLoading;
 - (void)performLoadingWithURL:(NSURL *)url
               completionBlock:(IDPImageLoadingCompletionBlock)block;
-
-- (void)setDefaultImage;
 
 @end

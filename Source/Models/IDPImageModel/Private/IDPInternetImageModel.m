@@ -23,7 +23,7 @@
 @property (nonatomic, readonly)     NSString                    *fileName;
 @property (nonatomic, strong)       NSString                    *imagesCachePath;
 
-- (void)removeCache:(NSError **)error;
+- (void)removeCache;
 
 @end
 
@@ -88,24 +88,25 @@
               completionBlock:(IDPImageLoadingCompletionBlock)block
 {
     id sessionBlock = ^(NSURL *location, NSURLResponse *response, NSError *error) {
-        if (!error) {
-            NSFileManager *manager = [NSFileManager defaultManager];
-            [manager copyItemWithDirectoryCreationAtURL:location
-                                                  toURL:self.localURL
-                                                  error:&error];
+        if (error) {
+            self.state = IDPModelDidFailLoading;
             
-            [super performLoadingWithURL:location completionBlock:block];
+            return;
         }
+        
+        [[NSFileManager defaultManager] copyItemAtURL:location toURL:self.localURL];
+    
+        [super performLoadingWithURL:location completionBlock:block];
     };
     
     id completionBlock = ^(UIImage *image, NSError *error) {
         if (!image || error) {
-            error = nil;
-            
-            [self removeCache:&error];
+            [self removeCache];
             
             self.task = [self.session downloadTaskWithURL:self.url
                                         completionHandler:sessionBlock];
+            
+            return;
         }
         
         IDPPerformBlock(block, image, error);
@@ -117,8 +118,12 @@
 #pragma mark -
 #pragma mark Private Methods
 
-- (void)removeCache:(NSError **)error {
-    [[NSFileManager defaultManager] removeFileAtURL:self.localURL error:error];
+- (void)removeCache {
+    NSError *error = nil;
+    
+    [[NSFileManager defaultManager] removeFileAtURL:self.localURL error:&error];
+    
+    IDPReturnVoidIfError(error);
 }
 
 - (NSString *)fileName {    
