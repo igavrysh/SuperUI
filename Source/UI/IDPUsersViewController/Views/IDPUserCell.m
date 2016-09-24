@@ -11,6 +11,7 @@
 #import "IDPImageView.h"
 #import "IDPUser.h"
 #import "IDPBlockTypes.h"
+#import "IDPGCDQueue.h"
 
 #import "IDPDispatchMacros.h"
 
@@ -80,7 +81,9 @@ static NSString * const kIDPNoImageExtension = @"jpg";
 #pragma mark IDPModelObserver
 
 - (void)modelDidFailLoading:(IDPModel *)model {
-    self.imageModel = [IDPUserCell defaultImageModel];
+    IDPAsyncPerformInBackgroundQueue(^{
+        self.imageModel = [IDPUserCell defaultImageModel];
+    });
 }
 
 @end
