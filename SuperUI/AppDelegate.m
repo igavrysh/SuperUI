@@ -15,6 +15,7 @@
 #import "UIWindow+IDPExtensions.h"
 #import "NSString+IDPRandomName.h"
 #import "NSNotificationCenter+IDPExtensions.h"
+#import "IDPFBLoginViewController.h"
 
 @interface AppDelegate ()
 
@@ -26,10 +27,11 @@
     UIWindow *window = [UIWindow fullScreenWindow];
     self.window = window;
     
-    IDPUsersViewController *usersController = [IDPUsersViewController viewController];
-    usersController.model = [IDPUserArrayModel new];
+    IDPFBLoginViewController *fbController = [IDPFBLoginViewController new];
     
-    window.rootViewController = usersController;
+    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:fbController];
+    
+    window.rootViewController = controller;
     
     [window makeKeyAndVisible];
     
