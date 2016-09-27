@@ -84,7 +84,7 @@ IDPViewControllerBaseViewProperty(IDPArrayViewController, IDPArrayView, arrayVie
 }
 
 #pragma mark -
-#pragma mark IDPChangeableModelObserver
+#pragma mark IDPArrayModelObserver
 
 - (void)            model:(IDPArrayModel *)array
  didUpdateWithChangeModel:(IDPArrayChangeModel *)changeModel

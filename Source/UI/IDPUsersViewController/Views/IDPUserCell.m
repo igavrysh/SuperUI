@@ -10,8 +10,38 @@
 
 #import "IDPImageView.h"
 #import "IDPUser.h"
+#import "IDPBlockTypes.h"
+#import "IDPGCDQueue.h"
+
+#import "IDPDispatchMacros.h"
+
+static NSString * const kIDPNoImageName = @"nope_image";
+static NSString * const kIDPNoImageExtension = @"jpg";
+
+@interface IDPUserCell ()
+@property (nonatomic, strong)   IDPImageModel *imageModel;
+
++ (IDPImageModel *)defaultImageModel;
+
+@end
 
 @implementation IDPUserCell
+
+@dynamic imageModel;
+
+#pragma mark -
+#pragma mark Class Methods
+
++ (IDPImageModel *)defaultImageModel {
+    IDPFactoryBlock block = ^{
+        NSURL *url = [[NSBundle mainBundle] URLForResource:kIDPNoImageName
+                                             withExtension:kIDPNoImageExtension];
+        
+        return [IDPImageModel imageWithURL:url];
+    };
+    
+    IDPReturnAfterSettingVariableWithBlockOnce(block);
+}
 
 #pragma mark -
 #pragma mark Accessors
@@ -24,12 +54,36 @@
     }
 }
 
+- (void)setImageModel:(IDPImageModel *)imageModel {
+    if (self.userImageView.imageModel != imageModel) {
+        [self.userImageView.imageModel removeObserver:self];
+        
+        [imageModel addObserver:self];
+        
+        self.userImageView.imageModel = imageModel;
+    }
+}
+
+- (IDPImageModel *)imageModel {
+    return self.userImageView.imageModel;
+}
+
 #pragma mark -
 #pragma mark Public
 
 - (void)fillWithUser:(IDPUser *)user {
     self.fullNameLabel.text = user.fullName;
-    self.userImageView.imageModel = user.imageModel;
+    
+    self.imageModel = user.imageModel;
+}
+
+#pragma mark -
+#pragma mark IDPModelObserver
+
+- (void)modelDidFailLoading:(IDPModel *)model {
+    IDPAsyncPerformInBackgroundQueue(^{
+        self.imageModel = [IDPUserCell defaultImageModel];
+    });
 }
 
 @end

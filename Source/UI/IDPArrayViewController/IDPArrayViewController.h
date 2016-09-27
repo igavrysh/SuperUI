@@ -24,7 +24,7 @@
     UITableViewDelegate,
     UITableViewDataSource,
     UISearchBarDelegate,
-    IDPChangeableModelObserver
+    IDPArrayModelObserver
 >
 
 - (IBAction)onAddButton:(id)sender;

@@ -110,7 +110,7 @@
 }
 
 - (void)modelDidFailLoading:(IDPImageModel *)imageModel {
-    IDPAsyncPerformInMainQueue(^{
+    IDPAsyncPerformInMainQueue(^{        
         [super modelDidFailLoading:imageModel];
     });
 }

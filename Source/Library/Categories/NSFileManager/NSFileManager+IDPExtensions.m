@@ -127,18 +127,15 @@ static NSString * const IDPImagesCacheFolder = @"images";
     }
 }
 
-- (void)copyItemWithDirectoryCreationAtURL:(NSURL *)url
-                                     toURL:(NSURL *)toURL
-                                     error:(NSError **)error
-{
+- (void)copyItemAtURL:(NSURL *)url toURL:(NSURL *)toURL {
+    NSError *error = nil;
+    
     [self createDirectoryAtURL:[toURL URLByDeletingLastPathComponent]
-                         error:error];
+                         error:&error];
     
-    if (*error) {
-        return;
-    }
+    [self copyItemAtURL:url toURL:toURL error:&error];
     
-    [self copyItemAtURL:url toURL:toURL error:error];
+    IDPReturnVoidIfError(error);
 }
 
 @end

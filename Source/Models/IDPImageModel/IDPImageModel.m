@@ -115,20 +115,4 @@
     self.state = IDPModelDidUnload;
 }
 
-#pragma mark -
-#pragma mar IDPObservableObject
-
-- (void)modelDidLoad:(IDPModel *)model {
-    
-}
-
-- (void)modelWillLoad:(IDPModel *)model {
-    
-}
-
-- (void)modelDidFailLoading:(IDPModel *)model {
-    
-}
-
-
 @end
