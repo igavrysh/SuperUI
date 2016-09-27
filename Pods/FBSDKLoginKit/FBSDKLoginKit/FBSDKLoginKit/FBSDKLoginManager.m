@@ -72,7 +72,7 @@ static NSString *const FBSDKExpectedChallengeKey = @"expected_login_challenge";
 {
   [self assertPermissions:permissions];
   NSSet *permissionSet = [NSSet setWithArray:permissions];
-  if (![FBSDKLoginUtility areAllPermissionsReadPermissions:permissionSet]) {
+  if (![FBSDKInternalUtility areAllPermissionsReadPermissions:permissionSet]) {
     [[NSException exceptionWithName:NSInvalidArgumentException
                              reason:@"Publish or manage permissions are not permitted to be requested with read permissions."
                            userInfo:nil]
@@ -95,7 +95,7 @@ static NSString *const FBSDKExpectedChallengeKey = @"expected_login_challenge";
 {
   [self assertPermissions:permissions];
   NSSet *permissionSet = [NSSet setWithArray:permissions];
-  if (![FBSDKLoginUtility areAllPermissionsPublishPermissions:permissionSet]) {
+  if (![FBSDKInternalUtility areAllPermissionsPublishPermissions:permissionSet]) {
     [[NSException exceptionWithName:NSInvalidArgumentException
                              reason:@"Read permissions are not permitted to be requested with publish or manage permissions."
                            userInfo:nil]
@@ -240,8 +240,11 @@ static NSString *const FBSDKExpectedChallengeKey = @"expected_login_challenge";
                                          [FBSDKAccessToken currentAccessToken].permissions :
                                          nil);
   if (previouslyGrantedPermissions.count > 0) {
-    // this is a reauth, so recentlyGranted should be a subset of what was requested.
-    [recentlyGrantedPermissions intersectSet:_requestedPermissions];
+      // If there were no requested permissions for this auth - treat all permissions as granted.
+      // Otherwise this is a reauth, so recentlyGranted should be a subset of what was requested.
+      if (_requestedPermissions.count != 0) {
+          [recentlyGrantedPermissions intersectSet:_requestedPermissions];
+      }
   }
 
   NSMutableSet *recentlyDeclinedPermissions = [_requestedPermissions mutableCopy];
@@ -280,7 +283,7 @@ static NSString *const FBSDKExpectedChallengeKey = @"expected_login_challenge";
   return [_keychainStore stringForKey:FBSDKExpectedChallengeKey];
 }
 
-- (NSDictionary *)logInParametersWithPermissions:(NSSet *)permissions
+- (NSDictionary *)logInParametersWithPermissions:(NSSet *)permissions serverConfiguration:(FBSDKServerConfiguration *)serverConfiguration
 {
   [FBSDKInternalUtility validateURLSchemes];
 
@@ -293,9 +296,9 @@ static NSString *const FBSDKExpectedChallengeKey = @"expected_login_challenge";
   loginParams[@"return_scopes"] = @"true";
   loginParams[@"sdk_version"] = FBSDK_VERSION_STRING;
   loginParams[@"fbapp_pres"] = @([FBSDKInternalUtility isFacebookAppInstalled]);
-  if ([FBSDKAccessToken currentAccessToken]) {
-    loginParams[@"auth_type"] = @"rerequest";
-  }
+  loginParams[@"auth_type"] = @"rerequest";
+  loginParams[@"logging_token"] = serverConfiguration.loggingToken;
+
   [FBSDKInternalUtility dictionary:loginParams setObject:[FBSDKSettings appURLSchemeSuffix] forKey:@"local_client_id"];
   [FBSDKInternalUtility dictionary:loginParams setObject:[FBSDKLoginUtility stringForAudience:self.defaultAudience] forKey:@"default_audience"];
   [FBSDKInternalUtility dictionary:loginParams setObject:[[permissions allObjects] componentsJoinedByString:@","] forKey:@"scope"];
@@ -323,7 +326,15 @@ static NSString *const FBSDKExpectedChallengeKey = @"expected_login_challenge";
 
 - (void)logInWithBehavior:(FBSDKLoginBehavior)loginBehavior
 {
-  NSDictionary *loginParams = [self logInParametersWithPermissions:_requestedPermissions];
+  __weak __typeof__(self) weakSelf = self;
+  [FBSDKServerConfigurationManager loadServerConfigurationWithCompletionBlock:^(FBSDKServerConfiguration *serverConfiguration, NSError *loadError) {
+    [weakSelf logInWithBehavior:loginBehavior serverConfiguration:serverConfiguration serverConfigurationLoadError:loadError];
+  }];
+}
+
+- (void)logInWithBehavior:(FBSDKLoginBehavior)loginBehavior serverConfiguration:(FBSDKServerConfiguration *)serverConfiguration serverConfigurationLoadError:(NSError *)loadError
+{
+  NSDictionary *loginParams = [self logInParametersWithPermissions:_requestedPermissions serverConfiguration:serverConfiguration];
 
   void(^completion)(BOOL, NSString *, NSError *) = ^void(BOOL didPerformLogIn, NSString *authMethod, NSError *error) {
     if (didPerformLogIn) {
@@ -340,24 +351,22 @@ static NSString *const FBSDKExpectedChallengeKey = @"expected_login_challenge";
   switch (loginBehavior) {
     case FBSDKLoginBehaviorNative: {
       if ([FBSDKInternalUtility isFacebookAppInstalled]) {
-        [FBSDKServerConfigurationManager loadServerConfigurationWithCompletionBlock:^(FBSDKServerConfiguration *serverConfiguration, NSError *loadError) {
-          BOOL useNativeDialog = [serverConfiguration useNativeDialogForDialogName:FBSDKDialogConfigurationNameLogin];
-          if (useNativeDialog && loadError == nil) {
-            [self performNativeLogInWithParameters:loginParams handler:^(BOOL openedURL, NSError *openedURLError) {
-              if (openedURLError) {
-                [FBSDKLogger singleShotLogEntry:FBSDKLoggingBehaviorDeveloperErrors
-                                   formatString:@"FBSDKLoginBehaviorNative failed : %@\nTrying FBSDKLoginBehaviorBrowser", openedURLError];
-              }
-              if (openedURL) {
-                completion(YES, FBSDKLoginManagerLoggerAuthMethod_Native, openedURLError);
-              } else {
-                [self logInWithBehavior:FBSDKLoginBehaviorBrowser];
-              }
-            }];
-          } else {
-            [self logInWithBehavior:FBSDKLoginBehaviorBrowser];
-          }
-        }];
+        BOOL useNativeDialog = [serverConfiguration useNativeDialogForDialogName:FBSDKDialogConfigurationNameLogin];
+        if (useNativeDialog && loadError == nil) {
+          [self performNativeLogInWithParameters:loginParams handler:^(BOOL openedURL, NSError *openedURLError) {
+            if (openedURLError) {
+              [FBSDKLogger singleShotLogEntry:FBSDKLoggingBehaviorDeveloperErrors
+                                 formatString:@"FBSDKLoginBehaviorNative failed : %@\nTrying FBSDKLoginBehaviorBrowser", openedURLError];
+            }
+            if (openedURL) {
+              completion(YES, FBSDKLoginManagerLoggerAuthMethod_Native, openedURLError);
+            } else {
+              [self logInWithBehavior:FBSDKLoginBehaviorBrowser];
+            }
+          }];
+        } else {
+          [self logInWithBehavior:FBSDKLoginBehaviorBrowser];
+        }
         break;
       }
       // intentional fall through.
@@ -366,22 +375,16 @@ static NSString *const FBSDKExpectedChallengeKey = @"expected_login_challenge";
       [self performBrowserLogInWithParameters:loginParams handler:^(BOOL openedURL,
                                                                     NSString *authMethod,
                                                                     NSError *openedURLError) {
-        if (openedURL) {
-          completion(YES, authMethod, openedURLError);
-        } else {
-          completion(NO, authMethod, openedURLError);
-        }
+        completion(openedURL, authMethod, openedURLError);
       }];
       break;
     }
     case FBSDKLoginBehaviorSystemAccount: {
-      [FBSDKServerConfigurationManager loadServerConfigurationWithCompletionBlock:^(FBSDKServerConfiguration *serverConfiguration, NSError *loadError) {
-        if (serverConfiguration.isSystemAuthenticationEnabled && loadError == nil) {
-          [self beginSystemLogIn];
-        } else {
-          [self logInWithBehavior:FBSDKLoginBehaviorNative];
-        }
-      }];
+      if (serverConfiguration.isSystemAuthenticationEnabled && loadError == nil) {
+        [self beginSystemLogIn];
+      } else {
+        [self logInWithBehavior:FBSDKLoginBehaviorNative];
+      }
       completion(YES, FBSDKLoginManagerLoggerAuthMethod_System, nil);
       break;
     }
@@ -565,7 +568,7 @@ static NSString *const FBSDKExpectedChallengeKey = @"expected_login_challenge";
 - (void)beginSystemLogIn
 {
   // First, we need to validate the current access token. The user may have uninstalled the
-  // app, changed their password, etc., or the acceess token may have expired, which
+  // app, changed their password, etc., or the access token may have expired, which
   // requires us to renew the account before asking for additional permissions.
   NSString *accessTokenString = [FBSDKSystemAccountStoreAdapter sharedInstance].accessTokenString;
   if (accessTokenString.length > 0) {
@@ -743,7 +746,7 @@ static NSString *const FBSDKExpectedChallengeKey = @"expected_login_challenge";
                                                            [FBSDKInternalUtility bundleForStrings],
                                                            @"Log In",
                                                            @"Title of the web dialog that prompts the user to log in to Facebook.");
-  [FBSDKWebDialog showWithName:@"oauth" parameters:loginParams delegate:self];
+  [FBSDKWebDialog showWithName:@"oauth" parameters:parameters delegate:self];
 
   if (handler) {
     handler(YES, nil);

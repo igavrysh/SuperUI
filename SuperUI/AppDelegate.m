@@ -6,6 +6,8 @@
 //  Copyright © 2016 1mlndollarsasset. All rights reserved.
 //
 
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+
 #import "AppDelegate.h"
 
 #import "IDPUserArrayModel.h"
@@ -24,6 +26,9 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[FBSDKApplicationDelegate sharedInstance] application:application
+                             didFinishLaunchingWithOptions:launchOptions];
+    
     UIWindow *window = [UIWindow fullScreenWindow];
     self.window = window;
     
@@ -36,6 +41,18 @@
     [window makeKeyAndVisible];
     
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                                  openURL:url
+                                                        sourceApplication:sourceApplication
+                                                               annotation:annotation];
+    return handled;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -52,6 +69,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     IDPPrintMethod;
+    
+    [FBSDKAppEvents activateApp];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

@@ -10,7 +10,9 @@
 
 #import "IDPFBLoginContext.h"
 
-@interface IDPFBLoginViewController : SUIViewController
+#import "IDPUser.h"
+
+@interface IDPFBLoginViewController : SUIViewController <IDPUserStateObserver>
 
 - (IBAction)onLogin:(UIButton *)button;
 

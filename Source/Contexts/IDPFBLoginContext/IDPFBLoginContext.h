@@ -6,14 +6,14 @@
 //  Copyright © 2016 1mlndollarsasset. All rights reserved.
 //
 
-#import "IDPContext.h"
+#import "IDPFBContext.h"
 
-@class UIViewController;
+@class IDPUser;
 
-@interface IDPFBLoginContext : IDPContext
+@interface IDPFBLoginContext : IDPFBContext
 
-+ (instancetype)loginContextWithViewController:(UIViewController *)viewController;
++ (instancetype)loginContextWithUser:(IDPUser *)user;
 
-- (instancetype)initWithViewController:(UIViewController *)viewController;
+- (instancetype)initWithUser:(IDPUser *)user;
 
 @end

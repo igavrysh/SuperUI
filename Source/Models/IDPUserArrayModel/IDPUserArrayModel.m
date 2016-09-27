@@ -87,8 +87,6 @@
 
 
 - (void)performLoading {
-    //[NSThread sleepForTimeInterval:3.0f];
-    
     NSArray *users = [NSMutableArray new];
     if (self.cacheExists) {
         users = [NSKeyedUnarchiver unarchiveObjectWithFile:self.cachePath];

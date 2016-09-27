@@ -20,6 +20,7 @@ static NSString * const kIDPImageName = @"image_big";
 static NSString * const kIDPImageExtension = @"jpg";
 static NSString * const kIDPSampleImageURL = @"https://pbs.twimg.com/profile_images/609903623640723457/A4B7DT8s.png";
 
+kIDPStringKeyDefinition(kIDPUserId);
 kIDPStringKeyDefinition(kIDPUserNameKey);
 kIDPStringKeyDefinition(kIDPUserSurnameKey);
 kIDPStringKeyDefinition(kIDPUserURLKey);
@@ -38,10 +39,6 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
     user.name = [NSString randomName];
     user.surname = [NSString randomName];
     user.imageURL = [NSURL URLWithString:kIDPSampleImageURL];
-    
-    
-    //[[NSBundle mainBundle] URLForResource:kIDPImageName
-    //                                        withExtension:kIDPImageExtension];
     
     return user;
 }
@@ -67,6 +64,7 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
 - (id)copyWithZone:(NSZone *)zone {
     IDPUser *user = [IDPUser new];
     
+    user.Id = self.Id;
     user.name = self.name;
     user.surname = self.surname;
     user.imageURL = self.imageURL;
@@ -78,6 +76,7 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
 #pragma mark NSCoding
 
 - (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:self.Id forKey:kIDPUserId];
     [coder encodeObject:self.name forKey:kIDPUserNameKey];
     [coder encodeObject:self.surname forKey:kIDPUserSurnameKey];
     [coder encodeObject:self.imageURL forKey:kIDPUserURLKey];
@@ -86,11 +85,34 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super init];
     
+    self.Id = [coder decodeObjectForKey:kIDPUserId];
     self.name = [coder decodeObjectForKey:kIDPUserNameKey];
     self.surname = [coder decodeObjectForKey:kIDPUserSurnameKey];
     self.imageURL = [coder decodeObjectForKey:kIDPUserURLKey];
     
     return self;
+}
+
+#pragma mark - 
+#pragma mark IDPObservableObject
+
+#pragma mark -
+#pragma mark IDPObservableObject
+
+- (SEL)selectorForState:(NSUInteger)state {
+    if (IDPUserDidLoadId & state) {
+        return @selector(userDidLoadId:);
+    }
+    
+    if (IDPUserDidLoadBasicInformation & state) {
+        return @selector(userDidLoadBasicInformation:);
+    }
+    
+    if (IDPUserDidLoadDetails & state) {
+        return @selector(userDidLoadDetails:);
+    }
+    
+    return [super selectorForState:state];
 }
 
 @end

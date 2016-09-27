@@ -124,6 +124,14 @@
 		85C0B22E1D9966050007E755 /* IDPContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B22C1D9966050007E755 /* IDPContext.m */; };
 		85C0B2311D99736C0007E755 /* IDPFBLoginContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2301D99736C0007E755 /* IDPFBLoginContext.m */; };
 		85C0B2321D99736C0007E755 /* IDPFBLoginContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2301D99736C0007E755 /* IDPFBLoginContext.m */; };
+		85C0B2541D9A5B2B0007E755 /* IDPFBContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2531D9A5B2B0007E755 /* IDPFBContext.m */; };
+		85C0B2551D9A5B2B0007E755 /* IDPFBContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2531D9A5B2B0007E755 /* IDPFBContext.m */; };
+		85C0B2591D9A9FE30007E755 /* IDPFBGetGraphRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2581D9A9FE30007E755 /* IDPFBGetGraphRequest.m */; };
+		85C0B25A1D9A9FE30007E755 /* IDPFBGetGraphRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2581D9A9FE30007E755 /* IDPFBGetGraphRequest.m */; };
+		85C0B25E1D9AB5420007E755 /* IDPFBFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B25D1D9AB5420007E755 /* IDPFBFriendsViewController.m */; };
+		85C0B25F1D9AB5420007E755 /* IDPFBFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B25D1D9AB5420007E755 /* IDPFBFriendsViewController.m */; };
+		85C0B2631D9AB6260007E755 /* IDPFBFriendsContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2621D9AB6260007E755 /* IDPFBFriendsContext.m */; };
+		85C0B2641D9AB6260007E755 /* IDPFBFriendsContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2621D9AB6260007E755 /* IDPFBFriendsContext.m */; };
 		85C16CBF1D764A550087EC1E /* NSBundle+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C16CBE1D764A550087EC1E /* NSBundle+IDPExtensions.m */; };
 		85C16CC01D764A550087EC1E /* NSBundle+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C16CBE1D764A550087EC1E /* NSBundle+IDPExtensions.m */; };
 		85C8DD921D530D6E009E227C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C8DD911D530D6E009E227C /* main.m */; };
@@ -165,6 +173,7 @@
 		85F806A81D9336F700BD842F /* IDPObjectsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F806A71D9336F700BD842F /* IDPObjectsCache.m */; };
 		85F806A91D9336F700BD842F /* IDPObjectsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F806A71D9336F700BD842F /* IDPObjectsCache.m */; };
 		E37943280EEC33F123909449 /* libPods-SuperUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D723FE3E275ACEB2310F874A /* libPods-SuperUITests.a */; };
+		F4A49F94AACEEAA2582673BD /* libPods-SuperUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 593DDEBA0025055FF0E47D73 /* libPods-SuperUI.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -179,6 +188,7 @@
 
 /* Begin PBXFileReference section */
 		4E9FAB0A6B61892A11EBA490 /* Pods-SuperUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuperUITests/Pods-SuperUITests.release.xcconfig"; sourceTree = "<group>"; };
+		593DDEBA0025055FF0E47D73 /* libPods-SuperUI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperUI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6287A7FFF36F756361DD6F72 /* Pods-SuperUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuperUITests/Pods-SuperUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		85193DEF1D53B8120085BCC2 /* SuperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		85193DF11D53B8120085BCC2 /* SuperUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperUITests.m; sourceTree = "<group>"; };
@@ -306,6 +316,14 @@
 		85C0B24A1D99934D0007E755 /* libFBSDKMessengerShareKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKMessengerShareKit.a; path = "Pods/../build/Debug-iphoneos/FBSDKMessengerShareKit/libFBSDKMessengerShareKit.a"; sourceTree = "<group>"; };
 		85C0B24B1D99934D0007E755 /* libFBSDKShareKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKShareKit.a; path = "Pods/../build/Debug-iphoneos/FBSDKShareKit/libFBSDKShareKit.a"; sourceTree = "<group>"; };
 		85C0B24C1D99934D0007E755 /* libPods-SuperUITests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-SuperUITests.a"; path = "Pods/../build/Debug-iphoneos/libPods-SuperUITests.a"; sourceTree = "<group>"; };
+		85C0B2521D9A5B2B0007E755 /* IDPFBContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPFBContext.h; sourceTree = "<group>"; };
+		85C0B2531D9A5B2B0007E755 /* IDPFBContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPFBContext.m; sourceTree = "<group>"; };
+		85C0B2571D9A9FE30007E755 /* IDPFBGetGraphRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPFBGetGraphRequest.h; sourceTree = "<group>"; };
+		85C0B2581D9A9FE30007E755 /* IDPFBGetGraphRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPFBGetGraphRequest.m; sourceTree = "<group>"; };
+		85C0B25C1D9AB5420007E755 /* IDPFBFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPFBFriendsViewController.h; sourceTree = "<group>"; };
+		85C0B25D1D9AB5420007E755 /* IDPFBFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPFBFriendsViewController.m; sourceTree = "<group>"; };
+		85C0B2611D9AB6260007E755 /* IDPFBFriendsContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPFBFriendsContext.h; sourceTree = "<group>"; };
+		85C0B2621D9AB6260007E755 /* IDPFBFriendsContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPFBFriendsContext.m; sourceTree = "<group>"; };
 		85C16CBD1D764A550087EC1E /* NSBundle+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+IDPExtensions.h"; sourceTree = "<group>"; };
 		85C16CBE1D764A550087EC1E /* NSBundle+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+IDPExtensions.m"; sourceTree = "<group>"; };
 		85C8DD8D1D530D6E009E227C /* SuperUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -349,6 +367,8 @@
 		85F806881D9336E800BD842F /* IDPModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPModel.m; sourceTree = "<group>"; };
 		85F806A61D9336F700BD842F /* IDPObjectsCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPObjectsCache.h; sourceTree = "<group>"; };
 		85F806A71D9336F700BD842F /* IDPObjectsCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPObjectsCache.m; sourceTree = "<group>"; };
+		99B47D7F84B655CE78671A3A /* Pods-SuperUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperUI.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuperUI/Pods-SuperUI.release.xcconfig"; sourceTree = "<group>"; };
+		D406C9CE5BE9EFD21F7B396E /* Pods-SuperUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperUI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuperUI/Pods-SuperUI.debug.xcconfig"; sourceTree = "<group>"; };
 		D723FE3E275ACEB2310F874A /* libPods-SuperUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -365,6 +385,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4A49F94AACEEAA2582673BD /* libPods-SuperUI.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +397,8 @@
 			children = (
 				6287A7FFF36F756361DD6F72 /* Pods-SuperUITests.debug.xcconfig */,
 				4E9FAB0A6B61892A11EBA490 /* Pods-SuperUITests.release.xcconfig */,
+				D406C9CE5BE9EFD21F7B396E /* Pods-SuperUI.debug.xcconfig */,
+				99B47D7F84B655CE78671A3A /* Pods-SuperUI.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -570,8 +593,8 @@
 		858238BD1D5B5DEB00623348 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				85C0B2051D9965CA0007E755 /* Contexts */,
 				858238BE1D5B5DEB00623348 /* Library */,
+				85C0B2051D9965CA0007E755 /* Contexts */,
 				858238DE1D5B5DEB00623348 /* Models */,
 				858238E01D5B5DEB00623348 /* UI */,
 			);
@@ -655,6 +678,7 @@
 		858238E01D5B5DEB00623348 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				85C0B25B1D9AB5260007E755 /* IDPFBFriendsViewController */,
 				85C0B1F91D995CCD0007E755 /* IDPFBLoginViewController */,
 				857781461D773EBB007EEF52 /* SUIViewController */,
 				856987FB1D5BE0B500DBB5CE /* IDPArrayViewController */,
@@ -810,8 +834,11 @@
 		85C0B2051D9965CA0007E755 /* Contexts */ = {
 			isa = PBXGroup;
 			children = (
+				85C0B2561D9A9FA40007E755 /* IDPRequest */,
 				85C0B2061D9965CA0007E755 /* IDPContext */,
+				85C0B2511D9A5B1C0007E755 /* IDPFBContext */,
 				85C0B2071D9965CA0007E755 /* IDPFBLoginContext */,
+				85C0B2601D9AB6010007E755 /* IDPFBFriendsContext */,
 			);
 			path = Contexts;
 			sourceTree = "<group>";
@@ -901,6 +928,42 @@
 				85C0B21C1D9965EC0007E755 /* IDPBlockTypes.m */,
 			);
 			path = IDPTypes;
+			sourceTree = "<group>";
+		};
+		85C0B2511D9A5B1C0007E755 /* IDPFBContext */ = {
+			isa = PBXGroup;
+			children = (
+				85C0B2521D9A5B2B0007E755 /* IDPFBContext.h */,
+				85C0B2531D9A5B2B0007E755 /* IDPFBContext.m */,
+			);
+			path = IDPFBContext;
+			sourceTree = "<group>";
+		};
+		85C0B2561D9A9FA40007E755 /* IDPRequest */ = {
+			isa = PBXGroup;
+			children = (
+				85C0B2571D9A9FE30007E755 /* IDPFBGetGraphRequest.h */,
+				85C0B2581D9A9FE30007E755 /* IDPFBGetGraphRequest.m */,
+			);
+			path = IDPRequest;
+			sourceTree = "<group>";
+		};
+		85C0B25B1D9AB5260007E755 /* IDPFBFriendsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				85C0B25C1D9AB5420007E755 /* IDPFBFriendsViewController.h */,
+				85C0B25D1D9AB5420007E755 /* IDPFBFriendsViewController.m */,
+			);
+			path = IDPFBFriendsViewController;
+			sourceTree = "<group>";
+		};
+		85C0B2601D9AB6010007E755 /* IDPFBFriendsContext */ = {
+			isa = PBXGroup;
+			children = (
+				85C0B2611D9AB6260007E755 /* IDPFBFriendsContext.h */,
+				85C0B2621D9AB6260007E755 /* IDPFBFriendsContext.m */,
+			);
+			path = IDPFBFriendsContext;
 			sourceTree = "<group>";
 		};
 		85C16CBC1D764A370087EC1E /* NSBundle */ = {
@@ -1081,6 +1144,7 @@
 				85C0B2391D9985C90007E755 /* libKiwi.a */,
 				85C0B2331D99859C0007E755 /* libFBSDKCoreKit.a */,
 				D723FE3E275ACEB2310F874A /* libPods-SuperUITests.a */,
+				593DDEBA0025055FF0E47D73 /* libPods-SuperUI.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1113,9 +1177,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 85C8DDA41D530D6E009E227C /* Build configuration list for PBXNativeTarget "SuperUI" */;
 			buildPhases = (
+				4899C3CCF7B98BDDCEDE928A /* [CP] Check Pods Manifest.lock */,
 				85C8DD891D530D6E009E227C /* Sources */,
 				85C8DD8A1D530D6E009E227C /* Frameworks */,
 				85C8DD8B1D530D6E009E227C /* Resources */,
+				13BBFD5519369F3F7219B494 /* [CP] Embed Pods Frameworks */,
+				455322EEACDEDFE9857287E7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1201,6 +1268,51 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		13BBFD5519369F3F7219B494 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SuperUI/Pods-SuperUI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		455322EEACDEDFE9857287E7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SuperUI/Pods-SuperUI-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4899C3CCF7B98BDDCEDE928A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		9A55DE992965351D9C3AB4D6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1291,8 +1403,11 @@
 				8577950F1D6BA6A500C16BA4 /* UIWindow+IDPExtensions.m in Sources */,
 				858239221D5B5DEB00623348 /* IDPUserViewController.m in Sources */,
 				859D96971D7C5FD1005C05C6 /* IDPArrayReplaceChangeModel+IDPExtensions.m in Sources */,
+				85C0B25F1D9AB5420007E755 /* IDPFBFriendsViewController.m in Sources */,
 				859D96911D7C5FD1005C05C6 /* IDPArrayInsertChangeModel+IDPExtensions.m in Sources */,
+				85C0B2551D9A5B2B0007E755 /* IDPFBContext.m in Sources */,
 				85C0B2201D9965EC0007E755 /* IDPCompilerMacros.m in Sources */,
+				85C0B2641D9AB6260007E755 /* IDPFBFriendsContext.m in Sources */,
 				85C16CC01D764A550087EC1E /* NSBundle+IDPExtensions.m in Sources */,
 				85F806A91D9336F700BD842F /* IDPObjectsCache.m in Sources */,
 				857794F51D6BA6A500C16BA4 /* NSArray+IDPArrayEnumerator.m in Sources */,
@@ -1320,6 +1435,7 @@
 				856988001D5BE0DA00DBB5CE /* IDPArrayViewController.m in Sources */,
 				857794F71D6BA6A500C16BA4 /* NSIndexPath+IDPExtensions.m in Sources */,
 				85F806A21D9336E800BD842F /* IDPLocalImageModel.m in Sources */,
+				85C0B25A1D9A9FE30007E755 /* IDPFBGetGraphRequest.m in Sources */,
 				858239181D5B5DEB00623348 /* IDPUsersViewController.m in Sources */,
 				858239121D5B5DEB00623348 /* IDPAnimationViewController.m in Sources */,
 			);
@@ -1338,9 +1454,11 @@
 				857638591D858D60004DC4BC /* UIImage+IDPExtensions.m in Sources */,
 				85607A4A1D74F19E00F6D5E9 /* SUIView.m in Sources */,
 				8582391F1D5B5DEB00623348 /* IDPUserView.m in Sources */,
+				85C0B25E1D9AB5420007E755 /* IDPFBFriendsViewController.m in Sources */,
 				857781441D76C772007EEF52 /* NSArray+IDPExtensions.m in Sources */,
 				85F806991D9336E800BD842F /* IDPArrayModel.m in Sources */,
 				859D96961D7C5FD1005C05C6 /* IDPArrayReplaceChangeModel+IDPExtensions.m in Sources */,
+				85C0B2631D9AB6260007E755 /* IDPFBFriendsContext.m in Sources */,
 				856987F41D5BBD0400DBB5CE /* IDPRandom.m in Sources */,
 				858239171D5B5DEB00623348 /* IDPUsersViewController.m in Sources */,
 				85F806A11D9336E800BD842F /* IDPLocalImageModel.m in Sources */,
@@ -1362,6 +1480,7 @@
 				857781491D773EFE007EEF52 /* SUIViewController.m in Sources */,
 				856987FF1D5BE0DA00DBB5CE /* IDPArrayViewController.m in Sources */,
 				8577950C1D6BA6A500C16BA4 /* UITableView+IDPExtensions.m in Sources */,
+				85C0B2591D9A9FE30007E755 /* IDPFBGetGraphRequest.m in Sources */,
 				85E85A5E1D689DE7005A0342 /* IDPGCDQueue.m in Sources */,
 				85C0B2211D9965EC0007E755 /* IDPDispatchMacros.m in Sources */,
 				85C0B2231D9965EC0007E755 /* IDPErrorMacros.m in Sources */,
@@ -1378,6 +1497,7 @@
 				85F8068F1D9336E800BD842F /* IDPArrayMoveChangeModel.m in Sources */,
 				858239111D5B5DEB00623348 /* IDPAnimationViewController.m in Sources */,
 				857794FC1D6BA6A500C16BA4 /* NSString+IDPExtensions.m in Sources */,
+				85C0B2541D9A5B2B0007E755 /* IDPFBContext.m in Sources */,
 				859D96921D7C5FD1005C05C6 /* IDPArrayMoveChangeModel+IDPExtensions.m in Sources */,
 				859D96901D7C5FD1005C05C6 /* IDPArrayInsertChangeModel+IDPExtensions.m in Sources */,
 				85F806951D9336E800BD842F /* IDPArrayChangeModel+IDPExtensions.m in Sources */,
@@ -1532,6 +1652,7 @@
 		};
 		85C8DDA51D530D6E009E227C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D406C9CE5BE9EFD21F7B396E /* Pods-SuperUI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SuperUI/Info.plist;
@@ -1554,6 +1675,7 @@
 		};
 		85C8DDA61D530D6E009E227C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 99B47D7F84B655CE78671A3A /* Pods-SuperUI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SuperUI/Info.plist;
