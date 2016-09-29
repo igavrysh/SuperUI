@@ -11,14 +11,11 @@
 #import "IDPArrayView.h"
 #import "IDPArrayModel.h"
 #import "SUIViewController.h"
+#import "IDPModelCell.h"
 
 #import "UIViewController+IDPExtensions.h"
 #import "IDPMacros.h"
 
-@protocol IDPModelCell
-@property (nonatomic, strong) id    model;
-
-@end
 
 @interface IDPArrayViewController : SUIViewController <
     UITableViewDelegate,

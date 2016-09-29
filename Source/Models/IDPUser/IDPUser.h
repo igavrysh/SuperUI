@@ -9,11 +9,35 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "IDPModel.h"
+
+@class IDPUser;
+
+typedef NS_ENUM(NSUInteger, IDPUserState) {
+    IDPUserDidLoadID = IDPModelStateCount,
+    IDPUserDidLoadBasicInformation,
+    IDPUserDidLoadDetails,
+    IDPUserStateCount
+};
+
+@protocol IDPUserStateObserver <NSObject, IDPModelObserver>
+
+@optional
+
+- (void)userDidLoadID:(IDPUser *)user;
+
+- (void)userDidLoadBasicInformation:(IDPUser *)user;
+
+- (void)userDidLoadDetails:(IDPUser *)user;
+
+@end
+
 @class IDPImageModel;
 
-@interface IDPUser : NSObject <NSCopying, NSCoding>
-@property (nonatomic, copy)     NSString        *name;
-@property (nonatomic, copy)     NSString        *surname;
+@interface IDPUser : IDPModel <NSCopying, NSCoding>
+@property (nonatomic, copy)     NSString        *ID;
+@property (nonatomic, copy)     NSString        *firstName;
+@property (nonatomic, copy)     NSString        *lastName;
 @property (nonatomic, readonly) NSString        *fullName;
 
 @property (nonatomic, copy)     NSURL           *imageURL;

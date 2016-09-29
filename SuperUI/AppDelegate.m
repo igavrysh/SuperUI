@@ -6,6 +6,8 @@
 //  Copyright © 2016 1mlndollarsasset. All rights reserved.
 //
 
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+
 #import "AppDelegate.h"
 
 #import "IDPUserArrayModel.h"
@@ -15,6 +17,7 @@
 #import "UIWindow+IDPExtensions.h"
 #import "NSString+IDPRandomName.h"
 #import "NSNotificationCenter+IDPExtensions.h"
+#import "IDPFBLoginViewController.h"
 
 @interface AppDelegate ()
 
@@ -23,17 +26,33 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[FBSDKApplicationDelegate sharedInstance] application:application
+                             didFinishLaunchingWithOptions:launchOptions];
+    
     UIWindow *window = [UIWindow fullScreenWindow];
     self.window = window;
     
-    IDPUsersViewController *usersController = [IDPUsersViewController viewController];
-    usersController.model = [IDPUserArrayModel new];
+    IDPFBLoginViewController *fbController = [IDPFBLoginViewController new];
     
-    window.rootViewController = usersController;
+    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:fbController];
+    
+    window.rootViewController = controller;
     
     [window makeKeyAndVisible];
     
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                                  openURL:url
+                                                        sourceApplication:sourceApplication
+                                                               annotation:annotation];
+    return handled;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -50,6 +69,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     IDPPrintMethod;
+    
+    [FBSDKAppEvents activateApp];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

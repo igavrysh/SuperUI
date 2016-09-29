@@ -30,7 +30,7 @@
 #pragma mark IDPArrayController overloaded methods
 
 - (UITableViewCell<IDPModelCell> *)cellForTable:(UITableView *)tableView
-                                  withIndexPath:(NSIndexPath *)indexPath;
+                                  withIndexPath:(NSIndexPath *)indexPath
 {
     return [tableView cellWithClass:[IDPUserCell class]];
 }

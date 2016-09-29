@@ -8,7 +8,9 @@
 
 #import "IDPCompilerMacros.h"
 
-#define kIDPStringKeyDefinition(key)    static NSString * const key = @#key
+#define kIDPStringVariableDefinition(variable, value)   static NSString * const variable = value;
+
+#define kIDPStringKeyDefinition(key)    kIDPStringVariableDefinition(key, @#key)
 
 #define IDPEmpty
 

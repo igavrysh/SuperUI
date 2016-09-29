@@ -18,8 +18,9 @@
 
 static NSString * const kIDPSampleImageURL = @"https://pbs.twimg.com/profile_images/609903623640723457/A4B7DT8s.png";
 
-kIDPStringKeyDefinition(kIDPUserNameKey);
-kIDPStringKeyDefinition(kIDPUserSurnameKey);
+kIDPStringKeyDefinition(kIDPUserID);
+kIDPStringKeyDefinition(kIDPUserFirstNameKey);
+kIDPStringKeyDefinition(kIDPUserLastNameKey);
 kIDPStringKeyDefinition(kIDPUserURLKey);
 
 @implementation IDPUser
@@ -33,8 +34,8 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
 + (instancetype)user {
     IDPUser *user = [IDPUser new];
     
-    user.name = [NSString randomName];
-    user.surname = [NSString randomName];
+    user.firstName = [NSString randomName];
+    user.lastName = [NSString randomName];
     user.imageURL = [NSURL URLWithString:kIDPSampleImageURL];
     
     return user;
@@ -48,7 +49,7 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
 #pragma mark Accessors
 
 - (NSString *)fullName {
-    return [NSString stringWithFormat:@"%@ %@", self.name, self.surname];
+    return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
 }
 
 - (IDPImageModel *)imageModel {
@@ -63,8 +64,9 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
 - (id)copyWithZone:(NSZone *)zone {
     IDPUser *user = [IDPUser new];
     
-    user.name = self.name;
-    user.surname = self.surname;
+    user.ID = self.ID;
+    user.firstName = self.firstName;
+    user.lastName = self.lastName;
     user.imageURL = self.imageURL;
     
     return user;
@@ -74,19 +76,43 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
 #pragma mark NSCoding
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-    [coder encodeObject:self.name forKey:kIDPUserNameKey];
-    [coder encodeObject:self.surname forKey:kIDPUserSurnameKey];
+    [coder encodeObject:self.ID forKey:kIDPUserID];
+    [coder encodeObject:self.firstName forKey:kIDPUserFirstNameKey];
+    [coder encodeObject:self.lastName forKey:kIDPUserLastNameKey];
     [coder encodeObject:self.imageURL forKey:kIDPUserURLKey];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super init];
     
-    self.name = [coder decodeObjectForKey:kIDPUserNameKey];
-    self.surname = [coder decodeObjectForKey:kIDPUserSurnameKey];
+    self.ID = [coder decodeObjectForKey:kIDPUserID];
+    self.firstName = [coder decodeObjectForKey:kIDPUserFirstNameKey];
+    self.lastName = [coder decodeObjectForKey:kIDPUserLastNameKey];
     self.imageURL = [coder decodeObjectForKey:kIDPUserURLKey];
     
     return self;
+}
+
+#pragma mark - 
+#pragma mark IDPObservableObject
+
+#pragma mark -
+#pragma mark IDPObservableObject
+
+- (SEL)selectorForState:(NSUInteger)state {
+    switch (state) {
+        case IDPUserDidLoadID:
+            return @selector(userDidLoadID:);
+        
+        case IDPUserDidLoadBasicInformation:
+            return @selector(userDidLoadBasicInformation:);
+            
+        case IDPUserDidLoadDetails:
+            return @selector(userDidLoadDetails:);
+            
+        default:
+            return [super selectorForState:state];
+    }
 }
 
 @end

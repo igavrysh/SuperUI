@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 
 #import "IDPModel.h"
+
 #import "SUIView.h"
+#import "IDPContext.h"
 
 #import "IDPMacros.h"
 
 @interface SUIViewController : UIViewController <IDPModelObserver>
-@property (nonatomic, strong) id    model;
+@property (nonatomic, strong) id            model;
 
 IDPDefineBaseViewProperty(SUIView, rootView);
 
