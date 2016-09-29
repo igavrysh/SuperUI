@@ -39,9 +39,15 @@ typedef NS_ENUM(NSUInteger, IDPUserState) {
 @property (nonatomic, copy)     NSString        *firstName;
 @property (nonatomic, copy)     NSString        *lastName;
 @property (nonatomic, readonly) NSString        *fullName;
+@property (nonatomic, copy)     NSString        *name;
+@property (nonatomic, copy)     NSString        *location;
+@property (nonatomic, copy)     NSString        *hometown;
 
 @property (nonatomic, copy)     NSURL           *imageURL;
 @property (nonatomic, readonly) IDPImageModel   *imageModel;
+
+@property (nonatomic, copy)     NSURL           *bigImageURL;
+@property (nonatomic, readonly) IDPImageModel   *bigImageModel;
 
 + (instancetype)user;
 + (NSArray *)usersWithCount:(NSUInteger)count;

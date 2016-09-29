@@ -21,7 +21,11 @@ static NSString * const kIDPSampleImageURL = @"https://pbs.twimg.com/profile_ima
 kIDPStringKeyDefinition(kIDPUserID);
 kIDPStringKeyDefinition(kIDPUserFirstNameKey);
 kIDPStringKeyDefinition(kIDPUserLastNameKey);
-kIDPStringKeyDefinition(kIDPUserURLKey);
+kIDPStringKeyDefinition(kIDPUserNameKey);
+kIDPStringKeyDefinition(kIDPUserLocationKey);
+kIDPStringKeyDefinition(kIDPUserHometownKey);
+kIDPStringKeyDefinition(kIDPUserImageURLKey);
+kIDPStringKeyDefinition(kIDPUserBigImageURLKey);
 
 @implementation IDPUser
 
@@ -36,7 +40,11 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
     
     user.firstName = [NSString randomName];
     user.lastName = [NSString randomName];
+    user.name = [NSString randomName];
+    user.location = [NSString randomName];
+    user.hometown = [NSString randomName];
     user.imageURL = [NSURL URLWithString:kIDPSampleImageURL];
+    user.bigImageURL = [NSURL URLWithString:kIDPSampleImageURL];
     
     return user;
 }
@@ -67,7 +75,12 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
     user.ID = self.ID;
     user.firstName = self.firstName;
     user.lastName = self.lastName;
+    user.name = self.name;
+    user.location = self.location;
+    user.hometown = self.hometown;
+    
     user.imageURL = self.imageURL;
+    user.bigImageURL = self.bigImageURL;
     
     return user;
 }
@@ -79,7 +92,11 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
     [coder encodeObject:self.ID forKey:kIDPUserID];
     [coder encodeObject:self.firstName forKey:kIDPUserFirstNameKey];
     [coder encodeObject:self.lastName forKey:kIDPUserLastNameKey];
-    [coder encodeObject:self.imageURL forKey:kIDPUserURLKey];
+    [coder encodeObject:self.name forKey:kIDPUserNameKey];
+    [coder encodeObject:self.location forKey:kIDPUserLocationKey];
+    [coder encodeObject:self.hometown forKey:kIDPUserHometownKey];
+    [coder encodeObject:self.imageURL forKey:kIDPUserImageURLKey];
+    [coder encodeObject:self.bigImageURL forKey:kIDPUserBigImageURLKey];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
@@ -88,7 +105,11 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
     self.ID = [coder decodeObjectForKey:kIDPUserID];
     self.firstName = [coder decodeObjectForKey:kIDPUserFirstNameKey];
     self.lastName = [coder decodeObjectForKey:kIDPUserLastNameKey];
-    self.imageURL = [coder decodeObjectForKey:kIDPUserURLKey];
+    self.name = [coder decodeObjectForKey:kIDPUserNameKey];
+    self.location = [coder decodeObjectForKey:kIDPUserLocationKey];
+    self.hometown = [coder decodeObjectForKey:kIDPUserHometownKey];
+    self.imageURL = [coder decodeObjectForKey:kIDPUserImageURLKey];
+    self.bigImageURL = [coder decodeObjectForKey:kIDPUserBigImageURLKey];
     
     return self;
 }
