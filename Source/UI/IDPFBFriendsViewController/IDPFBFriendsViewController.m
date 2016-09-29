@@ -49,6 +49,19 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
 }
 
 #pragma mark -
+#pragma mark Accessors
+
+- (void)setModel:(IDPArrayModel *)model {
+    if ([super model] != model) {
+        [super setModel:model];
+        
+        if (self.isViewLoaded) {
+            self.rootView.model = self.model;
+        }
+    }
+}
+
+#pragma mark -
 #pragma mark Private
 
 - (void)loadUsers {
@@ -79,6 +92,9 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
         IDPStrongifyAndReturnIfNil(self);
         
         [self.friendsView.tableView reloadData];
+        
+        //??? Investigate why it happens
+        //self.friendsView.loadingViewVisible = NO;
     });
 }
 

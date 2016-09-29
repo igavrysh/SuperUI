@@ -20,7 +20,7 @@ static NSString * const kIDPImageName = @"image_big";
 static NSString * const kIDPImageExtension = @"jpg";
 static NSString * const kIDPSampleImageURL = @"https://pbs.twimg.com/profile_images/609903623640723457/A4B7DT8s.png";
 
-kIDPStringKeyDefinition(kIDPUserId);
+kIDPStringKeyDefinition(kIDPUserID);
 kIDPStringKeyDefinition(kIDPUserFirstNameKey);
 kIDPStringKeyDefinition(kIDPUserLastNameKey);
 kIDPStringKeyDefinition(kIDPUserURLKey);
@@ -64,7 +64,7 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
 - (id)copyWithZone:(NSZone *)zone {
     IDPUser *user = [IDPUser new];
     
-    user.Id = self.Id;
+    user.ID = self.ID;
     user.firstName = self.firstName;
     user.lastName = self.lastName;
     user.imageURL = self.imageURL;
@@ -76,7 +76,7 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
 #pragma mark NSCoding
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-    [coder encodeObject:self.Id forKey:kIDPUserId];
+    [coder encodeObject:self.ID forKey:kIDPUserID];
     [coder encodeObject:self.firstName forKey:kIDPUserFirstNameKey];
     [coder encodeObject:self.lastName forKey:kIDPUserLastNameKey];
     [coder encodeObject:self.imageURL forKey:kIDPUserURLKey];
@@ -85,7 +85,7 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super init];
     
-    self.Id = [coder decodeObjectForKey:kIDPUserId];
+    self.ID = [coder decodeObjectForKey:kIDPUserID];
     self.firstName = [coder decodeObjectForKey:kIDPUserFirstNameKey];
     self.lastName = [coder decodeObjectForKey:kIDPUserLastNameKey];
     self.imageURL = [coder decodeObjectForKey:kIDPUserURLKey];
@@ -101,8 +101,8 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
-        case IDPUserDidLoadId:
-            return @selector(userDidLoadId:);
+        case IDPUserDidLoadID:
+            return @selector(userDidLoadID:);
         
         case IDPUserDidLoadBasicInformation:
             return @selector(userDidLoadBasicInformation:);

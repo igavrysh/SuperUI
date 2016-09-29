@@ -46,7 +46,7 @@
 #pragma mark -
 #pragma mark IDPUserStateObserver
 
-- (void)userDidLoadId:(IDPUser *)user {
+- (void)userDidLoadID:(IDPUser *)user {
     IDPFBFriendsViewController *controller = [[IDPFBFriendsViewController alloc] initWithUser:user];
     
     [self.navigationController pushViewController:controller

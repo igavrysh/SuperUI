@@ -58,7 +58,7 @@
 
 - (NSDictionary *)requestParameters {
     return @{
-             kIDPFields: kIDPId
+             kIDPFields: kIDPID
              };
 }
 
@@ -68,8 +68,8 @@
 - (void)fillWithResult:(NSDictionary *)result {
     IDPUser *user = (IDPUser *)self.model;
     
-    user.Id = (NSString *)result[kIDPId];
-    user.state = IDPUserDidLoadId;
+    user.ID = (NSString *)result[kIDPID];
+    user.state = IDPUserDidLoadID;
 }
 
 - (void)load {

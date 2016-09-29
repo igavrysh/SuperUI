@@ -47,12 +47,12 @@
 #pragma mark Accessors
 
 - (NSString *)graphPath {
-    return [NSString stringWithFormat:@"%@/%@", self.user.Id, kIDPFriends];
+    return [NSString stringWithFormat:@"%@/%@", self.user.ID, kIDPFriends];
 }
 
 - (NSDictionary *)requestParameters {
     return @{kIDPFields:[NSString stringWithFormat:@"%@, %@, %@, %@",
-                         kIDPId,
+                         kIDPID,
                          kIDPFirstName,
                          kIDPLastName,
                          kIDPLargePicture]};
@@ -68,7 +68,7 @@
     
     [friendsArray performBlockWithEachObject: ^(NSDictionary *friendInfo){
         IDPUser *user = [IDPUser new];
-        user.Id = friendInfo[kIDPId];
+        user.ID = friendInfo[kIDPID];
         user.firstName = friendInfo[kIDPFirstName];
         user.lastName = friendInfo[kIDPLastName];
         user.imageURL = [NSURL URLWithString:friendInfo[kIDPPicture][kIDPData][kIDPURL]];

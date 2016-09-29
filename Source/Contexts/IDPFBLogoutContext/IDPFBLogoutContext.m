@@ -23,7 +23,7 @@
 - (NSString *)graphPath {
     IDPUser *user = (IDPUser *)self.model;
     
-    return [NSString stringWithFormat:@"%@/%@", user.Id, kIDPPermissions];
+    return [NSString stringWithFormat:@"%@/%@", user.ID, kIDPPermissions];
 }
 
 - (NSDictionary *)requestParameters {

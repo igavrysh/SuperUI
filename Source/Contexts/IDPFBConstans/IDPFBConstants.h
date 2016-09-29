@@ -14,7 +14,7 @@ kIDPStringVariableDefinition(kIDPMe, @"me");
 kIDPStringVariableDefinition(kIDPPublicProfile, @"public_profile");
 kIDPStringVariableDefinition(kIDPUserFriends, @"user_friends");
 kIDPStringVariableDefinition(kIDPFields, @"fields");
-kIDPStringVariableDefinition(kIDPId, @"id");
+kIDPStringVariableDefinition(kIDPID, @"id");
 kIDPStringVariableDefinition(kIDPFirstName, @"first_name");
 kIDPStringVariableDefinition(kIDPLastName, @"last_name");
 kIDPStringVariableDefinition(kIDPLargePicture, @"picture.type(large)");
