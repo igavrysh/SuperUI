@@ -13,10 +13,13 @@
 @interface IDPContext : NSObject
 @property (nonatomic, readonly)     IDPModel    *model;
 
++ (instancetype)contextWithModel:(id)model;
+- (instancetype)initWithModel:(id)model;
+
 - (void)execute;
 - (void)cancel;
 
-// Method for override
+// Methods for override
 - (void)load;
 
 @end

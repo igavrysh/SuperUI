@@ -11,7 +11,6 @@
 
 #import "IDPFBContext.h"
 
-#include "IDPFBGetGraphRequest.h"
 #include "IDPModel.h"
 
 @implementation IDPFBContext
@@ -33,11 +32,12 @@
 #pragma mark -
 #pragma mark Public
 
-- (void)execute {
+- (void)load {
     if ([FBSDKAccessToken currentAccessToken]) {
-        FBSDKGraphRequest *request = [IDPFBGetGraphRequest requestWithGraphPath:self.graphPath
-                                                                     parameters:self.requestParameters];
-    
+        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:self.graphPath
+                                                                       parameters:self.requestParameters
+                                                                       HTTPMethod:self.httpMethod];
+        
         [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
             if (!error) {
                 [self fillWithResult:result];
@@ -49,6 +49,10 @@
 }
 
 - (void)fillWithResult:(id)result {
+}
+
+- (NSString *)httpMethod {
+    return nil;
 }
 
 @end

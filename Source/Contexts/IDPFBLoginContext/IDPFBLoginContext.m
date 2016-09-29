@@ -13,11 +13,12 @@
 
 #import "IDPGCDQueue.h"
 #import "IDPUser.h"
+#import "IDPFBConstants.h"
 
 #import "IDPMacros.h"
 
 @interface IDPFBLoginContext ()
-@property (nonatomic, strong) IDPUser           *user;
+@property (nonatomic, strong)   UIViewController    *viewController;
 
 @end
 
@@ -29,16 +30,21 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (instancetype)loginContextWithUser:(IDPUser *)user {
-    return [[self alloc] initWithUser:(IDPUser *)user];
++ (instancetype)loginContextWithUser:(IDPUser *)user
+                      viewController:(UIViewController *)viewController
+{
+    return [[self alloc] initWithUser:(IDPUser *)user
+                       viewController:(UIViewController *)viewController];
 }
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (instancetype)initWithUser:(IDPUser *)user {
-    self = [super init];
-    self.user = user;
+- (instancetype)initWithUser:(IDPUser *)user
+              viewController:(UIViewController *)viewController
+{
+    self = [super initWithModel:user];
+    self.viewController = viewController;
     
     return self;
 }
@@ -60,10 +66,28 @@
 #pragma mark Public Methods
 
 - (void)fillWithResult:(NSDictionary *)result {
-    IDPUser *user = self.user;
+    IDPUser *user = (IDPUser *)self.model;
     
     user.Id = (NSString *)result[kIDPId];
-    user.state = user.state | IDPUserDidLoadId;
+    user.state = IDPUserDidLoadId;
+}
+
+- (void)load {
+    id handler = ^void(FBSDKLoginManagerLoginResult *result, NSError *error) {
+        if (error) {
+            NSLog(@"Process error");
+        } else if (result.isCancelled) {
+            NSLog(@"Cancelled");
+        } else {
+            [super load];
+        }
+    };
+    
+    IDPAsyncPerformInMainQueue(^{
+        [[FBSDKLoginManager new] logInWithReadPermissions: @[kIDPPublicProfile, kIDPUserFriends]
+                                       fromViewController:self.viewController
+                                                  handler:handler];
+    });
 }
 
 @end

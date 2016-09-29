@@ -6,11 +6,13 @@
 //  Copyright © 2016 1mlndollarsasset. All rights reserved.
 //
 
-#import "IDPUsersViewController.h"
+#import "SUIViewController.h"
 
 @class IDPUser;
 
-@interface IDPFBFriendsViewController : IDPUsersViewController
+@interface IDPFBFriendsViewController : SUIViewController <
+    UITableViewDelegate,
+    UITableViewDataSource>
 
 - (instancetype)initWithUser:(IDPUser *)user;
 

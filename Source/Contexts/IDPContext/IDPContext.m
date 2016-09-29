@@ -9,6 +9,7 @@
 #import "IDPContext.h"
 
 #import "IDPModel.h"
+#import "IDPGCDQueue.h"
 
 @interface IDPContext ()
 @property (nonatomic, strong)   IDPModel    *model;
@@ -38,7 +39,22 @@
 #pragma mark Public Methods
 
 - (void)execute {
+    IDPModel *model = self.model;
     
+    @synchronized(model) {
+        NSUInteger state = model.state;
+        if (IDPModelWillLoad == state || IDPModelDidLoad == state) {
+            [model notifyOfStateChange:state];
+            
+            return;
+        }
+        
+        model.state = IDPModelWillLoad;
+        
+        IDPAsyncPerformInBackgroundQueue(^{
+            [self load];
+        });
+    }
 }
 
 - (void)cancel {

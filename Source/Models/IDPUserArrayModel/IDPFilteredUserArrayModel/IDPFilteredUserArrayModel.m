@@ -36,7 +36,7 @@
             return YES;
         }
         
-        NSRange range = [user.name rangeOfString:self.filter options:NSCaseInsensitiveSearch];
+        NSRange range = [user.firstName rangeOfString:self.filter options:NSCaseInsensitiveSearch];
         
         return NSNotFound != range.location;
     }];

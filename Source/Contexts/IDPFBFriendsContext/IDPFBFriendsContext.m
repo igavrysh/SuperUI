@@ -10,10 +10,11 @@
 
 #import "IDPArrayModel.h"
 #import "IDPUser.h"
+#import "IDPFBConstants.h"
+#import "NSArray+IDPArrayEnumerator.h"
 
 @interface IDPFBFriendsContext ()
 @property (nonatomic, strong) IDPUser           *user;
-@property (nonatomic, strong) IDPArrayModel     *friends;
 
 @end
 
@@ -35,21 +36,18 @@
 - (instancetype)initWithUser:(IDPUser *)user
                      friends:friends
 {
-    self = [super init];
+    self = [super initWithModel:friends];
 
     self.user = user;
-    self.friends = friends;
     
     return self;
 }
-
 
 #pragma mark -
 #pragma mark Accessors
 
 - (NSString *)graphPath {
-    //return [NSString stringWithFormat:@"/%@/%@", self.user.Id, kIDPFriends];
-    return [NSString stringWithFormat:@"me/%@", kIDPFriends];
+    return [NSString stringWithFormat:@"%@/%@", self.user.Id, kIDPFriends];
 }
 
 - (NSDictionary *)requestParameters {
@@ -64,9 +62,23 @@
 #pragma mark Public Methods
 
 - (void)fillWithResult:(NSDictionary *)result {
-    NSArray *friendArray = [result objectForKey:@"data"];
+    NSArray *friendsArray = [result objectForKey:kIDPData];
     
-    NSLog(@"resut = %@", result);
+    IDPArrayModel *friends = (IDPArrayModel *)self.model;
+    
+    [friendsArray performBlockWithEachObject: ^(NSDictionary *friendInfo){
+        IDPUser *user = [IDPUser new];
+        user.Id = friendInfo[kIDPId];
+        user.firstName = friendInfo[kIDPFirstName];
+        user.lastName = friendInfo[kIDPLastName];
+        user.imageURL = [NSURL URLWithString:friendInfo[kIDPPicture][kIDPData][kIDPURL]];
+        
+        [friends performBlockWithoutNotification:^{
+            [friends addObject:user];
+        }];
+    }];
+    
+    friends.state = IDPModelDidLoad;
 }
 
 @end

@@ -12,11 +12,10 @@
 #import "IDPFBLoginViewController.h"
 
 #import "IDPFBFriendsViewController.h"
+#import "IDPFBConstants.h"
 #import "IDPUser.h"
 
 @interface IDPFBLoginViewController ()
-
-- (void)loadUser;
 
 @end
 
@@ -27,7 +26,6 @@
 
 - (instancetype)init {
     self = [super init];
-    self.model = [IDPUser new];
     
     return self;
 }
@@ -36,26 +34,11 @@
 #pragma mark Public Methods
 
 - (IBAction)onLogin:(UIButton *)button {
-    id handler = ^void(FBSDKLoginManagerLoginResult *result, NSError *error) {
-        if (error) {
-            NSLog(@"Process error");
-        } else if (result.isCancelled) {
-            NSLog(@"Cancelled");
-        } else {
-            [self loadUser];
-        }
-    };
+    IDPUser *user  = [IDPUser new];
+    self.model = user;
     
-    [[FBSDKLoginManager new] logInWithReadPermissions: @[kIDPPublicProfile, kIDPUserFrineds]
-                                   fromViewController:self
-                                              handler:handler];
-}
-
-#pragma mark -
-#pragma mark Private Methods
-
-- (void)loadUser {
-    IDPFBLoginContext *context = [[IDPFBLoginContext alloc] initWithUser:self.model];
+    IDPFBLoginContext *context = [[IDPFBLoginContext alloc] initWithUser:user
+                                                          viewController:self];
     
     [context execute];
 }

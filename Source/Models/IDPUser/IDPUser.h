@@ -14,9 +14,9 @@
 @class IDPUser;
 
 typedef NS_ENUM(NSUInteger, IDPUserState) {
-    IDPUserDidLoadId                    = IDPModelStateCount << 1,
-    IDPUserDidLoadBasicInformation      = IDPModelStateCount << 2,
-    IDPUserDidLoadDetails               = IDPModelStateCount << 3,
+    IDPUserDidLoadId = IDPModelStateCount,
+    IDPUserDidLoadBasicInformation,
+    IDPUserDidLoadDetails,
     IDPUserStateCount
 };
 
@@ -36,8 +36,8 @@ typedef NS_ENUM(NSUInteger, IDPUserState) {
 
 @interface IDPUser : IDPModel <NSCopying, NSCoding>
 @property (nonatomic, copy)     NSString        *Id;
-@property (nonatomic, copy)     NSString        *name;
-@property (nonatomic, copy)     NSString        *surname;
+@property (nonatomic, copy)     NSString        *firstName;
+@property (nonatomic, copy)     NSString        *lastName;
 @property (nonatomic, readonly) NSString        *fullName;
 
 @property (nonatomic, copy)     NSURL           *imageURL;
