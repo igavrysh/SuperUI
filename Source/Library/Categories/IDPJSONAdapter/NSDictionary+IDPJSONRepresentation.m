@@ -22,11 +22,11 @@
         id processedObject = [object jsonRepresentation];
         
         if (processedObject) {
-            [dictionary setObject:object forKey:key];
+            dictionary[key] = object;
         }
     }];
     
-    return dictionary;
+    return [[self class] dictionaryWithDictionary:dictionary];
 }
 
 @end
