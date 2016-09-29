@@ -13,6 +13,8 @@
 
 #include "IDPModel.h"
 
+#import "IDPJSONRepresentation.h"
+
 @implementation IDPFBContext
 
 @dynamic graphPath;
@@ -34,17 +36,18 @@
 
 - (void)load {
     if ([FBSDKAccessToken currentAccessToken]) {
-        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:self.graphPath
-                                                                       parameters:self.requestParameters
-                                                                       HTTPMethod:self.httpMethod];
-        
-        [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+        id handler = ^(FBSDKGraphRequestConnection *connection, id<IDPJSONAdapter> result, NSError *error) {
             if (!error) {
-                [self fillWithResult:result];
+                [self fillWithResult:[result jsonRepresentation]];
             } else {
                 self.model.state = IDPModelDidFailLoading;
             }
-        }];
+        };
+        
+        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:self.graphPath
+                                                                       parameters:self.requestParameters
+                                                                       HTTPMethod:self.httpMethod];
+        [request startWithCompletionHandler:handler];
     }
 }
 
