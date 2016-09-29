@@ -144,16 +144,16 @@
 		85C0B29A1D9D18FF0007E755 /* IDPFBFriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C0B2981D9D18FF0007E755 /* IDPFBFriendsViewController.xib */; };
 		85C0B29D1D9D19E00007E755 /* IDPFBFriendsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B29C1D9D19E00007E755 /* IDPFBFriendsView.m */; };
 		85C0B29E1D9D19E00007E755 /* IDPFBFriendsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B29C1D9D19E00007E755 /* IDPFBFriendsView.m */; };
-		85C0B2A51D9D5EBE0007E755 /* NSArray+IDPJSONRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2A41D9D5EBE0007E755 /* NSArray+IDPJSONRepresentation.m */; };
-		85C0B2A61D9D5EBE0007E755 /* NSArray+IDPJSONRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2A41D9D5EBE0007E755 /* NSArray+IDPJSONRepresentation.m */; };
-		85C0B2A91D9D5F530007E755 /* NSDictionary+IDPJSONRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2A81D9D5F530007E755 /* NSDictionary+IDPJSONRepresentation.m */; };
-		85C0B2AA1D9D5F530007E755 /* NSDictionary+IDPJSONRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2A81D9D5F530007E755 /* NSDictionary+IDPJSONRepresentation.m */; };
-		85C0B2AD1D9D5F6E0007E755 /* NSString+IDPJSONRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2AC1D9D5F6E0007E755 /* NSString+IDPJSONRepresentation.m */; };
-		85C0B2AE1D9D5F6E0007E755 /* NSString+IDPJSONRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2AC1D9D5F6E0007E755 /* NSString+IDPJSONRepresentation.m */; };
-		85C0B2B11D9D5F940007E755 /* NSNumber+IDPJSONRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2B01D9D5F940007E755 /* NSNumber+IDPJSONRepresentation.m */; };
-		85C0B2B21D9D5F940007E755 /* NSNumber+IDPJSONRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2B01D9D5F940007E755 /* NSNumber+IDPJSONRepresentation.m */; };
-		85C0B2B51D9D5FB70007E755 /* NSNull+IDPJSONRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2B41D9D5FB70007E755 /* NSNull+IDPJSONRepresentation.m */; };
-		85C0B2B61D9D5FB70007E755 /* NSNull+IDPJSONRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2B41D9D5FB70007E755 /* NSNull+IDPJSONRepresentation.m */; };
+		85C0B2A51D9D5EBE0007E755 /* NSArray+IDPJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2A41D9D5EBE0007E755 /* NSArray+IDPJSONAdapter.m */; };
+		85C0B2A61D9D5EBE0007E755 /* NSArray+IDPJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2A41D9D5EBE0007E755 /* NSArray+IDPJSONAdapter.m */; };
+		85C0B2A91D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2A81D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.m */; };
+		85C0B2AA1D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2A81D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.m */; };
+		85C0B2AD1D9D5F6E0007E755 /* NSString+IDPJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2AC1D9D5F6E0007E755 /* NSString+IDPJSONAdapter.m */; };
+		85C0B2AE1D9D5F6E0007E755 /* NSString+IDPJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2AC1D9D5F6E0007E755 /* NSString+IDPJSONAdapter.m */; };
+		85C0B2B11D9D5F940007E755 /* NSNumber+IDPJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2B01D9D5F940007E755 /* NSNumber+IDPJSONAdapter.m */; };
+		85C0B2B21D9D5F940007E755 /* NSNumber+IDPJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2B01D9D5F940007E755 /* NSNumber+IDPJSONAdapter.m */; };
+		85C0B2B51D9D5FB70007E755 /* NSNull+IDPJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2B41D9D5FB70007E755 /* NSNull+IDPJSONAdapter.m */; };
+		85C0B2B61D9D5FB70007E755 /* NSNull+IDPJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2B41D9D5FB70007E755 /* NSNull+IDPJSONAdapter.m */; };
 		85C0B2BA1D9D61420007E755 /* NSDictionary+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2B91D9D61420007E755 /* NSDictionary+IDPExtensions.m */; };
 		85C0B2BB1D9D61420007E755 /* NSDictionary+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2B91D9D61420007E755 /* NSDictionary+IDPExtensions.m */; };
 		85C16CBF1D764A550087EC1E /* NSBundle+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C16CBE1D764A550087EC1E /* NSBundle+IDPExtensions.m */; };
@@ -365,19 +365,18 @@
 		85C0B29C1D9D19E00007E755 /* IDPFBFriendsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPFBFriendsView.m; sourceTree = "<group>"; };
 		85C0B2A01D9D1AAD0007E755 /* IDPModelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPModelCell.h; sourceTree = "<group>"; };
 		85C0B2A21D9D5E540007E755 /* IDPJSONAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPJSONAdapter.h; sourceTree = "<group>"; };
-		85C0B2A31D9D5EBE0007E755 /* NSArray+IDPJSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+IDPJSONRepresentation.h"; sourceTree = "<group>"; };
-		85C0B2A41D9D5EBE0007E755 /* NSArray+IDPJSONRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+IDPJSONRepresentation.m"; sourceTree = "<group>"; };
-		85C0B2A71D9D5F530007E755 /* NSDictionary+IDPJSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+IDPJSONRepresentation.h"; sourceTree = "<group>"; };
-		85C0B2A81D9D5F530007E755 /* NSDictionary+IDPJSONRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+IDPJSONRepresentation.m"; sourceTree = "<group>"; };
-		85C0B2AB1D9D5F6E0007E755 /* NSString+IDPJSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+IDPJSONRepresentation.h"; sourceTree = "<group>"; };
-		85C0B2AC1D9D5F6E0007E755 /* NSString+IDPJSONRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+IDPJSONRepresentation.m"; sourceTree = "<group>"; };
-		85C0B2AF1D9D5F940007E755 /* NSNumber+IDPJSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+IDPJSONRepresentation.h"; sourceTree = "<group>"; };
-		85C0B2B01D9D5F940007E755 /* NSNumber+IDPJSONRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+IDPJSONRepresentation.m"; sourceTree = "<group>"; };
-		85C0B2B31D9D5FB70007E755 /* NSNull+IDPJSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+IDPJSONRepresentation.h"; sourceTree = "<group>"; };
-		85C0B2B41D9D5FB70007E755 /* NSNull+IDPJSONRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+IDPJSONRepresentation.m"; sourceTree = "<group>"; };
+		85C0B2A31D9D5EBE0007E755 /* NSArray+IDPJSONAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+IDPJSONAdapter.h"; sourceTree = "<group>"; };
+		85C0B2A41D9D5EBE0007E755 /* NSArray+IDPJSONAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+IDPJSONAdapter.m"; sourceTree = "<group>"; };
+		85C0B2A71D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+IDPJSONAdapter.h"; sourceTree = "<group>"; };
+		85C0B2A81D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+IDPJSONAdapter.m"; sourceTree = "<group>"; };
+		85C0B2AB1D9D5F6E0007E755 /* NSString+IDPJSONAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+IDPJSONAdapter.h"; sourceTree = "<group>"; };
+		85C0B2AC1D9D5F6E0007E755 /* NSString+IDPJSONAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+IDPJSONAdapter.m"; sourceTree = "<group>"; };
+		85C0B2AF1D9D5F940007E755 /* NSNumber+IDPJSONAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+IDPJSONAdapter.h"; sourceTree = "<group>"; };
+		85C0B2B01D9D5F940007E755 /* NSNumber+IDPJSONAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+IDPJSONAdapter.m"; sourceTree = "<group>"; };
+		85C0B2B31D9D5FB70007E755 /* NSNull+IDPJSONAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+IDPJSONAdapter.h"; sourceTree = "<group>"; };
+		85C0B2B41D9D5FB70007E755 /* NSNull+IDPJSONAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+IDPJSONAdapter.m"; sourceTree = "<group>"; };
 		85C0B2B81D9D61420007E755 /* NSDictionary+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+IDPExtensions.h"; sourceTree = "<group>"; };
 		85C0B2B91D9D61420007E755 /* NSDictionary+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+IDPExtensions.m"; sourceTree = "<group>"; };
-		85C0B2BC1D9D64130007E755 /* IDPJSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPJSONRepresentation.h; sourceTree = "<group>"; };
 		85C16CBD1D764A550087EC1E /* NSBundle+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+IDPExtensions.h"; sourceTree = "<group>"; };
 		85C16CBE1D764A550087EC1E /* NSBundle+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+IDPExtensions.m"; sourceTree = "<group>"; };
 		85C8DD8D1D530D6E009E227C /* SuperUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1079,18 +1078,17 @@
 		85C0B2A11D9D5E200007E755 /* IDPJSONAdapter */ = {
 			isa = PBXGroup;
 			children = (
-				85C0B2BC1D9D64130007E755 /* IDPJSONRepresentation.h */,
 				85C0B2A21D9D5E540007E755 /* IDPJSONAdapter.h */,
-				85C0B2A31D9D5EBE0007E755 /* NSArray+IDPJSONRepresentation.h */,
-				85C0B2A41D9D5EBE0007E755 /* NSArray+IDPJSONRepresentation.m */,
-				85C0B2A71D9D5F530007E755 /* NSDictionary+IDPJSONRepresentation.h */,
-				85C0B2A81D9D5F530007E755 /* NSDictionary+IDPJSONRepresentation.m */,
-				85C0B2AB1D9D5F6E0007E755 /* NSString+IDPJSONRepresentation.h */,
-				85C0B2AC1D9D5F6E0007E755 /* NSString+IDPJSONRepresentation.m */,
-				85C0B2AF1D9D5F940007E755 /* NSNumber+IDPJSONRepresentation.h */,
-				85C0B2B01D9D5F940007E755 /* NSNumber+IDPJSONRepresentation.m */,
-				85C0B2B31D9D5FB70007E755 /* NSNull+IDPJSONRepresentation.h */,
-				85C0B2B41D9D5FB70007E755 /* NSNull+IDPJSONRepresentation.m */,
+				85C0B2A31D9D5EBE0007E755 /* NSArray+IDPJSONAdapter.h */,
+				85C0B2A41D9D5EBE0007E755 /* NSArray+IDPJSONAdapter.m */,
+				85C0B2A71D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.h */,
+				85C0B2A81D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.m */,
+				85C0B2AB1D9D5F6E0007E755 /* NSString+IDPJSONAdapter.h */,
+				85C0B2AC1D9D5F6E0007E755 /* NSString+IDPJSONAdapter.m */,
+				85C0B2AF1D9D5F940007E755 /* NSNumber+IDPJSONAdapter.h */,
+				85C0B2B01D9D5F940007E755 /* NSNumber+IDPJSONAdapter.m */,
+				85C0B2B31D9D5FB70007E755 /* NSNull+IDPJSONAdapter.h */,
+				85C0B2B41D9D5FB70007E755 /* NSNull+IDPJSONAdapter.m */,
 			);
 			path = IDPJSONAdapter;
 			sourceTree = "<group>";
@@ -1510,7 +1508,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85C0B2AA1D9D5F530007E755 /* NSDictionary+IDPJSONRepresentation.m in Sources */,
+				85C0B2AA1D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.m in Sources */,
 				8577814A1D773EFE007EEF52 /* SUIViewController.m in Sources */,
 				857794FB1D6BA6A500C16BA4 /* NSObject+IDPObject.m in Sources */,
 				85902F681D80E39800846ED2 /* IDPFilteredUserArrayModel.m in Sources */,
@@ -1542,7 +1540,7 @@
 				857794FF1D6BA6A500C16BA4 /* NSString+IDPRandomName.m in Sources */,
 				85C0B2951D9D18B80007E755 /* IDPUserCell.m in Sources */,
 				857794F91D6BA6A500C16BA4 /* NSMutableArray+IDPExtensions.m in Sources */,
-				85C0B2AE1D9D5F6E0007E755 /* NSString+IDPJSONRepresentation.m in Sources */,
+				85C0B2AE1D9D5F6E0007E755 /* NSString+IDPJSONAdapter.m in Sources */,
 				857794FD1D6BA6A500C16BA4 /* NSString+IDPExtensions.m in Sources */,
 				85C0B26C1D9C68030007E755 /* IDPFBLogoutContext.m in Sources */,
 				85607A4B1D74F19E00F6D5E9 /* SUIView.m in Sources */,
@@ -1564,7 +1562,7 @@
 				85C0B2881D9C7DB60007E755 /* IDPFBDeleteContext.m in Sources */,
 				851A2A841D738E8400C32616 /* IDPView.m in Sources */,
 				858239161D5B5DEB00623348 /* IDPUsersView.m in Sources */,
-				85C0B2B21D9D5F940007E755 /* NSNumber+IDPJSONRepresentation.m in Sources */,
+				85C0B2B21D9D5F940007E755 /* NSNumber+IDPJSONAdapter.m in Sources */,
 				8582392B1D5B5E6D00623348 /* IDPUser.m in Sources */,
 				8585267D1D77A53100E2EA6C /* IDPUserArrayModel.m in Sources */,
 				85BB7D4F1D70ACBA00DBC84B /* UIViewController+IDPExtensions.m in Sources */,
@@ -1579,7 +1577,7 @@
 				859D968F1D7C5FD1005C05C6 /* IDPArrayChangeModel+IDPExtensions.m in Sources */,
 				85F806A41D9336E800BD842F /* IDPModel.m in Sources */,
 				8577950D1D6BA6A500C16BA4 /* UITableView+IDPExtensions.m in Sources */,
-				85C0B2B61D9D5FB70007E755 /* NSNull+IDPJSONRepresentation.m in Sources */,
+				85C0B2B61D9D5FB70007E755 /* NSNull+IDPJSONAdapter.m in Sources */,
 				85C0B22E1D9966050007E755 /* IDPContext.m in Sources */,
 				85F806941D9336E800BD842F /* IDPArrayReplaceChangeModel.m in Sources */,
 				85C0B2241D9965EC0007E755 /* IDPErrorMacros.m in Sources */,
@@ -1593,7 +1591,7 @@
 				85F806A21D9336E800BD842F /* IDPLocalImageModel.m in Sources */,
 				858239181D5B5DEB00623348 /* IDPUsersViewController.m in Sources */,
 				858239121D5B5DEB00623348 /* IDPAnimationViewController.m in Sources */,
-				85C0B2A61D9D5EBE0007E755 /* NSArray+IDPJSONRepresentation.m in Sources */,
+				85C0B2A61D9D5EBE0007E755 /* NSArray+IDPJSONAdapter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1606,7 +1604,7 @@
 				85C0B21D1D9965EC0007E755 /* IDPBlockMacros.m in Sources */,
 				854E11FC1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m in Sources */,
 				85F806971D9336E800BD842F /* IDPArrayChangeModel.m in Sources */,
-				85C0B2B51D9D5FB70007E755 /* NSNull+IDPJSONRepresentation.m in Sources */,
+				85C0B2B51D9D5FB70007E755 /* NSNull+IDPJSONAdapter.m in Sources */,
 				85F806A81D9336F700BD842F /* IDPObjectsCache.m in Sources */,
 				857638591D858D60004DC4BC /* UIImage+IDPExtensions.m in Sources */,
 				85607A4A1D74F19E00F6D5E9 /* SUIView.m in Sources */,
@@ -1620,7 +1618,7 @@
 				858239171D5B5DEB00623348 /* IDPUsersViewController.m in Sources */,
 				85F806A11D9336E800BD842F /* IDPLocalImageModel.m in Sources */,
 				859D968E1D7C5FD1005C05C6 /* IDPArrayChangeModel+IDPExtensions.m in Sources */,
-				85C0B2B11D9D5F940007E755 /* NSNumber+IDPJSONRepresentation.m in Sources */,
+				85C0B2B11D9D5F940007E755 /* NSNumber+IDPJSONAdapter.m in Sources */,
 				851A2A831D738E8400C32616 /* IDPView.m in Sources */,
 				85C0B26B1D9C68030007E755 /* IDPFBLogoutContext.m in Sources */,
 				851A2A871D738E9E00C32616 /* IDPLoadingView.m in Sources */,
@@ -1660,12 +1658,12 @@
 				85F8068F1D9336E800BD842F /* IDPArrayMoveChangeModel.m in Sources */,
 				858239111D5B5DEB00623348 /* IDPAnimationViewController.m in Sources */,
 				857794FC1D6BA6A500C16BA4 /* NSString+IDPExtensions.m in Sources */,
-				85C0B2AD1D9D5F6E0007E755 /* NSString+IDPJSONRepresentation.m in Sources */,
-				85C0B2A51D9D5EBE0007E755 /* NSArray+IDPJSONRepresentation.m in Sources */,
+				85C0B2AD1D9D5F6E0007E755 /* NSString+IDPJSONAdapter.m in Sources */,
+				85C0B2A51D9D5EBE0007E755 /* NSArray+IDPJSONAdapter.m in Sources */,
 				85C0B2541D9A5B2B0007E755 /* IDPFBContext.m in Sources */,
 				859D96921D7C5FD1005C05C6 /* IDPArrayMoveChangeModel+IDPExtensions.m in Sources */,
 				85C0B2871D9C7DB60007E755 /* IDPFBDeleteContext.m in Sources */,
-				85C0B2A91D9D5F530007E755 /* NSDictionary+IDPJSONRepresentation.m in Sources */,
+				85C0B2A91D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.m in Sources */,
 				859D96901D7C5FD1005C05C6 /* IDPArrayInsertChangeModel+IDPExtensions.m in Sources */,
 				85F806951D9336E800BD842F /* IDPArrayChangeModel+IDPExtensions.m in Sources */,
 				85F749781D5CE3320088A09F /* IDPArrayView.m in Sources */,

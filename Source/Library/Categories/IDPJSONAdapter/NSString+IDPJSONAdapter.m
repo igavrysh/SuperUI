@@ -6,16 +6,16 @@
 //  Copyright © 2016 1mlndollarsasset. All rights reserved.
 //
 
-#import "IDPJSONRepresentation.h"
+#import "NSString+IDPJSONAdapter.h"
 
 #import "NSArray+IDPArrayEnumerator.h"
 
-@implementation NSString (IDPJSONRepresentation)
+@implementation NSString (IDPJSONAdapter)
 
 #pragma mark -
 #pragma mark IDPJSONAdapter
 
-- (instancetype)jsonRepresentation {
+- (instancetype)JSONRepresentation {
     return self;
 }
 

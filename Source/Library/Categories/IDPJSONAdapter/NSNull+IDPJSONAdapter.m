@@ -6,14 +6,14 @@
 //  Copyright © 2016 1mlndollarsasset. All rights reserved.
 //
 
-#import "IDPJSONRepresentation.h"
+#import "NSNull+IDPJSONAdapter.h"
 
-@implementation NSNull (IDPJSONRepresentation)
+@implementation NSNull (IDPJSONAdapter)
 
 #pragma mark -
 #pragma mark IDPJSONAdapter
 
-- (instancetype)jsonRepresentation {
+- (instancetype)JSONRepresentation {
     return nil;
 }
 

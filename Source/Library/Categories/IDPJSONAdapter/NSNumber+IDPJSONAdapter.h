@@ -10,6 +10,6 @@
 
 #import "IDPJSONAdapter.h"
 
-@interface NSNumber (IDPJSONRepresentation) <IDPJSONAdapter>
+@interface NSNumber (IDPJSONAdapter) <IDPJSONAdapter>
 
 @end

@@ -1,5 +1,5 @@
 //
-//  NSNull+IDPJSONRepresentation.h
+//  NSDictionary+IDPJSONRepresentation.h
 //  SuperUI
 //
 //  Created by Ievgen on 9/29/16.
@@ -10,6 +10,6 @@
 
 #import "IDPJSONAdapter.h"
 
-@interface NSNull (IDPJSONRepresentation) <IDPJSONAdapter>
+@interface NSDictionary (IDPJSONAdapter) <IDPJSONAdapter>
 
 @end

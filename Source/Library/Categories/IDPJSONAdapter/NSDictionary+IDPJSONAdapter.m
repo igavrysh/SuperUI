@@ -6,20 +6,20 @@
 //  Copyright © 2016 1mlndollarsasset. All rights reserved.
 //
 
-#import "IDPJSONRepresentation.h"
+#import "NSDictionary+IDPJSONAdapter.h"
 
 #import "NSDictionary+IDPExtensions.h"
 
-@implementation NSDictionary (IDPJSONRepresentation)
+@implementation NSDictionary (IDPJSONAdapter)
 
 #pragma mark -
 #pragma mark IDPJSONAdapter
 
-- (instancetype)jsonRepresentation {
+- (instancetype)JSONRepresentation {
     NSMutableDictionary *dictionary = [NSMutableDictionary new];
     
     [self performBlockWithEachObject:^(id<IDPJSONAdapter> object, id key) {
-        id processedObject = [object jsonRepresentation];
+        id processedObject = [object JSONRepresentation];
         
         if (processedObject) {
             dictionary[key] = object;

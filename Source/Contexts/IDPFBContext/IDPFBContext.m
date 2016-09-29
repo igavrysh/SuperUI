@@ -10,10 +10,9 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 #import "IDPFBContext.h"
+#import "IDPJSONAdapter.h"
 
 #include "IDPModel.h"
-
-#import "IDPJSONRepresentation.h"
 
 @implementation IDPFBContext
 
@@ -38,7 +37,7 @@
     if ([FBSDKAccessToken currentAccessToken]) {
         id handler = ^(FBSDKGraphRequestConnection *connection, id<IDPJSONAdapter> result, NSError *error) {
             if (!error) {
-                [self fillWithResult:[result jsonRepresentation]];
+                [self fillWithResult:[result JSONRepresentation]];
             } else {
                 self.model.state = IDPModelDidFailLoading;
             }

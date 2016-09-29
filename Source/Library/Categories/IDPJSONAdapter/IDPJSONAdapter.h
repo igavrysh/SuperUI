@@ -10,6 +10,6 @@
 
 @protocol IDPJSONAdapter <NSObject>
 
-- (instancetype)jsonRepresentation;
+- (instancetype)JSONRepresentation;
 
 @end
