@@ -82,6 +82,12 @@ kIDPStringKeyDefinition(kIDPUserBigImageURLKey);
     return model;
 }
 
+- (IDPImageModel *)bigImageModel {
+    IDPImageModel *model = [IDPImageModel imageWithURL:self.bigImageURL];
+    
+    return model;
+}
+
 #pragma mark -
 #pragma mark NSCopying 
 

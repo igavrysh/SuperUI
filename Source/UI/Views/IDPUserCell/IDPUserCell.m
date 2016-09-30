@@ -69,6 +69,16 @@ static NSString * const kIDPNoImageExtension = @"jpg";
 }
 
 #pragma mark -
+#pragma mark View Lifecycle
+
+- (void)viewDidLoad {
+    //Scaling?
+    self.userImageView.contentMode = UIViewContentModeScaleAspectFit;
+    
+    self.userImageView.contentImageView.contentMode = UIViewContentModeScaleAspectFit;
+}
+
+#pragma mark -
 #pragma mark Public
 
 - (void)fillWithUser:(IDPUser *)user {
