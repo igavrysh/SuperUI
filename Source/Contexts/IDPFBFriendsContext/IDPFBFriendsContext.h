@@ -13,10 +13,8 @@
 
 @interface IDPFBFriendsContext : IDPFBContext
 
-+ (instancetype)contextWithUser:(IDPUser *)user
-                        friends:(IDPUserArrayModel *)friends;
++ (instancetype)contextWithUser:(IDPUser *)user;
 
-- (instancetype)initWithUser:(IDPUser *)user
-                     friends:(IDPUserArrayModel *)friends;
+- (instancetype)initWithUser:(IDPUser *)user;
 
 @end

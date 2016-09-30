@@ -97,7 +97,9 @@
     };
     
     IDPAsyncPerformInMainQueue(^{
-        [[FBSDKLoginManager new] logInWithReadPermissions: @[kIDPPublicProfile, kIDPUserFriends]
+        [[FBSDKLoginManager new] logInWithReadPermissions: @[kIDPPublicProfile,
+                                                             kIDPUserFriends,
+                                                             KIDPUserLocation]
                                        fromViewController:self.viewController
                                                   handler:handler];
     });

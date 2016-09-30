@@ -9,6 +9,7 @@
 #import "IDPUser.h"
 
 #import "IDPImageModel.h"
+#import "IDPArrayModel.h"
 
 #import "NSString+IDPRandomName.h"
 #import "NSArray+IDPArrayEnumerator.h"
@@ -26,6 +27,11 @@ kIDPStringKeyDefinition(kIDPUserLocationKey);
 kIDPStringKeyDefinition(kIDPUserHometownKey);
 kIDPStringKeyDefinition(kIDPUserImageURLKey);
 kIDPStringKeyDefinition(kIDPUserBigImageURLKey);
+
+@interface IDPUser ()
+@property (nonatomic, strong)   IDPArrayModel   *friends;
+
+@end
 
 @implementation IDPUser
 
@@ -51,6 +57,16 @@ kIDPStringKeyDefinition(kIDPUserBigImageURLKey);
 
 + (NSArray *)usersWithCount:(NSUInteger)count {
     return [NSArray objectsWithCount:count block:^{ return [IDPUser user]; }];
+}
+
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (instancetype)init {
+    self = [super init];
+    self.friends = [IDPArrayModel new];
+    
+    return self;
 }
 
 #pragma mark - 

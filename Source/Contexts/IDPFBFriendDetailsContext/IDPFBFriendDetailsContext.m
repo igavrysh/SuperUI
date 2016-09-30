@@ -39,20 +39,23 @@
 }
 
 - (NSDictionary *)requestParameters {
-    return @{kIDPFields:[NSString stringWithFormat:@"%@, %@, %@, %@",
+    return @{kIDPFields:[NSString stringWithFormat:@"%@, %@, %@, %@, %@",
                          kIDPLargePicture,
                          kIDPName,
                          kIDPLocation,
-                         kIDPHometown]};
+                         kIDPHometown,
+                         kIDPWork]};
 }
 
 #pragma mark -
 #pragma mark Public Methods
 
 - (void)fillWithResult:(NSDictionary *)result {
-    NSArray *friendsArray = [result objectForKey:kIDPData];
- 
-    NSLog(@"Hiii");
+    IDPUser *user = (IDPUser *)self.model;
+    user.name = result[kIDPName];
+    user.bigImageURL = [NSURL URLWithString:result[kIDPPicture][kIDPData][kIDPURL]];
+
+    user.state = IDPUserDidLoadDetails;
 }
 
 @end

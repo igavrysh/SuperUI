@@ -12,6 +12,7 @@
 #import "IDPModel.h"
 
 @class IDPUser;
+@class IDPArrayModel;
 
 typedef NS_ENUM(NSUInteger, IDPUserState) {
     IDPUserDidLoadID = IDPModelStateCount,
@@ -42,6 +43,7 @@ typedef NS_ENUM(NSUInteger, IDPUserState) {
 @property (nonatomic, copy)     NSString        *name;
 @property (nonatomic, copy)     NSString        *location;
 @property (nonatomic, copy)     NSString        *hometown;
+@property (nonatomic, readonly) IDPArrayModel   *friends;
 
 @property (nonatomic, copy)     NSURL           *imageURL;
 @property (nonatomic, readonly) IDPImageModel   *imageModel;

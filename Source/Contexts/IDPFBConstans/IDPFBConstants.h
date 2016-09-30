@@ -26,5 +26,6 @@ kIDPStringVariableDefinition(kIDPURL, @"url");
 kIDPStringVariableDefinition(kIDPName, @"name");
 kIDPStringVariableDefinition(kIDPLocation, @"location");
 kIDPStringVariableDefinition(kIDPHometown, @"hometown");
-
+kIDPStringVariableDefinition(KIDPUserLocation, @"user_location");
+kIDPStringVariableDefinition(kIDPWork, @"work");
 

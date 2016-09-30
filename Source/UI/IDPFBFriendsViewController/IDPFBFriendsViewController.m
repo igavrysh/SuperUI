@@ -16,6 +16,7 @@
 #import "IDPFBFriendsView.h"
 #import "IDPModelCell.h"
 #import "IDPUserCell.h"
+#import "IDPFBFriendDetailsViewController.h"
 
 #import "UITableView+IDPExtensions.h"
 
@@ -32,6 +33,8 @@ kIDPStringVariableDefinition(kIDPLogoutButtonTitle, @"Logout");
 - (void)setupNavigationBar;
 - (UITableViewCell<IDPModelCell> *)cellForTable:(UITableView *)tableView
                                   withIndexPath:(NSIndexPath *)indexPath;
+- (void)pushDetailsViewContollerForUser:(IDPUser *)user;
+- (void)reloadTableView;
 
 @end
 
@@ -76,10 +79,9 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
 #pragma mark Private
 
 - (void)loadUsers {
-    self.model = [IDPArrayModel new];
+    self.friendsContext = [IDPFBFriendsContext contextWithUser:self.user];
     
-    self.friendsContext = [IDPFBFriendsContext contextWithUser:self.user
-                                                         friends:self.model];
+    self.model = self.user.friends;
 }
 
 - (void)setupNavigationBar {
@@ -88,6 +90,13 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
                                                               target:self
                                                               action:@selector(onLogout:)];
     self.navigationItem.leftBarButtonItem = button;
+}
+
+- (void)pushDetailsViewContollerForUser:(IDPUser *)user {
+    IDPFBFriendDetailsViewController *controller = [IDPFBFriendDetailsViewController new];
+    controller.model = user;
+    
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (UITableViewCell<IDPModelCell> *)cellForTable:(UITableView *)tableView
@@ -107,10 +116,6 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
 
 #pragma mark -
 #pragma mark View Lifecycle
-
-- (void)awakeFromNib {
-    
-}
 
 - (IBAction)onLogout:(UIBarButtonItem *)button {
     IDPFBLogoutContext *logoutContext = [IDPFBLogoutContext contextWithModel:self.user];
@@ -162,13 +167,14 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
     return cell;
 }
 
-#pragma mark -
-#pragma mark UITableViewDataSource
-
 - (BOOL)        tableView:(UITableView *)tableView
     canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return NO;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self pushDetailsViewContollerForUser:self.model[indexPath.row]];
 }
 
 @end
