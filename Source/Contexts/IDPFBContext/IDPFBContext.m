@@ -10,14 +10,29 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 #import "IDPFBContext.h"
-#import "IDPJSONAdapter.h"
 
 #include "IDPModel.h"
+
+#import "IDPJSONAdapter.h"
+
+#import "IDPMacros.h"
+
+@interface IDPFBContext ()
+@property (nonatomic, strong) FBSDKGraphRequestConnection   *connection;
+
+@end
 
 @implementation IDPFBContext
 
 @dynamic graphPath;
 @dynamic requestParameters;
+
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (void)dealloc {
+    self.connection = nil;
+}
 
 #pragma mark - 
 #pragma mark Accessors
@@ -30,24 +45,37 @@
     return nil;
 }
 
+- (void)setConnection:(FBSDKGraphRequestConnection *)connection {
+    if (_connection != connection) {
+        [_connection cancel];
+        
+        _connection = connection;
+    }
+}
+
 #pragma mark -
 #pragma mark Public
 
-- (void)load {
-    if ([FBSDKAccessToken currentAccessToken]) {
-        id handler = ^(FBSDKGraphRequestConnection *connection, id<IDPJSONAdapter> result, NSError *error) {
-            if (!error) {
-                [self fillWithResult:[result JSONRepresentation]];
-            } else {
-                self.model.state = IDPModelDidFailLoading;
-            }
-        };
+- (void)load {    
+    IDPWeakify(self);
+    id handler = ^(FBSDKGraphRequestConnection *connection,
+                   id<IDPJSONAdapter> result,
+                   NSError *error)
+    {
+        IDPStrongify(self);
         
-        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:self.graphPath
-                                                                       parameters:self.requestParameters
-                                                                       HTTPMethod:self.httpMethod];
-        [request startWithCompletionHandler:handler];
-    }
+        if (!error) {
+            [self fillWithResult:[result JSONRepresentation]];
+        } else {
+            self.model.state = IDPModelDidFailLoading;
+        }
+    };
+    
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:self.graphPath
+                                                                   parameters:self.requestParameters
+                                                                   HTTPMethod:self.httpMethod];
+    
+    self.connection = [request startWithCompletionHandler:handler];
 }
 
 - (void)fillWithResult:(id)result {
@@ -55,6 +83,12 @@
 
 - (NSString *)httpMethod {
     return nil;
+}
+
+- (void)cancel {
+    @synchronized(self) {
+        self.connection = nil;
+    }
 }
 
 @end

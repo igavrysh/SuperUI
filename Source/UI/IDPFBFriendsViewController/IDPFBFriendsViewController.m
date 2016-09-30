@@ -24,8 +24,9 @@
 kIDPStringVariableDefinition(kIDPLogoutButtonTitle, @"Logout");
 
 @interface IDPFBFriendsViewController ()
-@property (nonatomic, strong) IDPUser               *user;
-@property (nonatomic, strong) IDPFBLogoutContext    *logoutContext;
+@property (nonatomic, strong)   IDPUser             *user;
+@property (nonatomic, strong)   IDPFBLogoutContext  *logoutContext;
+@property (nonatomic, strong)   IDPFBFriendsContext *friendsContext;
 
 - (void)loadUsers;
 - (void)setupNavigationBar;
@@ -61,15 +62,24 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
     }
 }
 
+- (void)setFriendsContext:(IDPFBFriendsContext *)friendsContext {
+    if (_friendsContext != friendsContext) {
+        [friendsContext cancel];
+        
+        _friendsContext = friendsContext;
+        
+        [friendsContext execute];
+    }
+}
+
 #pragma mark -
 #pragma mark Private
 
 - (void)loadUsers {
     self.model = [IDPArrayModel new];
     
-    IDPFBContext *context = [IDPFBFriendsContext contextWithUser:self.user
+    self.friendsContext = [IDPFBFriendsContext contextWithUser:self.user
                                                          friends:self.model];
-    [context execute];
 }
 
 - (void)setupNavigationBar {
@@ -92,9 +102,6 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
         IDPStrongifyAndReturnIfNil(self);
         
         [self.friendsView.tableView reloadData];
-        
-        //??? Investigate why it happens
-        //self.friendsView.loadingViewVisible = NO;
     });
 }
 
@@ -111,6 +118,8 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
     self.logoutContext = logoutContext;
     
     [logoutContext execute];
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {

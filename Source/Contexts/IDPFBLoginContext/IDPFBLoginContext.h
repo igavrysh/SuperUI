@@ -15,7 +15,10 @@
 + (instancetype)loginContextWithUser:(IDPUser *)user
                       viewController:(UIViewController *)viewController;
 
++ (IDPUser *)user;
+
 - (instancetype)initWithUser:(IDPUser *)user
               viewController:(UIViewController *)viewController;
+
 
 @end
