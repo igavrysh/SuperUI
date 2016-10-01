@@ -11,6 +11,7 @@
 
 #import "IDPFBLoginViewController.h"
 
+#import "IDPGCDQueue.h"
 #import "IDPFBFriendsViewController.h"
 #import "IDPFBConstants.h"
 #import "IDPUser.h"
@@ -79,7 +80,9 @@
 #pragma mark IDPUserStateObserver
 
 - (void)userDidLoadID:(IDPUser *)user {
-    [self showFriendsViewControllerForUser:user];
+    IDPAsyncPerformInMainQueue(^{
+        [self showFriendsViewControllerForUser:user];
+    });
 }
 
 @end
