@@ -15,6 +15,8 @@
 #import "IDPFBConstants.h"
 #import "IDPUser.h"
 
+#import "IDPContextHelpers.h"
+
 @interface IDPFBLoginViewController ()
 @property (nonatomic, strong)   IDPFBLoginContext   *loginContext;
 
@@ -28,13 +30,7 @@
 #pragma mark Accessors
 
 - (void)setLoginContext:(IDPFBLoginContext *)loginContext {
-    if (_loginContext != loginContext) {
-        [_loginContext cancel];
-        
-        _loginContext = loginContext;
-        
-        [loginContext execute];
-    }
+    IDPContextSetter(&_loginContext, loginContext);
 }
 
 #pragma mark -

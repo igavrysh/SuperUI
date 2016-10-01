@@ -24,6 +24,8 @@
 		8530918F1D9E8EC900AE0DE9 /* IDPFBFriendDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8530918D1D9E8EC900AE0DE9 /* IDPFBFriendDetailsViewController.xib */; };
 		853091921D9E8EF300AE0DE9 /* IDPFBFriendDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 853091911D9E8EF300AE0DE9 /* IDPFBFriendDetailsView.m */; };
 		853091931D9E8EF300AE0DE9 /* IDPFBFriendDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 853091911D9E8EF300AE0DE9 /* IDPFBFriendDetailsView.m */; };
+		853091961D9FB8E500AE0DE9 /* IDPContextHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 853091951D9FB8E500AE0DE9 /* IDPContextHelpers.m */; };
+		853091971D9FB8E500AE0DE9 /* IDPContextHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 853091951D9FB8E500AE0DE9 /* IDPContextHelpers.m */; };
 		853F963A1D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 853F96391D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.m */; };
 		853F963B1D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 853F96391D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.m */; };
 		854E11FC1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 854E11FB1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m */; };
@@ -239,6 +241,8 @@
 		8530918D1D9E8EC900AE0DE9 /* IDPFBFriendDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPFBFriendDetailsViewController.xib; sourceTree = "<group>"; };
 		853091901D9E8EF300AE0DE9 /* IDPFBFriendDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPFBFriendDetailsView.h; sourceTree = "<group>"; };
 		853091911D9E8EF300AE0DE9 /* IDPFBFriendDetailsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPFBFriendDetailsView.m; sourceTree = "<group>"; };
+		853091941D9FB8E500AE0DE9 /* IDPContextHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPContextHelpers.h; sourceTree = "<group>"; };
+		853091951D9FB8E500AE0DE9 /* IDPContextHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPContextHelpers.m; sourceTree = "<group>"; };
 		853F96381D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+IDPExtensions.h"; sourceTree = "<group>"; };
 		853F96391D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+IDPExtensions.m"; sourceTree = "<group>"; };
 		854E11FA1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+IDPExtensions.h"; sourceTree = "<group>"; };
@@ -933,6 +937,8 @@
 			children = (
 				85C0B22B1D9966050007E755 /* IDPContext.h */,
 				85C0B22C1D9966050007E755 /* IDPContext.m */,
+				853091941D9FB8E500AE0DE9 /* IDPContextHelpers.h */,
+				853091951D9FB8E500AE0DE9 /* IDPContextHelpers.m */,
 			);
 			path = IDPContext;
 			sourceTree = "<group>";
@@ -1534,6 +1540,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				853091971D9FB8E500AE0DE9 /* IDPContextHelpers.m in Sources */,
 				85C0B2AA1D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.m in Sources */,
 				8577814A1D773EFE007EEF52 /* SUIViewController.m in Sources */,
 				857794FB1D6BA6A500C16BA4 /* NSObject+IDPObject.m in Sources */,
@@ -1662,6 +1669,7 @@
 				85BB7D4E1D70ACBA00DBC84B /* UIViewController+IDPExtensions.m in Sources */,
 				8582392A1D5B5E6D00623348 /* IDPUser.m in Sources */,
 				858239151D5B5DEB00623348 /* IDPUsersView.m in Sources */,
+				853091961D9FB8E500AE0DE9 /* IDPContextHelpers.m in Sources */,
 				85F806891D9336E800BD842F /* IDPArrayOneIndexChangeModel.m in Sources */,
 				85C0B29D1D9D19E00007E755 /* IDPFBFriendsView.m in Sources */,
 				857781491D773EFE007EEF52 /* SUIViewController.m in Sources */,

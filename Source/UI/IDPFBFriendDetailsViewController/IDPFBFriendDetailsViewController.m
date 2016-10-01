@@ -13,6 +13,7 @@
 #import "IDPFBFriendDetailsContext.h"
 
 #import "IDPMacros.h"
+#import "IDPContextHelpers.h"
 
 IDPViewControllerBaseViewProperty(IDPFBFriendDetailsViewController, IDPFBFriendDetailsView, detailsView);
 
@@ -37,13 +38,7 @@ IDPViewControllerBaseViewProperty(IDPFBFriendDetailsViewController, IDPFBFriendD
 }
 
 - (void)setDetailsContext:(IDPFBFriendDetailsContext *)detailsContext {
-    if (_detailsContext != detailsContext) {
-        [_detailsContext cancel];
-        
-        _detailsContext = detailsContext;
-        
-        [detailsContext execute];
-    }
+    IDPContextSetter(&_detailsContext, detailsContext);
 }
 
 #pragma mark -

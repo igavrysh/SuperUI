@@ -20,6 +20,8 @@
 @interface IDPFBLoginContext ()
 @property (nonatomic, strong)   UIViewController    *viewController;
 
+- (NSArray *)readPermissions;
+
 @end
 
 @implementation IDPFBLoginContext
@@ -97,12 +99,19 @@
     };
     
     IDPAsyncPerformInMainQueue(^{
-        [[FBSDKLoginManager new] logInWithReadPermissions: @[kIDPPublicProfile,
-                                                             kIDPUserFriends,
-                                                             KIDPUserLocation]
+        [[FBSDKLoginManager new] logInWithReadPermissions:[self readPermissions]
                                        fromViewController:self.viewController
                                                   handler:handler];
     });
+}
+
+#pragma mark -
+#pragma mark Private
+
+- (NSArray *)readPermissions {
+    return @[kIDPPublicProfile,
+             kIDPUserFriends,
+             KIDPUserLocation];
 }
 
 @end

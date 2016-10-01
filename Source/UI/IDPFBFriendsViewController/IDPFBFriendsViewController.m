@@ -20,6 +20,7 @@
 
 #import "UITableView+IDPExtensions.h"
 
+#import "IDPContextHelpers.h"
 #import "IDPMacros.h"
 
 kIDPStringVariableDefinition(kIDPLogoutButtonTitle, @"Logout");
@@ -66,13 +67,11 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
 }
 
 - (void)setFriendsContext:(IDPFBFriendsContext *)friendsContext {
-    if (_friendsContext != friendsContext) {
-        [friendsContext cancel];
-        
-        _friendsContext = friendsContext;
-        
-        [friendsContext execute];
-    }
+    IDPContextSetter(&_friendsContext, friendsContext);
+}
+
+- (void)setLogoutContext:(IDPFBLogoutContext *)logoutContext {
+    IDPContextSetter(&_logoutContext, logoutContext);
 }
 
 #pragma mark -
