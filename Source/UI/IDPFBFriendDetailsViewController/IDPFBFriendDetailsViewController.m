@@ -52,6 +52,8 @@ IDPViewControllerBaseViewProperty(IDPFBFriendDetailsViewController, IDPFBFriendD
 #pragma mark View Lifecycle
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
+    
     self.rootView.model = self.model;
     
     [self loadUserDetails];

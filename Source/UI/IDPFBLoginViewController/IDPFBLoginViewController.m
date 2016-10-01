@@ -67,6 +67,8 @@
 #pragma mark View Lifecycle
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
+    
     IDPUser *user = [IDPFBLoginContext user];
     if (user) {
         [self showFriendsViewControllerForUser:user];
