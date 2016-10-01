@@ -21,5 +21,7 @@
 
 // Methods for override
 - (void)load;
+- (NSUInteger)contextExecutingState;
+- (NSUInteger)contextDidExecuteState;
 
 @end
