@@ -89,6 +89,13 @@ kIDPStringKeyDefinition(kIDPUserBigImageURLKey);
 }
 
 #pragma mark -
+#pragma mark Public Methods
+
+- (void)save {
+    
+}
+
+#pragma mark -
 #pragma mark NSCopying 
 
 - (id)copyWithZone:(NSZone *)zone {
@@ -136,9 +143,6 @@ kIDPStringKeyDefinition(kIDPUserBigImageURLKey);
     return self;
 }
 
-#pragma mark - 
-#pragma mark IDPObservableObject
-
 #pragma mark -
 #pragma mark IDPObservableObject
 
@@ -157,5 +161,7 @@ kIDPStringKeyDefinition(kIDPUserBigImageURLKey);
             return [super selectorForState:state];
     }
 }
+
+
 
 @end

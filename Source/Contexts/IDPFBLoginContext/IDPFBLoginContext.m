@@ -39,21 +39,6 @@
                        viewController:(UIViewController *)viewController];
 }
 
-/*
-+ (IDPUser *)user {
-    FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
-    
-    if (!token) {
-        return nil;
-    }
-    
-    IDPUser *user = [IDPUser new];
-    user.ID = token.userID;
-    
-    return user;
-}
-*/
-
 #pragma mark -
 #pragma mark Initializations and Deallocations
 

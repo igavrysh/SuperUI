@@ -20,6 +20,8 @@
 		851EE1521D6193AD0029B447 /* image_big.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851EE14E1D6193AD0029B447 /* image_big.jpg */; };
 		852030AD1DA13261009A46FD /* IDPFBCurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 852030AC1DA13261009A46FD /* IDPFBCurrentUser.m */; };
 		852030AE1DA13261009A46FD /* IDPFBCurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 852030AC1DA13261009A46FD /* IDPFBCurrentUser.m */; };
+		852030B21DA17113009A46FD /* DCIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 852030B11DA17113009A46FD /* DCIModel.m */; };
+		852030B31DA17113009A46FD /* DCIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 852030B11DA17113009A46FD /* DCIModel.m */; };
 		8530918B1D9E8EAF00AE0DE9 /* IDPFBFriendDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8530918A1D9E8EAF00AE0DE9 /* IDPFBFriendDetailsViewController.m */; };
 		8530918C1D9E8EAF00AE0DE9 /* IDPFBFriendDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8530918A1D9E8EAF00AE0DE9 /* IDPFBFriendDetailsViewController.m */; };
 		8530918E1D9E8EC900AE0DE9 /* IDPFBFriendDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8530918D1D9E8EC900AE0DE9 /* IDPFBFriendDetailsViewController.xib */; };
@@ -240,6 +242,8 @@
 		851EE14E1D6193AD0029B447 /* image_big.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_big.jpg; sourceTree = "<group>"; };
 		852030AB1DA13261009A46FD /* IDPFBCurrentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPFBCurrentUser.h; sourceTree = "<group>"; };
 		852030AC1DA13261009A46FD /* IDPFBCurrentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPFBCurrentUser.m; sourceTree = "<group>"; };
+		852030B01DA17113009A46FD /* DCIModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCIModel.h; sourceTree = "<group>"; };
+		852030B11DA17113009A46FD /* DCIModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCIModel.m; sourceTree = "<group>"; };
 		853091891D9E8EAF00AE0DE9 /* IDPFBFriendDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPFBFriendDetailsViewController.h; sourceTree = "<group>"; };
 		8530918A1D9E8EAF00AE0DE9 /* IDPFBFriendDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPFBFriendDetailsViewController.m; sourceTree = "<group>"; };
 		8530918D1D9E8EC900AE0DE9 /* IDPFBFriendDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPFBFriendDetailsViewController.xib; sourceTree = "<group>"; };
@@ -523,6 +527,15 @@
 			path = IDPFBCurrentUser;
 			sourceTree = "<group>";
 		};
+		852030AF1DA16E8C009A46FD /* DCIModel */ = {
+			isa = PBXGroup;
+			children = (
+				852030B01DA17113009A46FD /* DCIModel.h */,
+				852030B11DA17113009A46FD /* DCIModel.m */,
+			);
+			path = DCIModel;
+			sourceTree = "<group>";
+		};
 		853091881D9E8E7C00AE0DE9 /* IDPFBFriendDetailsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -772,6 +785,7 @@
 		858238DE1D5B5DEB00623348 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				852030AF1DA16E8C009A46FD /* DCIModel */,
 				85F806861D9336E800BD842F /* IDPModel */,
 				85F806651D9336E800BD842F /* IDPArrayModel */,
 				85F8067E1D9336E800BD842F /* IDPImageModel */,
@@ -1603,6 +1617,7 @@
 				859D96911D7C5FD1005C05C6 /* IDPArrayInsertChangeModel+IDPExtensions.m in Sources */,
 				85C0B2551D9A5B2B0007E755 /* IDPFBContext.m in Sources */,
 				85C0B2201D9965EC0007E755 /* IDPCompilerMacros.m in Sources */,
+				852030B31DA17113009A46FD /* DCIModel.m in Sources */,
 				85C0B2641D9AB6260007E755 /* IDPFBFriendsContext.m in Sources */,
 				85C16CC01D764A550087EC1E /* NSBundle+IDPExtensions.m in Sources */,
 				853091931D9E8EF300AE0DE9 /* IDPFBFriendDetailsView.m in Sources */,
@@ -1719,6 +1734,7 @@
 				859D96901D7C5FD1005C05C6 /* IDPArrayInsertChangeModel+IDPExtensions.m in Sources */,
 				85F806951D9336E800BD842F /* IDPArrayChangeModel+IDPExtensions.m in Sources */,
 				8530918B1D9E8EAF00AE0DE9 /* IDPFBFriendDetailsViewController.m in Sources */,
+				852030B21DA17113009A46FD /* DCIModel.m in Sources */,
 				85F749781D5CE3320088A09F /* IDPArrayView.m in Sources */,
 				859D96941D7C5FD1005C05C6 /* IDPArrayRemoveChangeModel+IDPExtensions.m in Sources */,
 				85F8069B1D9336E800BD842F /* IDPFilteredArrayModel.m in Sources */,

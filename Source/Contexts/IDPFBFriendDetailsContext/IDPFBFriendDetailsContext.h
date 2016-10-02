@@ -16,5 +16,4 @@
 
 - (instancetype)initWithUser:(IDPUser *)user;
 
-
 @end
