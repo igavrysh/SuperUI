@@ -18,6 +18,8 @@
 		851EE1501D6193AD0029B447 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851EE14D1D6193AD0029B447 /* image.jpg */; };
 		851EE1511D6193AD0029B447 /* image_big.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851EE14E1D6193AD0029B447 /* image_big.jpg */; };
 		851EE1521D6193AD0029B447 /* image_big.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851EE14E1D6193AD0029B447 /* image_big.jpg */; };
+		852030AD1DA13261009A46FD /* IDPFBCurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 852030AC1DA13261009A46FD /* IDPFBCurrentUser.m */; };
+		852030AE1DA13261009A46FD /* IDPFBCurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 852030AC1DA13261009A46FD /* IDPFBCurrentUser.m */; };
 		8530918B1D9E8EAF00AE0DE9 /* IDPFBFriendDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8530918A1D9E8EAF00AE0DE9 /* IDPFBFriendDetailsViewController.m */; };
 		8530918C1D9E8EAF00AE0DE9 /* IDPFBFriendDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8530918A1D9E8EAF00AE0DE9 /* IDPFBFriendDetailsViewController.m */; };
 		8530918E1D9E8EC900AE0DE9 /* IDPFBFriendDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8530918D1D9E8EC900AE0DE9 /* IDPFBFriendDetailsViewController.xib */; };
@@ -236,6 +238,8 @@
 		851A2A891D738F4300C32616 /* IDPLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPLoadingView.xib; sourceTree = "<group>"; };
 		851EE14D1D6193AD0029B447 /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
 		851EE14E1D6193AD0029B447 /* image_big.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_big.jpg; sourceTree = "<group>"; };
+		852030AB1DA13261009A46FD /* IDPFBCurrentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPFBCurrentUser.h; sourceTree = "<group>"; };
+		852030AC1DA13261009A46FD /* IDPFBCurrentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPFBCurrentUser.m; sourceTree = "<group>"; };
 		853091891D9E8EAF00AE0DE9 /* IDPFBFriendDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPFBFriendDetailsViewController.h; sourceTree = "<group>"; };
 		8530918A1D9E8EAF00AE0DE9 /* IDPFBFriendDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPFBFriendDetailsViewController.m; sourceTree = "<group>"; };
 		8530918D1D9E8EC900AE0DE9 /* IDPFBFriendDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPFBFriendDetailsViewController.xib; sourceTree = "<group>"; };
@@ -510,6 +514,15 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		852030AA1DA1324F009A46FD /* IDPFBCurrentUser */ = {
+			isa = PBXGroup;
+			children = (
+				852030AB1DA13261009A46FD /* IDPFBCurrentUser.h */,
+				852030AC1DA13261009A46FD /* IDPFBCurrentUser.m */,
+			);
+			path = IDPFBCurrentUser;
+			sourceTree = "<group>";
+		};
 		853091881D9E8E7C00AE0DE9 /* IDPFBFriendDetailsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -771,15 +784,15 @@
 		858238E01D5B5DEB00623348 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				85C0B29F1D9D1A9D0007E755 /* IDPModelCell */,
-				853091881D9E8E7C00AE0DE9 /* IDPFBFriendDetailsViewController */,
-				85C0B25B1D9AB5260007E755 /* IDPFBFriendsViewController */,
 				85C0B1F91D995CCD0007E755 /* IDPFBLoginViewController */,
+				85C0B25B1D9AB5260007E755 /* IDPFBFriendsViewController */,
+				853091881D9E8E7C00AE0DE9 /* IDPFBFriendDetailsViewController */,
 				857781461D773EBB007EEF52 /* SUIViewController */,
 				856987FB1D5BE0B500DBB5CE /* IDPArrayViewController */,
 				858238E11D5B5DEB00623348 /* IDPAnimationViewController */,
 				858238E71D5B5DEB00623348 /* IDPUsersViewController */,
 				858238F11D5B5DEB00623348 /* IDPUserViewController */,
+				85C0B29F1D9D1A9D0007E755 /* IDPModelCell */,
 				858238F71D5B5DEB00623348 /* Views */,
 			);
 			path = UI;
@@ -919,6 +932,7 @@
 		85C0B2051D9965CA0007E755 /* Contexts */ = {
 			isa = PBXGroup;
 			children = (
+				852030AA1DA1324F009A46FD /* IDPFBCurrentUser */,
 				85C0B2061D9965CA0007E755 /* IDPContext */,
 				85C0B28B1D9CFDEB0007E755 /* IDPFBConstans */,
 				85C0B2511D9A5B1C0007E755 /* IDPFBContext */,
@@ -1576,6 +1590,7 @@
 				857794F91D6BA6A500C16BA4 /* NSMutableArray+IDPExtensions.m in Sources */,
 				85C0B2AE1D9D5F6E0007E755 /* NSString+IDPJSONAdapter.m in Sources */,
 				857794FD1D6BA6A500C16BA4 /* NSString+IDPExtensions.m in Sources */,
+				852030AE1DA13261009A46FD /* IDPFBCurrentUser.m in Sources */,
 				85C0B26C1D9C68030007E755 /* IDPFBLogoutContext.m in Sources */,
 				85607A4B1D74F19E00F6D5E9 /* SUIView.m in Sources */,
 				851A2A881D738E9E00C32616 /* IDPLoadingView.m in Sources */,
@@ -1700,6 +1715,7 @@
 				859D96921D7C5FD1005C05C6 /* IDPArrayMoveChangeModel+IDPExtensions.m in Sources */,
 				85C0B2871D9C7DB60007E755 /* IDPFBDeleteContext.m in Sources */,
 				85C0B2A91D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.m in Sources */,
+				852030AD1DA13261009A46FD /* IDPFBCurrentUser.m in Sources */,
 				859D96901D7C5FD1005C05C6 /* IDPArrayInsertChangeModel+IDPExtensions.m in Sources */,
 				85F806951D9336E800BD842F /* IDPArrayChangeModel+IDPExtensions.m in Sources */,
 				8530918B1D9E8EAF00AE0DE9 /* IDPFBFriendDetailsViewController.m in Sources */,

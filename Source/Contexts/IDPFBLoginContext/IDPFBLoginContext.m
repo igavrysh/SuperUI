@@ -39,6 +39,7 @@
                        viewController:(UIViewController *)viewController];
 }
 
+/*
 + (IDPUser *)user {
     FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
     
@@ -51,6 +52,7 @@
     
     return user;
 }
+*/
 
 #pragma mark -
 #pragma mark Initializations and Deallocations

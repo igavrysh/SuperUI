@@ -52,7 +52,7 @@ IDPViewControllerBaseViewProperty(IDPFBFriendDetailsViewController, IDPFBFriendD
 #pragma mark View Lifecycle
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+    //[super viewDidLoad];
     
     self.rootView.model = self.model;
     
