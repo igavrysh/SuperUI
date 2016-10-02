@@ -23,10 +23,10 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (IDPUser *)userWithDetailsForUser:(IDPUser *)user {
++ (IDPUser *)userWithID:(IDPUser *)user {
     IDPFBCurrentUser *userGetter = [self new];
     
-    return [userGetter userWithDetailsForUser:user];
+    return [userGetter userWithID:user];
 }
 
 + (BOOL)isUserLogedIn:(IDPUser *)user {
@@ -46,7 +46,7 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (IDPUser *)userWithDetailsForUser:(IDPUser *)user {
+- (IDPUser *)userWithID:(IDPUser *)user {
     user.ID = self.token ? self.token.userID : nil;
     
     return user;

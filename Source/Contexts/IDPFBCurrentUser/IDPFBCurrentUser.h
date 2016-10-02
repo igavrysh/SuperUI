@@ -12,9 +12,9 @@
 
 @interface IDPFBCurrentUser : NSObject
 
-+ (IDPUser *)userWithDetailsForUser:(IDPUser *)user;
++ (IDPUser *)userWithID:(IDPUser *)user;
 + (BOOL)isUserLogedIn:(IDPUser *)user;
 
-- (IDPUser *)userWithDetailsForUser:(IDPUser *)user;
+- (IDPUser *)userWithID:(IDPUser *)user;
 
 @end

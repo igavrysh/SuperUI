@@ -71,7 +71,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.model = [IDPFBCurrentUser userWithDetailsForUser:self.model];
+    self.model = [IDPFBCurrentUser userWithID:self.model];
     if ([IDPFBCurrentUser isUserLogedIn:self.model]) {
         [self showFriendsViewControllerForUser:self.model];
     }
