@@ -13,7 +13,8 @@
 
 #import "NSString+IDPRandomName.h"
 #import "NSArray+IDPArrayEnumerator.h"
-#include "NSBundle+IDPExtensions.h"
+#import "NSBundle+IDPExtensions.h"
+#import "NSFileManager+IDPExtensions.h"
 
 #import "IDPMacros.h"
 
@@ -27,9 +28,11 @@ kIDPStringKeyDefinition(kIDPUserLocationKey);
 kIDPStringKeyDefinition(kIDPUserHometownKey);
 kIDPStringKeyDefinition(kIDPUserImageURLKey);
 kIDPStringKeyDefinition(kIDPUserBigImageURLKey);
+kIDPStringKeyDefinition(kIDPUserFriendIDsKey);
 
 @interface IDPUser ()
 @property (nonatomic, strong)   IDPArrayModel   *friends;
+@property (nonatomic, strong)   NSArray         *frinedIDs;
 
 @end
 
@@ -37,9 +40,18 @@ kIDPStringKeyDefinition(kIDPUserBigImageURLKey);
 
 @dynamic fullName;
 @dynamic imageModel;
+@dynamic frinedIDs;
 
 #pragma mark -
 #pragma mark Class Methods
+
++ (instancetype)userWithID:(NSString *)ID {
+    IDPUser *user = [IDPUser new];
+    user.ID = ID;
+    
+    IDPUser *cachedUser = [NSKeyedUnarchiver unarchiveObjectWithFile:user.cachePath];
+    return cachedUser ? cachedUser : user;
+}
 
 + (instancetype)user {
     IDPUser *user = [IDPUser new];
@@ -89,10 +101,47 @@ kIDPStringKeyDefinition(kIDPUserBigImageURLKey);
 }
 
 #pragma mark -
+#pragma mark Accessors
+
+- (NSArray *)frinedIDs {
+    NSMutableArray *friendIDs = [NSMutableArray new];
+    
+    [self.friends.objects performBlockWithEachObject:^(IDPUser *user) {
+        [friendIDs addObject:user.ID];
+    }];
+    
+    return [friendIDs copy];
+}
+
+- (void)setFrinedIDs:(NSArray *)frinedIDs {
+    [frinedIDs performBlockWithEachObject:^(NSString *ID) {
+        [self.friends addObject:[IDPUser userWithID:ID]];
+    }];
+}
+
+- (NSString *)plistName {
+    return [NSString stringWithFormat:@"%@.plist", self.ID];
+}
+
+- (BOOL)isCacheExists {
+    return [[NSFileManager defaultManager] fileExistsAtPath:self.cachePath];
+}
+
+- (NSString *)cachePath {
+    return [[NSFileManager applicationCachePath] stringByAppendingPathComponent:self.plistName];
+}
+
+#pragma mark -
 #pragma mark Public Methods
 
 - (void)save {
+    [NSKeyedArchiver archiveRootObject:self
+                                toFile:self.cachePath];
     
+    [self.friends.objects performBlockWithEachObject:^(IDPUser *user) {
+        [user save];
+    }];
+
 }
 
 #pragma mark -
@@ -126,6 +175,7 @@ kIDPStringKeyDefinition(kIDPUserBigImageURLKey);
     [coder encodeObject:self.hometown forKey:kIDPUserHometownKey];
     [coder encodeObject:self.imageURL forKey:kIDPUserImageURLKey];
     [coder encodeObject:self.bigImageURL forKey:kIDPUserBigImageURLKey];
+    [coder encodeObject:self.frinedIDs forKey:kIDPUserFriendIDsKey];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
@@ -139,6 +189,7 @@ kIDPStringKeyDefinition(kIDPUserBigImageURLKey);
     self.hometown = [coder decodeObjectForKey:kIDPUserHometownKey];
     self.imageURL = [coder decodeObjectForKey:kIDPUserImageURLKey];
     self.bigImageURL = [coder decodeObjectForKey:kIDPUserBigImageURLKey];
+    self.frinedIDs = [coder decodeObjectForKey:kIDPUserFriendIDsKey];
     
     return self;
 }
@@ -161,7 +212,5 @@ kIDPStringKeyDefinition(kIDPUserBigImageURLKey);
             return [super selectorForState:state];
     }
 }
-
-
 
 @end

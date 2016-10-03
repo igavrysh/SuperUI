@@ -58,7 +58,13 @@
 - (void)fillWithResult:(NSDictionary *)result {
     NSArray *friendsArray = [result objectForKey:kIDPData];
     
-    IDPArrayModel *friends = ((IDPUser *)self.model).friends;
+    IDPUser *user = (IDPUser *)self.model;
+    
+    if (user.isCacheExists) {
+        user = [IDPUser userWithID:user.ID];
+    }
+    
+    IDPArrayModel *friends = user.friends;
     
     [friendsArray performBlockWithEachObject: ^(NSDictionary *friendInfo){
         IDPUser *user = [IDPUser new];
@@ -74,6 +80,8 @@
     }];
     
     friends.state = IDPModelDidLoad;
+    
+    [user save];
 }
 
 @end

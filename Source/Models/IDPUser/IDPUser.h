@@ -51,7 +51,16 @@ typedef NS_ENUM(NSUInteger, IDPUserState) {
 @property (nonatomic, copy)     NSURL           *bigImageURL;
 @property (nonatomic, readonly) IDPImageModel   *bigImageModel;
 
+@property (nonatomic, readonly) NSString        *plistName;
+@property (nonatomic, readonly) NSString        *cachePath;
+@property (nonatomic, readonly, getter=isCacheExists) BOOL cacheExists;
+
++ (instancetype)userWithID:(NSString *)ID;
+
 + (instancetype)user;
+
 + (NSArray *)usersWithCount:(NSUInteger)count;
+
+- (void)save;
 
 @end
