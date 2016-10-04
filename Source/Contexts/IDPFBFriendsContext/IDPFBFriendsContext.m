@@ -60,10 +60,6 @@
     
     IDPUser *user = (IDPUser *)self.model;
     
-    if (user.isCacheExists) {
-        user = [IDPUser userWithID:user.ID];
-    }
-    
     IDPArrayModel *friends = user.friends;
     
     [friendsArray performBlockWithEachObject: ^(NSDictionary *friendInfo){
@@ -79,9 +75,27 @@
         }];
     }];
     
-    friends.state = IDPModelDidLoad;
-    
     [user save];
+    
+    friends.state = IDPModelDidLoad;
+}
+
+- (void)didFailLoadingFromInternet:(NSError *)error {
+    IDPUser *user = (IDPUser *)self.model;
+    
+    [user load];
+    
+    // WARNING! Line above can be async!
+    
+    IDPArrayModel *friends = user.friends;
+    
+    [friends.objects performBlockWithEachObject:^(IDPUser *user) {
+        [user load];
+    }];
+    
+    // WARNING! Line above can be async!
+    
+    friends.state = IDPModelDidLoad;
 }
 
 @end

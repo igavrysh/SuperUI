@@ -35,7 +35,7 @@ typedef NS_ENUM(NSUInteger, IDPUserState) {
 
 @class IDPImageModel;
 
-@interface IDPUser : IDPModel <NSCopying, NSCoding>
+@interface IDPUser : IDPModel
 @property (nonatomic, copy)     NSString        *ID;
 @property (nonatomic, copy)     NSString        *firstName;
 @property (nonatomic, copy)     NSString        *lastName;
@@ -55,9 +55,10 @@ typedef NS_ENUM(NSUInteger, IDPUserState) {
 @property (nonatomic, readonly) NSString        *cachePath;
 @property (nonatomic, readonly, getter=isCacheExists) BOOL cacheExists;
 
++ (instancetype)user;
 + (instancetype)userWithID:(NSString *)ID;
 
-+ (instancetype)user;
+- (instancetype)initWithID:(NSString *)ID;
 
 + (NSArray *)usersWithCount:(NSUInteger)count;
 

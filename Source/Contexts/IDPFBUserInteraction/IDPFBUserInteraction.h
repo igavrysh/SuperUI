@@ -10,7 +10,7 @@
 
 @class IDPUser;
 
-@interface IDPFBCurrentUser : NSObject
+@interface IDPFBUserInteraction : NSObject
 
 + (IDPUser *)userWithID:(IDPUser *)user;
 + (BOOL)isUserLogedIn:(IDPUser *)user;

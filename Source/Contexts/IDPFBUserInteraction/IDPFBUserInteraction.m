@@ -9,22 +9,22 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-#import "IDPFBCurrentUser.h"
+#import "IDPFBUserInteraction.h"
 
 #import "IDPUser.h"
 
-@interface IDPFBCurrentUser ()
+@interface IDPFBUserInteraction ()
 @property (nonatomic, strong) FBSDKAccessToken  *token;
 
 @end
 
-@implementation IDPFBCurrentUser
+@implementation IDPFBUserInteraction
 
 #pragma mark -
 #pragma mark Class Methods
 
 + (IDPUser *)userWithID:(IDPUser *)user {
-    IDPFBCurrentUser *userGetter = [self new];
+    IDPFBUserInteraction *userGetter = [self new];
     
     return [userGetter userWithID:user];
 }

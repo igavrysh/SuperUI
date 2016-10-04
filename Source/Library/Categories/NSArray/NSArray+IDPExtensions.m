@@ -23,8 +23,4 @@
     return nil;
 }
 
-- (BOOL)containsUnsignedInteger:(NSUInteger)number {
-    return [self containsObject:[NSNumber numberWithUnsignedInteger:number]];
-}
-
 @end

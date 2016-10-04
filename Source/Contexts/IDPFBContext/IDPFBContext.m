@@ -67,7 +67,7 @@
         if (!error) {
             [self fillWithResult:[result JSONRepresentation]];
         } else {
-            self.model.state = IDPModelDidFailLoading;
+            [self didFailLoadingFromInternet:error];
         }
     };
     
@@ -79,6 +79,10 @@
 }
 
 - (void)fillWithResult:(id)result {
+}
+
+- (void)didFailLoadingFromInternet:(NSError *)error {
+    self.model.state = IDPModelDidFailLoading;
 }
 
 - (NSString *)httpMethod {

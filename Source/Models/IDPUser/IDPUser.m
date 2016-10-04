@@ -11,6 +11,7 @@
 #import "IDPImageModel.h"
 #import "IDPArrayModel.h"
 
+#import "IDPJSONAdapter.h"
 #import "NSString+IDPRandomName.h"
 #import "NSArray+IDPArrayEnumerator.h"
 #import "NSBundle+IDPExtensions.h"
@@ -20,6 +21,7 @@
 
 static NSString * const kIDPSampleImageURL = @"https://pbs.twimg.com/profile_images/609903623640723457/A4B7DT8s.png";
 
+kIDPStringVariableDefinition(kIDPRootKey, @"archive");
 kIDPStringKeyDefinition(kIDPUserID);
 kIDPStringKeyDefinition(kIDPUserFirstNameKey);
 kIDPStringKeyDefinition(kIDPUserLastNameKey);
@@ -32,7 +34,7 @@ kIDPStringKeyDefinition(kIDPUserFriendIDsKey);
 
 @interface IDPUser ()
 @property (nonatomic, strong)   IDPArrayModel   *friends;
-@property (nonatomic, strong)   NSArray         *frinedIDs;
+@property (nonatomic, strong)   NSArray         *friendIDs;
 
 @end
 
@@ -40,17 +42,13 @@ kIDPStringKeyDefinition(kIDPUserFriendIDsKey);
 
 @dynamic fullName;
 @dynamic imageModel;
-@dynamic frinedIDs;
+@dynamic friendIDs;
 
 #pragma mark -
 #pragma mark Class Methods
 
 + (instancetype)userWithID:(NSString *)ID {
-    IDPUser *user = [IDPUser new];
-    user.ID = ID;
-    
-    IDPUser *cachedUser = [NSKeyedUnarchiver unarchiveObjectWithFile:user.cachePath];
-    return cachedUser ? cachedUser : user;
+    return [[self alloc] initWithID:ID];
 }
 
 + (instancetype)user {
@@ -73,6 +71,13 @@ kIDPStringKeyDefinition(kIDPUserFriendIDsKey);
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
+
+- (instancetype)initWithID:(NSString *)ID {
+    self = [self init];
+    self.ID = ID;
+    
+    return self;
+}
 
 - (instancetype)init {
     self = [super init];
@@ -103,7 +108,7 @@ kIDPStringKeyDefinition(kIDPUserFriendIDsKey);
 #pragma mark -
 #pragma mark Accessors
 
-- (NSArray *)frinedIDs {
+- (NSArray *)friendIDs {
     NSMutableArray *friendIDs = [NSMutableArray new];
     
     [self.friends.objects performBlockWithEachObject:^(IDPUser *user) {
@@ -113,9 +118,12 @@ kIDPStringKeyDefinition(kIDPUserFriendIDsKey);
     return [friendIDs copy];
 }
 
-- (void)setFrinedIDs:(NSArray *)frinedIDs {
+- (void)setFriendIDs:(NSArray *)frinedIDs {
     [frinedIDs performBlockWithEachObject:^(NSString *ID) {
-        [self.friends addObject:[IDPUser userWithID:ID]];
+        IDPUser *user = [IDPUser userWithID:ID];
+        user.state = IDPModelDidUnload;
+        
+        [self.friends addObject:user];
     }];
 }
 
@@ -135,7 +143,7 @@ kIDPStringKeyDefinition(kIDPUserFriendIDsKey);
 #pragma mark Public Methods
 
 - (void)save {
-    [NSKeyedArchiver archiveRootObject:self
+    [NSKeyedArchiver archiveRootObject:[self JSONRepresentation]
                                 toFile:self.cachePath];
     
     [self.friends.objects performBlockWithEachObject:^(IDPUser *user) {
@@ -144,54 +152,53 @@ kIDPStringKeyDefinition(kIDPUserFriendIDsKey);
 
 }
 
-#pragma mark -
-#pragma mark NSCopying 
-
-- (id)copyWithZone:(NSZone *)zone {
-    IDPUser *user = [IDPUser new];
+- (void)load {
+    NSDictionary *archiver = [NSKeyedUnarchiver unarchiveObjectWithFile:self.cachePath][kIDPRootKey];
     
-    user.ID = self.ID;
-    user.firstName = self.firstName;
-    user.lastName = self.lastName;
-    user.name = self.name;
-    user.location = self.location;
-    user.hometown = self.hometown;
+    if (!archiver) {
+        self.state = IDPModelDidFailLoading;
+        
+        return;
+    }
     
-    user.imageURL = self.imageURL;
-    user.bigImageURL = self.bigImageURL;
+#define IDPDecode(key, property) self.property = archiver[key];
     
-    return user;
+    IDPDecode(kIDPUserID, ID)
+    IDPDecode(kIDPUserFirstNameKey, firstName)
+    IDPDecode(kIDPUserLastNameKey, lastName)
+    IDPDecode(kIDPUserNameKey, name)
+    IDPDecode(kIDPUserLocationKey, location)
+    IDPDecode(kIDPUserHometownKey, hometown)
+    IDPDecode(kIDPUserImageURLKey, imageURL)
+    IDPDecode(kIDPUserBigImageURLKey, bigImageURL)
+    IDPDecode(kIDPUserFriendIDsKey, friendIDs)
+    
+#undef IDPDecode
+    
+    self.state = IDPUserDidLoadDetails;
 }
 
 #pragma mark -
-#pragma mark NSCoding
+#pragma mark Private Methods
 
-- (void)encodeWithCoder:(NSCoder *)coder {
-    [coder encodeObject:self.ID forKey:kIDPUserID];
-    [coder encodeObject:self.firstName forKey:kIDPUserFirstNameKey];
-    [coder encodeObject:self.lastName forKey:kIDPUserLastNameKey];
-    [coder encodeObject:self.name forKey:kIDPUserNameKey];
-    [coder encodeObject:self.location forKey:kIDPUserLocationKey];
-    [coder encodeObject:self.hometown forKey:kIDPUserHometownKey];
-    [coder encodeObject:self.imageURL forKey:kIDPUserImageURLKey];
-    [coder encodeObject:self.bigImageURL forKey:kIDPUserBigImageURLKey];
-    [coder encodeObject:self.frinedIDs forKey:kIDPUserFriendIDsKey];
-}
-
-- (instancetype)initWithCoder:(NSCoder *)coder {
-    self = [super init];
+- (NSDictionary *)JSONRepresentation {
+    NSMutableDictionary *archive = [NSMutableDictionary new];
     
-    self.ID = [coder decodeObjectForKey:kIDPUserID];
-    self.firstName = [coder decodeObjectForKey:kIDPUserFirstNameKey];
-    self.lastName = [coder decodeObjectForKey:kIDPUserLastNameKey];
-    self.name = [coder decodeObjectForKey:kIDPUserNameKey];
-    self.location = [coder decodeObjectForKey:kIDPUserLocationKey];
-    self.hometown = [coder decodeObjectForKey:kIDPUserHometownKey];
-    self.imageURL = [coder decodeObjectForKey:kIDPUserImageURLKey];
-    self.bigImageURL = [coder decodeObjectForKey:kIDPUserBigImageURLKey];
-    self.frinedIDs = [coder decodeObjectForKey:kIDPUserFriendIDsKey];
+#define IDPEncode(key, value) archive[key] = self.value;
     
-    return self;
+    IDPEncode(kIDPUserID, ID)
+    IDPEncode(kIDPUserFirstNameKey, firstName)
+    IDPEncode(kIDPUserLastNameKey, lastName)
+    IDPEncode(kIDPUserNameKey, name)
+    IDPEncode(kIDPUserLocationKey, location)
+    IDPEncode(kIDPUserHometownKey, hometown)
+    IDPEncode(kIDPUserImageURLKey, imageURL)
+    IDPEncode(kIDPUserBigImageURLKey, bigImageURL)
+    IDPEncode(kIDPUserFriendIDsKey, friendIDs)
+    
+#undef IDPEncode
+    
+    return [NSDictionary dictionaryWithObject:archive forKey:kIDPRootKey];
 }
 
 #pragma mark -

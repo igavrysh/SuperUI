@@ -15,7 +15,7 @@
 #import "IDPFBFriendsViewController.h"
 #import "IDPFBConstants.h"
 #import "IDPUser.h"
-#import "IDPFBCurrentUser.h"
+#import "IDPFBUserInteraction.h"
 
 #import "IDPContextHelpers.h"
 
@@ -71,9 +71,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.model = [IDPFBCurrentUser userWithID:self.model];
-    if ([IDPFBCurrentUser isUserLogedIn:self.model]) {
-        [self showFriendsViewControllerForUser:self.model];
+    IDPUser *user = [IDPFBUserInteraction userWithID:[IDPUser new]];
+    self.model = user;
+    if ([IDPFBUserInteraction isUserLogedIn:user]) {
+        [self showFriendsViewControllerForUser:user];
     }
 }
 

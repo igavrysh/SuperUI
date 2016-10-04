@@ -12,6 +12,4 @@
 
 - (id)objectWithClass:(Class)class;
 
-- (BOOL)containsUnsignedInteger:(NSUInteger)number;
-
 @end

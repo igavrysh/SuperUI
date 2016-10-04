@@ -10,17 +10,17 @@
 
 #import "NSArray+IDPArrayEnumerator.h"
 
-@protocol IDPArraySaver
+@protocol IDPSafeArrayAdapter
 
-+ (instancetype)saveArrayWithArray:(id)array;
-
-@end
-
-@interface NSArray  (IDPJSONAdapterPrivate) <IDPArraySaver>
++ (instancetype)safeArrayWithArray:(id)array;
 
 @end
 
-@interface NSMutableArray (IDPJSONAdapterPrivate)
+@interface NSArray  (IDPJSONAdapterPrivate) <IDPSafeArrayAdapter>
+
+@end
+
+@interface NSMutableArray (IDPJSONAdapterPrivate) <IDPSafeArrayAdapter>
 
 @end
 
@@ -40,14 +40,14 @@
         }
     }];
     
-    return [[self class] saveArrayWithArray:array];
+    return [[self class] safeArrayWithArray:array];
 }
 
 @end
 
 @implementation NSArray (IDPJSONAdapterPrivate)
 
-+ (instancetype)saveArrayWithArray:(NSArray *)array {
++ (instancetype)safeArrayWithArray:(NSArray *)array {
     return [NSArray arrayWithArray:array];
 }
 
@@ -55,7 +55,7 @@
 
 @implementation NSMutableArray (IDPJSONAdapterPrivate)
 
-+ (instancetype)saveArrayWithArray:(NSMutableArray *)array {
++ (instancetype)safeArrayWithArray:(NSMutableArray *)array {
     return [NSMutableArray arrayWithArray:array];
 }
 
