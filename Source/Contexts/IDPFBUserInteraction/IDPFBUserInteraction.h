@@ -13,7 +13,7 @@
 @interface IDPFBUserInteraction : NSObject
 
 + (IDPUser *)userWithID:(IDPUser *)user;
-+ (BOOL)isUserLogedIn:(IDPUser *)user;
++ (BOOL)isUserLoggedIn:(IDPUser *)user;
 
 - (IDPUser *)userWithID:(IDPUser *)user;
 

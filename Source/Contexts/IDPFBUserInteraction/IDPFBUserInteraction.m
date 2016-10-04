@@ -29,7 +29,7 @@
     return [userGetter userWithID:user];
 }
 
-+ (BOOL)isUserLogedIn:(IDPUser *)user {
++ (BOOL)isUserLoggedIn:(IDPUser *)user {
     return (BOOL)user.ID;
 }
 

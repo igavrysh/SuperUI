@@ -1,5 +1,5 @@
 //
-//  IDPFBFriendDetailsContext.h
+//  IDPFBUserDetailsContext.h
 //  SuperUI
 //
 //  Created by Ievgen on 9/29/16.
@@ -10,7 +10,7 @@
 
 @class IDPUser;
 
-@interface IDPFBFriendDetailsContext : IDPFBGetContext
+@interface IDPFBUserDetailsContext : IDPFBGetContext
 
 + (instancetype)contextWithUser:(IDPUser *)user;
 

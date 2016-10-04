@@ -12,7 +12,7 @@
 #import "IDPGCDQueue.h"
 
 @interface IDPContext ()
-@property (nonatomic, strong)   IDPModel    *model;
+@property (nonatomic, strong)   id  model;
 
 @end
 
@@ -71,7 +71,7 @@
 }
 
 - (void)load {
-    [self.model load];
+    [(IDPModel *)self.model load];
 }
 
 @end

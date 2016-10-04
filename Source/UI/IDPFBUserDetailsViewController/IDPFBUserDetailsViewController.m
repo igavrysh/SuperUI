@@ -1,30 +1,30 @@
 //
-//  IDPFBFriendDetailsViewController.m
+//  IDPFBUserDetailsViewController.m
 //  SuperUI
 //
 //  Created by Ievgen on 9/30/16.
 //  Copyright © 2016 1mlndollarsasset. All rights reserved.
 //
 
-#import "IDPFBFriendDetailsViewController.h"
+#import "IDPFBUserDetailsViewController.h"
 
-#import "IDPFBFriendDetailsView.h"
+#import "IDPFBUserDetailsView.h"
 #import "IDPUser.h"
-#import "IDPFBFriendDetailsContext.h"
+#import "IDPFBUserDetailsContext.h"
 
 #import "IDPMacros.h"
 #import "IDPContextHelpers.h"
 
-IDPViewControllerBaseViewProperty(IDPFBFriendDetailsViewController, IDPFBFriendDetailsView, detailsView);
+IDPViewControllerBaseViewProperty(IDPFBUserDetailsViewController, IDPFBUserDetailsView, detailsView);
 
-@interface IDPFBFriendDetailsViewController ()
-@property (nonatomic, strong)   IDPFBFriendDetailsContext   *detailsContext;
+@interface IDPFBUserDetailsViewController ()
+@property (nonatomic, strong)   IDPFBUserDetailsContext   *detailsContext;
 
 - (void)loadUserDetails;
 
 @end
 
-@implementation IDPFBFriendDetailsViewController
+@implementation IDPFBUserDetailsViewController
 
 #pragma mark - 
 #pragma mark Accessors
@@ -37,7 +37,7 @@ IDPViewControllerBaseViewProperty(IDPFBFriendDetailsViewController, IDPFBFriendD
     }
 }
 
-- (void)setDetailsContext:(IDPFBFriendDetailsContext *)detailsContext {
+- (void)setDetailsContext:(IDPFBUserDetailsContext *)detailsContext {
     IDPContextSetter(&_detailsContext, detailsContext);
 }
 
@@ -45,7 +45,7 @@ IDPViewControllerBaseViewProperty(IDPFBFriendDetailsViewController, IDPFBFriendD
 #pragma mark Private Methods
 
 - (void)loadUserDetails {
-    self.detailsContext = [[IDPFBFriendDetailsContext alloc] initWithUser:self.model];
+    self.detailsContext = [[IDPFBUserDetailsContext alloc] initWithUser:self.model];
 }
 
 #pragma mark -

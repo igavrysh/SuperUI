@@ -1,5 +1,5 @@
 //
-//  IDPFBFriendDetailsViewController.h
+//  IDPFBUserDetailsViewController.h
 //  SuperUI
 //
 //  Created by Ievgen on 9/30/16.
@@ -9,6 +9,6 @@
 #import "SUIViewController.h"
 #import "IDPUser.h"
 
-@interface IDPFBFriendDetailsViewController : SUIViewController <IDPUserStateObserver>
+@interface IDPFBUserDetailsViewController : SUIViewController <IDPUserStateObserver>
 
 @end

@@ -1,5 +1,5 @@
 //
-//  IDPFBFriendDetailsView.h
+//  IDPFBUserDetailsView.h
 //  SuperUI
 //
 //  Created by Ievgen on 9/30/16.
@@ -11,7 +11,7 @@
 @class IDPImageView;
 @class IDPUser;
 
-@interface IDPFBFriendDetailsView : SUIView
+@interface IDPFBUserDetailsView : SUIView
 @property (nonatomic, strong)   IBOutlet    IDPImageView    *userImageView;
 @property (nonatomic, strong)   IBOutlet    UILabel         *nameLabel;
 @property (nonatomic, strong)   IBOutlet    UILabel         *locationLabel;

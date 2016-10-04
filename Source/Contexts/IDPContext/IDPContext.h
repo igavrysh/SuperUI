@@ -11,7 +11,7 @@
 @class IDPModel;
 
 @interface IDPContext : NSObject
-@property (nonatomic, readonly)     IDPModel    *model;
+@property (nonatomic, readonly) id  model;
 
 + (instancetype)contextWithModel:(id)model;
 - (instancetype)initWithModel:(id)model;

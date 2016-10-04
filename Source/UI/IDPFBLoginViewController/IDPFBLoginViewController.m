@@ -73,7 +73,7 @@
     
     IDPUser *user = [IDPFBUserInteraction userWithID:[IDPUser new]];
     self.model = user;
-    if ([IDPFBUserInteraction isUserLogedIn:user]) {
+    if ([IDPFBUserInteraction isUserLoggedIn:user]) {
         [self showFriendsViewControllerForUser:user];
     }
 }

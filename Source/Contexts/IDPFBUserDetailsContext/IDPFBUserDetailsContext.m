@@ -6,12 +6,12 @@
 //  Copyright © 2016 1mlndollarsasset. All rights reserved.
 //
 
-#import "IDPFBFriendDetailsContext.h"
+#import "IDPFBUserDetailsContext.h"
 
 #import "IDPUser.h"
 #import "IDPFBConstants.h"
 
-@implementation IDPFBFriendDetailsContext
+@implementation IDPFBUserDetailsContext
 
 #pragma mark -
 #pragma mark Class Methods

@@ -82,7 +82,9 @@
 }
 
 - (void)didFailLoadingFromInternet:(NSError *)error {
-    self.model.state = IDPModelDidFailLoading;
+    IDPModel *model = self.model;
+    
+    model.state = IDPModelDidFailLoading;
 }
 
 - (NSString *)httpMethod {

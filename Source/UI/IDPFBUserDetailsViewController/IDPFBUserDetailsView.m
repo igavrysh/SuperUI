@@ -1,24 +1,24 @@
 //
-//  IDPFBFriendDetailsView.m
+//  IDPFBUserDetailsView.m
 //  SuperUI
 //
 //  Created by Ievgen on 9/30/16.
 //  Copyright © 2016 1mlndollarsasset. All rights reserved.
 //
 
-#import "IDPFBFriendDetailsView.h"
+#import "IDPFBUserDetailsView.h"
 
 #import "IDPUser.h"
 #import "IDPImageView.h"
 
-@interface IDPFBFriendDetailsView ()
+@interface IDPFBUserDetailsView ()
 @property (nonatomic, strong)   IDPImageModel *imageModel;
 
 - (void)fillWithUser:(IDPUser *)user;
 
 @end
 
-@implementation IDPFBFriendDetailsView
+@implementation IDPFBUserDetailsView
 
 #pragma mark -
 #pragma mark Accessors

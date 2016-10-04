@@ -16,7 +16,7 @@
 #import "IDPFBFriendsView.h"
 #import "IDPModelCell.h"
 #import "IDPUserCell.h"
-#import "IDPFBFriendDetailsViewController.h"
+#import "IDPFBUserDetailsViewController.h"
 
 #import "UITableView+IDPExtensions.h"
 
@@ -92,7 +92,7 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
 }
 
 - (void)pushDetailsViewContollerForUser:(IDPUser *)user {
-    IDPFBFriendDetailsViewController *controller = [IDPFBFriendDetailsViewController new];
+    IDPFBUserDetailsViewController *controller = [IDPFBUserDetailsViewController new];
     controller.model = user;
     
     [self.navigationController pushViewController:controller animated:YES];
