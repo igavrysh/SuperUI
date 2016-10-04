@@ -55,7 +55,15 @@
     user.name = result[kIDPName];
     user.bigImageURL = [NSURL URLWithString:result[kIDPPicture][kIDPData][kIDPURL]];
 
+    [user save];
+    
     user.state = IDPUserDidLoadDetails;
+}
+
+- (void)didFailLoadingFromInternet:(NSError *)error {
+    IDPUser *user = (IDPUser *)self.model;
+    
+    [user load];
 }
 
 @end
