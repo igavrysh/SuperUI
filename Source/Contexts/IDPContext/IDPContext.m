@@ -8,7 +8,7 @@
 
 #import "IDPContext.h"
 
-#import "IDPModel.h"
+#import "DCIModel.h"
 #import "IDPGCDQueue.h"
 
 @interface IDPContext ()
@@ -39,7 +39,7 @@
 #pragma mark Public Methods
 
 - (void)execute {
-    IDPModel *model = self.model;
+    DCIModel *model = self.model;
     
     @synchronized(model) {
         NSUInteger state = model.state;
@@ -63,15 +63,15 @@
 }
 
 - (NSUInteger)contextExecutingState {
-    return IDPModelWillLoad;
+    return DCIModelWillLoad;
 }
 
 - (NSUInteger)contextDidExecuteState {
-    return IDPModelDidLoad;
+    return DCIModelDidLoad;
 }
 
 - (void)load {
-    [(IDPModel *)self.model load];
+    [(DCIModel *)self.model load];
 }
 
 @end

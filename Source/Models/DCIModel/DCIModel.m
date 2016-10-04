@@ -19,5 +19,27 @@
 - (void)load {
 }
 
+#pragma mark -
+#pragma mark IDPObservableObject
+
+- (SEL)selectorForState:(NSUInteger)state {
+    switch (state) {
+        case DCIModelDidUnload:
+            return @selector(modelDidUnload:);
+            
+        case DCIModelDidLoad:
+            return @selector(modelDidLoad:);
+            
+        case DCIModelWillLoad:
+            return @selector(modelWillLoad:);
+            
+        case DCIModelDidFailLoading:
+            return @selector(modelDidFailLoading:);
+            
+        default:
+            return [super selectorForState:state];
+    }
+}
+
 
 @end

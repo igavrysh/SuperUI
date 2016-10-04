@@ -11,7 +11,7 @@
 
 #import "IDPFBContext.h"
 
-#include "IDPModel.h"
+#import "DCIModel.h"
 
 #import "IDPJSONAdapter.h"
 
@@ -82,9 +82,9 @@
 }
 
 - (void)didFailLoadingFromInternet:(NSError *)error {
-    IDPModel *model = self.model;
+    DCIModel *model = self.model;
     
-    model.state = IDPModelDidFailLoading;
+    model.state = DCIModelDidFailLoading;
 }
 
 - (NSString *)httpMethod {

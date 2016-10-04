@@ -85,15 +85,11 @@
     
     [user load];
     
-    // WARNING! Line above can be async!
-    
     IDPArrayModel *friends = user.friends;
     
     [friends.objects performBlockWithEachObject:^(IDPUser *user) {
         [user load];
     }];
-    
-    // WARNING! Line above can be async!
     
     friends.state = IDPModelDidLoad;
 }
