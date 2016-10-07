@@ -55,9 +55,9 @@
     user.name = result[kIDPName];
     user.bigImageURL = [NSURL URLWithString:result[kIDPPicture][kIDPData][kIDPURL]];
 
-    [user save];
-    
     user.state = IDPUserDidLoadDetails;
+    
+    [user save];
 }
 
 - (void)didFailLoadingFromInternet:(NSError *)error {

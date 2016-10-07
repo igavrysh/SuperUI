@@ -15,7 +15,7 @@
 
 #import "IDPDispatchMacros.h"
 
-static NSString * const kIDPNoImageName = @"nope_image";
+static NSString * const kIDPNoImageName = @"image";
 static NSString * const kIDPNoImageExtension = @"jpg";
 
 @interface IDPUserCell ()
