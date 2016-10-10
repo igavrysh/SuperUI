@@ -11,6 +11,7 @@
 #import "IDPFBUserDetailsView.h"
 #import "IDPUser.h"
 #import "IDPFBUserDetailsContext.h"
+#import "IDPGCDQueue.h"
 
 #import "IDPMacros.h"
 #import "IDPContextHelpers.h"
@@ -52,9 +53,7 @@ IDPViewControllerBaseViewProperty(IDPFBUserDetailsViewController, IDPFBUserDetai
 #pragma mark View Lifecycle
 
 - (void)viewDidLoad {
-    //[super viewDidLoad];
-    
-    self.rootView.model = self.model;
+    [super viewDidLoad];
     
     [self loadUserDetails];
 }
@@ -63,8 +62,11 @@ IDPViewControllerBaseViewProperty(IDPFBUserDetailsViewController, IDPFBUserDetai
 #pragma mark IDPUserStateObserver
 
 - (void)userDidLoadDetails:(IDPUser *)user {
-    self.detailsView.model = user;
-    ((IDPUser *)self.model).state = IDPModelDidLoad;
+    IDPAsyncPerformInMainQueue(^{
+        self.detailsView.model = user;
+        
+        ((IDPUser *)self.model).state = IDPModelDidLoad;
+    });
 }
 
 @end
