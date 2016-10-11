@@ -14,7 +14,7 @@
 #import "IDPGCDQueue.h"
 #import "IDPFBFriendsViewController.h"
 #import "IDPFBConstants.h"
-#import "IDPUser.h"
+#import "IDPFBUser.h"
 #import "IDPFBUserInteraction.h"
 
 #import "IDPContextHelpers.h"
@@ -48,7 +48,7 @@
 #pragma mark Public Methods
 
 - (IBAction)onLogin:(UIButton *)button {
-    IDPUser *user  = [IDPUser new];
+    IDPFBUser *user  = [IDPFBUser new];
     self.model = user;
     
     self.loginContext = [[IDPFBLoginContext alloc] initWithUser:user

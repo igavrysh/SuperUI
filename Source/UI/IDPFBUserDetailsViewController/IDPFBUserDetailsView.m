@@ -8,13 +8,13 @@
 
 #import "IDPFBUserDetailsView.h"
 
-#import "IDPUser.h"
 #import "IDPImageView.h"
 
 @interface IDPFBUserDetailsView ()
-@property (nonatomic, strong)   IDPImageModel *imageModel;
+@property (nonatomic, strong)   IDPFBUser       *user;
+@property (nonatomic, strong)   IDPImageModel   *imageModel;
 
-- (void)fillWithUser:(IDPUser *)user;
+- (void)fillWithUser:(IDPFBUser *)user;
 
 @end
 
@@ -23,8 +23,8 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setModel:(IDPUser *)user {
-    [super setModel:user];
+- (void)setUser:(IDPFBUser *)user {
+    self.user = user;
     
     [self fillWithUser:user];
 }
@@ -42,7 +42,7 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)fillWithUser:(IDPUser *)user {
+- (void)fillWithUser:(IDPFBUser *)user {
     self.nameLabel.text = user.name;
     self.locationLabel.text = user.location;
     self.hometownLabel.text = user.hometown;

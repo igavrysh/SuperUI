@@ -12,7 +12,7 @@
 #import "IDPFBLoginContext.h"
 
 #import "IDPGCDQueue.h"
-#import "IDPUser.h"
+#import "IDPFBUser.h"
 #import "IDPFBConstants.h"
 
 #import "IDPMacros.h"
@@ -32,17 +32,17 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (instancetype)loginContextWithUser:(IDPUser *)user
++ (instancetype)loginContextWithUser:(IDPFBUser *)user
                       viewController:(UIViewController *)viewController
 {
-    return [[self alloc] initWithUser:(IDPUser *)user
+    return [[self alloc] initWithUser:(IDPFBUser *)user
                        viewController:(UIViewController *)viewController];
 }
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (instancetype)initWithUser:(IDPUser *)user
+- (instancetype)initWithUser:(IDPFBUser *)user
               viewController:(UIViewController *)viewController
 {
     self = [super initWithModel:user];
@@ -68,10 +68,10 @@
 #pragma mark Public Methods
 
 - (void)fillWithResult:(NSDictionary *)result {
-    IDPUser *user = (IDPUser *)self.model;
+    IDPFBUser *user = (IDPFBUser *)self.model;
     
     user.ID = (NSString *)result[kIDPID];
-    user.state = IDPUserDidLoadID;
+    user.state = IDPFBUserDidLoadID;
 }
 
 - (void)load {

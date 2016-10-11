@@ -63,11 +63,15 @@
 }
 
 - (NSUInteger)contextExecutingState {
-    return DCIModelWillLoad;
+    [self doesNotRecognizeSelector:_cmd];
+    
+    return 0;
 }
 
 - (NSUInteger)contextDidExecuteState {
-    return DCIModelDidLoad;
+    [self doesNotRecognizeSelector:_cmd];
+    
+    return 0;
 }
 
 - (void)load {

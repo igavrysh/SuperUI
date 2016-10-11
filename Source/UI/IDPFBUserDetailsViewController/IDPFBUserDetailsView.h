@@ -6,12 +6,11 @@
 //  Copyright © 2016 1mlndollarsasset. All rights reserved.
 //
 
-#import "SUIView.h"
+#import "IDPFBUser.h"
 
 @class IDPImageView;
-@class IDPUser;
 
-@interface IDPFBUserDetailsView : SUIView
+@interface IDPFBUserDetailsView : UIView <IDPFBUserStateObserver>
 @property (nonatomic, strong)   IBOutlet    IDPImageView    *userImageView;
 @property (nonatomic, strong)   IBOutlet    UILabel         *nameLabel;
 @property (nonatomic, strong)   IBOutlet    UILabel         *locationLabel;

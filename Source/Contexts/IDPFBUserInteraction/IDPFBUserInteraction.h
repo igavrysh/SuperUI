@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class IDPUser;
+@class IDPFBUser;
 
 @interface IDPFBUserInteraction : NSObject
 
-+ (IDPUser *)userWithID:(IDPUser *)user;
-+ (BOOL)isUserLoggedIn:(IDPUser *)user;
++ (IDPFBUser *)userWithID:(IDPFBUser *)user;
++ (BOOL)isUserLoggedIn:(IDPFBUser *)user;
 
-- (IDPUser *)userWithID:(IDPUser *)user;
+- (IDPFBUser *)userWithID:(IDPFBUser *)user;
 
 @end

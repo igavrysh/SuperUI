@@ -8,14 +8,14 @@
 
 #import "IDPFBGetContext.h"
 
-@class IDPUser;
+@class IDPFBUser;
 
 @interface IDPFBLoginContext : IDPFBGetContext
 
-+ (instancetype)loginContextWithUser:(IDPUser *)user
++ (instancetype)loginContextWithUser:(IDPFBUser *)user
                       viewController:(UIViewController *)viewController;
 
-- (instancetype)initWithUser:(IDPUser *)user
+- (instancetype)initWithUser:(IDPFBUser *)user
               viewController:(UIViewController *)viewController;
 
 

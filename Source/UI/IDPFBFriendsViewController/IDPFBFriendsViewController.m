@@ -9,7 +9,7 @@
 #import "IDPFBFriendsViewController.h"
 
 #import "IDPGCDQueue.h"
-#import "IDPUser.h"
+#import "IDPFBUser.h"
 #import "IDPUserArrayModel.h"
 #import "IDPFBLogoutContext.h"
 #import "IDPFBFriendsContext.h"
@@ -26,7 +26,7 @@
 kIDPStringVariableDefinition(kIDPLogoutButtonTitle, @"Logout");
 
 @interface IDPFBFriendsViewController ()
-@property (nonatomic, strong)   IDPUser             *user;
+@property (nonatomic, strong)   IDPFBUser           *user;
 @property (nonatomic, strong)   IDPFBLogoutContext  *logoutContext;
 @property (nonatomic, strong)   IDPFBFriendsContext *friendsContext;
 
@@ -34,7 +34,7 @@ kIDPStringVariableDefinition(kIDPLogoutButtonTitle, @"Logout");
 - (void)setupNavigationBar;
 - (UITableViewCell<IDPModelCell> *)cellForTable:(UITableView *)tableView
                                   withIndexPath:(NSIndexPath *)indexPath;
-- (void)pushDetailsViewContollerForUser:(IDPUser *)user;
+- (void)pushDetailsViewContollerForUser:(IDPFBUser *)user;
 - (void)reloadTableView;
 
 @end
@@ -45,7 +45,7 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
 
 #pragma mark - Initializations and Deallocations
 
-- (instancetype)initWithUser:(IDPUser *)user {
+- (instancetype)initWithUser:(IDPFBUser *)user {
     self = [super init];
     
     self.user = user;

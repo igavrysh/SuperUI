@@ -8,13 +8,12 @@
 
 #import "IDPFBContext.h"
 
-@class IDPUser;
-@class IDPUserArrayModel;
+@class IDPFBUser;
 
 @interface IDPFBFriendsContext : IDPFBContext
 
-+ (instancetype)contextWithUser:(IDPUser *)user;
++ (instancetype)contextWithUser:(IDPFBUser *)user;
 
-- (instancetype)initWithUser:(IDPUser *)user;
+- (instancetype)initWithUser:(IDPFBUser *)user;
 
 @end

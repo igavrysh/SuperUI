@@ -9,7 +9,6 @@
 #import "IDPFBUserDetailsViewController.h"
 
 #import "IDPFBUserDetailsView.h"
-#import "IDPUser.h"
 #import "IDPFBUserDetailsContext.h"
 
 #import "IDPMacros.h"
@@ -29,7 +28,7 @@ IDPViewControllerBaseViewProperty(IDPFBUserDetailsViewController, IDPFBUserDetai
 #pragma mark - 
 #pragma mark Accessors
 
-- (void)setModel:(IDPUser *)user {
+- (void)setModel:(IDPFBUser *)user {
     [super setModel:user];
     
     if (self.isViewLoaded) {
@@ -63,7 +62,7 @@ IDPViewControllerBaseViewProperty(IDPFBUserDetailsViewController, IDPFBUserDetai
 #pragma mark IDPUserStateObserver
 
 - (void)userDidLoadDetails:(IDPUser *)user {
-    self.detailsView.model = user;
+    self.detailsView.user = user;
     ((IDPUser *)self.model).state = IDPModelDidLoad;
 }
 

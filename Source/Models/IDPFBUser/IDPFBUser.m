@@ -53,17 +53,7 @@ kIDPStringKeyDefinition(kIDPUserFriendIDsKey);
 }
 
 + (instancetype)user {
-    IDPFBUser *user = [IDPFBUser new];
-    
-    user.firstName = [NSString randomName];
-    user.lastName = [NSString randomName];
-    user.name = [NSString randomName];
-    user.location = [NSString randomName];
-    user.hometown = [NSString randomName];
-    user.imageURL = [NSURL URLWithString:kIDPSampleImageURL];
-    user.bigImageURL = [NSURL URLWithString:kIDPSampleImageURL];
-    
-    return user;
+    return [IDPFBUser new];
 }
 
 + (NSArray *)usersWithCount:(NSUInteger)count {

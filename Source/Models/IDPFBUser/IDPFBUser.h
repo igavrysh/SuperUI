@@ -16,7 +16,7 @@
 @class IDPArrayModel;
 
 typedef NS_ENUM(NSUInteger, IDPFBUserState) {
-    IDPFBUserDidLoadID = IDPModelStateCount,
+    IDPFBUserDidLoadID,
     IDPFBUserDidLoadBasicInformation,
     IDPFBUserDidLoadDetails,
     IDPFBUserStateCount
