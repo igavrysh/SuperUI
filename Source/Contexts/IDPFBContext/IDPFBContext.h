@@ -12,9 +12,11 @@
 @property (nonatomic, readonly) NSString        *graphPath;    
 @property (nonatomic, readonly) NSDictionary    *requestParameters;
 
+// Methods for override
+- (NSString *)httpMethod;
+
 - (void)fillWithResult:(id)result;
 
-// Method for override
-- (NSString *)httpMethod;
+- (void)didFailLoadingFromInternet:(NSError *)error;
 
 @end

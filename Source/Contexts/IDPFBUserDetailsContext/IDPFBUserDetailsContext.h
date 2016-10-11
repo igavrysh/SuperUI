@@ -1,17 +1,16 @@
 //
-//  IDPFBFriendsContext.h
+//  IDPFBUserDetailsContext.h
 //  SuperUI
 //
-//  Created by Ievgen on 9/27/16.
+//  Created by Ievgen on 9/29/16.
 //  Copyright © 2016 1mlndollarsasset. All rights reserved.
 //
 
-#import "IDPFBContext.h"
+#import "IDPFBGetContext.h"
 
 @class IDPUser;
-@class IDPUserArrayModel;
 
-@interface IDPFBFriendsContext : IDPFBContext
+@interface IDPFBUserDetailsContext : IDPFBGetContext
 
 + (instancetype)contextWithUser:(IDPUser *)user;
 

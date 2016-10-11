@@ -12,7 +12,7 @@
 #import "IDPGCDQueue.h"
 
 @interface IDPContext ()
-@property (nonatomic, strong)   IDPModel    *model;
+@property (nonatomic, strong)   id  model;
 
 @end
 
@@ -43,13 +43,15 @@
     
     @synchronized(model) {
         NSUInteger state = model.state;
-        if (IDPModelWillLoad == state || IDPModelDidLoad == state) {
+        if ([self contextDidExecuteState] == state
+            || [self contextExecutingState] == state)
+        {
             [model notifyOfStateChange:state];
             
             return;
         }
         
-        model.state = IDPModelWillLoad;
+        model.state = [self contextExecutingState];
         
         IDPAsyncPerformInBackgroundQueue(^{
             [self load];
@@ -58,13 +60,18 @@
 }
 
 - (void)cancel {
-    
 }
 
-// Method for override
+- (NSUInteger)contextExecutingState {
+    return IDPModelWillLoad;
+}
+
+- (NSUInteger)contextDidExecuteState {
+    return IDPModelDidLoad;
+}
 
 - (void)load {
-    [self.model load];
+    [(IDPModel *)self.model load];
 }
 
 @end

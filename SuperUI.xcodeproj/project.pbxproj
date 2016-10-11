@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8506A8BA1DA3350400CB6282 /* IDPFBUserInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 8506A8B91DA3350400CB6282 /* IDPFBUserInteraction.m */; };
+		8506A8BB1DA3350400CB6282 /* IDPFBUserInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 8506A8B91DA3350400CB6282 /* IDPFBUserInteraction.m */; };
 		85193DF21D53B8120085BCC2 /* SuperUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 85193DF11D53B8120085BCC2 /* SuperUITests.m */; };
 		851A2A831D738E8400C32616 /* IDPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 851A2A821D738E8400C32616 /* IDPView.m */; };
 		851A2A841D738E8400C32616 /* IDPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 851A2A821D738E8400C32616 /* IDPView.m */; };
@@ -18,10 +20,22 @@
 		851EE1501D6193AD0029B447 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851EE14D1D6193AD0029B447 /* image.jpg */; };
 		851EE1511D6193AD0029B447 /* image_big.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851EE14E1D6193AD0029B447 /* image_big.jpg */; };
 		851EE1521D6193AD0029B447 /* image_big.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851EE14E1D6193AD0029B447 /* image_big.jpg */; };
+		852030B21DA17113009A46FD /* DCIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 852030B11DA17113009A46FD /* DCIModel.m */; };
+		852030B31DA17113009A46FD /* DCIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 852030B11DA17113009A46FD /* DCIModel.m */; };
+		853091961D9FB8E500AE0DE9 /* IDPContextHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 853091951D9FB8E500AE0DE9 /* IDPContextHelpers.m */; };
+		853091971D9FB8E500AE0DE9 /* IDPContextHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 853091951D9FB8E500AE0DE9 /* IDPContextHelpers.m */; };
 		853F963A1D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 853F96391D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.m */; };
 		853F963B1D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 853F96391D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.m */; };
 		854E11FC1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 854E11FB1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m */; };
 		854E11FD1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 854E11FB1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m */; };
+		854FD6F51DA447BC00079571 /* IDPFBUserDetailsContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 854FD6F41DA447BC00079571 /* IDPFBUserDetailsContext.m */; };
+		854FD6F61DA447BC00079571 /* IDPFBUserDetailsContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 854FD6F41DA447BC00079571 /* IDPFBUserDetailsContext.m */; };
+		854FD6FD1DA44AA700079571 /* IDPFBUserDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 854FD6F91DA44AA700079571 /* IDPFBUserDetailsView.m */; };
+		854FD6FE1DA44AA700079571 /* IDPFBUserDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 854FD6F91DA44AA700079571 /* IDPFBUserDetailsView.m */; };
+		854FD6FF1DA44AA700079571 /* IDPFBUserDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 854FD6FB1DA44AA700079571 /* IDPFBUserDetailsViewController.m */; };
+		854FD7001DA44AA700079571 /* IDPFBUserDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 854FD6FB1DA44AA700079571 /* IDPFBUserDetailsViewController.m */; };
+		854FD7011DA44AA700079571 /* IDPFBUserDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 854FD6FC1DA44AA700079571 /* IDPFBUserDetailsViewController.xib */; };
+		854FD7021DA44AA700079571 /* IDPFBUserDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 854FD6FC1DA44AA700079571 /* IDPFBUserDetailsViewController.xib */; };
 		85607A4A1D74F19E00F6D5E9 /* SUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85607A491D74F19E00F6D5E9 /* SUIView.m */; };
 		85607A4B1D74F19E00F6D5E9 /* SUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85607A491D74F19E00F6D5E9 /* SUIView.m */; };
 		856987F41D5BBD0400DBB5CE /* IDPRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 856987F31D5BBD0400DBB5CE /* IDPRandom.m */; };
@@ -142,6 +156,18 @@
 		85C0B29A1D9D18FF0007E755 /* IDPFBFriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C0B2981D9D18FF0007E755 /* IDPFBFriendsViewController.xib */; };
 		85C0B29D1D9D19E00007E755 /* IDPFBFriendsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B29C1D9D19E00007E755 /* IDPFBFriendsView.m */; };
 		85C0B29E1D9D19E00007E755 /* IDPFBFriendsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B29C1D9D19E00007E755 /* IDPFBFriendsView.m */; };
+		85C0B2A51D9D5EBE0007E755 /* NSArray+IDPJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2A41D9D5EBE0007E755 /* NSArray+IDPJSONAdapter.m */; };
+		85C0B2A61D9D5EBE0007E755 /* NSArray+IDPJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2A41D9D5EBE0007E755 /* NSArray+IDPJSONAdapter.m */; };
+		85C0B2A91D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2A81D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.m */; };
+		85C0B2AA1D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2A81D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.m */; };
+		85C0B2AD1D9D5F6E0007E755 /* NSString+IDPJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2AC1D9D5F6E0007E755 /* NSString+IDPJSONAdapter.m */; };
+		85C0B2AE1D9D5F6E0007E755 /* NSString+IDPJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2AC1D9D5F6E0007E755 /* NSString+IDPJSONAdapter.m */; };
+		85C0B2B11D9D5F940007E755 /* NSNumber+IDPJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2B01D9D5F940007E755 /* NSNumber+IDPJSONAdapter.m */; };
+		85C0B2B21D9D5F940007E755 /* NSNumber+IDPJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2B01D9D5F940007E755 /* NSNumber+IDPJSONAdapter.m */; };
+		85C0B2B51D9D5FB70007E755 /* NSNull+IDPJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2B41D9D5FB70007E755 /* NSNull+IDPJSONAdapter.m */; };
+		85C0B2B61D9D5FB70007E755 /* NSNull+IDPJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2B41D9D5FB70007E755 /* NSNull+IDPJSONAdapter.m */; };
+		85C0B2BA1D9D61420007E755 /* NSDictionary+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2B91D9D61420007E755 /* NSDictionary+IDPExtensions.m */; };
+		85C0B2BB1D9D61420007E755 /* NSDictionary+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2B91D9D61420007E755 /* NSDictionary+IDPExtensions.m */; };
 		85C16CBF1D764A550087EC1E /* NSBundle+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C16CBE1D764A550087EC1E /* NSBundle+IDPExtensions.m */; };
 		85C16CC01D764A550087EC1E /* NSBundle+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C16CBE1D764A550087EC1E /* NSBundle+IDPExtensions.m */; };
 		85C8DD921D530D6E009E227C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C8DD911D530D6E009E227C /* main.m */; };
@@ -204,6 +230,8 @@
 		4E9FAB0A6B61892A11EBA490 /* Pods-SuperUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuperUITests/Pods-SuperUITests.release.xcconfig"; sourceTree = "<group>"; };
 		593DDEBA0025055FF0E47D73 /* libPods-SuperUI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperUI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6287A7FFF36F756361DD6F72 /* Pods-SuperUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuperUITests/Pods-SuperUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8506A8B81DA3350400CB6282 /* IDPFBUserInteraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPFBUserInteraction.h; sourceTree = "<group>"; };
+		8506A8B91DA3350400CB6282 /* IDPFBUserInteraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPFBUserInteraction.m; sourceTree = "<group>"; };
 		85193DEF1D53B8120085BCC2 /* SuperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		85193DF11D53B8120085BCC2 /* SuperUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperUITests.m; sourceTree = "<group>"; };
 		85193DF31D53B8120085BCC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -214,10 +242,21 @@
 		851A2A891D738F4300C32616 /* IDPLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPLoadingView.xib; sourceTree = "<group>"; };
 		851EE14D1D6193AD0029B447 /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
 		851EE14E1D6193AD0029B447 /* image_big.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_big.jpg; sourceTree = "<group>"; };
+		852030B01DA17113009A46FD /* DCIModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCIModel.h; sourceTree = "<group>"; };
+		852030B11DA17113009A46FD /* DCIModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCIModel.m; sourceTree = "<group>"; };
+		853091941D9FB8E500AE0DE9 /* IDPContextHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPContextHelpers.h; sourceTree = "<group>"; };
+		853091951D9FB8E500AE0DE9 /* IDPContextHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPContextHelpers.m; sourceTree = "<group>"; };
 		853F96381D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+IDPExtensions.h"; sourceTree = "<group>"; };
 		853F96391D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+IDPExtensions.m"; sourceTree = "<group>"; };
 		854E11FA1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+IDPExtensions.h"; sourceTree = "<group>"; };
 		854E11FB1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+IDPExtensions.m"; sourceTree = "<group>"; };
+		854FD6F31DA447BC00079571 /* IDPFBUserDetailsContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPFBUserDetailsContext.h; sourceTree = "<group>"; };
+		854FD6F41DA447BC00079571 /* IDPFBUserDetailsContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPFBUserDetailsContext.m; sourceTree = "<group>"; };
+		854FD6F81DA44AA700079571 /* IDPFBUserDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPFBUserDetailsView.h; sourceTree = "<group>"; };
+		854FD6F91DA44AA700079571 /* IDPFBUserDetailsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPFBUserDetailsView.m; sourceTree = "<group>"; };
+		854FD6FA1DA44AA700079571 /* IDPFBUserDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPFBUserDetailsViewController.h; sourceTree = "<group>"; };
+		854FD6FB1DA44AA700079571 /* IDPFBUserDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPFBUserDetailsViewController.m; sourceTree = "<group>"; };
+		854FD6FC1DA44AA700079571 /* IDPFBUserDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPFBUserDetailsViewController.xib; sourceTree = "<group>"; };
 		85607A481D74F19E00F6D5E9 /* SUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUIView.h; sourceTree = "<group>"; };
 		85607A491D74F19E00F6D5E9 /* SUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUIView.m; sourceTree = "<group>"; };
 		856987F21D5BBD0400DBB5CE /* IDPRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPRandom.h; sourceTree = "<group>"; };
@@ -348,6 +387,19 @@
 		85C0B29B1D9D19E00007E755 /* IDPFBFriendsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPFBFriendsView.h; sourceTree = "<group>"; };
 		85C0B29C1D9D19E00007E755 /* IDPFBFriendsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPFBFriendsView.m; sourceTree = "<group>"; };
 		85C0B2A01D9D1AAD0007E755 /* IDPModelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPModelCell.h; sourceTree = "<group>"; };
+		85C0B2A21D9D5E540007E755 /* IDPJSONAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPJSONAdapter.h; sourceTree = "<group>"; };
+		85C0B2A31D9D5EBE0007E755 /* NSArray+IDPJSONAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+IDPJSONAdapter.h"; sourceTree = "<group>"; };
+		85C0B2A41D9D5EBE0007E755 /* NSArray+IDPJSONAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+IDPJSONAdapter.m"; sourceTree = "<group>"; };
+		85C0B2A71D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+IDPJSONAdapter.h"; sourceTree = "<group>"; };
+		85C0B2A81D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+IDPJSONAdapter.m"; sourceTree = "<group>"; };
+		85C0B2AB1D9D5F6E0007E755 /* NSString+IDPJSONAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+IDPJSONAdapter.h"; sourceTree = "<group>"; };
+		85C0B2AC1D9D5F6E0007E755 /* NSString+IDPJSONAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+IDPJSONAdapter.m"; sourceTree = "<group>"; };
+		85C0B2AF1D9D5F940007E755 /* NSNumber+IDPJSONAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+IDPJSONAdapter.h"; sourceTree = "<group>"; };
+		85C0B2B01D9D5F940007E755 /* NSNumber+IDPJSONAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+IDPJSONAdapter.m"; sourceTree = "<group>"; };
+		85C0B2B31D9D5FB70007E755 /* NSNull+IDPJSONAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+IDPJSONAdapter.h"; sourceTree = "<group>"; };
+		85C0B2B41D9D5FB70007E755 /* NSNull+IDPJSONAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+IDPJSONAdapter.m"; sourceTree = "<group>"; };
+		85C0B2B81D9D61420007E755 /* NSDictionary+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+IDPExtensions.h"; sourceTree = "<group>"; };
+		85C0B2B91D9D61420007E755 /* NSDictionary+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+IDPExtensions.m"; sourceTree = "<group>"; };
 		85C16CBD1D764A550087EC1E /* NSBundle+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+IDPExtensions.h"; sourceTree = "<group>"; };
 		85C16CBE1D764A550087EC1E /* NSBundle+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+IDPExtensions.m"; sourceTree = "<group>"; };
 		85C8DD8D1D530D6E009E227C /* SuperUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -423,9 +475,17 @@
 				6287A7FFF36F756361DD6F72 /* Pods-SuperUITests.debug.xcconfig */,
 				4E9FAB0A6B61892A11EBA490 /* Pods-SuperUITests.release.xcconfig */,
 				D406C9CE5BE9EFD21F7B396E /* Pods-SuperUI.debug.xcconfig */,
-				99B47D7F84B655CE78671A3A /* Pods-SuperUI.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		8506A8B71DA3350400CB6282 /* IDPFBUserInteraction */ = {
+			isa = PBXGroup;
+			children = (
+				8506A8B81DA3350400CB6282 /* IDPFBUserInteraction.h */,
+				8506A8B91DA3350400CB6282 /* IDPFBUserInteraction.m */,
+			);
+			path = IDPFBUserInteraction;
 			sourceTree = "<group>";
 		};
 		85193DF01D53B8120085BCC2 /* SuperUITests */ = {
@@ -467,6 +527,15 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		852030AF1DA16E8C009A46FD /* DCIModel */ = {
+			isa = PBXGroup;
+			children = (
+				852030B01DA17113009A46FD /* DCIModel.h */,
+				852030B11DA17113009A46FD /* DCIModel.m */,
+			);
+			path = DCIModel;
+			sourceTree = "<group>";
+		};
 		853F96371D7D9F5E00AE2C50 /* NSFileManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -483,6 +552,27 @@
 				854E11FB1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m */,
 			);
 			path = NSNotificationCenter;
+			sourceTree = "<group>";
+		};
+		854FD6F21DA447BC00079571 /* IDPFBUserDetailsContext */ = {
+			isa = PBXGroup;
+			children = (
+				854FD6F31DA447BC00079571 /* IDPFBUserDetailsContext.h */,
+				854FD6F41DA447BC00079571 /* IDPFBUserDetailsContext.m */,
+			);
+			path = IDPFBUserDetailsContext;
+			sourceTree = "<group>";
+		};
+		854FD6F71DA44AA700079571 /* IDPFBUserDetailsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				854FD6F81DA44AA700079571 /* IDPFBUserDetailsView.h */,
+				854FD6F91DA44AA700079571 /* IDPFBUserDetailsView.m */,
+				854FD6FA1DA44AA700079571 /* IDPFBUserDetailsViewController.h */,
+				854FD6FB1DA44AA700079571 /* IDPFBUserDetailsViewController.m */,
+				854FD6FC1DA44AA700079571 /* IDPFBUserDetailsViewController.xib */,
+			);
+			path = IDPFBUserDetailsViewController;
 			sourceTree = "<group>";
 		};
 		85607A471D74F18D00F6D5E9 /* SUIView */ = {
@@ -641,6 +731,8 @@
 		858238BF1D5B5DEB00623348 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				85C0B2B71D9D612D0007E755 /* NSDictionary */,
+				85C0B2A11D9D5E200007E755 /* IDPJSONAdapter */,
 				857638561D858D4F004DC4BC /* UIImage */,
 				854E11F91D7F715700A2A0A9 /* NSNotificationCenter */,
 				853F96371D7D9F5E00AE2C50 /* NSFileManager */,
@@ -693,9 +785,10 @@
 		858238DE1D5B5DEB00623348 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				852030AF1DA16E8C009A46FD /* DCIModel */,
+				85F806861D9336E800BD842F /* IDPModel */,
 				85F806651D9336E800BD842F /* IDPArrayModel */,
 				85F8067E1D9336E800BD842F /* IDPImageModel */,
-				85F806861D9336E800BD842F /* IDPModel */,
 				858526791D77A53100E2EA6C /* IDPUserArrayModel */,
 				858239271D5B5E6D00623348 /* IDPUser */,
 			);
@@ -705,14 +798,15 @@
 		858238E01D5B5DEB00623348 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				85C0B29F1D9D1A9D0007E755 /* IDPModelCell */,
-				85C0B25B1D9AB5260007E755 /* IDPFBFriendsViewController */,
+				854FD6F71DA44AA700079571 /* IDPFBUserDetailsViewController */,
 				85C0B1F91D995CCD0007E755 /* IDPFBLoginViewController */,
+				85C0B25B1D9AB5260007E755 /* IDPFBFriendsViewController */,
 				857781461D773EBB007EEF52 /* SUIViewController */,
 				856987FB1D5BE0B500DBB5CE /* IDPArrayViewController */,
 				858238E11D5B5DEB00623348 /* IDPAnimationViewController */,
 				858238E71D5B5DEB00623348 /* IDPUsersViewController */,
 				858238F11D5B5DEB00623348 /* IDPUserViewController */,
+				85C0B29F1D9D1A9D0007E755 /* IDPModelCell */,
 				858238F71D5B5DEB00623348 /* Views */,
 			);
 			path = UI;
@@ -852,14 +946,16 @@
 		85C0B2051D9965CA0007E755 /* Contexts */ = {
 			isa = PBXGroup;
 			children = (
+				8506A8B71DA3350400CB6282 /* IDPFBUserInteraction */,
+				85C0B2061D9965CA0007E755 /* IDPContext */,
 				85C0B28B1D9CFDEB0007E755 /* IDPFBConstans */,
 				85C0B2511D9A5B1C0007E755 /* IDPFBContext */,
 				85C0B2811D9C7DB60007E755 /* IDPFBDeleteContext */,
 				85C0B2841D9C7DB60007E755 /* IDPFBGetContext */,
-				85C0B2061D9965CA0007E755 /* IDPContext */,
 				85C0B2071D9965CA0007E755 /* IDPFBLoginContext */,
 				85C0B2681D9C67CB0007E755 /* IDPFBLogoutContext */,
 				85C0B2601D9AB6010007E755 /* IDPFBFriendsContext */,
+				854FD6F21DA447BC00079571 /* IDPFBUserDetailsContext */,
 			);
 			path = Contexts;
 			sourceTree = "<group>";
@@ -869,6 +965,8 @@
 			children = (
 				85C0B22B1D9966050007E755 /* IDPContext.h */,
 				85C0B22C1D9966050007E755 /* IDPContext.m */,
+				853091941D9FB8E500AE0DE9 /* IDPContextHelpers.h */,
+				853091951D9FB8E500AE0DE9 /* IDPContextHelpers.m */,
 			);
 			path = IDPContext;
 			sourceTree = "<group>";
@@ -1033,6 +1131,33 @@
 				85C0B2A01D9D1AAD0007E755 /* IDPModelCell.h */,
 			);
 			path = IDPModelCell;
+			sourceTree = "<group>";
+		};
+		85C0B2A11D9D5E200007E755 /* IDPJSONAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				85C0B2A21D9D5E540007E755 /* IDPJSONAdapter.h */,
+				85C0B2A31D9D5EBE0007E755 /* NSArray+IDPJSONAdapter.h */,
+				85C0B2A41D9D5EBE0007E755 /* NSArray+IDPJSONAdapter.m */,
+				85C0B2A71D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.h */,
+				85C0B2A81D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.m */,
+				85C0B2AB1D9D5F6E0007E755 /* NSString+IDPJSONAdapter.h */,
+				85C0B2AC1D9D5F6E0007E755 /* NSString+IDPJSONAdapter.m */,
+				85C0B2AF1D9D5F940007E755 /* NSNumber+IDPJSONAdapter.h */,
+				85C0B2B01D9D5F940007E755 /* NSNumber+IDPJSONAdapter.m */,
+				85C0B2B31D9D5FB70007E755 /* NSNull+IDPJSONAdapter.h */,
+				85C0B2B41D9D5FB70007E755 /* NSNull+IDPJSONAdapter.m */,
+			);
+			path = IDPJSONAdapter;
+			sourceTree = "<group>";
+		};
+		85C0B2B71D9D612D0007E755 /* NSDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				85C0B2B81D9D61420007E755 /* NSDictionary+IDPExtensions.h */,
+				85C0B2B91D9D61420007E755 /* NSDictionary+IDPExtensions.m */,
+			);
+			path = NSDictionary;
 			sourceTree = "<group>";
 		};
 		85C16CBC1D764A370087EC1E /* NSBundle */ = {
@@ -1315,6 +1440,7 @@
 				85C0B2001D995D770007E755 /* IDPFBLoginViewController.xib in Resources */,
 				856988021D5BE0DA00DBB5CE /* IDPArrayViewController.xib in Resources */,
 				85C0B2971D9D18B80007E755 /* IDPUserCell.xib in Resources */,
+				854FD7021DA44AA700079571 /* IDPFBUserDetailsViewController.xib in Resources */,
 				858239241D5B5DEB00623348 /* IDPUserViewController.xib in Resources */,
 				851EE1501D6193AD0029B447 /* image.jpg in Resources */,
 				851A2A8B1D738F4300C32616 /* IDPLoadingView.xib in Resources */,
@@ -1328,6 +1454,7 @@
 				85C8DDB31D530FD3009E227C /* Assets.xcassets in Resources */,
 				856988011D5BE0DA00DBB5CE /* IDPArrayViewController.xib in Resources */,
 				85F806AE1D93462400BD842F /* nope_image.jpg in Resources */,
+				854FD7011DA44AA700079571 /* IDPFBUserDetailsViewController.xib in Resources */,
 				851EE1511D6193AD0029B447 /* image_big.jpg in Resources */,
 				858239131D5B5DEB00623348 /* IDPAnimationViewController.xib in Resources */,
 				85F806AB1D9337BE00BD842F /* no_image.jpg in Resources */,
@@ -1441,14 +1568,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				853091971D9FB8E500AE0DE9 /* IDPContextHelpers.m in Sources */,
+				85C0B2AA1D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.m in Sources */,
 				8577814A1D773EFE007EEF52 /* SUIViewController.m in Sources */,
 				857794FB1D6BA6A500C16BA4 /* NSObject+IDPObject.m in Sources */,
 				85902F681D80E39800846ED2 /* IDPFilteredUserArrayModel.m in Sources */,
 				858239061D5B5DEB00623348 /* IDPObservableObject.m in Sources */,
+				854FD7001DA44AA700079571 /* IDPFBUserDetailsViewController.m in Sources */,
 				8584F70C1D7B5E440076D751 /* IDPArrayModel+IDPExtensions.m in Sources */,
 				85F8069A1D9336E800BD842F /* IDPArrayModel.m in Sources */,
 				8582390A1D5B5DEB00623348 /* IDPTableViewCell.m in Sources */,
 				85F806901D9336E800BD842F /* IDPArrayMoveChangeModel.m in Sources */,
+				8506A8BB1DA3350400CB6282 /* IDPFBUserInteraction.m in Sources */,
 				85F8068E1D9336E800BD842F /* IDPArrayInsertChangeModel.m in Sources */,
 				85F806921D9336E800BD842F /* IDPArrayRemoveChangeModel.m in Sources */,
 				85F806A01D9336E800BD842F /* IDPInternetImageModel.m in Sources */,
@@ -1472,12 +1603,14 @@
 				857794FF1D6BA6A500C16BA4 /* NSString+IDPRandomName.m in Sources */,
 				85C0B2951D9D18B80007E755 /* IDPUserCell.m in Sources */,
 				857794F91D6BA6A500C16BA4 /* NSMutableArray+IDPExtensions.m in Sources */,
+				85C0B2AE1D9D5F6E0007E755 /* NSString+IDPJSONAdapter.m in Sources */,
 				857794FD1D6BA6A500C16BA4 /* NSString+IDPExtensions.m in Sources */,
 				85C0B26C1D9C68030007E755 /* IDPFBLogoutContext.m in Sources */,
 				85607A4B1D74F19E00F6D5E9 /* SUIView.m in Sources */,
 				851A2A881D738E9E00C32616 /* IDPLoadingView.m in Sources */,
 				85C0B22A1D9965EC0007E755 /* IDPBlockTypes.m in Sources */,
 				859D96951D7C5FD1005C05C6 /* IDPArrayRemoveChangeModel+IDPExtensions.m in Sources */,
+				854FD6FE1DA44AA700079571 /* IDPFBUserDetailsView.m in Sources */,
 				8577950F1D6BA6A500C16BA4 /* UIWindow+IDPExtensions.m in Sources */,
 				858239221D5B5DEB00623348 /* IDPUserViewController.m in Sources */,
 				859D96971D7C5FD1005C05C6 /* IDPArrayReplaceChangeModel+IDPExtensions.m in Sources */,
@@ -1485,6 +1618,7 @@
 				859D96911D7C5FD1005C05C6 /* IDPArrayInsertChangeModel+IDPExtensions.m in Sources */,
 				85C0B2551D9A5B2B0007E755 /* IDPFBContext.m in Sources */,
 				85C0B2201D9965EC0007E755 /* IDPCompilerMacros.m in Sources */,
+				852030B31DA17113009A46FD /* DCIModel.m in Sources */,
 				85C0B2641D9AB6260007E755 /* IDPFBFriendsContext.m in Sources */,
 				85C16CC01D764A550087EC1E /* NSBundle+IDPExtensions.m in Sources */,
 				85F806A91D9336F700BD842F /* IDPObjectsCache.m in Sources */,
@@ -1493,6 +1627,7 @@
 				85C0B2881D9C7DB60007E755 /* IDPFBDeleteContext.m in Sources */,
 				851A2A841D738E8400C32616 /* IDPView.m in Sources */,
 				858239161D5B5DEB00623348 /* IDPUsersView.m in Sources */,
+				85C0B2B21D9D5F940007E755 /* NSNumber+IDPJSONAdapter.m in Sources */,
 				8582392B1D5B5E6D00623348 /* IDPUser.m in Sources */,
 				8585267D1D77A53100E2EA6C /* IDPUserArrayModel.m in Sources */,
 				85BB7D4F1D70ACBA00DBC84B /* UIViewController+IDPExtensions.m in Sources */,
@@ -1506,6 +1641,7 @@
 				859D968F1D7C5FD1005C05C6 /* IDPArrayChangeModel+IDPExtensions.m in Sources */,
 				85F806A41D9336E800BD842F /* IDPModel.m in Sources */,
 				8577950D1D6BA6A500C16BA4 /* UITableView+IDPExtensions.m in Sources */,
+				85C0B2B61D9D5FB70007E755 /* NSNull+IDPJSONAdapter.m in Sources */,
 				85C0B22E1D9966050007E755 /* IDPContext.m in Sources */,
 				85F806941D9336E800BD842F /* IDPArrayReplaceChangeModel.m in Sources */,
 				85C0B2241D9965EC0007E755 /* IDPErrorMacros.m in Sources */,
@@ -1514,10 +1650,13 @@
 				85F8068A1D9336E800BD842F /* IDPArrayOneIndexChangeModel.m in Sources */,
 				858239201D5B5DEB00623348 /* IDPUserView.m in Sources */,
 				856988001D5BE0DA00DBB5CE /* IDPArrayViewController.m in Sources */,
+				85C0B2BB1D9D61420007E755 /* NSDictionary+IDPExtensions.m in Sources */,
+				854FD6F61DA447BC00079571 /* IDPFBUserDetailsContext.m in Sources */,
 				857794F71D6BA6A500C16BA4 /* NSIndexPath+IDPExtensions.m in Sources */,
 				85F806A21D9336E800BD842F /* IDPLocalImageModel.m in Sources */,
 				858239181D5B5DEB00623348 /* IDPUsersViewController.m in Sources */,
 				858239121D5B5DEB00623348 /* IDPAnimationViewController.m in Sources */,
+				85C0B2A61D9D5EBE0007E755 /* NSArray+IDPJSONAdapter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1530,6 +1669,7 @@
 				85C0B21D1D9965EC0007E755 /* IDPBlockMacros.m in Sources */,
 				854E11FC1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m in Sources */,
 				85F806971D9336E800BD842F /* IDPArrayChangeModel.m in Sources */,
+				85C0B2B51D9D5FB70007E755 /* NSNull+IDPJSONAdapter.m in Sources */,
 				85F806A81D9336F700BD842F /* IDPObjectsCache.m in Sources */,
 				857638591D858D60004DC4BC /* UIImage+IDPExtensions.m in Sources */,
 				85607A4A1D74F19E00F6D5E9 /* SUIView.m in Sources */,
@@ -1537,12 +1677,14 @@
 				85C0B25E1D9AB5420007E755 /* IDPFBFriendsViewController.m in Sources */,
 				857781441D76C772007EEF52 /* NSArray+IDPExtensions.m in Sources */,
 				85F806991D9336E800BD842F /* IDPArrayModel.m in Sources */,
+				854FD6FF1DA44AA700079571 /* IDPFBUserDetailsViewController.m in Sources */,
 				859D96961D7C5FD1005C05C6 /* IDPArrayReplaceChangeModel+IDPExtensions.m in Sources */,
 				85C0B2631D9AB6260007E755 /* IDPFBFriendsContext.m in Sources */,
 				856987F41D5BBD0400DBB5CE /* IDPRandom.m in Sources */,
 				858239171D5B5DEB00623348 /* IDPUsersViewController.m in Sources */,
 				85F806A11D9336E800BD842F /* IDPLocalImageModel.m in Sources */,
 				859D968E1D7C5FD1005C05C6 /* IDPArrayChangeModel+IDPExtensions.m in Sources */,
+				85C0B2B11D9D5F940007E755 /* NSNumber+IDPJSONAdapter.m in Sources */,
 				851A2A831D738E8400C32616 /* IDPView.m in Sources */,
 				85C0B26B1D9C68030007E755 /* IDPFBLogoutContext.m in Sources */,
 				851A2A871D738E9E00C32616 /* IDPLoadingView.m in Sources */,
@@ -1550,13 +1692,16 @@
 				858239051D5B5DEB00623348 /* IDPObservableObject.m in Sources */,
 				85F8069F1D9336E800BD842F /* IDPInternetImageModel.m in Sources */,
 				857794FA1D6BA6A500C16BA4 /* NSObject+IDPObject.m in Sources */,
+				854FD6FD1DA44AA700079571 /* IDPFBUserDetailsView.m in Sources */,
 				853F963A1D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.m in Sources */,
 				8584F70B1D7B5E440076D751 /* IDPArrayModel+IDPExtensions.m in Sources */,
 				85F8068D1D9336E800BD842F /* IDPArrayInsertChangeModel.m in Sources */,
 				85C0B2941D9D18B80007E755 /* IDPUserCell.m in Sources */,
 				85BB7D4E1D70ACBA00DBC84B /* UIViewController+IDPExtensions.m in Sources */,
 				8582392A1D5B5E6D00623348 /* IDPUser.m in Sources */,
+				854FD6F51DA447BC00079571 /* IDPFBUserDetailsContext.m in Sources */,
 				858239151D5B5DEB00623348 /* IDPUsersView.m in Sources */,
+				853091961D9FB8E500AE0DE9 /* IDPContextHelpers.m in Sources */,
 				85F806891D9336E800BD842F /* IDPArrayOneIndexChangeModel.m in Sources */,
 				85C0B29D1D9D19E00007E755 /* IDPFBFriendsView.m in Sources */,
 				857781491D773EFE007EEF52 /* SUIViewController.m in Sources */,
@@ -1569,6 +1714,7 @@
 				857794FE1D6BA6A500C16BA4 /* NSString+IDPRandomName.m in Sources */,
 				85C8DD951D530D6E009E227C /* AppDelegate.m in Sources */,
 				857794F81D6BA6A500C16BA4 /* NSMutableArray+IDPExtensions.m in Sources */,
+				85C0B2BA1D9D61420007E755 /* NSDictionary+IDPExtensions.m in Sources */,
 				85C0B2031D995DC00007E755 /* IDPFBLoginView.m in Sources */,
 				85C0B2291D9965EC0007E755 /* IDPBlockTypes.m in Sources */,
 				858239251D5B5DEB00623348 /* IDPImageView.m in Sources */,
@@ -1580,16 +1726,21 @@
 				85F8068F1D9336E800BD842F /* IDPArrayMoveChangeModel.m in Sources */,
 				858239111D5B5DEB00623348 /* IDPAnimationViewController.m in Sources */,
 				857794FC1D6BA6A500C16BA4 /* NSString+IDPExtensions.m in Sources */,
+				85C0B2AD1D9D5F6E0007E755 /* NSString+IDPJSONAdapter.m in Sources */,
+				85C0B2A51D9D5EBE0007E755 /* NSArray+IDPJSONAdapter.m in Sources */,
 				85C0B2541D9A5B2B0007E755 /* IDPFBContext.m in Sources */,
 				859D96921D7C5FD1005C05C6 /* IDPArrayMoveChangeModel+IDPExtensions.m in Sources */,
 				85C0B2871D9C7DB60007E755 /* IDPFBDeleteContext.m in Sources */,
+				85C0B2A91D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.m in Sources */,
 				859D96901D7C5FD1005C05C6 /* IDPArrayInsertChangeModel+IDPExtensions.m in Sources */,
 				85F806951D9336E800BD842F /* IDPArrayChangeModel+IDPExtensions.m in Sources */,
+				852030B21DA17113009A46FD /* DCIModel.m in Sources */,
 				85F749781D5CE3320088A09F /* IDPArrayView.m in Sources */,
 				859D96941D7C5FD1005C05C6 /* IDPArrayRemoveChangeModel+IDPExtensions.m in Sources */,
 				85F8069B1D9336E800BD842F /* IDPFilteredArrayModel.m in Sources */,
 				857794F61D6BA6A500C16BA4 /* NSIndexPath+IDPExtensions.m in Sources */,
 				85C0B2271D9965EC0007E755 /* IDPReturnMacros.m in Sources */,
+				8506A8BA1DA3350400CB6282 /* IDPFBUserInteraction.m in Sources */,
 				85F806A31D9336E800BD842F /* IDPModel.m in Sources */,
 				8577950E1D6BA6A500C16BA4 /* UIWindow+IDPExtensions.m in Sources */,
 				85C0B2311D99736C0007E755 /* IDPFBLoginContext.m in Sources */,
@@ -1759,7 +1910,6 @@
 		};
 		85C8DDA61D530D6E009E227C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 99B47D7F84B655CE78671A3A /* Pods-SuperUI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SuperUI/Info.plist;

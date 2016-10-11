@@ -100,7 +100,7 @@
     };
     
     id completionBlock = ^(UIImage *image, NSError *error) {
-        if (!image || error) {
+        if ((!image || error) && url) {
             [self removeCache];
             
             self.task = [self.session downloadTaskWithURL:self.url

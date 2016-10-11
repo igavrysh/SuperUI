@@ -15,7 +15,7 @@
 
 #import "IDPDispatchMacros.h"
 
-static NSString * const kIDPNoImageName = @"nope_image";
+static NSString * const kIDPNoImageName = @"image";
 static NSString * const kIDPNoImageExtension = @"jpg";
 
 @interface IDPUserCell ()
@@ -66,6 +66,16 @@ static NSString * const kIDPNoImageExtension = @"jpg";
 
 - (IDPImageModel *)imageModel {
     return self.userImageView.imageModel;
+}
+
+#pragma mark -
+#pragma mark View Lifecycle
+
+- (void)viewDidLoad {
+    //Scaling?
+    self.userImageView.contentMode = UIViewContentModeScaleAspectFit;
+    
+    self.userImageView.contentImageView.contentMode = UIViewContentModeScaleAspectFit;
 }
 
 #pragma mark -

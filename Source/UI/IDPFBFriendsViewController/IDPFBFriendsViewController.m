@@ -16,21 +16,26 @@
 #import "IDPFBFriendsView.h"
 #import "IDPModelCell.h"
 #import "IDPUserCell.h"
+#import "IDPFBUserDetailsViewController.h"
 
 #import "UITableView+IDPExtensions.h"
 
+#import "IDPContextHelpers.h"
 #import "IDPMacros.h"
 
 kIDPStringVariableDefinition(kIDPLogoutButtonTitle, @"Logout");
 
 @interface IDPFBFriendsViewController ()
-@property (nonatomic, strong) IDPUser               *user;
-@property (nonatomic, strong) IDPFBLogoutContext    *logoutContext;
+@property (nonatomic, strong)   IDPUser             *user;
+@property (nonatomic, strong)   IDPFBLogoutContext  *logoutContext;
+@property (nonatomic, strong)   IDPFBFriendsContext *friendsContext;
 
 - (void)loadUsers;
 - (void)setupNavigationBar;
 - (UITableViewCell<IDPModelCell> *)cellForTable:(UITableView *)tableView
                                   withIndexPath:(NSIndexPath *)indexPath;
+- (void)pushDetailsViewContollerForUser:(IDPUser *)user;
+- (void)reloadTableView;
 
 @end
 
@@ -61,15 +66,21 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
     }
 }
 
+- (void)setFriendsContext:(IDPFBFriendsContext *)friendsContext {
+    IDPContextSetter(&_friendsContext, friendsContext);
+}
+
+- (void)setLogoutContext:(IDPFBLogoutContext *)logoutContext {
+    IDPContextSetter(&_logoutContext, logoutContext);
+}
+
 #pragma mark -
 #pragma mark Private
 
 - (void)loadUsers {
-    self.model = [IDPArrayModel new];
+    self.friendsContext = [IDPFBFriendsContext contextWithUser:self.user];
     
-    IDPFBContext *context = [IDPFBFriendsContext contextWithUser:self.user
-                                                         friends:self.model];
-    [context execute];
+    self.model = self.user.friends;
 }
 
 - (void)setupNavigationBar {
@@ -78,6 +89,13 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
                                                               target:self
                                                               action:@selector(onLogout:)];
     self.navigationItem.leftBarButtonItem = button;
+}
+
+- (void)pushDetailsViewContollerForUser:(IDPUser *)user {
+    IDPFBUserDetailsViewController *controller = [IDPFBUserDetailsViewController new];
+    controller.model = user;
+    
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (UITableViewCell<IDPModelCell> *)cellForTable:(UITableView *)tableView
@@ -92,18 +110,11 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
         IDPStrongifyAndReturnIfNil(self);
         
         [self.friendsView.tableView reloadData];
-        
-        //??? Investigate why it happens
-        //self.friendsView.loadingViewVisible = NO;
     });
 }
 
 #pragma mark -
 #pragma mark View Lifecycle
-
-- (void)awakeFromNib {
-    
-}
 
 - (IBAction)onLogout:(UIBarButtonItem *)button {
     IDPFBLogoutContext *logoutContext = [IDPFBLogoutContext contextWithModel:self.user];
@@ -111,6 +122,8 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
     self.logoutContext = logoutContext;
     
     [logoutContext execute];
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {
@@ -153,13 +166,14 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
     return cell;
 }
 
-#pragma mark -
-#pragma mark UITableViewDataSource
-
 - (BOOL)        tableView:(UITableView *)tableView
     canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return NO;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self pushDetailsViewContollerForUser:self.model[indexPath.row]];
 }
 
 @end

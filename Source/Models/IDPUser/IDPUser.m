@@ -9,40 +9,81 @@
 #import "IDPUser.h"
 
 #import "IDPImageModel.h"
+#import "IDPArrayModel.h"
 
+#import "IDPJSONAdapter.h"
 #import "NSString+IDPRandomName.h"
 #import "NSArray+IDPArrayEnumerator.h"
-#include "NSBundle+IDPExtensions.h"
+#import "NSBundle+IDPExtensions.h"
+#import "NSFileManager+IDPExtensions.h"
 
 #import "IDPMacros.h"
 
 static NSString * const kIDPSampleImageURL = @"https://pbs.twimg.com/profile_images/609903623640723457/A4B7DT8s.png";
 
+kIDPStringVariableDefinition(kIDPRootKey, @"archive");
 kIDPStringKeyDefinition(kIDPUserID);
 kIDPStringKeyDefinition(kIDPUserFirstNameKey);
 kIDPStringKeyDefinition(kIDPUserLastNameKey);
-kIDPStringKeyDefinition(kIDPUserURLKey);
+kIDPStringKeyDefinition(kIDPUserNameKey);
+kIDPStringKeyDefinition(kIDPUserLocationKey);
+kIDPStringKeyDefinition(kIDPUserHometownKey);
+kIDPStringKeyDefinition(kIDPUserImageURLKey);
+kIDPStringKeyDefinition(kIDPUserBigImageURLKey);
+kIDPStringKeyDefinition(kIDPUserFriendIDsKey);
+
+@interface IDPUser ()
+@property (nonatomic, strong)   IDPArrayModel   *friends;
+@property (nonatomic, strong)   NSArray         *friendIDs;
+
+@end
 
 @implementation IDPUser
 
 @dynamic fullName;
 @dynamic imageModel;
+@dynamic friendIDs;
 
 #pragma mark -
 #pragma mark Class Methods
+
++ (instancetype)userWithID:(NSString *)ID {
+    return [[self alloc] initWithID:ID];
+}
 
 + (instancetype)user {
     IDPUser *user = [IDPUser new];
     
     user.firstName = [NSString randomName];
     user.lastName = [NSString randomName];
+    user.name = [NSString randomName];
+    user.location = [NSString randomName];
+    user.hometown = [NSString randomName];
     user.imageURL = [NSURL URLWithString:kIDPSampleImageURL];
+    user.bigImageURL = [NSURL URLWithString:kIDPSampleImageURL];
     
     return user;
 }
 
 + (NSArray *)usersWithCount:(NSUInteger)count {
     return [NSArray objectsWithCount:count block:^{ return [IDPUser user]; }];
+}
+
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (instancetype)initWithID:(NSString *)ID {
+    self = [self init];
+    self.ID = ID;
+    
+    return self;
+}
+
+- (instancetype)init {
+    self = [super init];
+    self.friends = [IDPArrayModel new];
+    
+    return self;
 }
 
 #pragma mark - 
@@ -58,43 +99,107 @@ kIDPStringKeyDefinition(kIDPUserURLKey);
     return model;
 }
 
-#pragma mark -
-#pragma mark NSCopying 
-
-- (id)copyWithZone:(NSZone *)zone {
-    IDPUser *user = [IDPUser new];
+- (IDPImageModel *)bigImageModel {
+    IDPImageModel *model = [IDPImageModel imageWithURL:self.bigImageURL];
     
-    user.ID = self.ID;
-    user.firstName = self.firstName;
-    user.lastName = self.lastName;
-    user.imageURL = self.imageURL;
-    
-    return user;
+    return model;
 }
 
 #pragma mark -
-#pragma mark NSCoding
+#pragma mark Accessors
 
-- (void)encodeWithCoder:(NSCoder *)coder {
-    [coder encodeObject:self.ID forKey:kIDPUserID];
-    [coder encodeObject:self.firstName forKey:kIDPUserFirstNameKey];
-    [coder encodeObject:self.lastName forKey:kIDPUserLastNameKey];
-    [coder encodeObject:self.imageURL forKey:kIDPUserURLKey];
+- (NSArray *)friendIDs {
+    NSMutableArray *friendIDs = [NSMutableArray new];
+    
+    [self.friends.objects performBlockWithEachObject:^(IDPUser *user) {
+        [friendIDs addObject:user.ID];
+    }];
+    
+    return [friendIDs copy];
 }
 
-- (instancetype)initWithCoder:(NSCoder *)coder {
-    self = [super init];
-    
-    self.ID = [coder decodeObjectForKey:kIDPUserID];
-    self.firstName = [coder decodeObjectForKey:kIDPUserFirstNameKey];
-    self.lastName = [coder decodeObjectForKey:kIDPUserLastNameKey];
-    self.imageURL = [coder decodeObjectForKey:kIDPUserURLKey];
-    
-    return self;
+- (void)setFriendIDs:(NSArray *)frinedIDs {
+    [frinedIDs performBlockWithEachObject:^(NSString *ID) {
+        IDPUser *user = [IDPUser userWithID:ID];
+        user.state = IDPModelDidUnload;
+        
+        [self.friends addObject:user];
+    }];
 }
 
-#pragma mark - 
-#pragma mark IDPObservableObject
+- (NSString *)plistName {
+    return [NSString stringWithFormat:@"%@.plist", self.ID];
+}
+
+- (BOOL)isCacheExists {
+    return [[NSFileManager defaultManager] fileExistsAtPath:self.cachePath];
+}
+
+- (NSString *)cachePath {
+    return [[NSFileManager applicationCachePath] stringByAppendingPathComponent:self.plistName];
+}
+
+#pragma mark -
+#pragma mark Public Methods
+
+- (void)save {
+    [NSKeyedArchiver archiveRootObject:[self JSONRepresentation]
+                                toFile:self.cachePath];
+    
+    [self.friends.objects performBlockWithEachObject:^(IDPUser *user) {
+        [user save];
+    }];
+
+}
+
+- (void)load {
+    NSDictionary *archiver = [NSKeyedUnarchiver unarchiveObjectWithFile:self.cachePath][kIDPRootKey];
+    
+    if (!archiver) {
+        self.state = IDPModelDidFailLoading;
+        
+        return;
+    }
+    
+#define IDPDecode(key, property) self.property = archiver[key];
+    
+    IDPDecode(kIDPUserID, ID)
+    IDPDecode(kIDPUserFirstNameKey, firstName)
+    IDPDecode(kIDPUserLastNameKey, lastName)
+    IDPDecode(kIDPUserNameKey, name)
+    IDPDecode(kIDPUserLocationKey, location)
+    IDPDecode(kIDPUserHometownKey, hometown)
+    IDPDecode(kIDPUserImageURLKey, imageURL)
+    IDPDecode(kIDPUserBigImageURLKey, bigImageURL)
+    IDPDecode(kIDPUserFriendIDsKey, friendIDs)
+    
+#undef IDPDecode
+    
+    self.state = IDPUserDidLoadDetails;
+}
+
+#pragma mark -
+#pragma mark Private Methods
+
+- (NSDictionary *)JSONRepresentation {
+    NSMutableDictionary *archive = [NSMutableDictionary new];
+    
+#define IDPEncode(key, value) archive[key] = self.value;
+    
+    IDPEncode(kIDPUserID, ID)
+    IDPEncode(kIDPUserFirstNameKey, firstName)
+    IDPEncode(kIDPUserLastNameKey, lastName)
+    IDPEncode(kIDPUserNameKey, name)
+    IDPEncode(kIDPUserLocationKey, location)
+    IDPEncode(kIDPUserHometownKey, hometown)
+    IDPEncode(kIDPUserImageURLKey, imageURL)
+    IDPEncode(kIDPUserBigImageURLKey, bigImageURL)
+    IDPEncode(kIDPUserFriendIDsKey, friendIDs)
+    
+#undef IDPEncode
+    
+    return [NSDictionary dictionaryWithObject:archive forKey:kIDPRootKey];
+}
 
 #pragma mark -
 #pragma mark IDPObservableObject
