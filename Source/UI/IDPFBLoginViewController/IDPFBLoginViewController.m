@@ -81,7 +81,7 @@
 #pragma mark -
 #pragma mark IDPUserStateObserver
 
-- (void)userDidLoadID:(IDPUser *)user {
+- (void)modelDidLoad:(IDPUser *)user {
     IDPAsyncPerformInMainQueue(^{
         [self showFriendsViewControllerForUser:user];
     });

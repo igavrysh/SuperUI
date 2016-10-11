@@ -14,17 +14,11 @@
 @implementation IDPFBUserDetailsContext
 
 #pragma mark -
-#pragma mark Class Methods
-
-+ (instancetype)contextWithUser:(IDPUser *)user {
-    return [[self alloc] initWithUser:user];
-}
-
-#pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (instancetype)initWithUser:(IDPUser *)user {
+- (instancetype)initWithModel:(IDPUser *)user {
     self = [super initWithModel:user];
+    user.state = IDPModelDidUnload;
     
     return self;
 }
@@ -55,7 +49,7 @@
     user.name = result[kIDPName];
     user.bigImageURL = [NSURL URLWithString:result[kIDPPicture][kIDPData][kIDPURL]];
 
-    user.state = IDPUserDidLoadDetails;
+    user.state = IDPModelDidLoad;
     
     [user save];
 }

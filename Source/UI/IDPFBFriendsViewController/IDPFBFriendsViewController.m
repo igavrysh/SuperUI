@@ -78,7 +78,7 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
 #pragma mark Private
 
 - (void)loadUsers {
-    self.friendsContext = [IDPFBFriendsContext contextWithUser:self.user];
+    self.friendsContext = [IDPFBFriendsContext contextWithModel:self.user];
     
     self.model = self.user.friends;
 }
