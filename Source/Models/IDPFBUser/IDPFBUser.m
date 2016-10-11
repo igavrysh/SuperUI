@@ -166,7 +166,7 @@ kIDPStringKeyDefinition(kIDPUserFriendIDsKey);
     
 #undef IDPDecode
     
-    self.state = IDPFBUserDidLoadDetails;
+    self.state = IDPFBUserDidLoad;
 }
 
 #pragma mark -
@@ -197,14 +197,14 @@ kIDPStringKeyDefinition(kIDPUserFriendIDsKey);
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
-        case IDPFBUserDidLoadID:
-            return @selector(userDidLoadID:);
+        case IDPFBUserDidUnload:
+            return @selector(userDidUnload:);
         
-        case IDPFBUserDidLoadBasicInformation:
-            return @selector(userDidLoadBasicInformation:);
+        case IDPFBUserWillLoad:
+            return @selector(userWillLoad:);
             
-        case IDPFBUserDidLoadDetails:
-            return @selector(userDidLoadDetails:);
+        case IDPFBUserDidLoad:
+            return @selector(userDidLoad:);
             
         default:
             return [super selectorForState:state];

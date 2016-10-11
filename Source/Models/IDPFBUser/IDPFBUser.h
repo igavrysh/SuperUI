@@ -16,9 +16,10 @@
 @class IDPArrayModel;
 
 typedef NS_ENUM(NSUInteger, IDPFBUserState) {
-    IDPFBUserDidLoadID,
-    IDPFBUserDidLoadBasicInformation,
-    IDPFBUserDidLoadDetails,
+    IDPFBUserDidUnload,
+    IDPFBUserDidLoad,
+    IDPFBUserWillLoad,
+    IDPFBUserDidFailLoading,
     IDPFBUserStateCount
 };
 
@@ -26,11 +27,13 @@ typedef NS_ENUM(NSUInteger, IDPFBUserState) {
 
 @optional
 
-- (void)userDidLoadID:(IDPFBUser *)user;
+- (void)userDidUnload:(IDPFBUser *)user;
 
-- (void)userDidLoadBasicInformation:(IDPFBUser *)user;
+- (void)userDidLoad:(IDPFBUser *)user;
 
-- (void)userDidLoadDetails:(IDPFBUser *)user;
+- (void)userWillLoad:(IDPFBUser *)user;
+
+- (void)userDidFailLoading:(IDPFBUser *)user;
 
 @end
 

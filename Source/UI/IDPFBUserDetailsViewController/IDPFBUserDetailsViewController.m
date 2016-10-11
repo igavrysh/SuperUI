@@ -63,7 +63,6 @@ IDPViewControllerBaseViewProperty(IDPFBUserDetailsViewController, IDPFBUserDetai
 
 - (void)userDidLoadDetails:(IDPUser *)user {
     self.detailsView.user = user;
-    ((IDPUser *)self.model).state = IDPModelDidLoad;
 }
 
 @end
