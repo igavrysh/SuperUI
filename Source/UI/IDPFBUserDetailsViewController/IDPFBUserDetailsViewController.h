@@ -9,6 +9,6 @@
 #import "SUIViewController.h"
 #import "IDPUser.h"
 
-@interface IDPFBUserDetailsViewController : SUIViewController <IDPUserStateObserver>
+@interface IDPFBUserDetailsViewController : SUIViewController <IDPModelObserver>
 
 @end

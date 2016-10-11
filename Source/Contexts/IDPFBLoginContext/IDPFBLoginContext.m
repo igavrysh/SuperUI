@@ -71,7 +71,7 @@
     IDPUser *user = (IDPUser *)self.model;
     
     user.ID = (NSString *)result[kIDPID];
-    user.state = IDPUserDidLoadID;
+    user.state = IDPModelDidLoad;
 }
 
 - (void)load {

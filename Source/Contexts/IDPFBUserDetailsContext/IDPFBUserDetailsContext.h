@@ -12,8 +12,4 @@
 
 @interface IDPFBUserDetailsContext : IDPFBGetContext
 
-+ (instancetype)contextWithUser:(IDPUser *)user;
-
-- (instancetype)initWithUser:(IDPUser *)user;
-
 @end

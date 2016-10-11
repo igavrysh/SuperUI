@@ -20,22 +20,6 @@
 @implementation IDPFBFriendsContext
 
 #pragma mark -
-#pragma mark Class Methods
-
-+ (instancetype)contextWithUser:(IDPUser *)user {
-    return [[self alloc] initWithUser:user];
-}
-
-#pragma mark -
-#pragma mark Initializations and Deallocations
-
-- (instancetype)initWithUser:(IDPUser *)user {
-    self = [super initWithModel:user];
-    
-    return self;
-}
-
-#pragma mark -
 #pragma mark Accessors
 
 - (NSString *)graphPath {
@@ -68,7 +52,7 @@
         user.firstName = friendInfo[kIDPFirstName];
         user.lastName = friendInfo[kIDPLastName];
         user.imageURL = [NSURL URLWithString:friendInfo[kIDPPicture][kIDPData][kIDPURL]];
-        user.state = IDPUserDidLoadBasicInformation;
+        user.state = IDPModelDidLoad;
         
         [friends performBlockWithoutNotification:^{
             [friends addObject:user];

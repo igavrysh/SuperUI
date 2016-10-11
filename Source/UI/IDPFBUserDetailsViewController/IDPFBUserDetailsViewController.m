@@ -46,7 +46,7 @@ IDPViewControllerBaseViewProperty(IDPFBUserDetailsViewController, IDPFBUserDetai
 #pragma mark Private Methods
 
 - (void)loadUserDetails {
-    self.detailsContext = [[IDPFBUserDetailsContext alloc] initWithUser:self.model];
+    self.detailsContext = [IDPFBUserDetailsContext contextWithModel:self.model];
 }
 
 #pragma mark -
@@ -61,11 +61,9 @@ IDPViewControllerBaseViewProperty(IDPFBUserDetailsViewController, IDPFBUserDetai
 #pragma mark -
 #pragma mark IDPUserStateObserver
 
-- (void)userDidLoadDetails:(IDPUser *)user {
+- (void)modelDidLoad:(IDPUser *)user {
     IDPAsyncPerformInMainQueue(^{
         self.detailsView.model = user;
-        
-        ((IDPUser *)self.model).state = IDPModelDidLoad;
     });
 }
 

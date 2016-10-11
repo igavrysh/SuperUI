@@ -13,8 +13,4 @@
 
 @interface IDPFBFriendsContext : IDPFBContext
 
-+ (instancetype)contextWithUser:(IDPUser *)user;
-
-- (instancetype)initWithUser:(IDPUser *)user;
-
 @end

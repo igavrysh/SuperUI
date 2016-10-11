@@ -54,14 +54,6 @@ kIDPStringKeyDefinition(kIDPUserFriendIDsKey);
 + (instancetype)user {
     IDPUser *user = [IDPUser new];
     
-    user.firstName = [NSString randomName];
-    user.lastName = [NSString randomName];
-    user.name = [NSString randomName];
-    user.location = [NSString randomName];
-    user.hometown = [NSString randomName];
-    user.imageURL = [NSURL URLWithString:kIDPSampleImageURL];
-    user.bigImageURL = [NSURL URLWithString:kIDPSampleImageURL];
-    
     return user;
 }
 
@@ -175,7 +167,7 @@ kIDPStringKeyDefinition(kIDPUserFriendIDsKey);
     
 #undef IDPDecode
     
-    self.state = IDPUserDidLoadDetails;
+    self.state = IDPModelDidLoad;
 }
 
 #pragma mark -
@@ -199,25 +191,6 @@ kIDPStringKeyDefinition(kIDPUserFriendIDsKey);
 #undef IDPEncode
     
     return [NSDictionary dictionaryWithObject:archive forKey:kIDPRootKey];
-}
-
-#pragma mark -
-#pragma mark IDPObservableObject
-
-- (SEL)selectorForState:(NSUInteger)state {
-    switch (state) {
-        case IDPUserDidLoadID:
-            return @selector(userDidLoadID:);
-        
-        case IDPUserDidLoadBasicInformation:
-            return @selector(userDidLoadBasicInformation:);
-            
-        case IDPUserDidLoadDetails:
-            return @selector(userDidLoadDetails:);
-            
-        default:
-            return [super selectorForState:state];
-    }
 }
 
 @end

@@ -14,25 +14,6 @@
 @class IDPUser;
 @class IDPArrayModel;
 
-typedef NS_ENUM(NSUInteger, IDPUserState) {
-    IDPUserDidLoadID = IDPModelStateCount,
-    IDPUserDidLoadBasicInformation,
-    IDPUserDidLoadDetails,
-    IDPUserStateCount
-};
-
-@protocol IDPUserStateObserver <NSObject, IDPModelObserver>
-
-@optional
-
-- (void)userDidLoadID:(IDPUser *)user;
-
-- (void)userDidLoadBasicInformation:(IDPUser *)user;
-
-- (void)userDidLoadDetails:(IDPUser *)user;
-
-@end
-
 @class IDPImageModel;
 
 @interface IDPUser : IDPModel
