@@ -78,9 +78,9 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
 #pragma mark Private
 
 - (void)loadUsers {
-    self.friendsContext = [IDPFBFriendsContext contextWithModel:self.user];
-    
     self.model = self.user.friends;
+    
+    self.friendsContext = [IDPFBFriendsContext contextWithModel:self.user];
 }
 
 - (void)setupNavigationBar {
@@ -129,9 +129,11 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setupNavigationBar];
-    
     [self loadUsers];
+}
+
+- (void)awakeFromNib {
+    [self setupNavigationBar];
 }
 
 - (void)didReceiveMemoryWarning {

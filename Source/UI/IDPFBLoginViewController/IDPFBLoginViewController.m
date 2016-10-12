@@ -62,7 +62,7 @@
     IDPFBFriendsViewController *controller = [[IDPFBFriendsViewController alloc] initWithUser:user];
     
     [self.navigationController pushViewController:controller
-                                         animated:YES];
+                                         animated:NO];
 }
 
 #pragma mark -
@@ -73,7 +73,7 @@
     
     IDPUser *user = [IDPFBUserInteraction userWithID:[IDPUser new]];
     self.model = user;
-    if ([IDPFBUserInteraction isUserLoggedIn:user]) {
+    if ([IDPFBUserInteraction isUserLoggedIn:user]) {        
         [self showFriendsViewControllerForUser:user];
     }
 }
