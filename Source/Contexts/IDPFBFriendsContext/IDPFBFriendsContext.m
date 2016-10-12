@@ -67,7 +67,9 @@
 - (void)didFailLoadingFromInternet:(NSError *)error {
     IDPUser *user = (IDPUser *)self.model;
     
-    [user load];
+    [user performBlockWithoutNotification:^{
+        [user load];
+    }];
     
     IDPArrayModel *friends = user.friends;
     
