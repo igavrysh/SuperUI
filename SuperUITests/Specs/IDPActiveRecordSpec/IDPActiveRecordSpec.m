@@ -40,4 +40,7 @@ void(^createUsers)(void) = ^{
     }
 };
 
+
+// Check if persistent store coordinator is created with non-existent model name
+
 SPEC_END

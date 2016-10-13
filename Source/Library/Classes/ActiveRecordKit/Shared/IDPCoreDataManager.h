@@ -11,9 +11,24 @@
 
 #import "IDPObservableObject.h"
 
+typedef NS_ENUM(NSUInteger, IDPCoreDataManagerState) {
+    IDPCoreDataManagerDidSetUp,
+    IDPCoreDataManagerDidFailSettingUp,
+    IDPPersistentStoreCoordinatorStateCount
+};
+
 @class IDPCoreDataManager;
 
-@interface IDPCoreDataManager : NSObject
+@protocol IDPCoreDataManagerObserver <NSObject>
+@optional
+
+- (void)coreDataManagerDidSetUp:(IDPCoreDataManager *)manager;
+
+- (void)coreDataManagerDidFaileLoading:(IDPCoreDataManager *)manager;
+
+@end
+
+@interface IDPCoreDataManager : IDPObservableObject
 @property (nonatomic, readonly) NSManagedObjectModel            *managedObjectModel;
 @property (nonatomic, readonly) NSPersistentStoreCoordinator    *persistentStoreCoordinator;
 @property (nonatomic, readonly) NSManagedObjectContext          *managedObjectContext;

@@ -9,6 +9,7 @@
 #import "IDPCoreDataManager.h"
 
 #import "IDPGCDQueue.h"
+#import "IDPBlockTypes.h"
 
 #import "NSFileManager+IDPExtensions.h"
 
@@ -25,20 +26,32 @@ kIDPStringVariableDefinition(kDefaultStoreName, @"Store");
 @property (nonatomic, copy)     NSString                        *momName;
 @property (nonatomic, copy)     NSString                        *storeName;
 @property (nonatomic, copy)     NSString                        *storeType;
+@property (nonatomic, readonly) NSString                        *fullStoreName;
+@property (nonatomic, readonly) NSURL                           *storeURL;
 
 @end
 
 @implementation IDPCoreDataManager
 
+@dynamic fullStoreName;
+@dynamic storeURL;
+
 #pragma mark -
 #pragma mark Class Methods
+
++ (NSDictionary *)storeTypeExtensions {
+    IDPReturnAfterSettingVariableWithBlockOnce(^{
+        return @{ NSSQLiteStoreType : @"sqllite" };
+    });
+}
 
 + (instancetype)sharedManager {
     return __sharedManager;
 }
 
 + (instancetype)sharedManagerWithMomName:(NSString *)momName {
-    return [self sharedManagerWithMomName:momName storeName:kDefaultStoreName];
+    return [self sharedManagerWithMomName:momName
+                                storeName:kDefaultStoreName];
 }
 
 + (instancetype)sharedManagerWithMomName:(NSString *)momName
@@ -46,10 +59,8 @@ kIDPStringVariableDefinition(kDefaultStoreName, @"Store");
 {
     return [self sharedManagerWithMomName:momName
                                 storeName:storeName
-                                storeType:nil];
+                                storeType:NSSQLiteStoreType];
 }
-
-
 
 + (instancetype)sharedManagerWithMomName:(NSString *)momName
                                storeName:(NSString *)storeName
@@ -64,97 +75,103 @@ kIDPStringVariableDefinition(kDefaultStoreName, @"Store");
     __sharedManager.storeName = storeName;
     __sharedManager.storeType = storeType;
     
-    #warning TEMP decision
+    
     [__sharedManager initStoreCoordinator];
     
     return __sharedManager;
 }
 
-+ (NSDictionary *)storeTypeExtensions {
-    IDPReturnAfterSettingVariableWithBlockOnce(^{
-        return @{ NSSQLiteStoreType : @"sqllite" };
-    });
-}
-
 #pragma mark - 
 #pragma mark Initializations and Deallocations
 
-- (void)initStoreCoordinator {
+- (void)setUp {
+    if (__sharedManager) {
+        return;
+    }
+    
+    IDPWeakify(self);
+    [self setUpManagedObjectModelWithCompletionHandler:^{
+        IDPStrongify(self);
+        [self setUpStoreCoordinatorWithCompletionHandler:^{
+            IDPStrongify(self);
+            [self setUpManagedObjectContextWithCompletionHandler:nil];
+        }];
+    }];
+}
+
+- (void)setUpManagedObjectModelWithCompletionHandler:(IDPVoidBlock)block {
+    NSString *modelName = self.momName;
+    
+    if (!modelName) {
+        self.state = IDPCoreDataManagerDidFailSettingUp;
+        
+        return;
+    }
+    
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:modelName
+                                              withExtension:@"momd"];
+    if (!modelURL) {
+        self.state = IDPCoreDataManagerDidFailSettingUp;
+        
+        return;
+    }
+    
+    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    
+    IDPPerformBlock(block);
+}
+
+- (void)setUpStoreCoordinatorWithCompletionHandler:(IDPVoidBlock)block {
     void (^coordinatorFactory)(void) = ^{
-        NSString *extension = [IDPCoreDataManager storeTypeExtensions][self.storeType];
-        NSString *storeName = [self.storeName stringByAppendingPathExtension:extension];
-        
-        NSURL *storeURL = [NSURL fileURLWithPath:[NSFileManager documentPath]];
-        storeURL = [storeURL URLByAppendingPathComponent:storeName];
-        
         _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
         
-        if (!_persistentStoreCoordinator) {
-            NSLog(@"Error: during store corrdinator init failed to init with managed object");
+        NSError *error = nil;
+        
+        [_persistentStoreCoordinator addPersistentStoreWithType:self.storeType
+                                                  configuration:nil
+                                                            URL:self.storeURL
+                                                        options:nil
+                                                          error:&error];
+        if (error) {
+            self.state = IDPCoreDataManagerDidSetUp;
             
             return;
         }
         
-        NSString *storeType = self.storeType;
-        self.storeType = storeType ? storeType : NSSQLiteStoreType;
-        
-        NSError *error = nil;
-        
-        [_persistentStoreCoordinator addPersistentStoreWithType:storeType
-                                                  configuration:nil
-                                                            URL:storeURL
-                                                        options:nil
-                                                          error:&error];
-        if (error) {
-            NSLog(@"Error: %@", error);
-        }
-        
+        IDPBlockPerform(block);
     };
     
     IDPAsyncPerformInQueue(DISPATCH_QUEUE_PRIORITY_DEFAULT, coordinatorFactory);
 }
 
-#pragma mark -
-#pragma mark Accessors
-
-- (NSManagedObjectModel *)managedObjectModel {
-    if (_managedObjectModel) {
-        return _managedObjectModel;
-    }
-    
-    NSString *modelName = self.momName;
-    
-    if (!modelName) {
-        return nil;
-    }
-    
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:modelName
-                                              withExtension:@"momd"];
-    
-    if (!modelURL) {
-        return nil;
-    }
-    
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    
-    return _managedObjectModel;
-}
-
-- (NSManagedObjectContext *)managedObjectContext {
-    if (_managedObjectContext) {
-        return _managedObjectContext;
-    }
-    
+- (void)setUpManagedObjectContextWithCompletionHandler:(IDPVoidBlock)block {
     if (!self.persistentStoreCoordinator) {
         NSLog(@"Error: Persistent Store Coordinator was not initialized, call -initStoreCoordinator");
         
-        return nil;
+        return;
     }
     
     _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     [_managedObjectContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
     
-    return _managedObjectContext;
+    self.state =  IDPCoreDataManagerDidSetUp;
+    
+    IDPPerformBlock(block);
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (NSString *)fullStoreName {
+    NSString *extension = [IDPCoreDataManager storeTypeExtensions][self.storeType];
+    
+    return [self.storeName stringByAppendingPathExtension:extension];
+}
+
+- (NSURL *)storeURL {
+    NSURL *url = [NSURL fileURLWithPath:[NSFileManager documentPath]];
+    
+    return [url URLByAppendingPathComponent:[self fullStoreName]];
 }
 
 @end
