@@ -11,7 +11,6 @@
 		8506A8BB1DA3350400CB6282 /* IDPFBUserInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 8506A8B91DA3350400CB6282 /* IDPFBUserInteraction.m */; };
 		85145AAC1DAE0BE1008DE109 /* SuperUI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85145AAA1DAE0BE1008DE109 /* SuperUI.xcdatamodeld */; };
 		85145AAD1DAE0BE1008DE109 /* SuperUI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85145AAA1DAE0BE1008DE109 /* SuperUI.xcdatamodeld */; };
-		85193DF21D53B8120085BCC2 /* SuperUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 85193DF11D53B8120085BCC2 /* SuperUITests.m */; };
 		851A2A831D738E8400C32616 /* IDPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 851A2A821D738E8400C32616 /* IDPView.m */; };
 		851A2A841D738E8400C32616 /* IDPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 851A2A821D738E8400C32616 /* IDPView.m */; };
 		851A2A871D738E9E00C32616 /* IDPLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 851A2A861D738E9E00C32616 /* IDPLoadingView.m */; };
@@ -118,6 +117,7 @@
 		85BC55CC1DAED7B700BB2043 /* DBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BC55C81DAED7B700BB2043 /* DBUser.m */; };
 		85BC55D21DAEE16B00BB2043 /* IDPCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BC55D11DAEE16B00BB2043 /* IDPCoreDataManager.m */; };
 		85BC55D31DAEE16B00BB2043 /* IDPCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BC55D11DAEE16B00BB2043 /* IDPCoreDataManager.m */; };
+		85BC55D81DAF644B00BB2043 /* IDPActiveRecordSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BC55D71DAF644B00BB2043 /* IDPActiveRecordSpec.m */; };
 		85C0B1FC1D995D530007E755 /* IDPFBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B1FB1D995D530007E755 /* IDPFBLoginViewController.m */; };
 		85C0B1FD1D995D530007E755 /* IDPFBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B1FB1D995D530007E755 /* IDPFBLoginViewController.m */; };
 		85C0B1FF1D995D770007E755 /* IDPFBLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C0B1FE1D995D770007E755 /* IDPFBLoginViewController.xib */; };
@@ -242,7 +242,6 @@
 		8506A8B91DA3350400CB6282 /* IDPFBUserInteraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPFBUserInteraction.m; sourceTree = "<group>"; };
 		85145AAB1DAE0BE1008DE109 /* SuperUI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SuperUI.xcdatamodel; sourceTree = "<group>"; };
 		85193DEF1D53B8120085BCC2 /* SuperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		85193DF11D53B8120085BCC2 /* SuperUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperUITests.m; sourceTree = "<group>"; };
 		85193DF31D53B8120085BCC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		851A2A811D738E8400C32616 /* IDPView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPView.h; sourceTree = "<group>"; };
 		851A2A821D738E8400C32616 /* IDPView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPView.m; sourceTree = "<group>"; };
@@ -343,6 +342,7 @@
 		85BC55C81DAED7B700BB2043 /* DBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUser.m; sourceTree = "<group>"; };
 		85BC55D01DAEE16B00BB2043 /* IDPCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPCoreDataManager.h; sourceTree = "<group>"; };
 		85BC55D11DAEE16B00BB2043 /* IDPCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPCoreDataManager.m; sourceTree = "<group>"; };
+		85BC55D71DAF644B00BB2043 /* IDPActiveRecordSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPActiveRecordSpec.m; sourceTree = "<group>"; };
 		85C0B1FA1D995D530007E755 /* IDPFBLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPFBLoginViewController.h; sourceTree = "<group>"; };
 		85C0B1FB1D995D530007E755 /* IDPFBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPFBLoginViewController.m; sourceTree = "<group>"; };
 		85C0B1FE1D995D770007E755 /* IDPFBLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPFBLoginViewController.xib; sourceTree = "<group>"; };
@@ -518,7 +518,8 @@
 		85193DF01D53B8120085BCC2 /* SuperUITests */ = {
 			isa = PBXGroup;
 			children = (
-				85193DF11D53B8120085BCC2 /* SuperUITests.m */,
+				85BC55D41DAF641E00BB2043 /* Specs */,
+				85BC55D51DAF641E00BB2043 /* Test Objects */,
 				85193DF31D53B8120085BCC2 /* Info.plist */,
 			);
 			path = SuperUITests;
@@ -975,6 +976,29 @@
 				85BC55D11DAEE16B00BB2043 /* IDPCoreDataManager.m */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		85BC55D41DAF641E00BB2043 /* Specs */ = {
+			isa = PBXGroup;
+			children = (
+				85BC55D61DAF643100BB2043 /* IDPActiveRecordSpec */,
+			);
+			path = Specs;
+			sourceTree = "<group>";
+		};
+		85BC55D51DAF641E00BB2043 /* Test Objects */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Test Objects";
+			sourceTree = "<group>";
+		};
+		85BC55D61DAF643100BB2043 /* IDPActiveRecordSpec */ = {
+			isa = PBXGroup;
+			children = (
+				85BC55D71DAF644B00BB2043 /* IDPActiveRecordSpec.m */,
+			);
+			path = IDPActiveRecordSpec;
 			sourceTree = "<group>";
 		};
 		85C0B1F91D995CCD0007E755 /* IDPFBLoginViewController */ = {
@@ -1636,7 +1660,6 @@
 				85F8068C1D9336E800BD842F /* IDPArrayTwoIndexChangeModel.m in Sources */,
 				857795011D6BA6A500C16BA4 /* UINib+IDPExtensions.m in Sources */,
 				858239101D5B5DEB00623348 /* IDPAnimationView.m in Sources */,
-				85193DF21D53B8120085BCC2 /* SuperUITests.m in Sources */,
 				85F8069E1D9336E800BD842F /* IDPImageModel.m in Sources */,
 				8576385A1D858D60004DC4BC /* UIImage+IDPExtensions.m in Sources */,
 				856987F51D5BBD0400DBB5CE /* IDPRandom.m in Sources */,
@@ -1704,6 +1727,7 @@
 				854FD6F61DA447BC00079571 /* IDPFBUserDetailsContext.m in Sources */,
 				857794F71D6BA6A500C16BA4 /* NSIndexPath+IDPExtensions.m in Sources */,
 				85F806A21D9336E800BD842F /* IDPLocalImageModel.m in Sources */,
+				85BC55D81DAF644B00BB2043 /* IDPActiveRecordSpec.m in Sources */,
 				858239181D5B5DEB00623348 /* IDPUsersViewController.m in Sources */,
 				858239121D5B5DEB00623348 /* IDPAnimationViewController.m in Sources */,
 				85C0B2A61D9D5EBE0007E755 /* NSArray+IDPJSONAdapter.m in Sources */,

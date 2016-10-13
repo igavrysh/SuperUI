@@ -14,8 +14,21 @@
 @class IDPCoreDataManager;
 
 @interface IDPCoreDataManager : NSObject
+@property (nonatomic, readonly) NSManagedObjectModel            *managedObjectModel;
+@property (nonatomic, readonly) NSPersistentStoreCoordinator    *persistentStoreCoordinator;
+@property (nonatomic, readonly) NSManagedObjectContext          *managedObjectContext;
 
 + (instancetype)sharedManager;
+
++ (instancetype)sharedManagerWithMomName:(NSString *)momName;
+
++ (instancetype)sharedManagerWithMomName:(NSString *)momName
+                               storeName:(NSString *)storeName;
+
++ (instancetype)sharedManagerWithMomName:(NSString *)momName
+                               storeName:(NSString *)storeName
+                               storeType:(NSString *)storeType;
+
 + (NSDictionary *)storeTypeExtensions;
 
 // Always call -initStoreCoordinator befor +sharedManager usage

@@ -19,13 +19,12 @@ static IDPCoreDataManager *__sharedManager = nil;
 kIDPStringVariableDefinition(kDefaultStoreName, @"Store");
 
 @interface IDPCoreDataManager ()
-@property (nonatomic, copy)     NSString                        *momName;
-@property (nonatomic, copy)     NSString                        *storeName;
-@property (nonatomic, copy)     NSString                        *storeType;
-
 @property (nonatomic, strong)   NSManagedObjectModel            *managedObjectModel;
 @property (nonatomic, strong)   NSPersistentStoreCoordinator    *persistentStoreCoordinator;
 @property (nonatomic, strong)   NSManagedObjectContext          *managedObjectContext;
+@property (nonatomic, copy)     NSString                        *momName;
+@property (nonatomic, copy)     NSString                        *storeName;
+@property (nonatomic, copy)     NSString                        *storeType;
 
 @end
 
