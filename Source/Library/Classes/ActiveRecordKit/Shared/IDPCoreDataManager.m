@@ -23,11 +23,17 @@ kIDPStringVariableDefinition(kDefaultStoreName, @"Store");
 @property (nonatomic, strong)   NSManagedObjectModel            *managedObjectModel;
 @property (nonatomic, strong)   NSPersistentStoreCoordinator    *persistentStoreCoordinator;
 @property (nonatomic, strong)   NSManagedObjectContext          *managedObjectContext;
+
 @property (nonatomic, copy)     NSString                        *momName;
 @property (nonatomic, copy)     NSString                        *storeName;
 @property (nonatomic, copy)     NSString                        *storeType;
+
 @property (nonatomic, readonly) NSString                        *fullStoreName;
 @property (nonatomic, readonly) NSURL                           *storeURL;
+
+- (void)setUpManagedObjectModelWithCompletionHandler:(IDPVoidBlock)block;
+- (void)setUpStoreCoordinatorWithCompletionHandler:(IDPVoidBlock)block;
+- (void)setUpManagedObjectContextWithCompletionHandler:(IDPVoidBlock)block;
 
 @end
 
@@ -74,9 +80,6 @@ kIDPStringVariableDefinition(kDefaultStoreName, @"Store");
     __sharedManager.momName = momName;
     __sharedManager.storeName = storeName;
     __sharedManager.storeType = storeType;
-    
-    
-    [__sharedManager initStoreCoordinator];
     
     return __sharedManager;
 }
@@ -146,7 +149,7 @@ kIDPStringVariableDefinition(kDefaultStoreName, @"Store");
 
 - (void)setUpManagedObjectContextWithCompletionHandler:(IDPVoidBlock)block {
     if (!self.persistentStoreCoordinator) {
-        NSLog(@"Error: Persistent Store Coordinator was not initialized, call -initStoreCoordinator");
+        self.state = IDPCoreDataManagerDidFailSettingUp;
         
         return;
     }

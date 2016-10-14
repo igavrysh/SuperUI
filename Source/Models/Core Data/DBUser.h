@@ -9,14 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface DBUser : NSManagedObject
-
-// Insert code here to declare functionality of your managed object subclass
+@property (nullable, nonatomic, retain) NSString *fbGUID;
+@property (nullable, nonatomic, retain) NSString *firstName;
+@property (nullable, nonatomic, retain) NSString *hometown;
+@property (nullable, nonatomic, retain) NSString *lastName;
+@property (nullable, nonatomic, retain) NSString *location;
+@property (nullable, nonatomic, retain) NSString *name;
+@property (nullable, nonatomic, retain) DBUser *friends;
+@property (nullable, nonatomic, retain) NSManagedObject *images;
+@property (nullable, nonatomic, retain) NSManagedObject *profileImage;
 
 @end
 
-NS_ASSUME_NONNULL_END
-
-#import "DBUser+CoreDataProperties.h"

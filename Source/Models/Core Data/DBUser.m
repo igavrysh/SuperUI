@@ -10,6 +10,14 @@
 
 @implementation DBUser
 
-// Insert code here to add functionality to your managed object subclass
+@dynamic fbGUID;
+@dynamic firstName;
+@dynamic hometown;
+@dynamic lastName;
+@dynamic location;
+@dynamic name;
+@dynamic friends;
+@dynamic images;
+@dynamic profileImage;
 
 @end

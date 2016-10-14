@@ -20,8 +20,8 @@ typedef NS_ENUM(NSUInteger, IDPCoreDataManagerState) {
 @class IDPCoreDataManager;
 
 @protocol IDPCoreDataManagerObserver <NSObject>
-@optional
 
+@optional
 - (void)coreDataManagerDidSetUp:(IDPCoreDataManager *)manager;
 
 - (void)coreDataManagerDidFaileLoading:(IDPCoreDataManager *)manager;
@@ -46,7 +46,6 @@ typedef NS_ENUM(NSUInteger, IDPCoreDataManagerState) {
 
 + (NSDictionary *)storeTypeExtensions;
 
-// Always call -initStoreCoordinator befor +sharedManager usage
-- (void)initStoreCoordinator;
+- (void)setUp;
 
 @end
