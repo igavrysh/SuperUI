@@ -88,7 +88,7 @@ kIDPStringVariableDefinition(kDefaultStoreName, @"Store");
 #pragma mark Initializations and Deallocations
 
 - (void)setUp {
-    if (__sharedManager) {
+    if (self.managedObjectModel && self.managedObjectContext && self.persistentStoreCoordinator) {
         return;
     }
     
@@ -157,7 +157,7 @@ kIDPStringVariableDefinition(kDefaultStoreName, @"Store");
     _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     [_managedObjectContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
     
-    self.state =  IDPCoreDataManagerDidSetUp;
+    self.state = IDPCoreDataManagerDidSetUp;
     
     IDPPerformBlock(block);
 }
@@ -172,9 +172,29 @@ kIDPStringVariableDefinition(kDefaultStoreName, @"Store");
 }
 
 - (NSURL *)storeURL {
-    NSURL *url = [NSURL fileURLWithPath:[NSFileManager documentPath]];
+    NSURL *url = [NSURL fileURLWithPath:[NSFileManager cachePath]];
     
     return [url URLByAppendingPathComponent:[self fullStoreName]];
+}
+
+
+#pragma mark -
+#pragma mark IDPObservableObject
+
+- (SEL)selectorForState:(NSUInteger)state {
+    switch (state) {
+        case IDPCoreDataManagerDidInit:
+            return @selector(coreDataManagerDidInit:);
+            
+        case IDPCoreDataManagerDidSetUp:
+            return @selector(coreDataManagerDidSetUp:);
+            
+        case IDPCoreDataManagerDidFailSettingUp:
+            return @selector(coreDataManagerDidFailLoading:);
+            
+        default:
+            return [super selectorForState:state];
+    }
 }
 
 @end

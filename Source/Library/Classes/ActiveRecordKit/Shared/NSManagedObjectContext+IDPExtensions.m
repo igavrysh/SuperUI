@@ -35,11 +35,26 @@
     NSError *error = nil;
     NSArray *entities = [[self context] executeFetchRequest:request error:&error];
     if (error) {
-        NSLog(@"Error fetching %@ objects: %@\n%@", entityName, [error localizedDescription], [error userInfo]);
+        NSLog(@"Error fetching %@ objects: %@\n%@",
+              entityName,
+              [error localizedDescription],
+              [error userInfo]);
+        
         abort();
     }
     
     return entities;
 }
+
++ (void)saveManagedObjectContext {
+    NSError *error = nil;
+    if ([[self context] hasChanges])
+        if (![[self context] save:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            
+            abort();
+        }
+}
+
 
 @end

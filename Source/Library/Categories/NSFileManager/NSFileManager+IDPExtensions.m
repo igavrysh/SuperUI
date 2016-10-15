@@ -46,7 +46,7 @@ static NSString * const IDPImagesCacheFolder = @"images";
     IDPReturnAfterSettingVariableWithBlockOnce(pathFactory);
 }
 
-+ (NSString *)cachesPath {
++ (NSString *)cachePath {
     IDPFactoryBlock pathFactory = [self pathFactoryWithType:NSCachesDirectory];
     
     IDPReturnAfterSettingVariableWithBlockOnce(pathFactory);
@@ -87,7 +87,7 @@ static NSString * const IDPImagesCacheFolder = @"images";
 
 + (NSString *)imagesCachePath {
     IDPFactoryBlock pathFactory = ^{
-        NSString *cachePath = [NSFileManager cachesPath];
+        NSString *cachePath = [NSFileManager cachePath];
         
         return [cachePath stringByAppendingPathComponent:IDPImagesCacheFolder];
     };

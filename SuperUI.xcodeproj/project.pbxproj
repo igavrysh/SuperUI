@@ -31,6 +31,10 @@
 		8548FFE01DB0EE0F00E4ABB3 /* NSManagedObject+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8548FFDE1DB0EE0F00E4ABB3 /* NSManagedObject+IDPExtensions.m */; };
 		8548FFE31DB0EE9100E4ABB3 /* NSManagedObjectContext+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8548FFE21DB0EE9100E4ABB3 /* NSManagedObjectContext+IDPExtensions.m */; };
 		8548FFE41DB0EE9100E4ABB3 /* NSManagedObjectContext+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8548FFE21DB0EE9100E4ABB3 /* NSManagedObjectContext+IDPExtensions.m */; };
+		8548FFEC1DB20F5800E4ABB3 /* IDPActiveRecordKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8548FFEB1DB20F5800E4ABB3 /* IDPActiveRecordKit.m */; };
+		8548FFED1DB20F5800E4ABB3 /* IDPActiveRecordKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8548FFEB1DB20F5800E4ABB3 /* IDPActiveRecordKit.m */; };
+		8548FFF01DB21ADA00E4ABB3 /* IDPCoreDataManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8548FFEF1DB21ADA00E4ABB3 /* IDPCoreDataManagerTest.m */; };
+		8548FFF11DB21ADA00E4ABB3 /* IDPCoreDataManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8548FFEF1DB21ADA00E4ABB3 /* IDPCoreDataManagerTest.m */; };
 		854E11FC1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 854E11FB1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m */; };
 		854E11FD1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 854E11FB1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m */; };
 		854FD6F51DA447BC00079571 /* IDPFBUserDetailsContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 854FD6F41DA447BC00079571 /* IDPFBUserDetailsContext.m */; };
@@ -262,6 +266,10 @@
 		8548FFDE1DB0EE0F00E4ABB3 /* NSManagedObject+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+IDPExtensions.m"; sourceTree = "<group>"; };
 		8548FFE11DB0EE9100E4ABB3 /* NSManagedObjectContext+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+IDPExtensions.h"; sourceTree = "<group>"; };
 		8548FFE21DB0EE9100E4ABB3 /* NSManagedObjectContext+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+IDPExtensions.m"; sourceTree = "<group>"; };
+		8548FFEA1DB20F5800E4ABB3 /* IDPActiveRecordKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPActiveRecordKit.h; sourceTree = "<group>"; };
+		8548FFEB1DB20F5800E4ABB3 /* IDPActiveRecordKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPActiveRecordKit.m; sourceTree = "<group>"; };
+		8548FFEE1DB21ADA00E4ABB3 /* IDPCoreDataManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPCoreDataManagerTest.h; sourceTree = "<group>"; };
+		8548FFEF1DB21ADA00E4ABB3 /* IDPCoreDataManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPCoreDataManagerTest.m; sourceTree = "<group>"; };
 		854E11FA1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+IDPExtensions.h"; sourceTree = "<group>"; };
 		854E11FB1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+IDPExtensions.m"; sourceTree = "<group>"; };
 		854FD6F31DA447BC00079571 /* IDPFBUserDetailsContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPFBUserDetailsContext.h; sourceTree = "<group>"; };
@@ -966,6 +974,8 @@
 		85BC55CD1DAEE13B00BB2043 /* ActiveRecordKit */ = {
 			isa = PBXGroup;
 			children = (
+				8548FFEA1DB20F5800E4ABB3 /* IDPActiveRecordKit.h */,
+				8548FFEB1DB20F5800E4ABB3 /* IDPActiveRecordKit.m */,
 				85BC55CF1DAEE14500BB2043 /* Shared */,
 			);
 			path = ActiveRecordKit;
@@ -995,6 +1005,8 @@
 		85BC55D51DAF641E00BB2043 /* Test Objects */ = {
 			isa = PBXGroup;
 			children = (
+				8548FFEE1DB21ADA00E4ABB3 /* IDPCoreDataManagerTest.h */,
+				8548FFEF1DB21ADA00E4ABB3 /* IDPCoreDataManagerTest.m */,
 			);
 			path = "Test Objects";
 			sourceTree = "<group>";
@@ -1658,6 +1670,7 @@
 				8506A8BB1DA3350400CB6282 /* IDPFBUserInteraction.m in Sources */,
 				85F8068E1D9336E800BD842F /* IDPArrayInsertChangeModel.m in Sources */,
 				85F806921D9336E800BD842F /* IDPArrayRemoveChangeModel.m in Sources */,
+				8548FFED1DB20F5800E4ABB3 /* IDPActiveRecordKit.m in Sources */,
 				85F806A01D9336E800BD842F /* IDPInternetImageModel.m in Sources */,
 				85C0B2261D9965EC0007E755 /* IDPMacros.m in Sources */,
 				85E85A5F1D689DE7005A0342 /* IDPGCDQueue.m in Sources */,
@@ -1721,6 +1734,7 @@
 				859D968F1D7C5FD1005C05C6 /* IDPArrayChangeModel+IDPExtensions.m in Sources */,
 				85F806A41D9336E800BD842F /* IDPModel.m in Sources */,
 				8577950D1D6BA6A500C16BA4 /* UITableView+IDPExtensions.m in Sources */,
+				8548FFF11DB21ADA00E4ABB3 /* IDPCoreDataManagerTest.m in Sources */,
 				85C0B2B61D9D5FB70007E755 /* NSNull+IDPJSONAdapter.m in Sources */,
 				85C0B22E1D9966050007E755 /* IDPContext.m in Sources */,
 				85F806941D9336E800BD842F /* IDPArrayReplaceChangeModel.m in Sources */,
@@ -1760,6 +1774,7 @@
 				857781441D76C772007EEF52 /* NSArray+IDPExtensions.m in Sources */,
 				85F806991D9336E800BD842F /* IDPArrayModel.m in Sources */,
 				854FD6FF1DA44AA700079571 /* IDPFBUserDetailsViewController.m in Sources */,
+				8548FFEC1DB20F5800E4ABB3 /* IDPActiveRecordKit.m in Sources */,
 				859D96961D7C5FD1005C05C6 /* IDPArrayReplaceChangeModel+IDPExtensions.m in Sources */,
 				85C0B2631D9AB6260007E755 /* IDPFBFriendsContext.m in Sources */,
 				856987F41D5BBD0400DBB5CE /* IDPRandom.m in Sources */,
@@ -1827,6 +1842,7 @@
 				85C0B2271D9965EC0007E755 /* IDPReturnMacros.m in Sources */,
 				8506A8BA1DA3350400CB6282 /* IDPFBUserInteraction.m in Sources */,
 				85F806A31D9336E800BD842F /* IDPModel.m in Sources */,
+				8548FFF01DB21ADA00E4ABB3 /* IDPCoreDataManagerTest.m in Sources */,
 				8577950E1D6BA6A500C16BA4 /* UIWindow+IDPExtensions.m in Sources */,
 				85C0B2311D99736C0007E755 /* IDPFBLoginContext.m in Sources */,
 				8585267C1D77A53100E2EA6C /* IDPUserArrayModel.m in Sources */,

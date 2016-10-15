@@ -12,6 +12,7 @@
 #import "IDPObservableObject.h"
 
 typedef NS_ENUM(NSUInteger, IDPCoreDataManagerState) {
+    IDPCoreDataManagerDidInit,
     IDPCoreDataManagerDidSetUp,
     IDPCoreDataManagerDidFailSettingUp,
     IDPPersistentStoreCoordinatorStateCount
@@ -22,9 +23,11 @@ typedef NS_ENUM(NSUInteger, IDPCoreDataManagerState) {
 @protocol IDPCoreDataManagerObserver <NSObject>
 
 @optional
+- (void)coreDataManagerDidInit:(IDPCoreDataManager *)manager;
+
 - (void)coreDataManagerDidSetUp:(IDPCoreDataManager *)manager;
 
-- (void)coreDataManagerDidFaileLoading:(IDPCoreDataManager *)manager;
+- (void)coreDataManagerDidFailLoading:(IDPCoreDataManager *)manager;
 
 @end
 

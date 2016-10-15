@@ -17,6 +17,4 @@
 
 - (void)saveManagedObject;
 
-
-
 @end

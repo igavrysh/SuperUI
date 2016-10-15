@@ -32,13 +32,7 @@
 #pragma mark Public Methods
 
 - (void)saveManagedObject {
-    NSError *error = nil;
-    
-    [[self managedObjectContext] save:&error];
-    
-    if (error) {
-        NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
-    }
+    [NSManagedObjectContext saveManagedObjectContext];
 }
 
 
