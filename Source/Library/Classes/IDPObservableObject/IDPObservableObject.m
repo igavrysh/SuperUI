@@ -75,12 +75,12 @@
 - (void)addObservers:(NSArray *)observers {
     @synchronized(self.observers) {
         [observers performBlockWithEachObject:^(id object) {
-            [self addObserver:object];
+            [self addObserverObject:object];
         }];
     }
 }
 
-- (void)addObserver:(id)observer {
+- (void)addObserverObject:(id)observer {
     @synchronized(self.observers) {
         if (![self.observers containsObject:observer]) {
             [self.observers addObject:observer];

@@ -36,7 +36,7 @@
 + (instancetype)userWithID:(NSString *)userID {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID == %@", userID];
     
-    IDPFBUser *user = [[NSManagedObject fetchEntityWithPredicate:predicate sortDescriptors:nil] firstObject];
+    IDPFBUser *user = [[self fetchEntityWithPredicate:predicate sortDescriptors:nil] firstObject];
     
     if (!user) {
         user = [IDPFBUser managedObject];
@@ -49,9 +49,11 @@
 #pragma mark - 
 #pragma mark Initializations and Deallocation
 
-- (instancetype)init {
-    self = [super init];
-    self.targetObservableObject = [IDPObservableObject new];
+- (NSManagedObject *)initWithEntity:(NSEntityDescription *)entity
+     insertIntoManagedObjectContext:(NSManagedObjectContext *)context
+{
+    self = [super initWithEntity:entity insertIntoManagedObjectContext:context];
+    self.targetObservableObject = [[IDPObservableObject alloc] init];
     
     return self;
 }

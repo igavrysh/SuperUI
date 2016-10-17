@@ -31,9 +31,9 @@ kIDPStringVariableDefinition(kDefaultStoreName, @"Store");
 @property (nonatomic, readonly) NSString                        *fullStoreName;
 @property (nonatomic, readonly) NSURL                           *storeURL;
 
-- (void)setUpManagedObjectModelWithCompletionHandler:(IDPVoidBlock)block;
-- (void)setUpStoreCoordinatorWithCompletionHandler:(IDPVoidBlock)block;
-- (void)setUpManagedObjectContextWithCompletionHandler:(IDPVoidBlock)block;
+- (void)setupManagedObjectModel;
+- (void)setupStoreCoordinator;
+- (void)setupManagedObjectContext;
 
 @end
 
@@ -87,26 +87,23 @@ kIDPStringVariableDefinition(kDefaultStoreName, @"Store");
 #pragma mark - 
 #pragma mark Initializations and Deallocations
 
-- (void)setUp {
+- (void)setup {
     if (self.managedObjectModel && self.managedObjectContext && self.persistentStoreCoordinator) {
         return;
     }
     
-    IDPWeakify(self);
-    [self setUpManagedObjectModelWithCompletionHandler:^{
-        IDPStrongify(self);
-        [self setUpStoreCoordinatorWithCompletionHandler:^{
-            IDPStrongify(self);
-            [self setUpManagedObjectContextWithCompletionHandler:nil];
-        }];
-    }];
+    IDPAsyncPerformInQueue(DISPATCH_QUEUE_PRIORITY_DEFAULT, ^{
+        [self setupManagedObjectModel];
+        [self setupStoreCoordinator];
+        [self setupManagedObjectContext];
+    });
 }
 
-- (void)setUpManagedObjectModelWithCompletionHandler:(IDPVoidBlock)block {
+- (void)setupManagedObjectModel {
     NSString *modelName = self.momName;
     
     if (!modelName) {
-        self.state = IDPCoreDataManagerDidFailSettingUp;
+        self.state = IDPCoreDataManagerDidFailSettingup;
         
         return;
     }
@@ -114,52 +111,49 @@ kIDPStringVariableDefinition(kDefaultStoreName, @"Store");
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:modelName
                                               withExtension:@"momd"];
     if (!modelURL) {
-        self.state = IDPCoreDataManagerDidFailSettingUp;
+        self.state = IDPCoreDataManagerDidFailSettingup;
         
         return;
     }
     
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    
-    IDPPerformBlock(block);
 }
 
-- (void)setUpStoreCoordinatorWithCompletionHandler:(IDPVoidBlock)block {
-    void (^coordinatorFactory)(void) = ^{
-        _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
-        
-        NSError *error = nil;
-        
-        [_persistentStoreCoordinator addPersistentStoreWithType:self.storeType
-                                                  configuration:nil
-                                                            URL:self.storeURL
-                                                        options:nil
-                                                          error:&error];
-        if (error) {
-            self.state = IDPCoreDataManagerDidFailSettingUp;
-            
-            return;
-        }
-        
-        IDPBlockPerform(block);
-    };
+- (void)setupStoreCoordinator {
+    NSManagedObjectModel *model = self.managedObjectModel;
     
-    IDPAsyncPerformInQueue(DISPATCH_QUEUE_PRIORITY_DEFAULT, coordinatorFactory);
+    if (!model) {
+        return;
+    }
+    
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
+    
+    NSError *error = nil;
+    
+    [_persistentStoreCoordinator addPersistentStoreWithType:self.storeType
+                                              configuration:nil
+                                                        URL:self.storeURL
+                                                    options:nil
+                                                      error:&error];
+    if (error) {
+        self.state = IDPCoreDataManagerDidFailSettingup;
+    }
 }
 
-- (void)setUpManagedObjectContextWithCompletionHandler:(IDPVoidBlock)block {
+- (void)setupManagedObjectContext {
     if (!self.persistentStoreCoordinator) {
-        self.state = IDPCoreDataManagerDidFailSettingUp;
+        self.state = IDPCoreDataManagerDidFailSettingup;
         
         return;
     }
     
-    self.managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    self.managedObjectContext.persistentStoreCoordinator = self.persistentStoreCoordinator;
+    NSUInteger type = NSMainQueueConcurrencyType;
+    NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:type];
+    context.persistentStoreCoordinator = self.persistentStoreCoordinator;
     
-    self.state = IDPCoreDataManagerDidSetUp;
+    self.managedObjectContext = context;
     
-    IDPPerformBlock(block);
+    self.state = IDPCoreDataManagerDidSetup;
 }
 
 #pragma mark -
@@ -186,10 +180,10 @@ kIDPStringVariableDefinition(kDefaultStoreName, @"Store");
         case IDPCoreDataManagerDidInit:
             return @selector(coreDataManagerDidInit:);
             
-        case IDPCoreDataManagerDidSetUp:
-            return @selector(coreDataManagerDidSetUp:);
+        case IDPCoreDataManagerDidSetup:
+            return @selector(coreDataManagerDidSetup:);
             
-        case IDPCoreDataManagerDidFailSettingUp:
+        case IDPCoreDataManagerDidFailSettingup:
             return @selector(coreDataManagerDidFailLoading:);
             
         default:

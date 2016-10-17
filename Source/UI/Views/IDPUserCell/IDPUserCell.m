@@ -58,7 +58,7 @@ static NSString * const kIDPNoImageExtension = @"jpg";
     if (self.userImageView.imageModel != imageModel) {
         [self.userImageView.imageModel removeObserver:self];
         
-        [imageModel addObserver:self];
+        [imageModel addObserverObject:self];
         
         self.userImageView.imageModel = imageModel;
     }

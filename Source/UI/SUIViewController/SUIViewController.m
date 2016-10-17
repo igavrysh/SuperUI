@@ -21,7 +21,7 @@ IDPBaseViewGetterSynthesize(SUIView, rootView);
         
         _model = model;
         
-        [model addObserver:self];
+        [model addObserverObject:self];
     }
 }
 

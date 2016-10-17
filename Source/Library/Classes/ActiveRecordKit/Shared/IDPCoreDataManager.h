@@ -13,8 +13,8 @@
 
 typedef NS_ENUM(NSUInteger, IDPCoreDataManagerState) {
     IDPCoreDataManagerDidInit,
-    IDPCoreDataManagerDidSetUp,
-    IDPCoreDataManagerDidFailSettingUp,
+    IDPCoreDataManagerDidSetup,
+    IDPCoreDataManagerDidFailSettingup,
     IDPPersistentStoreCoordinatorStateCount
 };
 
@@ -25,7 +25,7 @@ typedef NS_ENUM(NSUInteger, IDPCoreDataManagerState) {
 @optional
 - (void)coreDataManagerDidInit:(IDPCoreDataManager *)manager;
 
-- (void)coreDataManagerDidSetUp:(IDPCoreDataManager *)manager;
+- (void)coreDataManagerDidSetup:(IDPCoreDataManager *)manager;
 
 - (void)coreDataManagerDidFailLoading:(IDPCoreDataManager *)manager;
 
@@ -49,6 +49,6 @@ typedef NS_ENUM(NSUInteger, IDPCoreDataManagerState) {
 
 + (NSDictionary *)storeTypeExtensions;
 
-- (void)setUp;
+- (void)setup;
 
 @end

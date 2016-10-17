@@ -15,12 +15,12 @@
 #pragma mark -
 #pragma mark IDPCoreDataManagerObserver
 
-- (void)coreDataManagerDidSetUp:(IDPCoreDataManager *)manager {
-    IDPPerformBlock(self.onSuccessfulSetUp);
+- (void)coreDataManagerDidSetup:(IDPCoreDataManager *)manager {
+    IDPPerformBlock(self.onSuccessfulSetup);
 }
 
-- (void)coreDataManagerDidFaileLoading:(IDPCoreDataManager *)manager {
-    IDPPerformBlock(self.onFailedSetUp);
+- (void)coreDataManagerDidFailLoading:(IDPCoreDataManager *)manager {
+    IDPPerformBlock(self.onFailedSetup);
 }
 
 @end

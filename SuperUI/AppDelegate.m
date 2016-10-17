@@ -40,7 +40,7 @@ kIDPStringVariableDefinition(kIDPMomName, @"SuperUI");
         
         _dataManager = dataManager;
         
-        [dataManager addObserver:self];
+        [dataManager addObserverObject:self];
     }
 }
 
@@ -52,7 +52,7 @@ kIDPStringVariableDefinition(kIDPMomName, @"SuperUI");
                              didFinishLaunchingWithOptions:launchOptions];
     
     self.dataManager = [IDPCoreDataManager sharedManagerWithMomName:kIDPMomName];
-    [self.dataManager setUp];
+    [self.dataManager setup];
     
     return YES;
 }
@@ -94,7 +94,7 @@ kIDPStringVariableDefinition(kIDPMomName, @"SuperUI");
 #pragma mark -
 #pragma mark IDPCoreDataManagerObserver 
 
-- (void)coreDataManagerDidSetUp:(IDPCoreDataManager *)manager {
+- (void)coreDataManagerDidSetup:(IDPCoreDataManager *)manager {
     UIWindow *window = [UIWindow fullScreenWindow];
     self.window = window;
     

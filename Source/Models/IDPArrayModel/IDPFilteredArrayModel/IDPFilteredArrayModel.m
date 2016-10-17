@@ -46,7 +46,7 @@
         
         _arrayModel = arrayModel;
         
-        [arrayModel addObserver:self];
+        [arrayModel addObserverObject:self];
     }
 }
 

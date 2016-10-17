@@ -13,8 +13,8 @@
 #import "IDPBlockTypes.h"
 
 @interface IDPCoreDataManagerTest : NSObject <IDPCoreDataManagerObserver>
-@property (nonatomic, strong) IDPVoidBlock onSuccessfulSetUp;
-@property (nonatomic, strong) IDPVoidBlock onFailedSetUp;
+@property (nonatomic, strong) IDPVoidBlock onSuccessfulSetup;
+@property (nonatomic, strong) IDPVoidBlock onFailedSetup;
 
 
 @end

@@ -80,7 +80,7 @@
         
         _imageModel = imageModel;
         
-        [imageModel addObserver:self];
+        [imageModel addObserverObject:self];
         
         [imageModel load];
     }

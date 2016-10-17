@@ -53,7 +53,7 @@
         
         _model = model;
         
-        [model addObserver:self];
+        [model addObserverObject:self];
     }
 }
 

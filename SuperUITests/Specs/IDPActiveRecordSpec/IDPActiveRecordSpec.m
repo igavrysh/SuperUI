@@ -34,22 +34,22 @@ beforeAll(^{
     
     [IDPCoreDataManager sharedManagerWithMomName:@"SuperUI" storeName:storeName];
     
-    __block BOOL successfulSetUp = NO;
-    __block BOOL failedSetUp = NO;
+    __block BOOL successfulSetup = NO;
+    __block BOOL failedSetup = NO;
     IDPCoreDataManagerTest *coreDataManagerObserver = [IDPCoreDataManagerTest new];
-    coreDataManagerObserver.onSuccessfulSetUp = ^{
-        successfulSetUp = YES;
+    coreDataManagerObserver.onSuccessfulSetup = ^{
+        successfulSetup = YES;
     };
     
-    coreDataManagerObserver.onFailedSetUp = ^{
-        failedSetUp = YES;
+    coreDataManagerObserver.onFailedSetup = ^{
+        failedSetup = YES;
     };
     
-    [[IDPCoreDataManager sharedManager] addObserver:coreDataManagerObserver];
+    [[IDPCoreDataManager sharedManager] addObserverObject:coreDataManagerObserver];
     
-    [[IDPCoreDataManager sharedManager] setUp];
+    [[IDPCoreDataManager sharedManager] setup];
     
-    while (!successfulSetUp && !failedSetUp) {
+    while (!successfulSetup && !failedSetup) {
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
     }
 });
