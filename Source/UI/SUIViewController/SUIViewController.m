@@ -17,7 +17,7 @@ IDPBaseViewGetterSynthesize(SUIView, rootView);
 
 - (void)setModel:(IDPModel *)model {
     if (_model != model) {
-        [_model removeObserver:self];
+        [_model removeObserverObject:self];
         
         _model = model;
         

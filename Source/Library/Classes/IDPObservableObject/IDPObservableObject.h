@@ -21,11 +21,11 @@
 @property (nonatomic, assign)   NSUInteger      state;
 @property (nonatomic, readonly) NSSet           *observerSet;
 
-- (void)addObservers:(NSArray *)observers;
+- (void)addObserverObjects:(NSArray *)observers;
 - (void)addObserverObject:(id)observer;
 
-- (void)removeObservers:(NSArray *)observers;
-- (void)removeObserver:(id)observer;
+- (void)removeObserverObjects:(NSArray *)observers;
+- (void)removeObserverObject:(id)observer;
 
 - (BOOL)isObservedByObject:(id)observer;
 

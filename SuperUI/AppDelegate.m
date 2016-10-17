@@ -36,7 +36,7 @@ kIDPStringVariableDefinition(kIDPMomName, @"SuperUI");
 
 - (void)setDataManager:(IDPCoreDataManager *)dataManager {
     if (_dataManager != dataManager) {
-        [_dataManager removeObserver:self];
+        [_dataManager removeObserverObject:self];
         
         _dataManager = dataManager;
         

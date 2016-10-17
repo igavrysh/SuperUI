@@ -76,7 +76,7 @@
 
 - (void)setImageModel:(IDPImageModel *)imageModel {
     if (_imageModel != imageModel) {
-        [_imageModel removeObserver:self];
+        [_imageModel removeObserverObject:self];
         
         _imageModel = imageModel;
         

@@ -72,7 +72,7 @@
 #pragma mark - 
 #pragma mark Public
 
-- (void)addObservers:(NSArray *)observers {
+- (void)addObserverObjects:(NSArray *)observers {
     @synchronized(self.observers) {
         [observers performBlockWithEachObject:^(id object) {
             [self addObserverObject:object];
@@ -88,15 +88,15 @@
     }
 }
 
-- (void)removeObservers:(NSArray *)observers {
+- (void)removeObserverObjects:(NSArray *)observers {
     @synchronized(self.observers) {
         [observers performBlockWithEachObject:^(id object) {
-            [self removeObserver:object];
+            [self removeObserverObject:object];
         }];
     }
 }
 
-- (void)removeObserver:(id)observer {
+- (void)removeObserverObject:(id)observer {
     @synchronized(self.observers) {
         [self.observers removeObject:observer];
     }

@@ -42,7 +42,7 @@
 
 - (void)setArrayModel:(IDPArrayModel *)arrayModel {
     if (_arrayModel != arrayModel) {
-        [_arrayModel removeObserver:self];
+        [_arrayModel removeObserverObject:self];
         
         _arrayModel = arrayModel;
         
