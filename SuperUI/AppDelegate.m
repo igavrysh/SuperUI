@@ -14,6 +14,7 @@
 #import "IDPAnimationViewController.h"
 #import "IDPUsersViewController.h"
 #import "IDPCoreDataManager.h"
+#import "IDPGCDQueue.h"
 
 #import "UIWindow+IDPExtensions.h"
 #import "NSString+IDPRandomName.h"
@@ -95,16 +96,18 @@ kIDPStringVariableDefinition(kIDPMomName, @"SuperUI");
 #pragma mark IDPCoreDataManagerObserver 
 
 - (void)coreDataManagerDidSetup:(IDPCoreDataManager *)manager {
-    UIWindow *window = [UIWindow fullScreenWindow];
-    self.window = window;
-    
-    IDPFBLoginViewController *fbController = [IDPFBLoginViewController new];
-    
-    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:fbController];
-    
-    window.rootViewController = controller;
-    
-    [window makeKeyAndVisible];
+    IDPSyncPerformInMainQueue(^{
+        UIWindow *window = [UIWindow fullScreenWindow];
+        self.window = window;
+        
+        IDPFBLoginViewController *fbController = [IDPFBLoginViewController new];
+        
+        UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:fbController];
+        
+        window.rootViewController = controller;
+        
+        [window makeKeyAndVisible];
+    });
 }
 
 @end
