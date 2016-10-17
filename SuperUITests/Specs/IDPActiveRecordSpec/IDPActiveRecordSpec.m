@@ -8,7 +8,7 @@
 
 #import "Kiwi.h"
 
-#import "DBUser.h"
+#import "IDPFBUser.h"
 
 #import "IDPCoreDataManager.h"
 #import "IDPActiveRecordKit.h"
@@ -57,7 +57,7 @@ beforeAll(^{
 
 void(^createUsers)(void) = ^{
     for (NSUInteger index = 0; index < entityCount; index++) {
-        DBUser *user = [DBUser managedObject];
+        IDPFBUser *user = [IDPFBUser managedObject];
         
         user.firstName = [NSString randomName];
         user.lastName = [NSString randomName];
@@ -75,7 +75,7 @@ NSArray *(^fetchUsersFromCustomContext)(void) = ^{
         currentContext.persistentStoreCoordinator = [[IDPCoreDataManager sharedManager] persistentStoreCoordinator];
     }
     
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([DBUser class])];
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([IDPFBUser class])];
     request.returnsObjectsAsFaults = YES;
     
     NSError *error = nil;
@@ -90,7 +90,7 @@ describe(@"DBUser", ^{
         });
         
         it(@"users should be present in current context", ^{
-            NSArray *users = [DBUser fetchEntityWithPredicate:nil sortDescriptors:nil];
+            NSArray *users = [IDPFBUser fetchEntityWithPredicate:nil sortDescriptors:nil];
             
             [[users should] haveCountOf:entityCount];
         });

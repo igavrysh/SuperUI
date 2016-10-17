@@ -11,7 +11,7 @@
 
 #import "IDPFBUserInteraction.h"
 
-#import "IDPUser.h"
+#import "IDPFBUser.h"
 
 @interface IDPFBUserInteraction ()
 @property (nonatomic, strong) FBSDKAccessToken  *token;
@@ -23,14 +23,14 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (IDPUser *)userWithID:(IDPUser *)user {
++ (IDPFBUser *)user {
     IDPFBUserInteraction *userGetter = [self new];
     
-    return [userGetter userWithID:user];
+    return [userGetter user];
 }
 
-+ (BOOL)isUserLoggedIn:(IDPUser *)user {
-    return (BOOL)user.ID;
++ (BOOL)isUserLoggedIn:(IDPFBUser *)user {
+    return (BOOL)user.userID;
 }
 
 #pragma mark - 
@@ -46,10 +46,10 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (IDPUser *)userWithID:(IDPUser *)user {
-    user.ID = self.token ? self.token.userID : nil;
+- (IDPFBUser *)user {
+    NSString *userID = self.token ? self.token.userID : nil;
     
-    return user;
+    return [IDPFBUser userWithID:userID];
 }
 
 @end

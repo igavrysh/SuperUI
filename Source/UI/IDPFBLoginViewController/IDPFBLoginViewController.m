@@ -14,7 +14,7 @@
 #import "IDPGCDQueue.h"
 #import "IDPFBFriendsViewController.h"
 #import "IDPFBConstants.h"
-#import "IDPUser.h"
+#import "IDPFBUser.h"
 #import "IDPFBUserInteraction.h"
 
 #import "IDPContextHelpers.h"
@@ -48,7 +48,7 @@
 #pragma mark Public Methods
 
 - (IBAction)onLogin:(UIButton *)button {
-    IDPUser *user  = [IDPUser new];
+    IDPFBUser *user  = [IDPFBUser managedObject];
     self.model = user;
     
     self.loginContext = [[IDPFBLoginContext alloc] initWithUser:user
@@ -71,19 +71,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    IDPUser *user = [IDPFBUserInteraction userWithID:[IDPUser new]];
+    IDPFBUser *user = [IDPFBUserInteraction user];
     self.model = user;
-    if ([IDPFBUserInteraction isUserLoggedIn:user]) {        
-        [self showFriendsViewControllerForUser:user];
+    
+    if ([IDPFBUserInteraction isUserLoggedIn:user]) {
+        NSUInteger t = 0;
+        //[self showFriendsViewControllerForUser:user];
     }
 }
 
 #pragma mark -
 #pragma mark IDPUserStateObserver
 
-- (void)modelDidLoad:(IDPUser *)user {
+- (void)userDidLoadId:(IDPFBUser *)user {
     IDPAsyncPerformInMainQueue(^{
-        [self showFriendsViewControllerForUser:user];
+        NSUInteger t = 0;
+        //[self showFriendsViewControllerForUser:user];
     });
 }
 

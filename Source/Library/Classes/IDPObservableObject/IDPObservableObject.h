@@ -8,7 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@interface IDPObservableObject : NSObject <NSCopying>
+@protocol IDPObservableObject <NSObject>
+
+@optional
+@property (nonatomic, assign)   NSUInteger      state;
+
+- (SEL)selectorForState:(NSUInteger)state;
+
+@end
+
+@interface IDPObservableObject : NSObject <NSCopying, IDPObservableObject>
 @property (nonatomic, assign)   NSUInteger      state;
 @property (nonatomic, readonly) NSSet           *observerSet;
 
@@ -20,9 +29,6 @@
 
 - (BOOL)isObservedByObject:(id)observer;
 
-// This method is itended for subclassing
-- (SEL)selectorForState:(NSUInteger)state;
-
 - (void)setState:(NSUInteger)state object:(id)object;
 
 - (void)notifyOfStateChange:(NSUInteger)state;
@@ -30,5 +36,8 @@
 
 - (void)performBlockWithNotification:(void (^)(void))block;
 - (void)performBlockWithoutNotification:(void (^)(void))block;
+
+// This method is itended for subclassing
+- (SEL)selectorForState:(NSUInteger)state;
 
 @end

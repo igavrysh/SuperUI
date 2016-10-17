@@ -136,7 +136,7 @@ kIDPStringVariableDefinition(kDefaultStoreName, @"Store");
                                                         options:nil
                                                           error:&error];
         if (error) {
-            self.state = IDPCoreDataManagerDidSetUp;
+            self.state = IDPCoreDataManagerDidFailSettingUp;
             
             return;
         }
@@ -154,8 +154,8 @@ kIDPStringVariableDefinition(kDefaultStoreName, @"Store");
         return;
     }
     
-    _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    [_managedObjectContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
+    self.managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    self.managedObjectContext.persistentStoreCoordinator = self.persistentStoreCoordinator;
     
     self.state = IDPCoreDataManagerDidSetUp;
     

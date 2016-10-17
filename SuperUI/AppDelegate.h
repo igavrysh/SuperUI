@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+#import "IDPCoreDataManager.h"
+
+@interface AppDelegate : UIResponder <
+    UIApplicationDelegate,
+    IDPCoreDataManagerObserver
+>
 
 @property (strong, nonatomic) UIWindow *window;
 

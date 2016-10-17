@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F27" minimumToolsVersion="Xcode 7.0">
-    <entity name="DBImage" syncable="YES">
+    <entity name="IDPFBImage" syncable="YES">
         <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBUser" inverseName="images" inverseEntity="DBUser" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="IDPFBUser" inverseName="images" inverseEntity="IDPFBUser" syncable="YES"/>
     </entity>
-    <entity name="DBUser" representedClassName="DBUser" syncable="YES">
-        <attribute name="fbGUID" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="IDPFBUser" representedClassName="IDPFBUser" syncable="YES">
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="hometown" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="friends" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBUser" inverseName="friends" inverseEntity="DBUser" syncable="YES"/>
-        <relationship name="images" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBImage" inverseName="user" inverseEntity="DBImage" syncable="YES"/>
-        <relationship name="profileImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBImage" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="friends" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="IDPFBUser" inverseName="friends" inverseEntity="IDPFBUser" syncable="YES"/>
+        <relationship name="images" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="IDPFBImage" inverseName="user" inverseEntity="IDPFBImage" syncable="YES"/>
+        <relationship name="profileImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="IDPFBImage" syncable="YES"/>
     </entity>
     <elements>
-        <element name="DBImage" positionX="-63" positionY="-18" width="128" height="73"/>
-        <element name="DBUser" positionX="133" positionY="-18" width="128" height="178"/>
+        <element name="IDPFBImage" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="IDPFBUser" positionX="133" positionY="-18" width="128" height="180"/>
     </elements>
 </model>

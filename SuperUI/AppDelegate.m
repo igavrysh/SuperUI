@@ -13,32 +13,46 @@
 #import "IDPUserArrayModel.h"
 #import "IDPAnimationViewController.h"
 #import "IDPUsersViewController.h"
+#import "IDPCoreDataManager.h"
 
 #import "UIWindow+IDPExtensions.h"
 #import "NSString+IDPRandomName.h"
 #import "NSNotificationCenter+IDPExtensions.h"
 #import "IDPFBLoginViewController.h"
 
+#import "IDPMacros.h"
+
+kIDPStringVariableDefinition(kIDPMomName, @"SuperUI");
+
 @interface AppDelegate ()
+@property (nonatomic, strong)   IDPCoreDataManager  *dataManager;
 
 @end
 
 @implementation AppDelegate
 
+#pragma mark -
+#pragma mark Accessors
+
+- (void)setDataManager:(IDPCoreDataManager *)dataManager {
+    if (_dataManager != dataManager) {
+        [_dataManager removeObserver:self];
+        
+        _dataManager = dataManager;
+        
+        [dataManager addObserver:self];
+    }
+}
+
+#pragma mark -
+#pragma mark Application Lifecycle
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
     
-    UIWindow *window = [UIWindow fullScreenWindow];
-    self.window = window;
-    
-    IDPFBLoginViewController *fbController = [IDPFBLoginViewController new];
-    
-    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:fbController];
-    
-    window.rootViewController = controller;
-    
-    [window makeKeyAndVisible];
+    self.dataManager = [IDPCoreDataManager sharedManagerWithMomName:kIDPMomName];
+    [self.dataManager setUp];
     
     return YES;
 }
@@ -75,6 +89,22 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     IDPPrintMethod;
+}
+
+#pragma mark -
+#pragma mark IDPCoreDataManagerObserver 
+
+- (void)coreDataManagerDidSetUp:(IDPCoreDataManager *)manager {
+    UIWindow *window = [UIWindow fullScreenWindow];
+    self.window = window;
+    
+    IDPFBLoginViewController *fbController = [IDPFBLoginViewController new];
+    
+    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:fbController];
+    
+    window.rootViewController = controller;
+    
+    [window makeKeyAndVisible];
 }
 
 @end

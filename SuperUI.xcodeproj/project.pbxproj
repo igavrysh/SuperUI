@@ -119,8 +119,6 @@
 		859D96971D7C5FD1005C05C6 /* IDPArrayReplaceChangeModel+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 859D968D1D7C5FD1005C05C6 /* IDPArrayReplaceChangeModel+IDPExtensions.m */; };
 		85BB7D4E1D70ACBA00DBC84B /* UIViewController+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BB7D4D1D70ACBA00DBC84B /* UIViewController+IDPExtensions.m */; };
 		85BB7D4F1D70ACBA00DBC84B /* UIViewController+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BB7D4D1D70ACBA00DBC84B /* UIViewController+IDPExtensions.m */; };
-		85BC55CB1DAED7B700BB2043 /* DBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BC55C81DAED7B700BB2043 /* DBUser.m */; };
-		85BC55CC1DAED7B700BB2043 /* DBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BC55C81DAED7B700BB2043 /* DBUser.m */; };
 		85BC55D21DAEE16B00BB2043 /* IDPCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BC55D11DAEE16B00BB2043 /* IDPCoreDataManager.m */; };
 		85BC55D31DAEE16B00BB2043 /* IDPCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BC55D11DAEE16B00BB2043 /* IDPCoreDataManager.m */; };
 		85BC55D81DAF644B00BB2043 /* IDPActiveRecordSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BC55D71DAF644B00BB2043 /* IDPActiveRecordSpec.m */; };
@@ -226,6 +224,8 @@
 		85F806AC1D9337BE00BD842F /* no_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 85F806AA1D9337BE00BD842F /* no_image.jpg */; };
 		85F806AE1D93462400BD842F /* nope_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 85F806AD1D93462400BD842F /* nope_image.jpg */; };
 		85F806AF1D93462400BD842F /* nope_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 85F806AD1D93462400BD842F /* nope_image.jpg */; };
+		85F8403B1DB3E25C00969B78 /* IDPFBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F8403A1DB3E25C00969B78 /* IDPFBUser.m */; };
+		85F8403C1DB3E25C00969B78 /* IDPFBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F8403A1DB3E25C00969B78 /* IDPFBUser.m */; };
 		E37943280EEC33F123909449 /* libPods-SuperUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D723FE3E275ACEB2310F874A /* libPods-SuperUITests.a */; };
 		F4A49F94AACEEAA2582673BD /* libPods-SuperUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 593DDEBA0025055FF0E47D73 /* libPods-SuperUI.a */; };
 /* End PBXBuildFile section */
@@ -350,8 +350,6 @@
 		859D968D1D7C5FD1005C05C6 /* IDPArrayReplaceChangeModel+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IDPArrayReplaceChangeModel+IDPExtensions.m"; sourceTree = "<group>"; };
 		85BB7D4C1D70ACBA00DBC84B /* UIViewController+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+IDPExtensions.h"; sourceTree = "<group>"; };
 		85BB7D4D1D70ACBA00DBC84B /* UIViewController+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+IDPExtensions.m"; sourceTree = "<group>"; };
-		85BC55C71DAED7B700BB2043 /* DBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUser.h; sourceTree = "<group>"; };
-		85BC55C81DAED7B700BB2043 /* DBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUser.m; sourceTree = "<group>"; };
 		85BC55D01DAEE16B00BB2043 /* IDPCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPCoreDataManager.h; sourceTree = "<group>"; };
 		85BC55D11DAEE16B00BB2043 /* IDPCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPCoreDataManager.m; sourceTree = "<group>"; };
 		85BC55D71DAF644B00BB2043 /* IDPActiveRecordSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPActiveRecordSpec.m; sourceTree = "<group>"; };
@@ -472,6 +470,8 @@
 		85F806A71D9336F700BD842F /* IDPObjectsCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPObjectsCache.m; sourceTree = "<group>"; };
 		85F806AA1D9337BE00BD842F /* no_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = no_image.jpg; sourceTree = "<group>"; };
 		85F806AD1D93462400BD842F /* nope_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nope_image.jpg; sourceTree = "<group>"; };
+		85F840391DB3E25C00969B78 /* IDPFBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPFBUser.h; sourceTree = "<group>"; };
+		85F8403A1DB3E25C00969B78 /* IDPFBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPFBUser.m; sourceTree = "<group>"; };
 		D406C9CE5BE9EFD21F7B396E /* Pods-SuperUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperUI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuperUI/Pods-SuperUI.debug.xcconfig"; sourceTree = "<group>"; };
 		D723FE3E275ACEB2310F874A /* libPods-SuperUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -518,9 +518,8 @@
 		85145AA91DAE0BCF008DE109 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				85F840381DB3E25C00969B78 /* IDPFBUser */,
 				85145AAA1DAE0BE1008DE109 /* SuperUI.xcdatamodeld */,
-				85BC55C71DAED7B700BB2043 /* DBUser.h */,
-				85BC55C81DAED7B700BB2043 /* DBUser.m */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -838,8 +837,8 @@
 		858238E01D5B5DEB00623348 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				854FD6F71DA44AA700079571 /* IDPFBUserDetailsViewController */,
 				85C0B1F91D995CCD0007E755 /* IDPFBLoginViewController */,
+				854FD6F71DA44AA700079571 /* IDPFBUserDetailsViewController */,
 				85C0B25B1D9AB5260007E755 /* IDPFBFriendsViewController */,
 				857781461D773EBB007EEF52 /* SUIViewController */,
 				856987FB1D5BE0B500DBB5CE /* IDPArrayViewController */,
@@ -1075,10 +1074,10 @@
 				85C0B20C1D9965EC0007E755 /* IDPCompilerMacros */,
 				85C0B20F1D9965EC0007E755 /* IDPDispatchMacros */,
 				85C0B2121D9965EC0007E755 /* IDPErrorMacros */,
-				85C0B2151D9965EC0007E755 /* IDPMacros.h */,
-				85C0B2161D9965EC0007E755 /* IDPMacros.m */,
 				85C0B2171D9965EC0007E755 /* IDPReturnMacros */,
 				85C0B21A1D9965EC0007E755 /* IDPTypes */,
+				85C0B2151D9965EC0007E755 /* IDPMacros.h */,
+				85C0B2161D9965EC0007E755 /* IDPMacros.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1407,6 +1406,15 @@
 			path = IDPObjectsCache;
 			sourceTree = "<group>";
 		};
+		85F840381DB3E25C00969B78 /* IDPFBUser */ = {
+			isa = PBXGroup;
+			children = (
+				85F840391DB3E25C00969B78 /* IDPFBUser.h */,
+				85F8403A1DB3E25C00969B78 /* IDPFBUser.m */,
+			);
+			path = IDPFBUser;
+			sourceTree = "<group>";
+		};
 		D9888F82FF9D907574FC74BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1666,6 +1674,7 @@
 				8584F70C1D7B5E440076D751 /* IDPArrayModel+IDPExtensions.m in Sources */,
 				85F8069A1D9336E800BD842F /* IDPArrayModel.m in Sources */,
 				8582390A1D5B5DEB00623348 /* IDPTableViewCell.m in Sources */,
+				85F8403C1DB3E25C00969B78 /* IDPFBUser.m in Sources */,
 				85F806901D9336E800BD842F /* IDPArrayMoveChangeModel.m in Sources */,
 				8506A8BB1DA3350400CB6282 /* IDPFBUserInteraction.m in Sources */,
 				85F8068E1D9336E800BD842F /* IDPArrayInsertChangeModel.m in Sources */,
@@ -1700,7 +1709,6 @@
 				85C0B22A1D9965EC0007E755 /* IDPBlockTypes.m in Sources */,
 				859D96951D7C5FD1005C05C6 /* IDPArrayRemoveChangeModel+IDPExtensions.m in Sources */,
 				854FD6FE1DA44AA700079571 /* IDPFBUserDetailsView.m in Sources */,
-				85BC55CC1DAED7B700BB2043 /* DBUser.m in Sources */,
 				8577950F1D6BA6A500C16BA4 /* UIWindow+IDPExtensions.m in Sources */,
 				858239221D5B5DEB00623348 /* IDPUserViewController.m in Sources */,
 				859D96971D7C5FD1005C05C6 /* IDPArrayReplaceChangeModel+IDPExtensions.m in Sources */,
@@ -1770,6 +1778,7 @@
 				857638591D858D60004DC4BC /* UIImage+IDPExtensions.m in Sources */,
 				85607A4A1D74F19E00F6D5E9 /* SUIView.m in Sources */,
 				8582391F1D5B5DEB00623348 /* IDPUserView.m in Sources */,
+				85F8403B1DB3E25C00969B78 /* IDPFBUser.m in Sources */,
 				85C0B25E1D9AB5420007E755 /* IDPFBFriendsViewController.m in Sources */,
 				857781441D76C772007EEF52 /* NSArray+IDPExtensions.m in Sources */,
 				85F806991D9336E800BD842F /* IDPArrayModel.m in Sources */,
@@ -1780,7 +1789,6 @@
 				856987F41D5BBD0400DBB5CE /* IDPRandom.m in Sources */,
 				858239171D5B5DEB00623348 /* IDPUsersViewController.m in Sources */,
 				85F806A11D9336E800BD842F /* IDPLocalImageModel.m in Sources */,
-				85BC55CB1DAED7B700BB2043 /* DBUser.m in Sources */,
 				859D968E1D7C5FD1005C05C6 /* IDPArrayChangeModel+IDPExtensions.m in Sources */,
 				85C0B2B11D9D5F940007E755 /* NSNumber+IDPJSONAdapter.m in Sources */,
 				851A2A831D738E8400C32616 /* IDPView.m in Sources */,
