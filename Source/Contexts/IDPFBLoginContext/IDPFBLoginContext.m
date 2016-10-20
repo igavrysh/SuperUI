@@ -73,6 +73,8 @@
     user.userID = (NSString *)result[kIDPID];
     
     user.state = IDPFBUserDidLoadId;
+    
+    [user saveManagedObject];
 }
 
 - (void)load {

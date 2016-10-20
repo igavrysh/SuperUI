@@ -85,6 +85,7 @@
 
 - (void)userDidLoadId:(IDPFBUser *)user {
     IDPAsyncPerformInMainQueue(^{
+        
         NSUInteger t = 0;
         //[self showFriendsViewControllerForUser:user];
     });

@@ -188,6 +188,8 @@
 		85C8DDB41D530FD3009E227C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85C8DDA91D530FD3009E227C /* LaunchScreen.storyboard */; };
 		85E85A5E1D689DE7005A0342 /* IDPGCDQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E85A5D1D689DE7005A0342 /* IDPGCDQueue.m */; };
 		85E85A5F1D689DE7005A0342 /* IDPGCDQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E85A5D1D689DE7005A0342 /* IDPGCDQueue.m */; };
+		85E8C5411DB6DB1300FE5D23 /* IDPFBManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E8C5401DB6DB1300FE5D23 /* IDPFBManagedObject.m */; };
+		85E8C5421DB6DB1300FE5D23 /* IDPFBManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E8C5401DB6DB1300FE5D23 /* IDPFBManagedObject.m */; };
 		85F749781D5CE3320088A09F /* IDPArrayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F749771D5CE3320088A09F /* IDPArrayView.m */; };
 		85F749791D5CE3320088A09F /* IDPArrayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F749771D5CE3320088A09F /* IDPArrayView.m */; };
 		85F806891D9336E800BD842F /* IDPArrayOneIndexChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F806691D9336E800BD842F /* IDPArrayOneIndexChangeModel.m */; };
@@ -436,6 +438,8 @@
 		85C8DDAA1D530FD3009E227C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85E85A5C1D689DE7005A0342 /* IDPGCDQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPGCDQueue.h; sourceTree = "<group>"; };
 		85E85A5D1D689DE7005A0342 /* IDPGCDQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPGCDQueue.m; sourceTree = "<group>"; };
+		85E8C53F1DB6DB1300FE5D23 /* IDPFBManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPFBManagedObject.h; sourceTree = "<group>"; };
+		85E8C5401DB6DB1300FE5D23 /* IDPFBManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPFBManagedObject.m; sourceTree = "<group>"; };
 		85F749761D5CE3320088A09F /* IDPArrayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPArrayView.h; sourceTree = "<group>"; };
 		85F749771D5CE3320088A09F /* IDPArrayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPArrayView.m; sourceTree = "<group>"; };
 		85F806681D9336E800BD842F /* IDPArrayOneIndexChangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPArrayOneIndexChangeModel.h; sourceTree = "<group>"; };
@@ -518,6 +522,7 @@
 		85145AA91DAE0BCF008DE109 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				85E8C53E1DB6DADA00FE5D23 /* IDPFBManagedObject */,
 				85F840381DB3E25C00969B78 /* IDPFBUser */,
 				85145AAA1DAE0BE1008DE109 /* SuperUI.xcdatamodeld */,
 			);
@@ -1308,6 +1313,15 @@
 			path = IDPGCDQueue;
 			sourceTree = "<group>";
 		};
+		85E8C53E1DB6DADA00FE5D23 /* IDPFBManagedObject */ = {
+			isa = PBXGroup;
+			children = (
+				85E8C53F1DB6DB1300FE5D23 /* IDPFBManagedObject.h */,
+				85E8C5401DB6DB1300FE5D23 /* IDPFBManagedObject.m */,
+			);
+			path = IDPFBManagedObject;
+			sourceTree = "<group>";
+		};
 		85F806651D9336E800BD842F /* IDPArrayModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1664,6 +1678,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85E8C5421DB6DB1300FE5D23 /* IDPFBManagedObject.m in Sources */,
 				853091971D9FB8E500AE0DE9 /* IDPContextHelpers.m in Sources */,
 				85C0B2AA1D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.m in Sources */,
 				8577814A1D773EFE007EEF52 /* SUIViewController.m in Sources */,
@@ -1769,6 +1784,7 @@
 			files = (
 				85C0B2251D9965EC0007E755 /* IDPMacros.m in Sources */,
 				85C0B22D1D9966050007E755 /* IDPContext.m in Sources */,
+				85E8C5411DB6DB1300FE5D23 /* IDPFBManagedObject.m in Sources */,
 				85C0B21D1D9965EC0007E755 /* IDPBlockMacros.m in Sources */,
 				8548FFE31DB0EE9100E4ABB3 /* NSManagedObjectContext+IDPExtensions.m in Sources */,
 				854E11FC1D7F717500A2A0A9 /* NSNotificationCenter+IDPExtensions.m in Sources */,

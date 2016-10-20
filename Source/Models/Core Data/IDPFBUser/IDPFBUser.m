@@ -20,7 +20,6 @@
 
 @synthesize  targetObservableObject;
 
-@dynamic userID;
 @dynamic firstName;
 @dynamic hometown;
 @dynamic lastName;
@@ -40,7 +39,7 @@
     
     if (!user) {
         user = [IDPFBUser managedObject];
-        user.userID = userID;
+        user.entityID = userID;
     }
     
     return user;
