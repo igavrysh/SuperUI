@@ -16,14 +16,17 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (instancetype)objectWithID:(NSString *)objectID {
-    NSPredicate *predicate = [NSPredicate predicateWithBlock:^(IDPFBManagedObject *object, NSDictionary<NSString *,id> * _Nullable bindings) {
-        return object.managedObjectID == objectID;
-    }]
++ (instancetype)managedObjectWithID:(NSString *)managedObjectID {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"managedObjectID == %@", managedObjectID];
     
+    IDPFBManagedObject *object = [[self fetchEntityWithPredicate:predicate sortDescriptors:nil] firstObject];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID == %@", userID];
+    if (!object) {
+        object = [self managedObject];
+        object.managedObjectID = managedObjectID;
+    }
     
+    return object;
 }
 
 @end

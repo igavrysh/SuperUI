@@ -18,6 +18,8 @@
                        predicate:(NSPredicate *)predicate
                  sortDescriptors:(NSArray *)sortDescriptors;
 
++ (void)deleteManagedObject:(NSManagedObject *)object;
+
 + (void)saveManagedObjectContext;
 
 @end

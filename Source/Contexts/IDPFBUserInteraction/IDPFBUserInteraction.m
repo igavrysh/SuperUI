@@ -30,7 +30,7 @@
 }
 
 + (BOOL)isUserLoggedIn:(IDPFBUser *)user {
-    return (BOOL)user.userID;
+    return (BOOL)user.managedObjectID;
 }
 
 #pragma mark - 
@@ -49,7 +49,7 @@
 - (IDPFBUser *)user {
     NSString *userID = self.token ? self.token.userID : nil;
     
-    return [IDPFBUser userWithID:userID];
+    return [IDPFBUser managedObjectWithID:userID];
 }
 
 @end

@@ -15,6 +15,14 @@
 + (NSArray *)fetchEntityWithPredicate:(NSPredicate *)predicate
                       sortDescriptors:(NSArray *)sortDescriptors;
 
++ (NSFetchRequest *)fetchRequestWithPredicate:(NSPredicate *)predicate
+                              sortDescriptors:(NSArray *)sortDescriptors;
+
+
++ (NSFetchRequest *)fetchRequest;
+
+- (void)deleteManagedObject;
+
 - (void)saveManagedObject;
 
 @end

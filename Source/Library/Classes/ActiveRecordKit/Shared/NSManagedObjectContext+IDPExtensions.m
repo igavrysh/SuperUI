@@ -46,15 +46,23 @@
     return entities;
 }
 
++ (void)deleteManagedObject:(NSManagedObject *)object {
+    [[self context] removeObject:object];
+    
+    [self saveManagedObjectContext];
+}
+
 + (void)saveManagedObjectContext {
     NSError *error = nil;
-    if ([[self context] hasChanges])
+    if ([[self context] hasChanges]) {
         if (![[self context] save:&error]) {
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             
             abort();
         }
+    }
 }
+
 
 
 @end

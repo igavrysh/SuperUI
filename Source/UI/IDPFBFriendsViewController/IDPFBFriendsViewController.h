@@ -8,12 +8,12 @@
 
 #import "SUIViewController.h"
 
-@class IDPUser;
+@class IDPFBUser;
 
 @interface IDPFBFriendsViewController : SUIViewController <
     UITableViewDelegate,
     UITableViewDataSource>
 
-- (instancetype)initWithUser:(IDPUser *)user;
+- (instancetype)initWithUser:(IDPFBUser *)user;
 
 @end

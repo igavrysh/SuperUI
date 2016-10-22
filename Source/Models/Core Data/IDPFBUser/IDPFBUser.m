@@ -10,7 +10,6 @@
 
 #import "IDPObservableObject.h"
 
-
 @interface IDPFBUser ()
 @property (nonatomic, strong)   IDPObservableObject     *targetObservableObject;
 
@@ -27,23 +26,6 @@
 @dynamic name;
 @dynamic friends;
 @dynamic images;
-@dynamic profileImage;
-
-#pragma mark -
-#pragma mark Class Method
-
-+ (instancetype)userWithID:(NSString *)userID {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID == %@", userID];
-    
-    IDPFBUser *user = [[self fetchEntityWithPredicate:predicate sortDescriptors:nil] firstObject];
-    
-    if (!user) {
-        user = [IDPFBUser managedObject];
-        user.entityID = userID;
-    }
-    
-    return user;
-}
 
 #pragma mark - 
 #pragma mark Initializations and Deallocation
@@ -86,9 +68,6 @@
             
         case IDPFBUserDidLoadId:
             return @selector(userDidLoadId:);
-            
-        case IDPFBUserDidLoadFriends:
-            return @selector(userDidLoadFriends:);
             
         case IDPFBUserDidLoadDetails:
             return @selector(userDidLoadDetails:);

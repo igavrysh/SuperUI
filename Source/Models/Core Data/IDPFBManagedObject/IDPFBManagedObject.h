@@ -13,9 +13,15 @@
 
 #import "NSManagedObject+IDPExtensions.h"
 
+@protocol IDPFBManagedObject
+
+- (NSFetchRequest *)fetchRequest;
+
+@end
+
 @interface IDPFBManagedObject : NSManagedObject
 @property (nonatomic, strong)   NSString    *managedObjectID;
 
-+ (instancetype)objectWithID:(NSString *)objectID;
++ (instancetype)managedObjectWithID:(NSString *)objectID;
 
 @end

@@ -28,12 +28,29 @@
                                        sortDescriptors:sortDescriptors];
 }
 
++ (NSFetchRequest *)fetchRequestWithPredicate:(NSPredicate *)predicate
+                            sortDescriptors:(NSArray *)sortDescriptors
+{
+    NSFetchRequest *request = [self fetchRequest];
+    request.predicate = predicate;
+    request.sortDescriptors = sortDescriptors;
+    
+    return request;
+}
+
++ (NSFetchRequest *)fetchRequest {
+    return [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([self class])];
+}
+
 #pragma mark -
 #pragma mark Public Methods
+
+- (void)deleteManagedObject {
+    [NSManagedObjectContext deleteManagedObject:self];
+}
 
 - (void)saveManagedObject {
     [NSManagedObjectContext saveManagedObjectContext];
 }
-
 
 @end

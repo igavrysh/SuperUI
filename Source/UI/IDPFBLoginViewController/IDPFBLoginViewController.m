@@ -58,7 +58,7 @@
 #pragma mark -
 #pragma mark Private Methods
 
-- (void)showFriendsViewControllerForUser:(IDPUser *)user {
+- (void)showFriendsViewControllerForUser:(IDPFBUser *)user {
     IDPFBFriendsViewController *controller = [[IDPFBFriendsViewController alloc] initWithUser:user];
     
     [self.navigationController pushViewController:controller
@@ -75,8 +75,7 @@
     self.model = user;
     
     if ([IDPFBUserInteraction isUserLoggedIn:user]) {
-        NSUInteger t = 0;
-        //[self showFriendsViewControllerForUser:user];
+        [self showFriendsViewControllerForUser:user];
     }
 }
 
@@ -85,9 +84,7 @@
 
 - (void)userDidLoadId:(IDPFBUser *)user {
     IDPAsyncPerformInMainQueue(^{
-        
-        NSUInteger t = 0;
-        //[self showFriendsViewControllerForUser:user];
+        [self showFriendsViewControllerForUser:user];
     });
 }
 

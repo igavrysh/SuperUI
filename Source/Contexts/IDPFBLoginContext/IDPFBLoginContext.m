@@ -70,7 +70,7 @@
 - (void)fillWithResult:(NSDictionary *)result {
     IDPFBUser *user = (IDPFBUser *)self.model;
     
-    user.userID = (NSString *)result[kIDPID];
+    user.managedObjectID = (NSString *)result[kIDPID];
     
     user.state = IDPFBUserDidLoadId;
     

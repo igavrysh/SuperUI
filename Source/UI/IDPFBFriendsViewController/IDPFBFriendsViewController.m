@@ -9,7 +9,7 @@
 #import "IDPFBFriendsViewController.h"
 
 #import "IDPGCDQueue.h"
-#import "IDPUser.h"
+#import "IDPFBUser.h"
 #import "IDPUserArrayModel.h"
 #import "IDPFBLogoutContext.h"
 #import "IDPFBFriendsContext.h"
@@ -17,6 +17,7 @@
 #import "IDPModelCell.h"
 #import "IDPUserCell.h"
 #import "IDPFBUserDetailsViewController.h"
+#import "IDPFBFriendsArrayModel.h"
 
 #import "UITableView+IDPExtensions.h"
 
@@ -26,15 +27,16 @@
 kIDPStringVariableDefinition(kIDPLogoutButtonTitle, @"Logout");
 
 @interface IDPFBFriendsViewController ()
-@property (nonatomic, strong)   IDPUser             *user;
-@property (nonatomic, strong)   IDPFBLogoutContext  *logoutContext;
-@property (nonatomic, strong)   IDPFBFriendsContext *friendsContext;
+@property (nonatomic, strong)   IDPFBUser               *user;
+@property (nonatomic, strong)   IDPFBFriendsArrayModel  *friends;
+@property (nonatomic, strong)   IDPFBLogoutContext      *logoutContext;
+@property (nonatomic, strong)   IDPFBFriendsContext     *friendsContext;
 
 - (void)loadUsers;
 - (void)setupNavigationBar;
 - (UITableViewCell<IDPModelCell> *)cellForTable:(UITableView *)tableView
                                   withIndexPath:(NSIndexPath *)indexPath;
-- (void)pushDetailsViewContollerForUser:(IDPUser *)user;
+- (void)pushDetailsViewContollerForUser:(IDPFBUser *)user;
 - (void)reloadTableView;
 
 @end
@@ -45,10 +47,13 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
 
 #pragma mark - Initializations and Deallocations
 
-- (instancetype)initWithUser:(IDPUser *)user {
+- (instancetype)initWithUser:(IDPFBUser *)user {
     self = [super init];
     
     self.user = user;
+    
+    self.friends = [[IDPFBFriendsArrayModel alloc] initWithContainerModel:user
+                                                             arrayKeyPath:@"friends"];
     
     return self;
 }
@@ -91,11 +96,11 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
     self.navigationItem.leftBarButtonItem = button;
 }
 
-- (void)pushDetailsViewContollerForUser:(IDPUser *)user {
-    IDPFBUserDetailsViewController *controller = [IDPFBUserDetailsViewController new];
-    controller.model = user;
+- (void)pushDetailsViewContollerForUser:(IDPFBUser *)user {
+    //IDPFBUserDetailsViewController *controller = [IDPFBUserDetailsViewController new];
+    //controller.model = user;
     
-    [self.navigationController pushViewController:controller animated:YES];
+    //[self.navigationController pushViewController:controller animated:YES];
 }
 
 - (UITableViewCell<IDPModelCell> *)cellForTable:(UITableView *)tableView
