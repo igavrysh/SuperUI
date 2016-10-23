@@ -20,12 +20,21 @@
 @interface IDPFBFriendsContext ()
 @property (nonatomic, strong)   IDPFBUser   *user;
 
-- (NSSet *)friendsWithInfo:(NSDictionary *)info;
+- (NSArray *)friendsWithInfo:(NSDictionary *)info;
 - (IDPFBUser *)userWithInfo:(NSDictionary *)info;
 
 @end
 
 @implementation IDPFBFriendsContext
+
+#pragma mark - 
+#pragma mark Class Methods
+
++ (instancetype)contextWithFBUser:(IDPFBUser *)user
+                          friends:(IDPFBFriendsArrayModel *)friends
+{
+    return [[IDPFBFriendsContext alloc] initWithFBUser:user friends:friends];
+}
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -63,15 +72,15 @@
 - (void)fillWithResult:(NSDictionary *)result {
     IDPFBFriendsArrayModel *friends = self.model;
     
-    NSSet *friendsArray = [self friendsWithInfo:[result JSONRepresentation]];
+    NSArray *friendsArray = [self friendsWithInfo:[result JSONRepresentation]];
     
-    friends
+    [friends addObjects:friendsArray];
     
     friends.state = IDPModelDidLoad;
 }
 
-- (NSSet *)friendsWithInfo:(NSDictionary *)info {
-    NSMutableSet *friends = [NSMutableSet new];
+- (NSArray *)friendsWithInfo:(NSDictionary *)info {
+    NSMutableArray *friends = [NSMutableArray new];
     NSArray *dataArray = [info objectForKey:kIDPData];
     
     [dataArray performBlockWithEachObject: ^(NSDictionary *friendInfo){
@@ -95,7 +104,6 @@
 
 - (void)didFailLoadingFromInternet:(NSError *)error {
     /*
-    
     IDPUser *user = (IDPUser *)self.model;
     
     [user performBlockWithoutNotification:^{
@@ -109,7 +117,6 @@
     }];
     
     friends.state = IDPModelDidLoad;
-     
      */
 }
 

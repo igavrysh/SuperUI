@@ -24,9 +24,16 @@
 
 - (void)saveManagedObject;
 
+
+- (id)objectValueForKey:(NSString *)key;
+
+- (void)setObjectValue:(id)value forKey:(NSString *)key;
+
+
 - (void)addObjectValue:(id)object forSetKey:(NSString *)key;
 
 - (void)removeObjectValue:(id)object fromSetKey:(NSString *)key;
+
 
 - (void)addObjectValues:(NSSet *)objects forSetKey:(NSString *)key;
 

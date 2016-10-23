@@ -79,9 +79,7 @@
 #pragma mark Public Methods
 
 - (NSPredicate *)predicate {
-    return [NSPredicate predicateWithFormat:@"%K CONTAINS %@",
-            self.arrayKeyPath,
-            self.containerModel];
+    return [NSPredicate predicateWithFormat:@"%K CONTAINS %@", self.arrayKeyPath, self.containerModel];
 }
 
 - (NSArray *)sortDescriptors {
@@ -110,11 +108,74 @@
 }
 
 - (void)insertObject:(id)object atIndex:(NSUInteger)index {
-    
+    [self addObject:object];
 }
 
-- (void)
+- (void)addObjects:(NSArray *)objects {
+    @synchronized(self) {
+        [objects performBlockWithEachObject:^(id object) {
+            [self addObject:object];
+        }];
+    }
+}
 
+- (void)addObject:(id)object {
+    @synchronized(self) {
+        [self.containerModel addObjectValue:object
+                                  forSetKey:self.arrayKeyPath];
+    }
+}
+
+- (void)removeObjects:(NSArray *)objects {
+    @synchronized(self) {
+        [objects performBlockWithEachObject:^(id object) {
+            [self removeObject:object];
+        }];
+    }
+}
+
+- (void)removeObject:(id)object {
+    @synchronized(self) {
+        [self.containerModel removeObjectValue:object
+                                    fromSetKey:self.arrayKeyPath];
+    }
+}
+
+- (void)removeObjectAtIndex:(NSUInteger)index {
+    @synchronized(self) {
+        id object = self[index];
+        
+        [self removeObject:object];
+    }
+}
+
+- (void)replaceObject:(id)object withObject:(id)replaceObject {
+    @synchronized(self) {
+        [self removeObject:object];
+        
+        [self addObject:object];
+    }
+}
+
+- (void)replaceObjectAtIndex:(NSUInteger)index
+                  withObject:(id)object
+{
+    @synchronized(self) {
+        if (index >= self.count) {
+            return;
+        }
+        
+        [self replaceObject:self[index] withObject:object];
+    }
+}
+
+- (void)moveObject:(id)object toIndex:(NSUInteger)index {
+}
+
+- (void)moveObjectToIndex:(NSUInteger)index
+                fromIndex:(NSUInteger)fromIndex
+{
+}
 
 #pragma mark -
 #pragma mark NSFetchedResultsControllerDelegate
@@ -131,6 +192,7 @@
         case NSFetchedResultsChangeUpdate:
             model = [IDPArrayChangeModel insertModelWithArrayModel:self
                                                              index:indexPath.row];
+            
             [self applyChangeModel:model];
             break;
             

@@ -13,6 +13,9 @@
 
 @interface IDPFBFriendsContext : IDPFBContext
 
++ (instancetype)contextWithFBUser:(IDPFBUser *)user
+                          friends:(IDPFBFriendsArrayModel *)friends;
+
 - (instancetype)initWithFBUser:(IDPFBUser *)user
                        friends:(IDPFBFriendsArrayModel *)friends;
 

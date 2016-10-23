@@ -28,7 +28,6 @@ kIDPStringVariableDefinition(kIDPLogoutButtonTitle, @"Logout");
 
 @interface IDPFBFriendsViewController ()
 @property (nonatomic, strong)   IDPFBUser               *user;
-@property (nonatomic, strong)   IDPFBFriendsArrayModel  *friends;
 @property (nonatomic, strong)   IDPFBLogoutContext      *logoutContext;
 @property (nonatomic, strong)   IDPFBFriendsContext     *friendsContext;
 
@@ -52,8 +51,8 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
     
     self.user = user;
     
-    self.friends = [[IDPFBFriendsArrayModel alloc] initWithContainerModel:user
-                                                             arrayKeyPath:@"friends"];
+    self.model = [[IDPFBFriendsArrayModel alloc] initWithContainerModel:user
+                                                           arrayKeyPath:@"friends"];
     
     return self;
 }
@@ -83,9 +82,7 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
 #pragma mark Private
 
 - (void)loadUsers {
-    self.model = self.user.friends;
-    
-    self.friendsContext = [IDPFBFriendsContext contextWithModel:self.user];
+    self.friendsContext = [IDPFBFriendsContext contextWithFBUser:self.user friends:self.model];
 }
 
 - (void)setupNavigationBar {
