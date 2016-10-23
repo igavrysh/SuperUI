@@ -8,8 +8,8 @@
 
 #import "IDPFBContext.h"
 
-@class IDPUser;
-@class IDPUserArrayModel;
+@class IDPFBUser;
+@class IDPFBFriendsArrayModel;
 
 @interface IDPFBFriendsContext : IDPFBContext
 

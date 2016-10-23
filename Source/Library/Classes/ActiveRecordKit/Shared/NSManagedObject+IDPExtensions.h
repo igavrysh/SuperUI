@@ -18,11 +18,18 @@
 + (NSFetchRequest *)fetchRequestWithPredicate:(NSPredicate *)predicate
                               sortDescriptors:(NSArray *)sortDescriptors;
 
-
 + (NSFetchRequest *)fetchRequest;
 
 - (void)deleteManagedObject;
 
 - (void)saveManagedObject;
+
+- (void)addObjectValue:(id)object forSetKey:(NSString *)key;
+
+- (void)removeObjectValue:(id)object fromSetKey:(NSString *)key;
+
+- (void)addObjectValues:(NSSet *)objects forSetKey:(NSString *)key;
+
+- (void)removeObjectValues:(NSSet *)objects fromSetKey:(NSString *)key;
 
 @end

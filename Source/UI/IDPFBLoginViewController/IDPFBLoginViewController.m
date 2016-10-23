@@ -22,7 +22,7 @@
 @interface IDPFBLoginViewController ()
 @property (nonatomic, strong)   IDPFBLoginContext   *loginContext;
 
-- (void)showFriendsViewControllerForUser:(IDPUser *)user;
+- (void)showFriendsViewControllerForUser:(IDPFBUser *)user;
 
 @end
 

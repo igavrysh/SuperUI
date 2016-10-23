@@ -12,10 +12,16 @@
 #import "IDPFBFriendsArrayModel.h"
 #import "IDPFBUser.h"
 #import "IDPFBConstants.h"
+
 #import "NSArray+IDPArrayEnumerator.h"
+#import "NSDictionary+IDPJSONAdapter.h"
+#import "IDPJSONAdapter.h"
 
 @interface IDPFBFriendsContext ()
 @property (nonatomic, strong)   IDPFBUser   *user;
+
+- (NSSet *)friendsWithInfo:(NSDictionary *)info;
+- (IDPFBUser *)userWithInfo:(NSDictionary *)info;
 
 @end
 
@@ -55,27 +61,36 @@
 #pragma mark Public Methods
 
 - (void)fillWithResult:(NSDictionary *)result {
-    NSArray *friendsArray = [result objectForKey:kIDPData];
-    
-    IDPFBUser *user = self.user;
-    
     IDPFBFriendsArrayModel *friends = self.model;
     
-    [friendsArray performBlockWithEachObject: ^(NSDictionary *friendInfo){
-        IDPFBUser *user = [IDPFBUser managedObjectWithID:kIDPID];
-        user.firstName = friendInfo[kIDPFirstName];
-        user.lastName = friendInfo[kIDPLastName];
-        //user.imageURL = [NSURL URLWithString:friendInfo[kIDPPicture][kIDPData][kIDPURL]];
-        user.state = IDPModelDidLoad;
-        
-        [friends performBlockWithoutNotification:^{
-            [friends addObject:user];
-        }];
+    NSSet *friendsArray = [self friendsWithInfo:[result JSONRepresentation]];
+    
+    friends
+    
+    friends.state = IDPModelDidLoad;
+}
+
+- (NSSet *)friendsWithInfo:(NSDictionary *)info {
+    NSMutableSet *friends = [NSMutableSet new];
+    NSArray *dataArray = [info objectForKey:kIDPData];
+    
+    [dataArray performBlockWithEachObject: ^(NSDictionary *friendInfo){
+        [friends addObject:[self userWithInfo:friendInfo]];
     }];
+    
+    return friends;
+}
+
+- (IDPFBUser *)userWithInfo:(NSDictionary *)info {
+    IDPFBUser *user = [IDPFBUser managedObjectWithID:info[kIDPID]];
+    user.firstName = info[kIDPFirstName];
+    user.lastName = info[kIDPLastName];
+    //user.imageURL = [NSURL URLWithString:info[kIDPPicture][kIDPData][kIDPURL]];
+    user.state = IDPModelDidLoad;
     
     [user saveManagedObject];
     
-    friends.state = IDPModelDidLoad;
+    return user;
 }
 
 - (void)didFailLoadingFromInternet:(NSError *)error {

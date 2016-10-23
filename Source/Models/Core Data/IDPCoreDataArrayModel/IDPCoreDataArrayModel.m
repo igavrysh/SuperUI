@@ -13,6 +13,8 @@
 #import "IDPArrayChangeModel+IDPExtensions.h"
 
 #import "IDPArrayModel+IDPExtensions.h"
+#import "NSArray+IDPArrayEnumerator.h"
+#import "NSMutableArray+IDPExtensions.h"
 #import "NSManagedObject+IDPExtensions.h"
 #import "NSManagedObjectContext+IDPExtensions.h"
 
@@ -37,6 +39,8 @@
     self.containerModel = containerModel;
     self.arrayKeyPath = arraykeyPath;
     
+    [self initFetchResultsController];
+    
     return self;
 }
 
@@ -44,8 +48,10 @@
     NSFetchRequest *fetchRequest = [[self.containerModel class] fetchRequestWithPredicate:self.predicate
                                                                           sortDescriptors:self.sortDescriptors];
     
+    NSManagedObjectContext *context = [NSManagedObjectContext context];
+    
     self.controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                          managedObjectContext:[NSManagedObjectContext context]
+                                                          managedObjectContext:context
                                                             sectionNameKeyPath:nil
                                                                      cacheName:@"Master"];
 }
@@ -61,6 +67,14 @@
     }
 }
 
+- (NSArray *)objects {
+    return [[self.controller fetchedObjects] copy];
+}
+
+- (NSUInteger)count {
+    return self.objects.count;
+}
+
 #pragma mark -
 #pragma mark Public Methods
 
@@ -74,7 +88,35 @@
     return nil;
 }
 
-#pragma mark - 
+- (void)performLoading {
+    NSError *error = nil;
+    if (![self.controller performFetch:&error]) {
+        NSLog(@"ERROR in %@: %@", [self.class description], [error description]);
+    }
+    
+    self.state = !error ? IDPModelDidLoad : IDPModelDidFailLoading;
+}
+
+- (id)objectAtIndex:(NSUInteger)index {
+    @synchronized(self) {
+        return index < self.count ? self.objects[index] : nil;
+    }
+}
+
+- (NSUInteger)indexOfObject:(id)object {
+    @synchronized(self) {
+        return [self.objects indexOfObject:object];
+    }
+}
+
+- (void)insertObject:(id)object atIndex:(NSUInteger)index {
+    
+}
+
+- (void)
+
+
+#pragma mark -
 #pragma mark NSFetchedResultsControllerDelegate
 
 - (void)controller:(NSFetchedResultsController *)controller
