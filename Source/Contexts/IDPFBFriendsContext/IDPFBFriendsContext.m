@@ -53,9 +53,7 @@
 #pragma mark Accessors
 
 - (NSString *)graphPath {
-    IDPFBUser *user = (IDPFBUser *)self.model;
-    
-    return [NSString stringWithFormat:@"%@/%@", user.managedObjectID, kIDPFriends];
+    return [NSString stringWithFormat:@"%@/%@", self.user.managedObjectID, kIDPFriends];
 }
 
 - (NSDictionary *)requestParameters {

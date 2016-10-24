@@ -14,7 +14,7 @@
 #pragma mark Public Methods
 
 - (NSArray *)sortDescriptors {
-    return @[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]];
+    return @[[[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES]];
 }
 
 @end

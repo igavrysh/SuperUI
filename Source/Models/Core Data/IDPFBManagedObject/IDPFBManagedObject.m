@@ -24,6 +24,8 @@
     if (!object) {
         object = [self managedObject];
         object.managedObjectID = managedObjectID;
+        
+        [object saveManagedObject];
     }
     
     return object;
