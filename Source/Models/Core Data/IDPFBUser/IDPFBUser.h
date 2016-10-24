@@ -24,6 +24,7 @@ typedef NS_ENUM(NSUInteger, IDPFBState) {
 };
 
 @class IDPFBUser;
+@class IDPFBImage;
 
 @protocol IDPFBUserObserver <NSObject>
 
@@ -41,13 +42,16 @@ typedef NS_ENUM(NSUInteger, IDPFBState) {
 @end
 
 @interface IDPFBUser : IDPFBManagedObject <IDPObservableObject>
-@property (nonatomic, strong)           NSString    *firstName;
-@property (nonatomic, strong)           NSString    *lastName;
-@property (nonatomic, strong)           NSString    *hometown;
-@property (nonatomic, strong)           NSString    *location;
-@property (nonatomic, strong)           NSString    *name;
-@property (nonatomic, strong)           NSSet       *friends;
-@property (nonatomic, strong)           NSSet       *images;
+@property (nonatomic, strong)           NSString        *firstName;
+@property (nonatomic, strong)           NSString        *lastName;
+@property (nonatomic, strong)           NSString        *hometown;
+@property (nonatomic, strong)           NSString        *location;
+@property (nonatomic, strong)           NSString        *name;
+@property (nonatomic, strong)           NSSet           *friends;
+@property (nonatomic, strong)           IDPFBImage      *profileImageModel;
+@property (nonatomic, strong)           NSSet           *images;
+
+
 @property (nonatomic, strong, readonly) NSString    *fullName;
 
 //@property (nonatomic, strong)   NSManagedObject *profileImage;

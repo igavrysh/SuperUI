@@ -9,6 +9,7 @@
 #import "IDPFBUser.h"
 
 #import "IDPObservableObject.h"
+#import "IDPImageModel.h"
 
 @interface IDPFBUser ()
 @property (nonatomic, strong)   IDPObservableObject     *targetObservableObject;

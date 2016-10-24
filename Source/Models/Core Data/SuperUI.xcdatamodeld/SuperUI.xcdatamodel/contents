@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F27" minimumToolsVersion="Xcode 7.0">
-    <entity name="IDPFBImage" syncable="YES">
-        <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="IDPFBUser" syncable="YES"/>
+    <entity name="IDPFBImage" representedClassName="IDPFBImage" syncable="YES">
+        <attribute name="managedObjectID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="IDPFBUser" representedClassName="IDPFBUser" syncable="YES">
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
@@ -13,9 +12,10 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="friends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="IDPFBUser" inverseName="friends" inverseEntity="IDPFBUser" syncable="YES"/>
         <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="IDPFBImage" syncable="YES"/>
+        <relationship name="profileImageModel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="IDPFBImage" syncable="YES"/>
     </entity>
     <elements>
-        <element name="IDPFBImage" positionX="-63" positionY="-18" width="128" height="75"/>
-        <element name="IDPFBUser" positionX="133" positionY="-18" width="128" height="165"/>
+        <element name="IDPFBImage" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="IDPFBUser" positionX="133" positionY="-18" width="128" height="180"/>
     </elements>
 </model>
