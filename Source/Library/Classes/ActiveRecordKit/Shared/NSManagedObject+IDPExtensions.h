@@ -30,13 +30,13 @@
 - (void)setObjectValue:(id)value forKey:(NSString *)key;
 
 
-- (void)addObjectValue:(id)object forSetKey:(NSString *)key;
+- (void)addObjectValue:(id)value forSetKey:(NSString *)key;
 
-- (void)removeObjectValue:(id)object fromSetKey:(NSString *)key;
+- (void)removeObjectValue:(id)value fromSetKey:(NSString *)key;
 
 
-- (void)addObjectValues:(NSSet *)objects forSetKey:(NSString *)key;
+- (void)addObjectValues:(NSSet *)values forSetKey:(NSString *)key;
 
-- (void)removeObjectValues:(NSSet *)objects fromSetKey:(NSString *)key;
+- (void)removeObjectValues:(NSSet *)values fromSetKey:(NSString *)key;
 
 @end

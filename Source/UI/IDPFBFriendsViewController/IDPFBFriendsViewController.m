@@ -82,7 +82,8 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
 #pragma mark Private
 
 - (void)loadUsers {
-    self.friendsContext = [IDPFBFriendsContext contextWithFBUser:self.user friends:self.model];
+    self.friendsContext = [IDPFBFriendsContext contextWithFBUser:self.user
+                                                         friends:self.model];
 }
 
 - (void)setupNavigationBar {

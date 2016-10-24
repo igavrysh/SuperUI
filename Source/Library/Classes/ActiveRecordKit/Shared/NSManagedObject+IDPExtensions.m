@@ -17,9 +17,9 @@ typedef void (^IDPSetChangeBlock)(NSMutableSet *originalSet);
 
 @interface NSManagedObject (IDPExtensionsPrivate)
 
-- (void)updateSetForKey:(NSString *)key
-            withObjects:(NSSet *)objects
-        setMutationKind:(NSKeyValueSetMutationKind)setMutationKind
+- (void)updateSetValues:(NSSet *)values
+                 forKey:(NSString *)key
+           mutationKind:(NSKeyValueSetMutationKind)setMutationKind
             changeBlock:(IDPSetChangeBlock)changeBlock;
 
 @end
@@ -86,46 +86,46 @@ typedef void (^IDPSetChangeBlock)(NSMutableSet *originalSet);
     return object;
 }
 
-- (void)addObjectValue:(id)object forSetKey:(NSString *)key {
-    [self addObjectValues:[NSSet setWithObjects:object, nil]
+- (void)addObjectValue:(id)value forSetKey:(NSString *)key {
+    [self addObjectValues:[NSSet setWithObjects:value, nil]
                 forSetKey:key];
 }
 
-- (void)removeObjectValue:(id)object fromSetKey:(NSString *)key {
-    [self removeObjectValues:[NSSet setWithObjects:object, nil]
+- (void)removeObjectValue:(id)value fromSetKey:(NSString *)key {
+    [self removeObjectValues:[NSSet setWithObjects:value, nil]
                   fromSetKey:key];
 }
 
-- (void)addObjectValues:(NSSet *)objects forSetKey:(NSString *)key {
-    [self updateSetForKey:key
-              withObjects:objects
-          setMutationKind:NSKeyValueUnionSetMutation
-              changeBlock:^(NSMutableSet *originalSet) { [originalSet unionSet:objects]; }];
+- (void)addObjectValues:(NSSet *)values forSetKey:(NSString *)key {
+    [self updateSetValues:values
+                   forKey:key
+             mutationKind:NSKeyValueUnionSetMutation
+              changeBlock:^(NSMutableSet *originalSet) { [originalSet unionSet:values]; }];
 }
 
-- (void)removeObjectValues:(NSSet *)objects fromSetKey:(NSString *)key {
-    [self updateSetForKey:key
-              withObjects:objects
-          setMutationKind:NSKeyValueMinusSetMutation
-              changeBlock:^(NSMutableSet *originalSet) { [originalSet minusSet:objects]; }];
+- (void)removeObjectValues:(NSSet *)values fromSetKey:(NSString *)key {
+    [self updateSetValues:values
+                   forKey:key
+             mutationKind:NSKeyValueMinusSetMutation
+              changeBlock:^(NSMutableSet *originalSet) { [originalSet minusSet:values]; }];
 }
 
 @end
 
 @implementation NSManagedObject (IDPExtensionsPrivate)
 
-- (void)updateSetForKey:(NSString *)key
-            withObjects:(NSSet *)objects
-        setMutationKind:(NSKeyValueSetMutationKind)setMutationKind
+- (void)updateSetValues:(NSSet *)values
+                 forKey:(NSString *)key
+            mutationKind:(NSKeyValueSetMutationKind)setMutationKind
             changeBlock:(IDPSetChangeBlock)changeBlock
 {
-    [self willChangeValueForKey:key withSetMutation:setMutationKind usingObjects:objects];
+    [self willChangeValueForKey:key withSetMutation:setMutationKind usingObjects:values];
     
     NSMutableSet *contextObjects = [self primitiveValueForKey:key];
     
     IDPBlockPerform(changeBlock, contextObjects);
     
-    [self didChangeValueForKey:key withSetMutation:setMutationKind usingObjects:objects];
+    [self didChangeValueForKey:key withSetMutation:setMutationKind usingObjects:values];
 }
 
 @end
