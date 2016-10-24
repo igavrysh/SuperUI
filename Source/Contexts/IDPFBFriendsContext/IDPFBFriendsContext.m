@@ -74,7 +74,7 @@
     
     [friends addObjects:friendsArray];
     
-    [friends load];
+    [friends performLoading];
 }
 
 - (NSArray *)friendsWithInfo:(NSDictionary *)info {

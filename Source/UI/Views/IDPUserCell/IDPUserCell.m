@@ -9,7 +9,7 @@
 #import "IDPUserCell.h"
 
 #import "IDPImageView.h"
-#import "IDPUser.h"
+#import "IDPFBUser.h"
 #import "IDPBlockTypes.h"
 #import "IDPGCDQueue.h"
 
@@ -46,7 +46,7 @@ static NSString * const kIDPNoImageExtension = @"jpg";
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setModel:(IDPUser *)user {
+- (void)setModel:(IDPFBUser *)user {
     if (_model != user) {
         _model = user;
         
@@ -81,10 +81,10 @@ static NSString * const kIDPNoImageExtension = @"jpg";
 #pragma mark -
 #pragma mark Public
 
-- (void)fillWithUser:(IDPUser *)user {
+- (void)fillWithUser:(IDPFBUser *)user {
     self.fullNameLabel.text = user.fullName;
     
-    self.imageModel = user.imageModel;
+    //self.imageModel = user.imageModel;
 }
 
 #pragma mark -

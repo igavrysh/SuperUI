@@ -26,6 +26,7 @@
 @dynamic name;
 @dynamic friends;
 @dynamic images;
+@dynamic fullName;
 
 #pragma mark - 
 #pragma mark Initializations and Deallocation
@@ -37,6 +38,13 @@
     self.targetObservableObject = [[IDPObservableObject alloc] init];
     
     return self;
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (NSString *)fullName {
+    return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
 }
 
 #pragma mark - 

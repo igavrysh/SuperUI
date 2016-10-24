@@ -8,7 +8,7 @@
 
 #import "IDPFBDeleteContext.h"
 
-@class IDPUser;
+@class IDPFBUser;
 
 @interface IDPFBLogoutContext : IDPFBDeleteContext
 
