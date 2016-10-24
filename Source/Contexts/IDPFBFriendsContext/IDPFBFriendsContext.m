@@ -74,7 +74,7 @@
     
     [friends addObjects:friendsArray];
     
-    friends.state = IDPModelDidLoad;
+    [friends load];
 }
 
 - (NSArray *)friendsWithInfo:(NSDictionary *)info {
