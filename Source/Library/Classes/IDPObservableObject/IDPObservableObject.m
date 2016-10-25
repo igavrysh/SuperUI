@@ -14,8 +14,9 @@
 #import "IDPCompilerMacros.h"
 
 @interface IDPObservableObject ()
-@property (nonatomic, retain) NSHashTable   *observers;
-@property (nonatomic, assign) BOOL          notifyObservers;
+@property (nonatomic, retain)   NSHashTable             *observers;
+@property (nonatomic, assign)   BOOL                    notifyObservers;
+@property (nonatomic, weak)     id<IDPObservableObject> target;
 
 - (void)notifyOfStateChangeWithSelector:(SEL)selector;
 - (void)notifyOfStateChangeWithSelector:(SEL)selector object:(id)object;
@@ -37,11 +38,14 @@
 }
 
 - (instancetype)init {
+    return [self initWithTarget:nil];
+}
+
+- (instancetype)initWithTarget:(id)target {
     self = [super init];
-    if (self) {
-        self.observers = [NSHashTable weakObjectsHashTable];
-        self.notifyObservers = YES;
-    }
+    self.observers = [NSHashTable weakObjectsHashTable];
+    self.notifyObservers = YES;
+    self.target = target ? target : self;
     
     return self;
 }
@@ -116,12 +120,12 @@
     [self performBlock:block shouldNotify:YES];
 }
 
+- (SEL)selectorForState:(NSUInteger)state {
+    return nil;
+}
+
 #pragma mark -
 #pragma mark Private
-
-- (SEL)selectorForState:(NSUInteger)state {
-    return NULL;
-}
 
 - (void)notifyOfStateChangeWithSelector:(SEL)selector {
     [self notifyOfStateChangeWithSelector:selector object:nil];
@@ -146,7 +150,7 @@ IDPClangIgnoredPerformSelectorLeaksPush
         NSHashTable *observers = self.observers;
         for (id observer in observers) {
             if ([observer respondsToSelector:selector]) {
-                [observer performSelector:selector withObject:self withObject:object];
+                [observer performSelector:selector withObject:self.target withObject:object];
             }
         }
     }
@@ -157,23 +161,15 @@ IDPClangIgnoredPerformSelectorLeaksPop
 - (void)performBlock:(void (^)(void))block
         shouldNotify:(BOOL)shouldNotify
 {
-    BOOL state = self.notifyObservers;
-    
-    self.notifyObservers = shouldNotify;
-    
-    IDPPerformBlock(block);
-    
-    self.notifyObservers = state;
-}
-
-#pragma mark -
-#pragma mark NSCopying
-
-- (id)copyWithZone:(nullable NSZone *)zone {
-    IDPObservableObject *copy = [[self class] new];
-    copy.observers = [self.observers copyWithZone:zone];
-    
-    return copy;
+    @synchronized(self.observers) {
+        BOOL state = self.notifyObservers;
+        
+        self.notifyObservers = shouldNotify;
+        
+        IDPPerformBlock(block);
+        
+        self.notifyObservers = state;
+    }
 }
 
 @end

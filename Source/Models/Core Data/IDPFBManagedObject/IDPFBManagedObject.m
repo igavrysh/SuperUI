@@ -8,7 +8,6 @@
 
 #import "IDPFBManagedObject.h"
 
-
 @implementation IDPFBManagedObject
 
 @dynamic managedObjectID;
@@ -23,9 +22,8 @@
     
     if (!object) {
         object = [self managedObject];
-        object.managedObjectID = managedObjectID;
         
-        [object saveManagedObject];
+        object.managedObjectID = managedObjectID;
     }
     
     return object;

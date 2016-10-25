@@ -17,9 +17,11 @@
 
 @end
 
-@interface IDPObservableObject : NSObject <NSCopying, IDPObservableObject>
+@interface IDPObservableObject : NSObject <IDPObservableObject>
 @property (nonatomic, assign)   NSUInteger      state;
 @property (nonatomic, readonly) NSSet           *observerSet;
+
+- (instancetype)initWithTarget:(id)target;
 
 - (void)addObserverObjects:(NSArray *)observers;
 - (void)addObserverObject:(id)observer;
@@ -29,6 +31,8 @@
 
 - (BOOL)isObservedByObject:(id)observer;
 
+- (SEL)selectorForState:(NSUInteger)state;
+
 - (void)setState:(NSUInteger)state object:(id)object;
 
 - (void)notifyOfStateChange:(NSUInteger)state;
@@ -36,8 +40,5 @@
 
 - (void)performBlockWithNotification:(void (^)(void))block;
 - (void)performBlockWithoutNotification:(void (^)(void))block;
-
-// This method is itended for subclassing
-- (SEL)selectorForState:(NSUInteger)state;
 
 @end
