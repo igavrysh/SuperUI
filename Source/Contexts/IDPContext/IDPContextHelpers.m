@@ -15,7 +15,5 @@ void IDPContextSetter(IDPContext * __strong *contextField, IDPContext *context) 
         [*contextField cancel];
         
         *contextField = context;
-        
-        [context execute];
     }
 }

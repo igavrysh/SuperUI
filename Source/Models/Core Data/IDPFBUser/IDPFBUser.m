@@ -10,15 +10,20 @@
 
 #import "IDPObservableObject.h"
 #import "IDPImageModel.h"
+#import "IDPFBFriendsArrayModel.h"
+
+#import "IDPMacros.h"
 
 @interface IDPFBUser ()
 @property (nonatomic, strong)   IDPObservableObject     *targetObservableObject;
+
 
 @end
 
 @implementation IDPFBUser
 
-@synthesize  targetObservableObject;
+@synthesize targetObservableObject = _targetObservableObject;
+@synthesize friendsArray = _friendsArray;
 
 @dynamic firstName;
 @dynamic hometown;
@@ -27,6 +32,7 @@
 @dynamic name;
 @dynamic friends;
 @dynamic images;
+@dynamic profileImage;
 @dynamic fullName;
 
 #pragma mark - 
@@ -36,7 +42,10 @@
      insertIntoManagedObjectContext:(NSManagedObjectContext *)context
 {
     self = [super initWithEntity:entity insertIntoManagedObjectContext:context];
-    self.targetObservableObject = [[IDPObservableObject alloc] init];
+    self.targetObservableObject = [[IDPObservableObject alloc] initWithTarget:self];
+    
+    self.friendsArray = [[IDPFBFriendsArrayModel alloc] initWithContainerModel:self
+                                                                  arrayKeyPath:kIDPFriendsArrayKey];
     
     return self;
 }
@@ -46,6 +55,18 @@
 
 - (NSString *)fullName {
     return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
+}
+
+- (IDPFBFriendsArrayModel *)friendsArray {
+    return _friendsArray;
+}
+
+- (void)setFriendsArray:(IDPFBFriendsArrayModel *)friendsArray {
+    if (_friendsArray != friendsArray) {
+        _friendsArray = nil;
+        
+        _friendsArray = friendsArray;
+    }
 }
 
 #pragma mark - 
@@ -77,6 +98,9 @@
             
         case IDPFBUserDidLoadId:
             return @selector(userDidLoadId:);
+            
+        case IDPFBUserDidLoadFriends:
+            return @selector(userDidLoadFrineds:);
             
         case IDPFBUserDidLoadDetails:
             return @selector(userDidLoadDetails:);

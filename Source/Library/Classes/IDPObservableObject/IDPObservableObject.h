@@ -15,19 +15,20 @@
 
 - (SEL)selectorForState:(NSUInteger)state;
 
-@end
-
-@interface IDPObservableObject : NSObject <IDPObservableObject>
-@property (nonatomic, assign)   NSUInteger      state;
-@property (nonatomic, readonly) NSSet           *observerSet;
-
-- (instancetype)initWithTarget:(id)target;
-
 - (void)addObserverObjects:(NSArray *)observers;
 - (void)addObserverObject:(id)observer;
 
 - (void)removeObserverObjects:(NSArray *)observers;
 - (void)removeObserverObject:(id)observer;
+
+@end
+
+@interface IDPObservableObject : NSObject <IDPObservableObject>
+@property (nonatomic, assign)       NSUInteger              state;
+@property (nonatomic, readonly)     NSSet                   *observerSet;
+@property (nonatomic, readonly)     id<IDPObservableObject> target;
+
+- (instancetype)initWithTarget:(id)target;
 
 - (BOOL)isObservedByObject:(id)observer;
 

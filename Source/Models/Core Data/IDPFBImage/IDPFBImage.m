@@ -18,12 +18,14 @@
 #pragma mark -
 #pragma mark Accessores
 
+- (NSURL *)url {
+    return [NSURL URLWithString:self.managedObjectID];
+}
+
 - (IDPImageModel *)imageModel {
-    IDPImageModel *model = [IDPImageModel imageWithURL:self.managedObjectID];
+    IDPImageModel *model = [IDPImageModel imageWithURL:self.url];
     
     return model;
 }
-
-
 
 @end

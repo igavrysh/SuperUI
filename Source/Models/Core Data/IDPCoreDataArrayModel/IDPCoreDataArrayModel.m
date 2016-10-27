@@ -91,8 +91,6 @@
     if (![self.controller performFetch:&error]) {
         NSLog(@"ERROR in %@: %@", [self.class description], [error description]);
     }
-    
-    self.state = !error ? IDPModelDidLoad : IDPModelDidFailLoading;
 }
 
 - (id)objectAtIndex:(NSUInteger)index {

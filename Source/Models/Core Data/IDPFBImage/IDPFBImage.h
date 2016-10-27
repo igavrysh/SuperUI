@@ -13,7 +13,7 @@
 @class IDPImageModel;
 
 @interface IDPFBImage : IDPFBManagedObject <IDPObservableObject>
-@property (nonatomic, strong)   NSURL           *url;
-@property (nonatomic, strong)   IDPImageModel   *imageModel;
+@property (nonatomic, strong, readonly)     NSURL           *url;
+@property (nonatomic, strong, readonly)     IDPImageModel   *imageModel;
 
 @end

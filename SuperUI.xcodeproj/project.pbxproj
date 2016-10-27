@@ -488,6 +488,7 @@
 		85F806AD1D93462400BD842F /* nope_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nope_image.jpg; sourceTree = "<group>"; };
 		85F840391DB3E25C00969B78 /* IDPFBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPFBUser.h; sourceTree = "<group>"; };
 		85F8403A1DB3E25C00969B78 /* IDPFBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPFBUser.m; sourceTree = "<group>"; };
+		A682904A7F8C9A8D0ED4C03D /* Pods-SuperUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperUI.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuperUI/Pods-SuperUI.release.xcconfig"; sourceTree = "<group>"; };
 		D406C9CE5BE9EFD21F7B396E /* Pods-SuperUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperUI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuperUI/Pods-SuperUI.debug.xcconfig"; sourceTree = "<group>"; };
 		D723FE3E275ACEB2310F874A /* libPods-SuperUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -518,6 +519,7 @@
 				6287A7FFF36F756361DD6F72 /* Pods-SuperUITests.debug.xcconfig */,
 				4E9FAB0A6B61892A11EBA490 /* Pods-SuperUITests.release.xcconfig */,
 				D406C9CE5BE9EFD21F7B396E /* Pods-SuperUI.debug.xcconfig */,
+				A682904A7F8C9A8D0ED4C03D /* Pods-SuperUI.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -534,11 +536,11 @@
 		85145AA91DAE0BCF008DE109 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				85EE57671DBBE7300077A23F /* IDPFBFriendsArrayModel */,
 				85E8C53E1DB6DADA00FE5D23 /* IDPFBManagedObject */,
 				85F840381DB3E25C00969B78 /* IDPFBUser */,
 				85A9BC3C1DBE767B0078DA64 /* IDPFBImage */,
 				85B8E8F81DB8844D00D8DF4A /* IDPCoreDataArrayModel */,
+				85EE57671DBBE7300077A23F /* IDPFBFriendsArrayModel */,
 				85145AAA1DAE0BE1008DE109 /* SuperUI.xcdatamodeld */,
 			);
 			path = "Core Data";
@@ -2084,6 +2086,7 @@
 		};
 		85C8DDA61D530D6E009E227C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A682904A7F8C9A8D0ED4C03D /* Pods-SuperUI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SuperUI/Info.plist;

@@ -11,6 +11,7 @@
 #import "IDPArrayModel.h"
 #import "IDPFBFriendsArrayModel.h"
 #import "IDPFBUser.h"
+#import "IDPFBImage.h"
 #import "IDPFBConstants.h"
 
 #import "NSArray+IDPArrayEnumerator.h"
@@ -30,21 +31,15 @@
 #pragma mark - 
 #pragma mark Class Methods
 
-+ (instancetype)contextWithFBUser:(IDPFBUser *)user
-                          friends:(IDPFBFriendsArrayModel *)friends
-{
-    return [[IDPFBFriendsContext alloc] initWithFBUser:user friends:friends];
++ (instancetype)contextWithUser:(IDPFBUser *)user {
+    return [[IDPFBFriendsContext alloc] initWithUser:user];
 }
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (instancetype)initWithFBUser:(IDPFBUser *)user
-                       friends:(IDPFBFriendsArrayModel *)friends
-{
-    self = [super initWithModel:friends];
-    
-    self.user = user;
+- (instancetype)initWithUser:(IDPFBUser *)user {
+    self = [super initWithModel:user];
     
     return self;
 }
@@ -68,13 +63,15 @@
 #pragma mark Public Methods
 
 - (void)fillWithResult:(NSDictionary *)result {
-    IDPFBFriendsArrayModel *friends = self.model;
+    IDPFBFriendsArrayModel *friends = ((IDPFBUser *)self.model).friendsArray;
     
     NSArray *friendsArray = [self friendsWithInfo:[result JSONRepresentation]];
     
     [friends addObjects:friendsArray];
     
     [friends performLoading];
+    
+    self.user.state = IDPFBUserDidLoadFriends;
 }
 
 - (NSArray *)friendsWithInfo:(NSDictionary *)info {
@@ -92,8 +89,8 @@
     IDPFBUser *user = [IDPFBUser managedObjectWithID:info[kIDPID]];
     user.firstName = info[kIDPFirstName];
     user.lastName = info[kIDPLastName];
-    //user.imageURL = [NSURL URLWithString:info[kIDPPicture][kIDPData][kIDPURL]];
-    user.state = IDPModelDidLoad;
+    user.profileImage = [IDPFBImage managedObjectWithID:info[kIDPPicture][kIDPData][kIDPURL]];
+    user.state = IDPFBUserDidLoadId;
     
     [user saveManagedObject];
     
@@ -101,6 +98,8 @@
 }
 
 - (void)didFailLoadingFromInternet:(NSError *)error {
+    self.user.state = IDPFBUserDidFailLoading;
+    
     /*
     IDPUser *user = (IDPUser *)self.model;
     

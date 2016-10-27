@@ -51,8 +51,6 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
     
     self.user = user;
     
-    self.friends = [[IDPFBFriendsArrayModel alloc] initWithContainerModel:user
-                                                           arrayKeyPath:@"friends"];
     return self;
 }
 
@@ -61,16 +59,16 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
 
 IDPBaseViewGetterSynthesize(SUIView, rootView);
 
-- (void)setFriends:(IDPFBFriendsArrayModel *)friends {
-    if (_friends != friends) {
-        [_friends removeObserverObject:self];
+- (void)setUser:(IDPFBUser *)user {
+    if (_user != user) {
+        [_user removeObserverObject:self];
      
-        _friends = friends;
+        _user = user;
         
-        [friends addObserverObject:self];
+        [user addObserverObject:self];
         
         if (self.isViewLoaded) {
-            self.rootView.model = self.friends;
+            self.rootView.model = self.user;
         }
     }
 }
@@ -87,8 +85,9 @@ IDPBaseViewGetterSynthesize(SUIView, rootView);
 #pragma mark Private
 
 - (void)loadUsers {
-    self.friendsContext = [IDPFBFriendsContext contextWithFBUser:self.user
-                                                         friends:self.friends];
+    self.friendsContext = [IDPFBFriendsContext contextWithUser:self.user];
+    
+    [self.friendsContext execute];
 }
 
 - (void)setupNavigationBar {
@@ -137,7 +136,7 @@ IDPBaseViewGetterSynthesize(SUIView, rootView);
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.rootView.model = self.friends;
+    self.rootView.model = self.user;
     
     [self loadUsers];
 }
@@ -145,7 +144,7 @@ IDPBaseViewGetterSynthesize(SUIView, rootView);
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.rootView.model = self.friends;
+    self.rootView.model = self.user;
     
     [self setupNavigationBar];
 }
@@ -155,9 +154,9 @@ IDPBaseViewGetterSynthesize(SUIView, rootView);
 }
 
 #pragma mark -
-#pragma mark IDPArrayModelObserver
+#pragma mark IDPFBUserObserver
 
-- (void)modelDidLoad:(IDPArrayModel *)array {
+- (void)userDidLoadFrineds:(IDPFBUser *)user {
     IDPPrintMethod;
     
     [self reloadTableView];
@@ -169,7 +168,7 @@ IDPBaseViewGetterSynthesize(SUIView, rootView);
 - (NSInteger)   tableView:(UITableView *)tableView
     numberOfRowsInSection:(NSInteger)section
 {
-    return self.friends.count;
+    return self.user.friendsArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -177,7 +176,7 @@ IDPBaseViewGetterSynthesize(SUIView, rootView);
 {
     UITableViewCell<IDPModelCell> *cell = [self cellForTable:tableView withIndexPath:indexPath];
     
-    cell.model = self.friends[indexPath.row];
+    cell.model = self.user.friendsArray[indexPath.row];
     
     return cell;
 }
@@ -189,7 +188,7 @@ IDPBaseViewGetterSynthesize(SUIView, rootView);
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self pushDetailsViewContollerForUser:self.friends[indexPath.row]];
+    [self pushDetailsViewContollerForUser:self.user.friendsArray[indexPath.row]];
 }
 
 @end

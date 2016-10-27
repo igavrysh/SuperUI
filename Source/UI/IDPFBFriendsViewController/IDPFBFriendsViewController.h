@@ -9,6 +9,7 @@
 #import "SUIViewController.h"
 
 #import "IDPModel.h"
+#import "IDPFBUser.h"
 #import "SUIView.h"
 #import "IDPContext.h"
 
@@ -18,11 +19,10 @@
 @class IDPFBFriendsArrayModel;
 
 @interface IDPFBFriendsViewController : UIViewController <
-    IDPModelObserver,
+    IDPFBUserObserver,
     UITableViewDelegate,
     UITableViewDataSource
 >
-@property (nonatomic, strong) IDPFBFriendsArrayModel    *friends;
 
 IDPDefineBaseViewProperty(SUIView, rootView);
 

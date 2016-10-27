@@ -53,6 +53,8 @@
     
     self.loginContext = [[IDPFBLoginContext alloc] initWithUser:user
                                                  viewController:self];
+    
+    [self.loginContext execute];
 }
 
 #pragma mark -

@@ -10,6 +10,7 @@
 
 #import "IDPImageView.h"
 #import "IDPFBUser.h"
+#import "IDPFBImage.h"
 #import "IDPBlockTypes.h"
 #import "IDPGCDQueue.h"
 
@@ -84,7 +85,7 @@ static NSString * const kIDPNoImageExtension = @"jpg";
 - (void)fillWithUser:(IDPFBUser *)user {
     self.fullNameLabel.text = user.fullName;
     
-    //self.imageModel = user.imageModel;
+    self.imageModel = user.profileImage.imageModel;
 }
 
 #pragma mark -
