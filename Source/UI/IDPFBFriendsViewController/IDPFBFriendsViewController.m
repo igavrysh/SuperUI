@@ -85,7 +85,7 @@ IDPBaseViewGetterSynthesize(SUIView, rootView);
 #pragma mark Private
 
 - (void)loadUsers {
-    self.friendsContext = [IDPFBFriendsContext contextWithUser:self.user];
+    self.friendsContext = [IDPFBFriendsContext contextWithModel:self.user];
     
     [self.friendsContext execute];
 }
@@ -156,10 +156,12 @@ IDPBaseViewGetterSynthesize(SUIView, rootView);
 #pragma mark -
 #pragma mark IDPFBUserObserver
 
-- (void)userDidLoadFrineds:(IDPFBUser *)user {
+- (void)userDidLoadFriends:(IDPFBUser *)user {
     IDPPrintMethod;
     
     [self reloadTableView];
+    
+    self.rootView.loadingViewVisible = NO;
 }
 
 #pragma mark -

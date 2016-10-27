@@ -100,7 +100,7 @@
             return @selector(userDidLoadId:);
             
         case IDPFBUserDidLoadFriends:
-            return @selector(userDidLoadFrineds:);
+            return @selector(userDidLoadFriends:);
             
         case IDPFBUserDidLoadDetails:
             return @selector(userDidLoadDetails:);

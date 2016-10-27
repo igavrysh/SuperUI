@@ -65,7 +65,7 @@
 
 - (void)setState:(NSUInteger)state object:(id)object {
     @synchronized(self) {
-        if (state != _state) {
+        if (_state != state) {
             _state = state;
             
             [self notifyOfStateChange:_state withObject:object];
@@ -121,7 +121,7 @@
 }
 
 - (SEL)selectorForState:(NSUInteger)state {
-    return nil;
+    return [self.target selectorForState:state];
 }
 
 #pragma mark -

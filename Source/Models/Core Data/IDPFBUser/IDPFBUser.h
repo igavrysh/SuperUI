@@ -42,7 +42,7 @@ typedef NS_ENUM(NSUInteger, IDPFBState) {
 
 - (void)userDidLoadId:(IDPFBUser *)user;
 
-- (void)userDidLoadFrineds:(IDPFBUser *)user;
+- (void)userDidLoadFriends:(IDPFBUser *)user;
 
 - (void)userDidLoadDetails:(IDPFBUser *)user;
 

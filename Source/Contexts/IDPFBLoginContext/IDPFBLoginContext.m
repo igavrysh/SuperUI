@@ -100,8 +100,8 @@
 
 - (NSArray *)readPermissions {
     return @[kIDPPublicProfile,
-             kIDPUserFriends];
-             //, kIDPUserLocation];
+             kIDPUserFriends,
+             kIDPUserLocation];
 }
 
 @end

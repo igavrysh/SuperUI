@@ -24,9 +24,9 @@
 @end
 
 @interface IDPObservableObject : NSObject <IDPObservableObject>
-@property (nonatomic, assign)       NSUInteger              state;
-@property (nonatomic, readonly)     NSSet                   *observerSet;
-@property (nonatomic, readonly)     id<IDPObservableObject> target;
+@property (nonatomic, assign)           NSUInteger              state;
+@property (nonatomic, readonly)         NSSet                   *observerSet;
+@property (nonatomic, weak, readonly)   id<IDPObservableObject> target;
 
 - (instancetype)initWithTarget:(id)target;
 

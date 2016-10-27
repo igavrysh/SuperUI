@@ -19,36 +19,25 @@
 #import "IDPJSONAdapter.h"
 
 @interface IDPFBFriendsContext ()
-@property (nonatomic, strong)   IDPFBUser   *user;
+@property (nonatomic, strong, readonly) IDPFBUser   *user;
 
 - (NSArray *)friendsWithInfo:(NSDictionary *)info;
+
 - (IDPFBUser *)userWithInfo:(NSDictionary *)info;
 
 @end
 
 @implementation IDPFBFriendsContext
 
-#pragma mark - 
-#pragma mark Class Methods
-
-+ (instancetype)contextWithUser:(IDPFBUser *)user {
-    return [[IDPFBFriendsContext alloc] initWithUser:user];
-}
-
-#pragma mark -
-#pragma mark Initializations and Deallocations
-
-- (instancetype)initWithUser:(IDPFBUser *)user {
-    self = [super initWithModel:user];
-    
-    return self;
-}
+@dynamic user;
 
 #pragma mark -
 #pragma mark Accessors
 
 - (NSString *)graphPath {
-    return [NSString stringWithFormat:@"%@/%@", self.user.managedObjectID, kIDPFriends];
+    return [NSString stringWithFormat:@"%@/%@",
+            self.user.managedObjectID,
+            kIDPFriends];
 }
 
 - (NSDictionary *)requestParameters {
@@ -59,11 +48,15 @@
                          kIDPLargePicture]};
 }
 
+- (IDPFBUser *)user {
+    return self.model;
+}
+
 #pragma mark -
 #pragma mark Public Methods
 
 - (void)fillWithResult:(NSDictionary *)result {
-    IDPFBFriendsArrayModel *friends = ((IDPFBUser *)self.model).friendsArray;
+    IDPFBFriendsArrayModel *friends = self.user.friendsArray;
     
     NSArray *friendsArray = [self friendsWithInfo:[result JSONRepresentation]];
     
