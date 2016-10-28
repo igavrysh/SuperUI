@@ -91,23 +91,28 @@
 }
 
 - (void)didFailLoadingFromInternet:(NSError *)error {
-    self.user.state = IDPFBUserDidFailLoading;
+    IDPFBUser *user = self.user;
     
     /*
-    IDPUser *user = (IDPUser *)self.model;
-    
     [user performBlockWithoutNotification:^{
         [user load];
     }];
+    */
     
-    IDPArrayModel *friends = user.friends;
     
+    IDPFBFriendsArrayModel *friends = user.friendsArray;
+    
+    [friends performLoading];
+    
+    NSArray *arr = friends.objects;
+    
+    /*
     [friends.objects performBlockWithEachObject:^(IDPUser *user) {
         [user load];
     }];
-    
-    friends.state = IDPModelDidLoad;
      */
+    
+    self.user.state = IDPFBUserDidLoadFriends;
 }
 
 @end

@@ -18,6 +18,10 @@
 #import "NSManagedObject+IDPExtensions.h"
 #import "NSManagedObjectContext+IDPExtensions.h"
 
+#import "IDPMacros.h"
+
+kIDPStringVariableDefinition(kIDPCacheName, @"Master");
+
 @interface IDPCoreDataArrayModel ()
 @property (nonatomic, strong)   NSManagedObject             *containerModel;
 @property (nonatomic, strong)   NSString                    *arrayKeyPath;
@@ -39,6 +43,8 @@
     self.containerModel = containerModel;
     self.arrayKeyPath = arraykeyPath;
     
+    [NSFetchedResultsController deleteCacheWithName:kIDPCacheName];
+    
     [self initFetchResultsController];
     
     return self;
@@ -53,7 +59,7 @@
     self.controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                           managedObjectContext:context
                                                             sectionNameKeyPath:nil
-                                                                     cacheName:@"Master"];
+                                                                     cacheName:kIDPCacheName];
 }
 
 #pragma mark -

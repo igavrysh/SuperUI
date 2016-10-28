@@ -48,7 +48,9 @@ kIDPStringVariableDefinition(kIDPMomName, @"SuperUI");
 #pragma mark -
 #pragma mark Application Lifecycle
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)            application:(UIApplication *)application
+  didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
     

@@ -62,8 +62,5 @@ typedef NS_ENUM(NSUInteger, IDPFBState) {
 
 @property (nonatomic, strong, readonly) NSString                *fullName;
 
-//@property (nonatomic, strong)   NSManagedObject *profileImage;
-//@property (nonatomic, strong)   NSSet           *images;
-
 @end
 

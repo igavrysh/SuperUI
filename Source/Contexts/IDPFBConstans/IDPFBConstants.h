@@ -21,7 +21,7 @@ kIDPStringVariableDefinition(kIDPLargePicture, @"picture.type(large)");
 kIDPStringVariableDefinition(kIDPFriends, @"friends");
 kIDPStringVariableDefinition(kIDPPermissions, @"permissions");
 kIDPStringVariableDefinition(kIDPData, @"data");
-kIDPStringVariableDefinition(kIDPPicture, @"picture")
+kIDPStringVariableDefinition(kIDPPicture, @"picture");
 kIDPStringVariableDefinition(kIDPURL, @"url");
 kIDPStringVariableDefinition(kIDPName, @"name");
 kIDPStringVariableDefinition(kIDPLocation, @"location");
