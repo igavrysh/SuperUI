@@ -81,7 +81,7 @@
 }
 
 - (IDPFBUser *)userWithInfo:(NSDictionary *)info {
-    IDPFBUser *user = (IDPFBUser *)self.model;
+    IDPFBUser *user = [IDPFBUser managedObjectWithID:info[kIDPID]];
     user.firstName = info[kIDPFirstName];
     user.lastName = info[kIDPLastName];
     user.profileImage = [IDPFBImage managedObjectWithID:info[kIDPPicture][kIDPData][kIDPURL]];
