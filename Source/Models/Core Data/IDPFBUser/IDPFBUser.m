@@ -33,6 +33,7 @@
 @dynamic friends;
 @dynamic images;
 @dynamic profileImage;
+@dynamic bigProfileImage;
 @dynamic fullName;
 
 #pragma mark - 

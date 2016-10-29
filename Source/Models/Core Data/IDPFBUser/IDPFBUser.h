@@ -58,6 +58,7 @@ typedef NS_ENUM(NSUInteger, IDPFBState) {
 @property (nonatomic, strong)           IDPFBFriendsArrayModel  *friendsArray;
 
 @property (nonatomic, strong)           IDPFBImage              *profileImage;
+@property (nonatomic, strong)           IDPFBImage              *bigProfileImage;
 @property (nonatomic, strong)           NSSet                   *images;
 
 @property (nonatomic, strong, readonly) NSString                *fullName;

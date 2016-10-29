@@ -48,7 +48,6 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
 
 - (instancetype)initWithUser:(IDPFBUser *)user {
     self = [super init];
-    
     self.user = user;
     
     return self;
@@ -99,10 +98,9 @@ IDPBaseViewGetterSynthesize(SUIView, rootView);
 }
 
 - (void)pushDetailsViewContollerForUser:(IDPFBUser *)user {
-    //IDPFBUserDetailsViewController *controller = [IDPFBUserDetailsViewController new];
-    //controller.model = user;
+    IDPFBUserDetailsViewController *controller = [[IDPFBUserDetailsViewController alloc] initWithUser:user];
     
-    //[self.navigationController pushViewController:controller animated:YES];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (UITableViewCell<IDPModelCell> *)cellForTable:(UITableView *)tableView

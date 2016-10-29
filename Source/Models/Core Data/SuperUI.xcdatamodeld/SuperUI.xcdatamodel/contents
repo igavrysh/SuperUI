@@ -10,12 +10,13 @@
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="managedObjectID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="bigProfileImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="IDPFBImage" syncable="YES"/>
         <relationship name="friends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="IDPFBUser" inverseName="friends" inverseEntity="IDPFBUser" syncable="YES"/>
         <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="IDPFBImage" syncable="YES"/>
         <relationship name="profileImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="IDPFBImage" syncable="YES"/>
     </entity>
     <elements>
         <element name="IDPFBImage" positionX="-63" positionY="-18" width="128" height="60"/>
-        <element name="IDPFBUser" positionX="133" positionY="-18" width="128" height="180"/>
+        <element name="IDPFBUser" positionX="133" positionY="-18" width="128" height="195"/>
     </elements>
 </model>
