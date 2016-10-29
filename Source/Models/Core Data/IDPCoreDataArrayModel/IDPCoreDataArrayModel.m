@@ -85,6 +85,8 @@ kIDPStringVariableDefinition(kIDPCacheName, @"Master");
 #pragma mark Public Methods
 
 - (NSPredicate *)predicate {
+    //return [NSPredicate predicateWithFormat:@"firstName == %@", @"Bob"];
+    
     return [NSPredicate predicateWithFormat:@"%K CONTAINS %@", self.arrayKeyPath, self.containerModel];
 }
 

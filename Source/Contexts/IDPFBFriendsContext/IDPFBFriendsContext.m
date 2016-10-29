@@ -62,6 +62,8 @@
     
     [friends addObjects:friendsArray];
     
+    [self.user saveManagedObject];
+    
     [friends performLoading];
     
     self.user.state = IDPFBUserDidLoadFriends;
@@ -85,32 +87,15 @@
     user.profileImage = [IDPFBImage managedObjectWithID:info[kIDPPicture][kIDPData][kIDPURL]];
     user.state = IDPFBUserDidLoadId;
     
-    [user saveManagedObject];
-    
     return user;
 }
 
 - (void)didFailLoadingFromInternet:(NSError *)error {
     IDPFBUser *user = self.user;
     
-    /*
-    [user performBlockWithoutNotification:^{
-        [user load];
-    }];
-    */
-    
-    
     IDPFBFriendsArrayModel *friends = user.friendsArray;
     
     [friends performLoading];
-    
-    NSArray *arr = friends.objects;
-    
-    /*
-    [friends.objects performBlockWithEachObject:^(IDPUser *user) {
-        [user load];
-    }];
-     */
     
     self.user.state = IDPFBUserDidLoadFriends;
 }
