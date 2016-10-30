@@ -66,6 +66,10 @@ typedef void (^IDPSetChangeBlock)(NSMutableSet *originalSet);
     [NSManagedObjectContext saveManagedObjectContext];
 }
 
+- (void)refreshManagedObject {
+    [NSManagedObjectContext refreshManagedObjectContextWithObject:self mergeChanges:YES];
+}
+
 - (void)setObjectValue:(id)value forKey:(NSString *)key {
     [self willChangeValueForKey:key];
     

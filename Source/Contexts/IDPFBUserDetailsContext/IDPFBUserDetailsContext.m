@@ -12,6 +12,8 @@
 #import "IDPFBImage.h"
 #import "IDPFBConstants.h"
 
+#import "IDPGCDQueue.h"
+
 @implementation IDPFBUserDetailsContext
 
 #pragma mark -
@@ -37,22 +39,25 @@
 
 - (void)fillWithResult:(NSDictionary *)result {
     IDPFBUser *user = (IDPFBUser *)self.model;
+    
     user.name = result[kIDPName];
     user.bigProfileImage = [IDPFBImage managedObjectWithID:result[kIDPPicture][kIDPData][kIDPURL]];
     
-    [NSURL URLWithString:result[kIDPPicture][kIDPData][kIDPURL]];
-
-    user.state = IDPFBUserDidLoadDetails;
-    
+    // TODO: why refresh doesn't work?
+    //[user refreshManagedObject];
     [user saveManagedObject];
+    
+    user.state = IDPFBUserDidLoadDetails;
 }
 
 - (void)didFailLoadingFromInternet:(NSError *)error {
-    NSString *managedObjectID = ((IDPFBUser *)self.model).managedObjectID;
-    
-    IDPFBUser *user = [IDPFBUser managedObjectWithID:managedObjectID];
-    
-    user.state = IDPFBUserDidLoadDetails;
+    IDPAsyncPerformInMainQueue(^{
+        NSString *managedObjectID = ((IDPFBUser *)self.model).managedObjectID;
+        
+        IDPFBUser *user = [IDPFBUser managedObjectWithID:managedObjectID];
+        
+        user.state = IDPFBUserDidLoadDetails;
+    });
 }
 
 @end

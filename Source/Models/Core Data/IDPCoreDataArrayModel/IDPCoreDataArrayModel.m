@@ -56,10 +56,12 @@ kIDPStringVariableDefinition(kIDPCacheName, @"Master");
     
     NSManagedObjectContext *context = [NSManagedObjectContext context];
     
+    
+    // TODO: study why setting cacheName doesn't work?
     self.controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                           managedObjectContext:context
                                                             sectionNameKeyPath:nil
-                                                                     cacheName:kIDPCacheName];
+                                                                     cacheName:nil];
 }
 
 #pragma mark -
@@ -74,7 +76,7 @@ kIDPStringVariableDefinition(kIDPCacheName, @"Master");
 }
 
 - (NSArray *)objects {
-    return [[self.controller fetchedObjects] copy];
+    return [self.controller fetchedObjects];
 }
 
 - (NSUInteger)count {
@@ -85,8 +87,6 @@ kIDPStringVariableDefinition(kIDPCacheName, @"Master");
 #pragma mark Public Methods
 
 - (NSPredicate *)predicate {
-    //return [NSPredicate predicateWithFormat:@"firstName == %@", @"Bob"];
-    
     return [NSPredicate predicateWithFormat:@"%K CONTAINS %@", self.arrayKeyPath, self.containerModel];
 }
 
@@ -193,31 +193,30 @@ kIDPStringVariableDefinition(kIDPCacheName, @"Master");
       newIndexPath:(NSIndexPath *)newIndexPath
 {
     IDPArrayChangeModel *model = nil;
+
     switch (type) {
         case NSFetchedResultsChangeInsert:
         case NSFetchedResultsChangeUpdate:
             model = [IDPArrayChangeModel insertModelWithArrayModel:self
                                                              index:indexPath.row];
-            
-            [self applyChangeModel:model];
             break;
             
         case NSFetchedResultsChangeDelete:
             model = [IDPArrayChangeModel removeModelWithArrayModel:self
                                                              index:indexPath.row];
-            [self applyChangeModel:model];
             break;
             
         case NSFetchedResultsChangeMove:
             model = [IDPArrayChangeModel moveModelWithArrayModel:self
                                                          toIndex:newIndexPath.row
                                                        fromIndex:indexPath.row];
-            [self applyChangeModel:model];
             break;
             
         default:
             break;
     }
+    
+    [self applyChangeModel:model];
 }
 
 @end

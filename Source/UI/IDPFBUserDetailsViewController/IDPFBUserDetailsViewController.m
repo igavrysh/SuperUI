@@ -66,6 +66,8 @@ IDPBaseViewGetterSynthesize(SUIView, rootView);
 
 - (void)loadUserDetails {
     self.detailsContext = [IDPFBUserDetailsContext contextWithModel:self.user];
+    
+    [self.detailsContext execute];
 }
 
 #pragma mark -
@@ -81,9 +83,7 @@ IDPBaseViewGetterSynthesize(SUIView, rootView);
 #pragma mark IDPUserStateObserver
 
 - (void)modelDidLoad:(IDPUser *)user {
-    IDPAsyncPerformInMainQueue(^{
-        self.detailsView.model = user;
-    });
+    
 }
 
 #pragma mark -
@@ -92,7 +92,11 @@ IDPBaseViewGetterSynthesize(SUIView, rootView);
 - (void)userDidLoadDetails:(IDPFBUser *)user {
     IDPPrintMethod;
     
-    self.rootView.loadingViewVisible = NO;
+    IDPAsyncPerformInMainQueue(^{
+        self.detailsView.model = user;
+        
+        self.rootView.loadingViewVisible = NO;
+    });
 }
 
 @end

@@ -882,7 +882,6 @@
 		858238E01D5B5DEB00623348 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				851D3A121DC52FE200D83759 /* IDPImagesViewController */,
 				85C0B1F91D995CCD0007E755 /* IDPFBLoginViewController */,
 				85C0B25B1D9AB5260007E755 /* IDPFBFriendsViewController */,
 				854FD6F71DA44AA700079571 /* IDPFBUserDetailsViewController */,
@@ -891,6 +890,7 @@
 				858238E11D5B5DEB00623348 /* IDPAnimationViewController */,
 				858238E71D5B5DEB00623348 /* IDPUsersViewController */,
 				858238F11D5B5DEB00623348 /* IDPUserViewController */,
+				851D3A121DC52FE200D83759 /* IDPImagesViewController */,
 				85C0B29F1D9D1A9D0007E755 /* IDPModelCell */,
 				858238F71D5B5DEB00623348 /* Views */,
 			);

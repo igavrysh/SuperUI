@@ -63,4 +63,9 @@
     }
 }
 
++ (void)refreshManagedObjectContextWithObject:(NSManagedObject *)object
+                                 mergeChanges:(BOOL)mergeChanges
+{
+    [[self context] refreshObject:object mergeChanges:mergeChanges];
+}
 @end

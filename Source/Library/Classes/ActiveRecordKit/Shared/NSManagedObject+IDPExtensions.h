@@ -24,6 +24,7 @@
 
 - (void)saveManagedObject;
 
+- (void)refreshManagedObject;
 
 - (id)objectValueForKey:(NSString *)key;
 

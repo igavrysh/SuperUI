@@ -22,4 +22,6 @@
 
 + (void)saveManagedObjectContext;
 
++ (void)refreshManagedObjectContextWithObject:(NSManagedObject *)object
+                                 mergeChanges:(BOOL)mergeChanges;
 @end
