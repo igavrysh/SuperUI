@@ -17,6 +17,7 @@
 #import "NSMutableArray+IDPExtensions.h"
 #import "NSManagedObject+IDPExtensions.h"
 #import "NSManagedObjectContext+IDPExtensions.h"
+#import "NSCompoundPredicate+IDPExtensions.h"
 
 #import "IDPMacros.h"
 
@@ -28,6 +29,8 @@ kIDPStringVariableDefinition(kIDPCacheName, @"Master");
 @property (nonatomic, strong)   NSFetchedResultsController  *controller;
 
 - (void)initFetchResultsController;
+
+- (NSCompoundPredicate *)compoundPredicate;
 
 @end
 
@@ -51,7 +54,7 @@ kIDPStringVariableDefinition(kIDPCacheName, @"Master");
 }
 
 - (void)initFetchResultsController {
-    NSFetchRequest *fetchRequest = [[self.containerModel class] fetchRequestWithPredicate:self.predicate
+    NSFetchRequest *fetchRequest = [[self.containerModel class] fetchRequestWithPredicate:[self compoundPredicate]
                                                                           sortDescriptors:self.sortDescriptors];
     
     NSManagedObjectContext *context = [NSManagedObjectContext context];
@@ -63,6 +66,15 @@ kIDPStringVariableDefinition(kIDPCacheName, @"Master");
                                                             sectionNameKeyPath:nil
                                                                      cacheName:nil];
 }
+
+- (NSCompoundPredicate *)compoundPredicate {
+    NSCompoundPredicate *predicate = [NSCompoundPredicate new];
+    predicate = [predicate addAndPredicate:self.predicate];
+    predicate = [predicate addAndPredicate:self.filterPredicate];
+    
+    return predicate;
+}
+
 
 #pragma mark -
 #pragma mark Accessors
@@ -88,6 +100,10 @@ kIDPStringVariableDefinition(kIDPCacheName, @"Master");
 
 - (NSPredicate *)predicate {
     return [NSPredicate predicateWithFormat:@"%K CONTAINS %@", self.arrayKeyPath, self.containerModel];
+}
+
+- (NSPredicate *)filterPredicate {
+    return nil;
 }
 
 - (NSArray *)sortDescriptors {

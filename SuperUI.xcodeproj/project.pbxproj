@@ -23,6 +23,8 @@
 		851D3A1A1DC5307000D83759 /* IDPImagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 851D3A181DC5307000D83759 /* IDPImagesView.m */; };
 		851D3A1C1DC5309000D83759 /* IDPImagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851D3A1B1DC5309000D83759 /* IDPImagesViewController.xib */; };
 		851D3A1D1DC5309000D83759 /* IDPImagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851D3A1B1DC5309000D83759 /* IDPImagesViewController.xib */; };
+		851D3A211DC6C94E00D83759 /* NSCompoundPredicate+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 851D3A201DC6C94E00D83759 /* NSCompoundPredicate+IDPExtensions.m */; };
+		851D3A221DC6C94E00D83759 /* NSCompoundPredicate+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 851D3A201DC6C94E00D83759 /* NSCompoundPredicate+IDPExtensions.m */; };
 		851EE14F1D6193AD0029B447 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851EE14D1D6193AD0029B447 /* image.jpg */; };
 		851EE1501D6193AD0029B447 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851EE14D1D6193AD0029B447 /* image.jpg */; };
 		851EE1511D6193AD0029B447 /* image_big.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851EE14E1D6193AD0029B447 /* image_big.jpg */; };
@@ -273,6 +275,8 @@
 		851D3A171DC5307000D83759 /* IDPImagesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPImagesView.h; sourceTree = "<group>"; };
 		851D3A181DC5307000D83759 /* IDPImagesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPImagesView.m; sourceTree = "<group>"; };
 		851D3A1B1DC5309000D83759 /* IDPImagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPImagesViewController.xib; sourceTree = "<group>"; };
+		851D3A1F1DC6C94E00D83759 /* NSCompoundPredicate+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCompoundPredicate+IDPExtensions.h"; sourceTree = "<group>"; };
+		851D3A201DC6C94E00D83759 /* NSCompoundPredicate+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCompoundPredicate+IDPExtensions.m"; sourceTree = "<group>"; };
 		851EE14D1D6193AD0029B447 /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
 		851EE14E1D6193AD0029B447 /* image_big.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_big.jpg; sourceTree = "<group>"; };
 		852030B01DA17113009A46FD /* DCIModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCIModel.h; sourceTree = "<group>"; };
@@ -598,6 +602,15 @@
 			path = IDPImagesViewController;
 			sourceTree = "<group>";
 		};
+		851D3A1E1DC6C93300D83759 /* NSPredicate */ = {
+			isa = PBXGroup;
+			children = (
+				851D3A1F1DC6C94E00D83759 /* NSCompoundPredicate+IDPExtensions.h */,
+				851D3A201DC6C94E00D83759 /* NSCompoundPredicate+IDPExtensions.m */,
+			);
+			path = NSPredicate;
+			sourceTree = "<group>";
+		};
 		851EE14C1D6193AD0029B447 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -813,6 +826,7 @@
 		858238BF1D5B5DEB00623348 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				851D3A1E1DC6C93300D83759 /* NSPredicate */,
 				85C0B2B71D9D612D0007E755 /* NSDictionary */,
 				85C0B2A11D9D5E200007E755 /* IDPJSONAdapter */,
 				857638561D858D4F004DC4BC /* UIImage */,
@@ -1748,6 +1762,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				851D3A221DC6C94E00D83759 /* NSCompoundPredicate+IDPExtensions.m in Sources */,
 				85E8C5421DB6DB1300FE5D23 /* IDPFBManagedObject.m in Sources */,
 				853091971D9FB8E500AE0DE9 /* IDPContextHelpers.m in Sources */,
 				85C0B2AA1D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.m in Sources */,
@@ -1918,6 +1933,7 @@
 				85C0B2031D995DC00007E755 /* IDPFBLoginView.m in Sources */,
 				85C0B2291D9965EC0007E755 /* IDPBlockTypes.m in Sources */,
 				858239251D5B5DEB00623348 /* IDPImageView.m in Sources */,
+				851D3A211DC6C94E00D83759 /* NSCompoundPredicate+IDPExtensions.m in Sources */,
 				851D3A191DC5307000D83759 /* IDPImagesView.m in Sources */,
 				857794F41D6BA6A500C16BA4 /* NSArray+IDPArrayEnumerator.m in Sources */,
 				85C0B2891D9C7DB60007E755 /* IDPFBGetContext.m in Sources */,

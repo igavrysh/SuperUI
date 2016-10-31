@@ -17,6 +17,9 @@
 
 - (NSPredicate *)predicate;
 
+// Method for custom filtering override
+- (NSPredicate *)filterPredicate;
+
 - (NSArray *)sortDescriptors;
 
 @end
