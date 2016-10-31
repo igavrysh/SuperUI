@@ -136,6 +136,8 @@ IDPBaseViewGetterSynthesize(SUIView, rootView);
     
     self.rootView.model = self.user;
     
+    [self.friendsView setupRefreshControl];
+    
     [self loadUsers];
 }
 
@@ -149,6 +151,20 @@ IDPBaseViewGetterSynthesize(SUIView, rootView);
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self.friendsView startAnimation];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
+                                 (int64_t)(5 * NSEC_PER_SEC)),
+                   dispatch_get_main_queue(),
+    ^{
+        [self.friendsView stopAnimation];
+        
+    });
 }
 
 #pragma mark -

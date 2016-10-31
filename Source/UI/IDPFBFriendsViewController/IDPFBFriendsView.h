@@ -8,7 +8,14 @@
 
 #import "SUIView.h"
 
+#import "YALSunnyRefreshControl.h"
+
 @interface IDPFBFriendsView : SUIView
 @property (nonatomic, strong)   IBOutlet UITableView        *tableView;
+
+- (void)setupRefreshControl;
+
+- (void)startAnimation;
+- (void)stopAnimation;
 
 @end

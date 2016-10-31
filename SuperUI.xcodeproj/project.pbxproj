@@ -194,6 +194,12 @@
 		85C0B2BB1D9D61420007E755 /* NSDictionary+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0B2B91D9D61420007E755 /* NSDictionary+IDPExtensions.m */; };
 		85C16CBF1D764A550087EC1E /* NSBundle+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C16CBE1D764A550087EC1E /* NSBundle+IDPExtensions.m */; };
 		85C16CC01D764A550087EC1E /* NSBundle+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C16CBE1D764A550087EC1E /* NSBundle+IDPExtensions.m */; };
+		85C714641DC7284B00FBE4EF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C714601DC7284B00FBE4EF /* Images.xcassets */; };
+		85C714651DC7284B00FBE4EF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C714601DC7284B00FBE4EF /* Images.xcassets */; };
+		85C714661DC7284B00FBE4EF /* YALSunnyRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C714621DC7284B00FBE4EF /* YALSunnyRefreshControl.m */; };
+		85C714671DC7284B00FBE4EF /* YALSunnyRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C714621DC7284B00FBE4EF /* YALSunnyRefreshControl.m */; };
+		85C714681DC7284B00FBE4EF /* YALSunnyRefreshControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C714631DC7284B00FBE4EF /* YALSunnyRefreshControl.xib */; };
+		85C714691DC7284B00FBE4EF /* YALSunnyRefreshControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C714631DC7284B00FBE4EF /* YALSunnyRefreshControl.xib */; };
 		85C8DD921D530D6E009E227C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C8DD911D530D6E009E227C /* main.m */; };
 		85C8DD951D530D6E009E227C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C8DD941D530D6E009E227C /* AppDelegate.m */; };
 		85C8DDB31D530FD3009E227C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C8DDA81D530FD3009E227C /* Assets.xcassets */; };
@@ -454,6 +460,10 @@
 		85C0B2B91D9D61420007E755 /* NSDictionary+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+IDPExtensions.m"; sourceTree = "<group>"; };
 		85C16CBD1D764A550087EC1E /* NSBundle+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+IDPExtensions.h"; sourceTree = "<group>"; };
 		85C16CBE1D764A550087EC1E /* NSBundle+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+IDPExtensions.m"; sourceTree = "<group>"; };
+		85C714601DC7284B00FBE4EF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		85C714611DC7284B00FBE4EF /* YALSunnyRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YALSunnyRefreshControl.h; sourceTree = "<group>"; };
+		85C714621DC7284B00FBE4EF /* YALSunnyRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YALSunnyRefreshControl.m; sourceTree = "<group>"; };
+		85C714631DC7284B00FBE4EF /* YALSunnyRefreshControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YALSunnyRefreshControl.xib; sourceTree = "<group>"; };
 		85C8DD8D1D530D6E009E227C /* SuperUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85C8DD911D530D6E009E227C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		85C8DD931D530D6E009E227C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -896,6 +906,7 @@
 		858238E01D5B5DEB00623348 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				85C7145E1DC7284B00FBE4EF /* Controls */,
 				85C0B1F91D995CCD0007E755 /* IDPFBLoginViewController */,
 				85C0B25B1D9AB5260007E755 /* IDPFBFriendsViewController */,
 				854FD6F71DA44AA700079571 /* IDPFBUserDetailsViewController */,
@@ -1334,6 +1345,25 @@
 			path = NSBundle;
 			sourceTree = "<group>";
 		};
+		85C7145E1DC7284B00FBE4EF /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				85C7145F1DC7284B00FBE4EF /* YALSunnyRefreshControll */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		85C7145F1DC7284B00FBE4EF /* YALSunnyRefreshControll */ = {
+			isa = PBXGroup;
+			children = (
+				85C714601DC7284B00FBE4EF /* Images.xcassets */,
+				85C714611DC7284B00FBE4EF /* YALSunnyRefreshControl.h */,
+				85C714621DC7284B00FBE4EF /* YALSunnyRefreshControl.m */,
+				85C714631DC7284B00FBE4EF /* YALSunnyRefreshControl.xib */,
+			);
+			path = YALSunnyRefreshControll;
+			sourceTree = "<group>";
+		};
 		85C8DD841D530D6E009E227C = {
 			isa = PBXGroup;
 			children = (
@@ -1629,6 +1659,7 @@
 				858239141D5B5DEB00623348 /* IDPAnimationViewController.xib in Resources */,
 				85F806AC1D9337BE00BD842F /* no_image.jpg in Resources */,
 				856988021D5BE0DA00DBB5CE /* IDPArrayViewController.xib in Resources */,
+				85C714651DC7284B00FBE4EF /* Images.xcassets in Resources */,
 				85F806AF1D93462400BD842F /* nope_image.jpg in Resources */,
 				85C0B2001D995D770007E755 /* IDPFBLoginViewController.xib in Resources */,
 				856988021D5BE0DA00DBB5CE /* IDPArrayViewController.xib in Resources */,
@@ -1636,6 +1667,7 @@
 				854FD7021DA44AA700079571 /* IDPFBUserDetailsViewController.xib in Resources */,
 				858239241D5B5DEB00623348 /* IDPUserViewController.xib in Resources */,
 				851EE1501D6193AD0029B447 /* image.jpg in Resources */,
+				85C714691DC7284B00FBE4EF /* YALSunnyRefreshControl.xib in Resources */,
 				851A2A8B1D738F4300C32616 /* IDPLoadingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1645,6 +1677,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				85C8DDB31D530FD3009E227C /* Assets.xcassets in Resources */,
+				85C714681DC7284B00FBE4EF /* YALSunnyRefreshControl.xib in Resources */,
+				85C714641DC7284B00FBE4EF /* Images.xcassets in Resources */,
 				856988011D5BE0DA00DBB5CE /* IDPArrayViewController.xib in Resources */,
 				85F806AE1D93462400BD842F /* nope_image.jpg in Resources */,
 				854FD7011DA44AA700079571 /* IDPFBUserDetailsViewController.xib in Resources */,
@@ -1816,6 +1850,7 @@
 				858239221D5B5DEB00623348 /* IDPUserViewController.m in Sources */,
 				859D96971D7C5FD1005C05C6 /* IDPArrayReplaceChangeModel+IDPExtensions.m in Sources */,
 				85C0B25F1D9AB5420007E755 /* IDPFBFriendsViewController.m in Sources */,
+				85C714671DC7284B00FBE4EF /* YALSunnyRefreshControl.m in Sources */,
 				859D96911D7C5FD1005C05C6 /* IDPArrayInsertChangeModel+IDPExtensions.m in Sources */,
 				851D3A1A1DC5307000D83759 /* IDPImagesView.m in Sources */,
 				85C0B2551D9A5B2B0007E755 /* IDPFBContext.m in Sources */,
@@ -1952,6 +1987,7 @@
 				85C0B2871D9C7DB60007E755 /* IDPFBDeleteContext.m in Sources */,
 				85C0B2A91D9D5F530007E755 /* NSDictionary+IDPJSONAdapter.m in Sources */,
 				85EE576A1DBBE7490077A23F /* IDPFBFriendsArrayModel.m in Sources */,
+				85C714661DC7284B00FBE4EF /* YALSunnyRefreshControl.m in Sources */,
 				859D96901D7C5FD1005C05C6 /* IDPArrayInsertChangeModel+IDPExtensions.m in Sources */,
 				85F806951D9336E800BD842F /* IDPArrayChangeModel+IDPExtensions.m in Sources */,
 				852030B21DA17113009A46FD /* DCIModel.m in Sources */,
