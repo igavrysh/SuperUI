@@ -43,8 +43,6 @@
     user.name = result[kIDPName];
     user.bigProfileImage = [IDPFBImage managedObjectWithID:result[kIDPPicture][kIDPData][kIDPURL]];
     
-    // TODO: why refresh doesn't work?
-    //[user refreshManagedObject];
     [user saveManagedObject];
     
     user.state = IDPFBUserDidLoadDetails;

@@ -46,7 +46,7 @@ kIDPStringVariableDefinition(kIDPCacheName, @"Master");
     self.containerModel = containerModel;
     self.arrayKeyPath = arraykeyPath;
     
-    [NSFetchedResultsController deleteCacheWithName:kIDPCacheName];
+    //[NSFetchedResultsController deleteCacheWithName:kIDPCacheName];
     
     [self initFetchResultsController];
     
@@ -60,11 +60,13 @@ kIDPStringVariableDefinition(kIDPCacheName, @"Master");
     NSManagedObjectContext *context = [NSManagedObjectContext context];
     
     
-    // TODO: study why setting cacheName doesn't work?
+    static NSUInteger cacheCounter = 1;
+    NSString *cacheName = [NSString stringWithFormat:@"%lu", cacheCounter];
+    
     self.controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                           managedObjectContext:context
                                                             sectionNameKeyPath:nil
-                                                                     cacheName:nil];
+                                                                     cacheName:cacheName];
 }
 
 - (NSCompoundPredicate *)compoundPredicate {

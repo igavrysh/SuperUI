@@ -31,6 +31,8 @@
 		851EE1521D6193AD0029B447 /* image_big.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 851EE14E1D6193AD0029B447 /* image_big.jpg */; };
 		852030B21DA17113009A46FD /* DCIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 852030B11DA17113009A46FD /* DCIModel.m */; };
 		852030B31DA17113009A46FD /* DCIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 852030B11DA17113009A46FD /* DCIModel.m */; };
+		852865FB1DC87C3800379EE1 /* NSArray+IDPTestExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 852865FA1DC87C3800379EE1 /* NSArray+IDPTestExtension.m */; };
+		852865FC1DC87C3800379EE1 /* NSArray+IDPTestExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 852865FA1DC87C3800379EE1 /* NSArray+IDPTestExtension.m */; };
 		853091961D9FB8E500AE0DE9 /* IDPContextHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 853091951D9FB8E500AE0DE9 /* IDPContextHelpers.m */; };
 		853091971D9FB8E500AE0DE9 /* IDPContextHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 853091951D9FB8E500AE0DE9 /* IDPContextHelpers.m */; };
 		853F963A1D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 853F96391D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.m */; };
@@ -287,6 +289,8 @@
 		851EE14E1D6193AD0029B447 /* image_big.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_big.jpg; sourceTree = "<group>"; };
 		852030B01DA17113009A46FD /* DCIModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCIModel.h; sourceTree = "<group>"; };
 		852030B11DA17113009A46FD /* DCIModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCIModel.m; sourceTree = "<group>"; };
+		852865F91DC87C3800379EE1 /* NSArray+IDPTestExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+IDPTestExtension.h"; sourceTree = "<group>"; };
+		852865FA1DC87C3800379EE1 /* NSArray+IDPTestExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+IDPTestExtension.m"; sourceTree = "<group>"; };
 		853091941D9FB8E500AE0DE9 /* IDPContextHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPContextHelpers.h; sourceTree = "<group>"; };
 		853091951D9FB8E500AE0DE9 /* IDPContextHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPContextHelpers.m; sourceTree = "<group>"; };
 		853F96381D7D9F7400AE2C50 /* NSFileManager+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+IDPExtensions.h"; sourceTree = "<group>"; };
@@ -735,6 +739,8 @@
 				857794D01D6BA6A500C16BA4 /* NSArray+IDPArrayEnumerator.m */,
 				857781421D76C772007EEF52 /* NSArray+IDPExtensions.h */,
 				857781431D76C772007EEF52 /* NSArray+IDPExtensions.m */,
+				852865F91DC87C3800379EE1 /* NSArray+IDPTestExtension.h */,
+				852865FA1DC87C3800379EE1 /* NSArray+IDPTestExtension.m */,
 			);
 			path = NSArray;
 			sourceTree = "<group>";
@@ -1819,6 +1825,7 @@
 				85C0B2261D9965EC0007E755 /* IDPMacros.m in Sources */,
 				85E85A5F1D689DE7005A0342 /* IDPGCDQueue.m in Sources */,
 				85C0B2321D99736C0007E755 /* IDPFBLoginContext.m in Sources */,
+				852865FC1DC87C3800379EE1 /* NSArray+IDPTestExtension.m in Sources */,
 				85C0B1FD1D995D530007E755 /* IDPFBLoginViewController.m in Sources */,
 				85F8068C1D9336E800BD842F /* IDPArrayTwoIndexChangeModel.m in Sources */,
 				857795011D6BA6A500C16BA4 /* UINib+IDPExtensions.m in Sources */,
@@ -1959,6 +1966,7 @@
 				85E85A5E1D689DE7005A0342 /* IDPGCDQueue.m in Sources */,
 				85C0B2211D9965EC0007E755 /* IDPDispatchMacros.m in Sources */,
 				85C0B28E1D9CFDEB0007E755 /* IDPFBConstants.m in Sources */,
+				852865FB1DC87C3800379EE1 /* NSArray+IDPTestExtension.m in Sources */,
 				85C0B2231D9965EC0007E755 /* IDPErrorMacros.m in Sources */,
 				857794FE1D6BA6A500C16BA4 /* NSString+IDPRandomName.m in Sources */,
 				85BC55D21DAEE16B00BB2043 /* IDPCoreDataManager.m in Sources */,

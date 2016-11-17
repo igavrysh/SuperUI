@@ -92,11 +92,9 @@ kIDPStringVariableDefinition(kDefaultStoreName, @"Store");
         return;
     }
     
-    IDPAsyncPerformInQueue(DISPATCH_QUEUE_PRIORITY_DEFAULT, ^{
-        [self setupManagedObjectModel];
-        [self setupStoreCoordinator];
-        [self setupManagedObjectContext];
-    });
+    [self setupManagedObjectModel];
+    [self setupStoreCoordinator];
+    [self setupManagedObjectContext];
 }
 
 - (void)setupManagedObjectModel {
