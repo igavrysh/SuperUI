@@ -10,7 +10,7 @@
 
 #import "IDPArrayViewController.h"
 
-@class IDPUser;
+@class IDPFBUser;
 @class IDPImageView;
 @class IDPImageModel;
 
@@ -18,8 +18,8 @@
 @property (nonatomic, strong)   IBOutlet UILabel        *fullNameLabel;
 @property (nonatomic, strong)   IBOutlet IDPImageView   *userImageView;
 @property (nonatomic, strong)   IDPImageModel           *defaultImageModel;
-@property (nonatomic, strong)   IDPUser                 *model;
+@property (nonatomic, strong)   IDPFBUser               *model;
 
-- (void)fillWithUser:(IDPUser *)user;
+- (void)fillWithUser:(IDPFBUser *)user;
 
 @end

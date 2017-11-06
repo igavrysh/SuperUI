@@ -13,4 +13,6 @@
 - (void)moveObjectToIndex:(NSUInteger)index
                 fromIndex:(NSUInteger)fromIndex;
 
+- (void)addObjectWithNilCheck:(id)object;
+
 @end

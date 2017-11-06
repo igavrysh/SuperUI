@@ -19,8 +19,8 @@ typedef NS_ENUM(NSUInteger, IDPModelState) {
 @class IDPModel;
 
 @protocol IDPModelObserver <NSObject>
-@optional
 
+@optional
 - (void)modelDidUnload:(IDPModel *)model;
 
 - (void)modelDidLoad:(IDPModel *)model;

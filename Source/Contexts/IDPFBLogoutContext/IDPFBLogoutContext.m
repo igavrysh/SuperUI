@@ -11,7 +11,7 @@
 
 #import "IDPFBLogoutContext.h"
 
-#import "IDPUser.h"
+#import "IDPFBUser.h"
 
 #import "IDPFBConstants.h"
 
@@ -21,9 +21,9 @@
 #pragma mark Accessors
 
 - (NSString *)graphPath {
-    IDPUser *user = (IDPUser *)self.model;
+    IDPFBUser *user = (IDPFBUser *)self.model;
     
-    return [NSString stringWithFormat:@"%@/%@", user.ID, kIDPPermissions];
+    return [NSString stringWithFormat:@"%@/%@", user.managedObjectID, kIDPPermissions];
 }
 
 - (NSDictionary *)requestParameters {

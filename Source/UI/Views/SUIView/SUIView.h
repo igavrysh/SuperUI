@@ -11,6 +11,6 @@
 #import "IDPModel.h"
 
 @interface SUIView : IDPView <IDPModelObserver>
-@property (nonatomic, strong) IDPModel  *model;
+@property (nonatomic, strong)   id<IDPObservableObject> model;
 
 @end

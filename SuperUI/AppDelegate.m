@@ -13,32 +13,49 @@
 #import "IDPUserArrayModel.h"
 #import "IDPAnimationViewController.h"
 #import "IDPUsersViewController.h"
+#import "IDPCoreDataManager.h"
+#import "IDPGCDQueue.h"
 
 #import "UIWindow+IDPExtensions.h"
 #import "NSString+IDPRandomName.h"
 #import "NSNotificationCenter+IDPExtensions.h"
 #import "IDPFBLoginViewController.h"
 
+#import "IDPMacros.h"
+
+kIDPStringVariableDefinition(kIDPMomName, @"SuperUI");
+
 @interface AppDelegate ()
+@property (nonatomic, strong)   IDPCoreDataManager  *dataManager;
 
 @end
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+#pragma mark -
+#pragma mark Accessors
+
+- (void)setDataManager:(IDPCoreDataManager *)dataManager {
+    if (_dataManager != dataManager) {
+        [_dataManager removeObserverObject:self];
+        
+        _dataManager = dataManager;
+        
+        [dataManager addObserverObject:self];
+    }
+}
+
+#pragma mark -
+#pragma mark Application Lifecycle
+
+- (BOOL)            application:(UIApplication *)application
+  didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
     
-    UIWindow *window = [UIWindow fullScreenWindow];
-    self.window = window;
-    
-    IDPFBLoginViewController *fbController = [IDPFBLoginViewController new];
-    
-    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:fbController];
-    
-    window.rootViewController = controller;
-    
-    [window makeKeyAndVisible];
+    self.dataManager = [IDPCoreDataManager sharedManagerWithMomName:kIDPMomName];
+    [self.dataManager setup];
     
     return YES;
 }
@@ -75,6 +92,24 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     IDPPrintMethod;
+}
+
+#pragma mark -
+#pragma mark IDPCoreDataManagerObserver 
+
+- (void)coreDataManagerDidSetup:(IDPCoreDataManager *)manager {
+    IDPSyncPerformInMainQueue(^{
+        UIWindow *window = [UIWindow fullScreenWindow];
+        self.window = window;
+        
+        IDPFBLoginViewController *fbController = [IDPFBLoginViewController new];
+        
+        UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:fbController];
+        
+        window.rootViewController = controller;
+        
+        [window makeKeyAndVisible];
+    });
 }
 
 @end

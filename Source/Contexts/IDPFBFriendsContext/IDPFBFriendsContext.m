@@ -9,23 +9,35 @@
 #import "IDPFBFriendsContext.h"
 
 #import "IDPArrayModel.h"
-#import "IDPUser.h"
+#import "IDPFBFriendsArrayModel.h"
+#import "IDPFBUser.h"
+#import "IDPFBImage.h"
 #import "IDPFBConstants.h"
+
 #import "NSArray+IDPArrayEnumerator.h"
+#import "NSDictionary+IDPJSONAdapter.h"
+#import "IDPJSONAdapter.h"
 
 @interface IDPFBFriendsContext ()
+@property (nonatomic, strong, readonly) IDPFBUser   *user;
+
+- (NSArray *)friendsWithInfo:(NSDictionary *)info;
+
+- (IDPFBUser *)userWithInfo:(NSDictionary *)info;
 
 @end
 
 @implementation IDPFBFriendsContext
 
+@dynamic user;
+
 #pragma mark -
 #pragma mark Accessors
 
 - (NSString *)graphPath {
-    IDPUser *user = (IDPUser *)self.model;
-    
-    return [NSString stringWithFormat:@"%@/%@", user.ID, kIDPFriends];
+    return [NSString stringWithFormat:@"%@/%@",
+            self.user.managedObjectID,
+            kIDPFriends];
 }
 
 - (NSDictionary *)requestParameters {
@@ -36,48 +48,56 @@
                          kIDPLargePicture]};
 }
 
+- (IDPFBUser *)user {
+    return self.model;
+}
+
 #pragma mark -
 #pragma mark Public Methods
 
 - (void)fillWithResult:(NSDictionary *)result {
-    NSArray *friendsArray = [result objectForKey:kIDPData];
+    IDPFBFriendsArrayModel *friends = self.user.friendsArray;
     
-    IDPUser *user = (IDPUser *)self.model;
+    NSArray *friendsArray = [self friendsWithInfo:[result JSONRepresentation]];
     
-    IDPArrayModel *friends = user.friends;
+    [friends addObjects:friendsArray];
     
-    [friendsArray performBlockWithEachObject: ^(NSDictionary *friendInfo){
-        IDPUser *user = [IDPUser new];
-        user.ID = friendInfo[kIDPID];
-        user.firstName = friendInfo[kIDPFirstName];
-        user.lastName = friendInfo[kIDPLastName];
-        user.imageURL = [NSURL URLWithString:friendInfo[kIDPPicture][kIDPData][kIDPURL]];
-        user.state = IDPModelDidLoad;
-        
-        [friends performBlockWithoutNotification:^{
-            [friends addObject:user];
-        }];
+    [self.user saveManagedObject];
+    
+    [friends performLoading];
+    
+    self.user.state = IDPFBUserDidLoadFriends;
+}
+
+- (NSArray *)friendsWithInfo:(NSDictionary *)info {
+    NSMutableArray *friends = [NSMutableArray new];
+    NSArray *dataArray = [info objectForKey:kIDPData];
+    
+    [dataArray performBlockWithEachObject: ^(NSDictionary *friendInfo){
+        [friends addObject:[self userWithInfo:friendInfo]];
     }];
     
-    [user save];
+    return friends;
+}
+
+- (IDPFBUser *)userWithInfo:(NSDictionary *)info {
+    IDPFBUser *user = [IDPFBUser managedObjectWithID:info[kIDPID]];
+    user.firstName = info[kIDPFirstName];
+    user.lastName = info[kIDPLastName];
+    user.profileImage = [IDPFBImage managedObjectWithID:info[kIDPPicture][kIDPData][kIDPURL]];
+    user.state = IDPFBUserDidLoadId;
     
-    friends.state = IDPModelDidLoad;
+    return user;
 }
 
 - (void)didFailLoadingFromInternet:(NSError *)error {
-    IDPUser *user = (IDPUser *)self.model;
+    IDPFBUser *user = self.user;
     
-    [user performBlockWithoutNotification:^{
-        [user load];
-    }];
+    IDPFBFriendsArrayModel *friends = user.friendsArray;
     
-    IDPArrayModel *friends = user.friends;
+    [friends performLoading];
     
-    [friends.objects performBlockWithEachObject:^(IDPUser *user) {
-        [user load];
-    }];
-    
-    friends.state = IDPModelDidLoad;
+    self.user.state = IDPFBUserDidLoadFriends;
 }
 
 @end

@@ -9,7 +9,7 @@
 #import "IDPFBFriendsViewController.h"
 
 #import "IDPGCDQueue.h"
-#import "IDPUser.h"
+#import "IDPFBUser.h"
 #import "IDPUserArrayModel.h"
 #import "IDPFBLogoutContext.h"
 #import "IDPFBFriendsContext.h"
@@ -17,6 +17,7 @@
 #import "IDPModelCell.h"
 #import "IDPUserCell.h"
 #import "IDPFBUserDetailsViewController.h"
+#import "IDPFBFriendsArrayModel.h"
 
 #import "UITableView+IDPExtensions.h"
 
@@ -26,15 +27,15 @@
 kIDPStringVariableDefinition(kIDPLogoutButtonTitle, @"Logout");
 
 @interface IDPFBFriendsViewController ()
-@property (nonatomic, strong)   IDPUser             *user;
-@property (nonatomic, strong)   IDPFBLogoutContext  *logoutContext;
-@property (nonatomic, strong)   IDPFBFriendsContext *friendsContext;
+@property (nonatomic, strong)   IDPFBUser               *user;
+@property (nonatomic, strong)   IDPFBLogoutContext      *logoutContext;
+@property (nonatomic, strong)   IDPFBFriendsContext     *friendsContext;
 
 - (void)loadUsers;
 - (void)setupNavigationBar;
 - (UITableViewCell<IDPModelCell> *)cellForTable:(UITableView *)tableView
                                   withIndexPath:(NSIndexPath *)indexPath;
-- (void)pushDetailsViewContollerForUser:(IDPUser *)user;
+- (void)pushDetailsViewContollerForUser:(IDPFBUser *)user;
 - (void)reloadTableView;
 
 @end
@@ -45,9 +46,8 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
 
 #pragma mark - Initializations and Deallocations
 
-- (instancetype)initWithUser:(IDPUser *)user {
+- (instancetype)initWithUser:(IDPFBUser *)user {
     self = [super init];
-    
     self.user = user;
     
     return self;
@@ -56,12 +56,18 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setModel:(IDPArrayModel *)model {
-    if ([super model] != model) {
-        [super setModel:model];
+IDPBaseViewGetterSynthesize(SUIView, rootView);
+
+- (void)setUser:(IDPFBUser *)user {
+    if (_user != user) {
+        [_user removeObserverObject:self];
+     
+        _user = user;
+        
+        [user addObserverObject:self];
         
         if (self.isViewLoaded) {
-            self.rootView.model = self.model;
+            self.rootView.model = self.user;
         }
     }
 }
@@ -78,9 +84,9 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
 #pragma mark Private
 
 - (void)loadUsers {
-    self.model = self.user.friends;
-    
     self.friendsContext = [IDPFBFriendsContext contextWithModel:self.user];
+    
+    [self.friendsContext execute];
 }
 
 - (void)setupNavigationBar {
@@ -91,9 +97,8 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
     self.navigationItem.leftBarButtonItem = button;
 }
 
-- (void)pushDetailsViewContollerForUser:(IDPUser *)user {
-    IDPFBUserDetailsViewController *controller = [IDPFBUserDetailsViewController new];
-    controller.model = user;
+- (void)pushDetailsViewContollerForUser:(IDPFBUser *)user {
+    IDPFBUserDetailsViewController *controller = [[IDPFBUserDetailsViewController alloc] initWithUser:user];
     
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -129,10 +134,18 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.rootView.model = self.user;
+    
+    [self.friendsView setupRefreshControl];
+    
     [self loadUsers];
 }
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    self.rootView.model = self.user;
+    
     [self setupNavigationBar];
 }
 
@@ -140,13 +153,29 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark -
-#pragma mark IDPArrayModelObserver
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self.friendsView startAnimation];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
+                                 (int64_t)(5 * NSEC_PER_SEC)),
+                   dispatch_get_main_queue(),
+    ^{
+        [self.friendsView stopAnimation];
+        
+    });
+}
 
-- (void)modelDidLoad:(IDPArrayModel *)array {
+#pragma mark -
+#pragma mark IDPFBUserObserver
+
+- (void)userDidLoadFriends:(IDPFBUser *)user {
     IDPPrintMethod;
     
     [self reloadTableView];
+    
+    self.rootView.loadingViewVisible = NO;
 }
 
 #pragma mark -
@@ -155,7 +184,7 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
 - (NSInteger)   tableView:(UITableView *)tableView
     numberOfRowsInSection:(NSInteger)section
 {
-    return ((IDPArrayModel *)self.model).count;
+    return self.user.friendsArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -163,7 +192,7 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
 {
     UITableViewCell<IDPModelCell> *cell = [self cellForTable:tableView withIndexPath:indexPath];
     
-    cell.model = self.model[indexPath.row];
+    cell.model = self.user.friendsArray[indexPath.row];
     
     return cell;
 }
@@ -175,7 +204,7 @@ IDPViewControllerBaseViewProperty(IDPFBFriendsViewController, IDPFBFriendsView, 
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self pushDetailsViewContollerForUser:self.model[indexPath.row]];
+    [self pushDetailsViewContollerForUser:self.user.friendsArray[indexPath.row]];
 }
 
 @end

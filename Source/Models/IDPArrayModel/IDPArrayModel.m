@@ -60,10 +60,6 @@ kIDPStringKeyDefinition(kIDPArrayModelObjectsKey);
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)substituteObjectsWithObjects:(NSArray *)objects {
-    self.mutableObjects = [objects mutableCopy];
-}
-
 - (id)objectAtIndexedSubscript:(NSUInteger)index {
     return [self objectAtIndex:index];
 }
@@ -74,6 +70,10 @@ kIDPStringKeyDefinition(kIDPArrayModelObjectsKey);
 
 - (NSUInteger)indexOfObject:(id)object {
     return [self.mutableObjects indexOfObject:object];
+}
+
+- (void)substituteObjectsWithObjects:(NSArray *)objects {
+    self.mutableObjects = [objects mutableCopy];
 }
 
 - (void)insertObject:(id)object atIndex:(NSUInteger)index {

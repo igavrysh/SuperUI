@@ -16,25 +16,44 @@
 #import "IDPMacros.h"
 #import "IDPContextHelpers.h"
 
-IDPViewControllerBaseViewProperty(IDPFBUserDetailsViewController, IDPFBUserDetailsView, detailsView);
-
 @interface IDPFBUserDetailsViewController ()
-@property (nonatomic, strong)   IDPFBUserDetailsContext   *detailsContext;
+@property (nonatomic, strong)   IDPFBUser               *user;
+@property (nonatomic, strong)   IDPFBUserDetailsContext *detailsContext;
 
 - (void)loadUserDetails;
 
 @end
 
+IDPViewControllerBaseViewProperty(IDPFBUserDetailsViewController, IDPFBUserDetailsView, detailsView);
+
 @implementation IDPFBUserDetailsViewController
+
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (instancetype)initWithUser:(IDPFBUser *)user {
+    self = [super init];
+    self.user = user;
+    
+    return self;
+}
 
 #pragma mark - 
 #pragma mark Accessors
 
-- (void)setModel:(IDPUser *)user {
-    [super setModel:user];
-    
-    if (self.isViewLoaded) {
-        self.rootView.model = user;
+IDPBaseViewGetterSynthesize(SUIView, rootView);
+
+- (void)setUser:(IDPFBUser *)user {
+    if (_user != user) {
+        [_user removeObserverObject:self];
+        
+        _user = user;
+        
+        [user addObserverObject:self];
+        
+        if (self.isViewLoaded) {
+            self.rootView.model = self.user;
+        }
     }
 }
 
@@ -46,7 +65,9 @@ IDPViewControllerBaseViewProperty(IDPFBUserDetailsViewController, IDPFBUserDetai
 #pragma mark Private Methods
 
 - (void)loadUserDetails {
-    self.detailsContext = [IDPFBUserDetailsContext contextWithModel:self.model];
+    self.detailsContext = [IDPFBUserDetailsContext contextWithModel:self.user];
+    
+    [self.detailsContext execute];
 }
 
 #pragma mark -
@@ -62,8 +83,19 @@ IDPViewControllerBaseViewProperty(IDPFBUserDetailsViewController, IDPFBUserDetai
 #pragma mark IDPUserStateObserver
 
 - (void)modelDidLoad:(IDPUser *)user {
+    
+}
+
+#pragma mark -
+#pragma mark IDPFBUserObserver
+
+- (void)userDidLoadDetails:(IDPFBUser *)user {
+    IDPPrintMethod;
+    
     IDPAsyncPerformInMainQueue(^{
         self.detailsView.model = user;
+        
+        self.rootView.loadingViewVisible = NO;
     });
 }
 

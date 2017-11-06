@@ -21,11 +21,11 @@ kIDPStringVariableDefinition(kIDPLargePicture, @"picture.type(large)");
 kIDPStringVariableDefinition(kIDPFriends, @"friends");
 kIDPStringVariableDefinition(kIDPPermissions, @"permissions");
 kIDPStringVariableDefinition(kIDPData, @"data");
-kIDPStringVariableDefinition(kIDPPicture, @"picture")
+kIDPStringVariableDefinition(kIDPPicture, @"picture");
 kIDPStringVariableDefinition(kIDPURL, @"url");
 kIDPStringVariableDefinition(kIDPName, @"name");
 kIDPStringVariableDefinition(kIDPLocation, @"location");
 kIDPStringVariableDefinition(kIDPHometown, @"hometown");
-kIDPStringVariableDefinition(KIDPUserLocation, @"user_location");
+kIDPStringVariableDefinition(kIDPUserLocation, @"user_location");
 kIDPStringVariableDefinition(kIDPWork, @"work");
 

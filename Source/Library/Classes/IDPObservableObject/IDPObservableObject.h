@@ -8,19 +8,30 @@
 
 #import <Foundation/Foundation.h>
 
-@interface IDPObservableObject : NSObject <NSCopying>
+@protocol IDPObservableObject <NSObject>
+
+@optional
 @property (nonatomic, assign)   NSUInteger      state;
-@property (nonatomic, readonly) NSSet           *observerSet;
 
-- (void)addObservers:(NSArray *)observers;
-- (void)addObserver:(id)observer;
+- (SEL)selectorForState:(NSUInteger)state;
 
-- (void)removeObservers:(NSArray *)observers;
-- (void)removeObserver:(id)observer;
+- (void)addObserverObjects:(NSArray *)observers;
+- (void)addObserverObject:(id)observer;
+
+- (void)removeObserverObjects:(NSArray *)observers;
+- (void)removeObserverObject:(id)observer;
+
+@end
+
+@interface IDPObservableObject : NSObject <IDPObservableObject>
+@property (nonatomic, assign)           NSUInteger              state;
+@property (nonatomic, readonly)         NSSet                   *observerSet;
+@property (nonatomic, weak, readonly)   id<IDPObservableObject> target;
+
+- (instancetype)initWithTarget:(id)target;
 
 - (BOOL)isObservedByObject:(id)observer;
 
-// This method is itended for subclassing
 - (SEL)selectorForState:(NSUInteger)state;
 
 - (void)setState:(NSUInteger)state object:(id)object;

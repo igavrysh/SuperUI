@@ -8,7 +8,7 @@
 
 #import "IDPFBGetContext.h"
 
-@class IDPUser;
+@class IDPFBUser;
 
 @interface IDPFBUserDetailsContext : IDPFBGetContext
 

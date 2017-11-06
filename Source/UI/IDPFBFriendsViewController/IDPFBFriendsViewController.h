@@ -8,12 +8,24 @@
 
 #import "SUIViewController.h"
 
-@class IDPUser;
+#import "IDPModel.h"
+#import "IDPFBUser.h"
+#import "SUIView.h"
+#import "IDPContext.h"
 
-@interface IDPFBFriendsViewController : SUIViewController <
+#import "IDPMacros.h"
+
+@class IDPFBUser;
+@class IDPFBFriendsArrayModel;
+
+@interface IDPFBFriendsViewController : UIViewController <
+    IDPFBUserObserver,
     UITableViewDelegate,
-    UITableViewDataSource>
+    UITableViewDataSource
+>
 
-- (instancetype)initWithUser:(IDPUser *)user;
+IDPDefineBaseViewProperty(SUIView, rootView);
+
+- (instancetype)initWithUser:(IDPFBUser *)user;
 
 @end

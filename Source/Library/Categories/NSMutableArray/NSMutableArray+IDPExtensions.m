@@ -21,4 +21,10 @@
     [self insertObject:object atIndex:index];
 }
 
+- (void)addObjectWithNilCheck:(id)object {
+    if (object) {
+        [self addObject:object];
+    }
+}
+
 @end

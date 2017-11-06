@@ -8,28 +8,21 @@
 
 #import "IDPFBUserDetailsContext.h"
 
-#import "IDPUser.h"
+#import "IDPFBUser.h"
+#import "IDPFBImage.h"
 #import "IDPFBConstants.h"
 
+#import "IDPGCDQueue.h"
+
 @implementation IDPFBUserDetailsContext
-
-#pragma mark -
-#pragma mark Initializations and Deallocations
-
-- (instancetype)initWithModel:(IDPUser *)user {
-    self = [super initWithModel:user];
-    user.state = IDPModelDidUnload;
-    
-    return self;
-}
 
 #pragma mark -
 #pragma mark Accessors
 
 - (NSString *)graphPath {
-    IDPUser *user = (IDPUser *)self.model;
+    IDPFBUser *user = (IDPFBUser *)self.model;
     
-    return [NSString stringWithFormat:@"%@", user.ID];
+    return [NSString stringWithFormat:@"%@", user.managedObjectID];
 }
 
 - (NSDictionary *)requestParameters {
@@ -45,19 +38,24 @@
 #pragma mark Public Methods
 
 - (void)fillWithResult:(NSDictionary *)result {
-    IDPUser *user = (IDPUser *)self.model;
-    user.name = result[kIDPName];
-    user.bigImageURL = [NSURL URLWithString:result[kIDPPicture][kIDPData][kIDPURL]];
-
-    user.state = IDPModelDidLoad;
+    IDPFBUser *user = (IDPFBUser *)self.model;
     
-    [user save];
+    user.name = result[kIDPName];
+    user.bigProfileImage = [IDPFBImage managedObjectWithID:result[kIDPPicture][kIDPData][kIDPURL]];
+    
+    [user saveManagedObject];
+    
+    user.state = IDPFBUserDidLoadDetails;
 }
 
 - (void)didFailLoadingFromInternet:(NSError *)error {
-    IDPUser *user = (IDPUser *)self.model;
-    
-    [user load];
+    IDPAsyncPerformInMainQueue(^{
+        NSString *managedObjectID = ((IDPFBUser *)self.model).managedObjectID;
+        
+        IDPFBUser *user = [IDPFBUser managedObjectWithID:managedObjectID];
+        
+        user.state = IDPFBUserDidLoadDetails;
+    });
 }
 
 @end
