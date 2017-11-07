@@ -24,6 +24,7 @@
 @property (nonatomic, copy)     NSString        *name;
 @property (nonatomic, copy)     NSString        *location;
 @property (nonatomic, copy)     NSString        *hometown;
+@property (nonatomic, copy)     NSString        *email;
 @property (nonatomic, readonly) IDPArrayModel   *friends;
 
 @property (nonatomic, copy)     NSURL           *imageURL;
@@ -34,6 +35,7 @@
 
 @property (nonatomic, readonly) NSString        *plistName;
 @property (nonatomic, readonly) NSString        *cachePath;
+
 @property (nonatomic, readonly, getter=isCacheExists) BOOL cacheExists;
 
 + (instancetype)user;

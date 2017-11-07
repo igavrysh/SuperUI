@@ -37,15 +37,15 @@
 - (NSString *)graphPath {
     return [NSString stringWithFormat:@"%@/%@",
             self.user.managedObjectID,
-            kIDPFriends];
+            kIDPGraphKeyFriends];
 }
 
 - (NSDictionary *)requestParameters {
     return @{kIDPFields:[NSString stringWithFormat:@"%@, %@, %@, %@",
                          kIDPID,
-                         kIDPFirstName,
-                         kIDPLastName,
-                         kIDPLargePicture]};
+                         kIDPGraphKeyFirstName,
+                         kIDPGraphKeyLastName,
+                         kIDPGraphKeyLargePicture]};
 }
 
 - (IDPFBUser *)user {
@@ -82,8 +82,8 @@
 
 - (IDPFBUser *)userWithInfo:(NSDictionary *)info {
     IDPFBUser *user = [IDPFBUser managedObjectWithID:info[kIDPID]];
-    user.firstName = info[kIDPFirstName];
-    user.lastName = info[kIDPLastName];
+    user.firstName = info[kIDPGraphKeyFirstName];
+    user.lastName = info[kIDPGraphKeyLastName];
     user.profileImage = [IDPFBImage managedObjectWithID:info[kIDPPicture][kIDPData][kIDPURL]];
     user.state = IDPFBUserDidLoadId;
     

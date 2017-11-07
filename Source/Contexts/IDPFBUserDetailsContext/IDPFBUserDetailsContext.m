@@ -26,12 +26,13 @@
 }
 
 - (NSDictionary *)requestParameters {
-    return @{kIDPFields:[NSString stringWithFormat:@"%@, %@, %@, %@, %@",
-                         kIDPLargePicture,
-                         kIDPName,
-                         kIDPLocation,
-                         kIDPHometown,
-                         kIDPWork]};
+    return @{kIDPFields:[NSString stringWithFormat:@"%@, %@, %@, %@, %@, %@",
+                         kIDPGraphKeyLargePicture,
+                         kIDPGraphKeyName,
+                         kIDPGraphKeyLocation,
+                         kIDPGraphKeyHometown,
+                         kIDPGraphKeyWork,
+                         kIDPGraphKeyEmail]};
 }
 
 #pragma mark -
@@ -40,8 +41,11 @@
 - (void)fillWithResult:(NSDictionary *)result {
     IDPFBUser *user = (IDPFBUser *)self.model;
     
-    user.name = result[kIDPName];
+    user.name = result[kIDPGraphKeyName];
     user.bigProfileImage = [IDPFBImage managedObjectWithID:result[kIDPPicture][kIDPData][kIDPURL]];
+    user.location = ((NSDictionary *)result[kIDPGraphKeyLocation])[@"name"];
+    user.hometown = ((NSDictionary *)result[kIDPGraphKeyHometown])[@"name"];
+    user.email = result[kIDPGraphKeyEmail];
     
     [user saveManagedObject];
     

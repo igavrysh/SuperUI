@@ -51,6 +51,7 @@ typedef NS_ENUM(NSUInteger, IDPFBState) {
 @interface IDPFBUser : IDPFBManagedObject <IDPObservableObject>
 @property (nonatomic, strong)           NSString                *firstName;
 @property (nonatomic, strong)           NSString                *lastName;
+@property (nonatomic, strong)           NSString                *email;
 @property (nonatomic, strong)           NSString                *hometown;
 @property (nonatomic, strong)           NSString                *location;
 @property (nonatomic, strong)           NSString                *name;

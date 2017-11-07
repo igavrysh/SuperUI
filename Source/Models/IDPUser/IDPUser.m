@@ -25,12 +25,14 @@ kIDPStringVariableDefinition(kIDPRootKey, @"archive");
 kIDPStringKeyDefinition(kIDPUserID);
 kIDPStringKeyDefinition(kIDPUserFirstNameKey);
 kIDPStringKeyDefinition(kIDPUserLastNameKey);
+kIDPStringKeyDefinition(kIDPUserEmailKey);
 kIDPStringKeyDefinition(kIDPUserNameKey);
 kIDPStringKeyDefinition(kIDPUserLocationKey);
 kIDPStringKeyDefinition(kIDPUserHometownKey);
 kIDPStringKeyDefinition(kIDPUserImageURLKey);
 kIDPStringKeyDefinition(kIDPUserBigImageURLKey);
 kIDPStringKeyDefinition(kIDPUserFriendIDsKey);
+
 
 @interface IDPUser ()
 @property (nonatomic, strong)   IDPArrayModel   *friends;
@@ -159,6 +161,7 @@ kIDPStringKeyDefinition(kIDPUserFriendIDsKey);
     IDPDecode(kIDPUserFirstNameKey, firstName)
     IDPDecode(kIDPUserLastNameKey, lastName)
     IDPDecode(kIDPUserNameKey, name)
+    IDPDecode(kIDPUserEmailKey, email)
     IDPDecode(kIDPUserLocationKey, location)
     IDPDecode(kIDPUserHometownKey, hometown)
     IDPDecode(kIDPUserImageURLKey, imageURL)
@@ -182,6 +185,7 @@ kIDPStringKeyDefinition(kIDPUserFriendIDsKey);
     IDPEncode(kIDPUserFirstNameKey, firstName)
     IDPEncode(kIDPUserLastNameKey, lastName)
     IDPEncode(kIDPUserNameKey, name)
+    IDPEncode(kIDPUserEmailKey, email)
     IDPEncode(kIDPUserLocationKey, location)
     IDPEncode(kIDPUserHometownKey, hometown)
     IDPEncode(kIDPUserImageURLKey, imageURL)

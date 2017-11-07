@@ -13,6 +13,7 @@
 
 #import "IDPGCDQueue.h"
 #import "IDPFBFriendsViewController.h"
+#import "IDPFBUserDetailsViewController.h"
 #import "IDPFBConstants.h"
 #import "IDPFBUser.h"
 #import "IDPFBUserInteraction.h"
@@ -63,8 +64,13 @@
 - (void)showFriendsViewControllerForUser:(IDPFBUser *)user {
     IDPFBFriendsViewController *controller = [[IDPFBFriendsViewController alloc] initWithUser:user];
     
-    [self.navigationController pushViewController:controller
-                                         animated:NO];
+    [self.navigationController pushViewController:controller animated:NO];
+}
+
+- (void)showUserDetailsViewControllerForUser:(IDPFBUser *)user {
+    IDPFBUserDetailsViewController *controller = [[IDPFBUserDetailsViewController alloc] initWithUser:user];
+    
+    [self.navigationController pushViewController:controller animated:NO];
 }
 
 #pragma mark -
@@ -77,7 +83,7 @@
     self.model = user;
     
     if ([IDPFBUserInteraction isUserLoggedIn:user]) {
-        [self showFriendsViewControllerForUser:user];
+        [self showUserDetailsViewControllerForUser:user];
     }
 }
 
@@ -86,7 +92,7 @@
 
 - (void)userDidLoadId:(IDPFBUser *)user {
     IDPAsyncPerformInMainQueue(^{
-        [self showFriendsViewControllerForUser:user];
+        [self showUserDetailsViewControllerForUser:user];
     });
 }
 

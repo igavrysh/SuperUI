@@ -47,6 +47,7 @@
     self.nameLabel.text = user.name;
     self.locationLabel.text = user.location;
     self.hometownLabel.text = user.hometown;
+    self.email.text = user.email;
     self.imageModel = user.bigProfileImage.imageModel;
 }
 

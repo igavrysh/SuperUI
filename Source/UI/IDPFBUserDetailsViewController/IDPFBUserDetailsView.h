@@ -16,5 +16,6 @@
 @property (nonatomic, strong)   IBOutlet    UILabel         *nameLabel;
 @property (nonatomic, strong)   IBOutlet    UILabel         *locationLabel;
 @property (nonatomic, strong)   IBOutlet    UILabel         *hometownLabel;
+@property (nonatomic, strong)   IBOutlet    UILabel         *email;
 
 @end
