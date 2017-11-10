@@ -1,5 +1,10 @@
 reated by https://www.gitignore.io/api/c,objective-c,xcode
 
+## Node JS modules
+
+backend/fb_account_loader/node_modules/*
+
+
 ### C ###
 # Object files
 *.o
